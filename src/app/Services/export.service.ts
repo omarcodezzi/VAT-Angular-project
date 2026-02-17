@@ -131,7 +131,7 @@ export class ExportService {
         body: [[{ text: text, style: 'secHeaderCell' }]]
       },
       layout: 'noBorders',
-      margin: [0, 10, 0, 0]
+      margin: [0, 2, 0, 0]
     };
   }
 
@@ -144,52 +144,163 @@ export class ExportService {
       pageSize: 'A4',
       pageMargins: [30, 30, 30, 30],
       content: [
-        {
-          columns: [
-            { width: 40, text: '' },
-            {
-              width: '*',
-              stack: [
-                { text: "GOVERNMENT OF THE PEOPLE'S REPUBLIC OF BANGLADESH", style: 'header' },
-                { text: "NATIONAL BOARD OF REVENUE", style: 'header' },
-                { text: "\nVALUE ADDED TAX RETURN FORM", style: 'subHeader' },
-                { text: "[Rule 47(1)]", style: 'rule' },
-              ]
-            },
-            { width: 70, text: '|| Mushak-9.1 ||', style: 'formId' }
-          ]
-        },
+        { stack: [{ text: "GOVERNMENT OF THE PEOPLE'S REPUBLIC OF BANGLADESH", style: 'header' }, { text: "NATIONAL BOARD OF REVENUE", style: 'header' }, { text: "\nVALUE ADDED TAX RETURN FORM (Mushak-9.1)", style: 'subHeader' }] },
 
         this.createFullWidthHeader("SECTION - 1: TAXPAYER'S INFORMATION"),
-        { style: 'borderedTable', table: { widths: ['*'], body: [[{ margin: [5, 5], table: { widths: ['25%', '5%', '70%'], body: [['1. BIN', ':', t.bin], ['2. Name', ':', t.name], ['3. Address', ':', t.address || ''], ['4. Nature', ':', t.businessNature], ['5. Activity', ':', t.activity]] }, layout: 'noBorders' }]] }, layout: { hLineWidth: () => 0.5, vLineWidth: () => 0.5 } },
+        {
+          style: 'dataTable',
+          table: {
+            widths: ['40%', '2%', '58%'],
+            body: [
+              ['1. BIN', ':', t.bin],
+              ['2. Name', ':', t.name],
+              ['3. Address', ':', t.address || ''],
+              ['4. Nature', ':', t.businessNature],
+              ['5. Activity', ':', t.activity]
+            ]
+          }
+        },
 
         this.createFullWidthHeader("SECTION - 2: RETURN SUBMISSION DATA"),
         {
-          style: 'borderedTable', table: {
-            widths: ['*'],
-            body: [[{ margin: [5, 5], table: { widths: ['40%', '5%', '55%'], body: [['1. Period', ':', s.period], ['2. Type', ':', s.type], ['4. Date', ':', s.date]] }, layout: 'noBorders' }]]
-          },
-          layout: { hLineWidth: () => 0.5, vLineWidth: () => 0.5 }
+          style: 'dataTable',
+          table: {
+            widths: ['40%', '2%', '58%'],
+            body: [
+              ['1. Tax Period', ':', { text: s.period || 'Oct / 2022', alignment: 'center' }],
+              ['2. Type of Return\n[Please select your desired option]', ':', {
+                stack: [
+                  { columns: [{ width: '*', text: 'A) Main/Original Return (Section 64)' }, { width: 40, text: '[   ]', alignment: 'right' }] },
+                  { columns: [{ width: '*', text: 'B) Late Return (section 65)' }, { width: 40, text: '[   ]', alignment: 'right' }] },
+                  { columns: [{ width: '*', text: 'C) Amend Return (section 66)' }, { width: 40, text: '[   ]', alignment: 'right' }] },
+                  { columns: [{ width: '*', text: 'D) Full or Additional or Alternative Return (Section 67)' }, { width: 40, text: '[   ]', alignment: 'right' }] }
+                ], margin: [0, 5, 0, 5]
+              }],
+              ['3. Any activities in this Tax Period?', ':', {
+                stack: [
+                  { columns: [{ width: 'auto', text: '[  ] Yes' }, { width: 30, text: '' }, { width: 'auto', text: '[   ] No' }], alignment: 'center' },
+                  { text: '[If Selected "No" Please Fill Only Section I, II & X]', fontSize: 7, alignment: 'center', margin: [0, 2] }
+                ]
+              }],
+              ['4. Date of Submission', ':', { text: s.date || '03-Oct-2022', alignment: 'center' }]
+            ]
+          }
         },
 
         this.createFullWidthHeader("SECTION - 3: SUPPLY - OUTPUT TAX"),
         {
-          style: 'dataTable', table: {
-            widths: ['35%', '10%', '5%', '15%', '13%', '13%', '9%'], body: [
-              [{ text: 'Nature of Supply', style: 'tHead', colSpan: 2, alignment: 'center' }, {}, { text: 'Note', style: 'tHead' }, { text: 'Value', style: 'tHead' }, { text: 'SD', style: 'tHead' }, { text: 'VAT', style: 'tHead' }, ''],
-              [{ text: 'Standard Rated', colSpan: 2 }, {}, '4', (n.note4?.val || 0).toLocaleString(), '0.00', (n.note4?.vat || 0).toLocaleString(), 'Sub form'],
-              [{ text: 'Total Sales Value', colSpan: 2, style: 'tBold' }, {}, '9', (n.note9?.val || 0).toLocaleString(), '0.00', (n.note9?.vat || 0).toLocaleString(), '']
+          style: 'dataTable',
+          table: {
+            headerRows: 1,
+            widths: ['35%', '10%', '5%', '15%', '13%', '13%', '9%'],
+            body: [
+              // Table Header
+              [
+                { text: 'Nature of Supply', style: 'tHead', colSpan: 2, alignment: 'center' },
+                {},
+                { text: 'Note', style: 'tHead', alignment: 'center' },
+                { text: 'Value (a)', style: 'tHead', alignment: 'center' },
+                { text: 'SD (b)', style: 'tHead', alignment: 'center' },
+                { text: 'VAT (c)', style: 'tHead', alignment: 'center' },
+                { text: '', style: 'tHead', border: [false, false, false, false] }
+              ],
+              // Row 1 & 2: Zero Rated
+              [
+                { text: 'Zero Rated Goods/Service', rowSpan: 2 },
+                'Direct Export', '1', '0.00', { text: '', fillColor: '#d9d9d9' }, { text: '', fillColor: '#d9d9d9' }, 'Sub form'
+              ],
+              [
+                {}, 'Deemed Export', '2', '0.00', { text: '', fillColor: '#d9d9d9' }, { text: '', fillColor: '#d9d9d9' }, 'Sub form'
+              ],
+              // Row 3: Exempted
+              [{ text: 'Exempted Goods/Service', colSpan: 2 }, {}, '3', '0.00', { text: '', fillColor: '#d9d9d9' }, { text: '', fillColor: '#d9d9d9' }, 'Sub form'],
+              // Row 4: Standard Rated
+              [
+                { text: 'Standard Rated Goods/Service', colSpan: 2 }, {}, '4',
+                (n.note4?.val || 159270.30).toLocaleString(undefined, { minimumFractionDigits: 2 }),
+                '0.00',
+                (n.note4?.vat || 23890.55).toLocaleString(undefined, { minimumFractionDigits: 2 }),
+                'Sub form'
+              ],
+              // Rows 5-7
+              [{ text: 'Goods Based on MRP', colSpan: 2 }, {}, '5', '', '', '', 'Sub form'],
+              [{ text: 'Goods/Service Based on Specific VAT', colSpan: 2 }, {}, '6', '', '', '', 'Sub form'],
+              [{ text: 'Goods/Service Other than Standard Rate', colSpan: 2 }, {}, '7', '', '', '', 'Sub form'],
+              // Row 8
+              [{ text: 'Retail/Whole Sale/Trade Based Supply', colSpan: 2 }, {}, '8', '0.00', '0.00', '0.00', { text: 'Sub form', fillColor: '#d9d9d9' }],
+              // Row 9: Total
+              [
+                { text: 'Total Sales Value & Total Payable Taxes', colSpan: 2, style: 'tBold' }, {},
+                { text: '9', style: 'tBold' },
+                { text: (n.note9?.val || 159270.30).toLocaleString(undefined, { minimumFractionDigits: 2 }), style: 'tBold', fillColor: '#d9d9d9' },
+                { text: '0.00', style: 'tBold', fillColor: '#d9d9d9' },
+                { text: (n.note9?.vat || 23890.55).toLocaleString(undefined, { minimumFractionDigits: 2 }), style: 'tBold', fillColor: '#d9d9d9' },
+                { text: '', border: [false, false, false, false] }
+              ]
             ]
           }
         },
 
         this.createFullWidthHeader("SECTION - 4: PURCHASE - INPUT TAX"),
         {
-          style: 'dataTable', table: {
-            widths: ['40%', '10%', '15%', '15%', '20%'], body: [
-              [{ text: 'Purchase', style: 'tHead', alignment: 'center' }, 'Note', 'Value', 'VAT', ''],
-              ['Local Purchase (Standard)', '14', (n.note14?.val || 0).toLocaleString(), (n.note14?.vat || 0).toLocaleString(), 'Sub form'],
-              [{ text: 'Total Input Tax', style: 'tBold' }, '23', (n.note23?.val || 0).toLocaleString(), (n.note23?.vat || 0).toLocaleString(), '']
+          stack: [
+            {
+              canvas: [{ type: 'rect', x: 0, y: 0, w: 535, h: 55, color: '#fcd5b4' }]
+            },
+            {
+              text: [
+                "1) If all the products/services you supply are standard rated, fill up note 10-20.\n",
+                "2) All the products/services you supply are not standard rated or input tax credit not taken within stipulated time period under section 46, fill up note 21-22.\n",
+                "3) If the products/services you supply consist of both standard rated and non-standard rated, then fill up note 10-20 for the raw materials that were used to produce/supply standard rated goods/services and fill up note 21-22 for the raw materials that were used to produce/supply non-standard rated goods/services and show the value proportionately in note 10-22 as applicable."
+              ],
+              fontSize: 7,
+              margin: [5, -50, 5, 10]
+            }
+          ],
+          // margin: [0, 5, 0, 10]
+        },
+        {
+          style: 'dataTable',
+          table: {
+            headerRows: 1,
+            widths: ['35%', '15%', '5%', '17%', '17%', '11%'],
+            body: [
+              [
+                { text: 'Nature of Purchase', style: 'tHead', colSpan: 2, alignment: 'center' },
+                {},
+                { text: 'Note', style: 'tHead', alignment: 'center' },
+                { text: 'Value (a)', style: 'tHead', alignment: 'center' },
+                { text: 'VAT (b)', style: 'tHead', alignment: 'center' },
+                { text: '', border: [false, false, false, false] }
+              ],
+              // Zero Rated & Exempted (Notes 10-13)
+              [{ text: 'Zero Rated Goods/Service', rowSpan: 2 }, 'Local Purchase', '10', '0.00', { text: '', fillColor: '#d9d9d9' }, 'Sub form'],
+              [{}, 'Import', '11', '0.00', { text: '', fillColor: '#d9d9d9' }, 'Sub form'],
+              [{ text: 'Exempted Goods/Service', rowSpan: 2 }, 'Local Purchase', '12', '0.00', { text: '', fillColor: '#d9d9d9' }, 'Sub form'],
+              [{}, 'Import', '13', '0.00', { text: '', fillColor: '#d9d9d9' }, 'Sub form'],
+
+              // Standard Rated - Main Data (Notes 14-15)
+              [{ text: 'Standard Rated Goods/Service', rowSpan: 2 }, 'Local Purchase', '14', (n.note14?.val || 3717678.34).toLocaleString(), (n.note14?.vat || 557651.75).toLocaleString(), 'Sub form'],
+              [{}, 'Import', '15', '0.00', '0.00', 'Sub form'],
+
+              // Other Categories (Notes 16-22)
+              [{ text: 'Goods/Service Other than Standard Rate', rowSpan: 2 }, 'Local Purchase', '16', '0.00', '0.00', 'Sub form'],
+              [{}, 'Import', '17', '0.00', '0.00', 'Sub form'],
+              [{ text: 'Goods/Service Based on Specific VAT', rowSpan: 1 }, 'Local Purchase', '18', '0.00', '0.00', 'Sub form'],
+              [{ text: 'Goods/Service Not Admissible for Credit (Local Purchase)', rowSpan: 2 }, 'From Turnover Units', '19', '0.00', '0.00', 'Sub form'],
+              [{}, 'From Unregistered Entities', '20', '0.00', '0.00', 'Sub form'],
+              [{ text: 'Goods/Service Not Admissible for Credit (Taxpayers who sell only Exempted/ Specific VAT and Goods/Service Other than Standard Rate/\nCredits not taken\n', rowSpan: 2 }, 'Local Purchase', '21', '0.00', '0.00', 'Sub form'],
+              [{}, 'Import', '22', '0.00', '0.00', 'Sub form'],
+
+              // Total Row (Note 23)
+              [
+                { text: 'Total Input Tax Credit', colSpan: 1, style: 'tBold' },
+                {},
+                { text: '23', style: 'tBold' },
+                { text: (n.note23?.val || 3717678.34).toLocaleString(), style: 'tBold', fillColor: '#d9d9d9' },
+                { text: (n.note23?.vat || 557651.75).toLocaleString(), style: 'tBold', fillColor: '#d9d9d9' },
+                { text: '', border: [false, false, false, false] }
+              ]
             ]
           }
         },
@@ -218,19 +329,17 @@ export class ExportService {
         { style: 'dataTable', table: { widths: ['*', 40, 100], body: [['Requested Refund (VAT)', '67', (n.note67 || 0).toLocaleString()], ['Requested Refund (SD)', '68', (n.note68 || 0).toLocaleString()]] } },
 
         this.createFullWidthHeader("SECTION - 12: DECLARATION"),
-        { text: "I hereby declare that all information are true & accurate.", margin: [0, 10], fontSize: 8 },
+        { text: "I hereby declare that all information provided in this Return Form are complete, true & accurate.", margin: [0, 10], fontSize: 8 },
         { table: { widths: ['25%', '5%', '70%'], body: [['Name', ':', 'Hasanuzzaman'], ['Signature', ':', '']] }, layout: 'noBorders' }
-      ], 
+      ],
       styles: {
         header: { fontSize: 10, bold: true, alignment: 'center' },
         subHeader: { fontSize: 9, bold: true, alignment: 'center', color: '#003366' },
-        rule: { fontSize: 7, alignment: 'center' },
-        formId: { fontSize: 8, bold: true, alignment: 'right' },
-        secHeaderCell: { fillColor: '#003366', color: 'white', bold: true, alignment: 'center', fontSize: 9, padding: [0, 5, 0, 5] },
+        secHeaderCell: { fillColor: '#003366', color: 'white', bold: true, alignment: 'center', fontSize: 9, padding: [0, 2, 0, 2] },
         tHead: { fillColor: '#f2f2f2', bold: true, fontSize: 8 },
         tBold: { bold: true, fontSize: 8 },
-        dataTable: { fontSize: 8, margin: [0, 0, 0, 10] },
-        borderedTable: { margin: [0, 0, 0, 10] }
+        dataTable: { fontSize: 8, margin: [0, 0, 0, 5] },
+        borderedTable: { margin: [0, 0, 0, 2] }
       }
     };
     pdfMake.createPdf(docDef).download('Mushak_9.1_Full_Report.pdf');
@@ -239,11 +348,38 @@ export class ExportService {
   // --- MERGED MUSHAK-9.1 EXCEL (ALL SECTIONS 1-12) ---
   async exportFullMushakExcel(data: any) {
     const workbook = new ExcelJS.Workbook();
-    const sheet = workbook.addWorksheet('Mushak-9.1 Full');
+    const sheet = workbook.addWorksheet('Mushak-9.1');
+
+    // --- GOVERNMENT BRANDING HEADER ---
+    const brandRow1 = sheet.addRow(["GOVERNMENT OF THE PEOPLE'S REPUBLIC OF BANGLADESH", '', '']);
+    sheet.mergeCells(`B${brandRow1.number}:E${brandRow1.number}`);
+    brandRow1.getCell(1).font = { size: 12, bold: true };
+    brandRow1.getCell(1).alignment = { horizontal: 'center' };
+
+    const brandRow2 = sheet.addRow(["NATIONAL BOARD OF REVENUE", '', '']);
+    sheet.mergeCells(`B${brandRow2.number}:E${brandRow2.number}`);
+    brandRow2.getCell(1).font = { size: 11, bold: true };
+    brandRow2.getCell(1).alignment = { horizontal: 'center' };
+
+    const formTitleRow = sheet.addRow(["VALUE ADDED TAX RETURN FORM", '', '|| Mushak-9.1 ||']);
+    sheet.mergeCells(`B${formTitleRow.number}:E${formTitleRow.number}`);
+    formTitleRow.getCell(1).font = { size: 10, bold: true };
+    formTitleRow.getCell(1).alignment = { horizontal: 'center' };
+    formTitleRow.getCell(6).font = { size: 10, bold: true }; // Mushak-9.1 ID on right
+
+    const ruleRow = sheet.addRow(["[Rule 47(1)]", '', '']);
+    sheet.mergeCells(`B${ruleRow.number}:E${ruleRow.number}`);
+    ruleRow.getCell(1).font = { size: 8 };
+    ruleRow.getCell(1).alignment = { horizontal: 'center' };
 
     // --- 1. COLUMN SETUP ---
     sheet.columns = [
-      { width: 45 }, { width: 10 }, { width: 25 }, { width: 20 }, { width: 15 }
+      { width: 35 }, // A: Label
+      { width: 3 },  // B: Separator (:)
+      { width: 35 }, // C: Data
+      { width: 10 }, // D: Spacing
+      { width: 10 }, // E: Spacing
+      { width: 12 }  // F: Sub form
     ];
 
     // --- 2. STYLING HELPERS ---
@@ -274,21 +410,33 @@ export class ExportService {
     // --- SECTION 1 & 2 ---
     addHeader("SECTION - 1: TAXPAYER'S INFORMATION");
     const s1Start = sheet.rowCount + 1;
-    sheet.addRow(['1. BIN', ':', data.taxpayer.bin]);
-    sheet.addRow(['2. Name of Taxpayer', ':', data.taxpayer.name]);
-    sheet.addRow(['3. Address of Taxpayer', ':', data.taxpayer.address]);
-    sheet.addRow(['4. Nature of Business', ':', data.taxpayer.businessNature]);
-    sheet.addRow(['5. Economic Activity', ':', data.taxpayer.activity]);
+    const s1Data = [
+      ['1. BIN', ':', data.taxpayer.bin],
+      ['2. Name of Taxpayer', ':', data.taxpayer.name],
+      ['3. Address of Taxpayer', ':', data.taxpayer.address],
+      ['4. Nature of Business', ':', data.taxpayer.businessNature],
+      ['5. Economic Activity', ':', data.taxpayer.activity]
+    ];
+    s1Data.forEach(item => {
+      const r = sheet.addRow([item[0], item[1], item[2]]);
+      sheet.mergeCells(`C${r.number}:E${r.number}`); // Merged for full-width data row
+    });
     applyBorder(s1Start, sheet.rowCount);
 
     addHeader("SECTION - 2: RETURN SUBMISSION DATA");
     const s2Start = sheet.rowCount + 1;
-    sheet.addRow(['1. Tax Period', ':', data.returnSubmission.period]);
-    sheet.addRow(['2. Type of Return', ':', 'A) Main/Original Return (Section 64)   [ X ]']);
-    sheet.addRow(['', '', 'B) Late Return (section 65)   [   ]']);
-    sheet.addRow(['', '', 'C) Amend Return (section 66)   [   ]']);
-    sheet.addRow(['3. Any activities in this Tax Period?', ':', '[ X ] Yes     [   ] No']);
-    sheet.addRow(['4. Date of Submission', ':', data.returnSubmission.date]);
+    const s2Data = [
+      ['1. Tax Period', ':', data.returnSubmission.period],
+      ['2. Type of Return', ':', 'A) Main/Original Return (Section 64)   [ X ]'],
+      ['', '', 'B) Late Return (section 65)   [   ]'],
+      ['', '', 'C) Amend Return (section 66)   [   ]'],
+      ['3. Any activities in this Tax Period?', ':', '[ X ] Yes     [   ] No'],
+      ['4. Date of Submission', ':', data.returnSubmission.date]
+    ];
+    s2Data.forEach(item => {
+      const r = sheet.addRow([item[0], item[1], item[2]]);
+      sheet.mergeCells(`C${r.number}:E${r.number}`); // Merged for full-width data row
+    });
     applyBorder(s2Start, sheet.rowCount);
 
     // --- SECTION 3 & 4 ---
