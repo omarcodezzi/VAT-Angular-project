@@ -1,0 +1,125 @@
+<div class="wrap">
+  <div class="topbar">
+    <div>
+      <h2>VAT HS Code Excel Import</h2>
+      <!-- <p class="muted">Upload Excel → validate columns → show final grid → Import</p> -->
+    </div>
+
+    <div class="actions">
+      <label class="btn">
+        Upload Excel
+        <input #fileInput type="file" accept=".xlsx,.xls" (change)="onFileChange($event)" hidden />
+      </label>
+      <button type="button" class="btn btn-outline ms-2" (click)="refresh(fileInput)">
+        Refresh
+      </button>
+    </div>
+
+    <div class="mt-4 p-3 border rounded bg-light">
+      <h6>Official NBR Reports (Mushak-9.1)</h6>
+      <button class="btn btn-outline-primary me-2" (click)="downloadFullMushakPdf()">
+        Download 3-Page PDF
+      </button>
+      <button class="btn btn-outline-success" (click)="downloadFullMushakExcel()">
+        Download Full Excel
+      </button>
+    </div>
+
+  </div>
+
+  <div *ngIf="errorText()">
+    <div class="alert error">{{ errorText() }}</div>
+  </div>
+
+  <div *ngIf="successText()">
+    <div class="alert success">{{ successText() }}</div>
+  </div>
+
+  <!-- First Grid (Header Validation) -->
+  <div class="card">
+    <h3>First Grid (Header Validation)</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Expected</th>
+          <th>Found in Excel</th>
+          <th>Update Column</th>
+          <th>Status</th>
+          <th>Suggestion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of headerChecks()">
+          <td>{{ row.expected }}</td>
+
+          <td>{{ row.suggestion }}</td>
+          <td>{{ row.found || "-" }}</td>
+
+          <td>
+            <span [ngClass]="row.status === 'OK' ? 'text-success' : 'text-danger'">
+              {{ row.status }}
+            </span>
+          </td>
+
+          <td>
+            @if (row.status === 'MISSING') {
+            <select (change)="onSelectSuggestion(row.expected, $event)" class="suggestion-dropdown">
+              <option value="">-- Fix {{ row.expected }} --</option>
+              <option [value]="row.expected">{{ row.expected }}</option>
+            </select>
+            } @else {
+            <span class="text-muted">Matched ✅</span>
+            }
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="actions-footer" style="margin-top: 20px;">
+    @if (canShowImportButton() && !showFinalGrid()) {
+    <button class="btn-import" (click)="importData()">Import & Preview Data</button>
+    }
+  </div>
+
+  @if (showFinalGrid()) {
+  <div class="card">
+    <div class="d-flex gap-2 justify-content-end mb-2">
+      <button class="btn btn-success" (click)="downloadExcel()">Export Excel</button>
+      <button class="btn btn-danger" (click)="downloadPdf()">Export PDF</button>
+    </div>
+    <h3>Second Grid (Final Data)</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>HS Code</th>
+          <th>Description</th>
+          <th>CD</th>
+          <th>SD</th>
+          <th>VAT</th>
+          <th>AIT</th>
+          <th>RD</th>
+          <th>TTI</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (row of finalRows(); track $index) {
+        <tr>
+          <td>{{ row.HSCode }}</td>
+          <td>{{ row.Description }}</td>
+          <td>{{ row.CD }}</td>
+          <td>{{ row.SD }}</td>
+          <td>{{ row.VAT }}</td>
+          <td>{{ row.AIT }}</td>
+          <td>{{ row.RD }}</td>
+          <td>{{ row.TTI }}</td>
+        </tr>
+        }
+      </tbody>
+    </table>
+    <br>
+    <button class="btn btn-primary" (click)="saveFinalData()" [disabled]="!finalRows().length">
+      Save
+    </button>
+  </div>
+  }

@@ -1,0 +1,192 @@
+.wrap {
+  padding: 16px;
+  max-width: 1100px;
+  margin: 0 auto;
+  font-family: Inter, system-ui, Arial;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+h3 {
+  margin: 0 0 10px;
+  font-size: 16px;
+}
+
+.muted {
+  color: #6b7280;
+  explain: none;
+}
+
+.small {
+  font-size: 12px;
+}
+
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New";
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 12px;
+  margin-top: 12px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  border-bottom: 1px solid #f1f5f9;
+  padding: 10px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.table th {
+  font-size: 12px;
+  color: #334155;
+  background: #f8fafc;
+}
+
+.btn {
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.btn.primary {
+  background: #111827;
+  color: #fff;
+  border-color: #111827;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pill {
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  display: inline-block;
+}
+
+.pill.ok {
+  background: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+}
+
+.pill.bad {
+  background: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+.alert {
+  padding: 10px 12px;
+  border-radius: 10px;
+  margin: 10px 0;
+}
+
+.alert.error {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+}
+
+.alert.ok {
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  color: #065f46;
+}
+
+.suggest {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.link {
+  border: none;
+  background: transparent;
+  color: #2563eb;
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.card {
+  overflow: visible !important;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.gap-2 {
+  gap: 8px;
+}
+
+.justify-content-end {
+  justify-content: flex-end;
+}
+
+.btn.btn-success {
+  background-color: #4CAF50;
+  /* Green for Save */
+  color: white;
+}
+
+.btn.btn-danger {
+  background-color: #FF6347;
+  /* Red for Export */
+  color: white;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background-color: #007bff; /* Blue background */
+  color: white; /* White text */
+  border: 1px solid #007bff; /* Border matches background */
+  padding: 10px 16px; /* Padding inside the button */
+  border-radius: 8px; /* Rounded corners */
+  font-size: 16px; /* Font size */
+  font-weight: 600; /* Slightly bolder text */
+  cursor: pointer; /* Show pointer cursor */
+  transition: background-color 0.3s ease, border 0.3s ease;
+  display: inline-block; /* Keeps the button inline */
+  text-align: center; /* Center text */
+}

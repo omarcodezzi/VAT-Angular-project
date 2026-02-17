@@ -1,9 +1,10 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { ExcelImportComponent } from './excel-import/excel-import.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet,ExcelImportComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
