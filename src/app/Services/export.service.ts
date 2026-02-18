@@ -142,7 +142,7 @@ export class ExportService {
 
     const docDef: any = {
       pageSize: 'A4',
-      pageMargins: [30, 30, 30, 30],
+      pageMargins: [30, 25, 30, 30],
       content: [
         { stack: [{ text: "GOVERNMENT OF THE PEOPLE'S REPUBLIC OF BANGLADESH", style: 'header' }, { text: "NATIONAL BOARD OF REVENUE", style: 'header' }, { text: "\nVALUE ADDED TAX RETURN FORM (Mushak-9.1)", style: 'subHeader' }] },
 
@@ -170,18 +170,47 @@ export class ExportService {
               ['1. Tax Period', ':', { text: s.period || 'Oct / 2022', alignment: 'center' }],
               ['2. Type of Return\n[Please select your desired option]', ':', {
                 stack: [
-                  { columns: [{ width: '*', text: 'A) Main/Original Return (Section 64)' }, { width: 40, text: '[   ]', alignment: 'right' }] },
-                  { columns: [{ width: '*', text: 'B) Late Return (section 65)' }, { width: 40, text: '[   ]', alignment: 'right' }] },
-                  { columns: [{ width: '*', text: 'C) Amend Return (section 66)' }, { width: 40, text: '[   ]', alignment: 'right' }] },
-                  { columns: [{ width: '*', text: 'D) Full or Additional or Alternative Return (Section 67)' }, { width: 40, text: '[   ]', alignment: 'right' }] }
-                ], margin: [0, 5, 0, 5]
+                  { columns: [{ width: '70%', text: 'A) Main/Original Return (Section 64)' }, { table: { widths: ['35%'], body: [[' ']] }, margin: [0, 0, 10, 2], alignment: 'right' }] },
+                  { columns: [{ width: '70%', text: 'B) Late Return (section 65)' }, { table: { widths: ['35%'], body: [[' ']] }, margin: [0, 0, 10, 2], alignment: 'right' }] },
+                  { columns: [{ width: '70%', text: 'C) Amend Return (section 66)' }, { table: { widths: ['35%'], body: [[' ']] }, margin: [0, 0, 10, 2], alignment: 'right' }] },
+                  { columns: [{ width: '70%', text: 'D) Full or Additional or Alternative Return (Section 67)' }, { table: { widths: ['35%'], body: [[' ']] }, margin: [0, 0, 10, 2], alignment: 'right' }] }
+                ], 
               }],
-              ['3. Any activities in this Tax Period?', ':', {
-                stack: [
-                  { columns: [{ width: 'auto', text: '[  ] Yes' }, { width: 30, text: '' }, { width: 'auto', text: '[   ] No' }], alignment: 'center' },
-                  { text: '[If Selected "No" Please Fill Only Section I, II & X]', fontSize: 7, alignment: 'center', margin: [0, 2] }
-                ]
-              }],
+              // Row 3: Any activities in this Tax Period?
+              [
+                '3. Any activities in this Tax Period?',
+                ':',
+                {
+                  stack: [
+                    {
+                      alignment: 'center',
+                      columns: [
+                        { width: '*', text: '' },  
+                        {
+                          width: 'auto',
+                          columns: [
+                            // Yes Option
+                            { width: 'auto', table: { widths: [20], body: [[' ']] }, margin: [0, 0, 5, 0] },
+                            { width: 'auto', text: 'Yes', fontSize: 7, margin: [0, 2, 25, 0] }, 
+
+                            // No Option
+                            { width: 'auto', table: { widths: [20], body: [[' ']] }, margin: [0, 0, 5, 0] },
+                            { width: 'auto', text: 'No', fontSize: 7, margin: [0, 2, 0, 0] }
+                          ]
+                        },
+                        { width: '*', text: '' } 
+                      ]
+                    },
+                    {
+                      text: '[If Selected "No" Please Fill Only Section I, II & X]',
+                      fontSize: 7,
+                      alignment: 'center',
+                      margin: [0, 5, 0, 0],
+                      color: '#333333'
+                    }
+                  ],
+                }
+              ],
               ['4. Date of Submission', ':', { text: s.date || '03-Oct-2022', alignment: 'center' }]
             ]
           }
@@ -569,7 +598,7 @@ export class ExportService {
         },
 
         this.createFullWidthHeader("SECTION - 12: DECLARATION"),
-         { 
+        {
           style: 'dataTable',
           margin: [0, 0, 0, 0],
           table: {
@@ -579,12 +608,12 @@ export class ExportService {
                 {
                   text: "I hereby declare that all information provided in this Return Form are complete, true & accurate. In case of any untrue/incomplete statement, I may be subjected to penal action under The Value Added Tax and Supplementary Duty Act, 2012 or any other applicable Act prevailing at present.",
                   fillColor: '#d9d9d9', // Gray background for the disclaimer
-                  fontSize: 8,
+                  fontSize: 7,
                   margin: [5, 5, 5, 5]
                 }
               ]
             ],
-          } 
+          }
         },
         {
           style: 'dataTable',
@@ -598,7 +627,7 @@ export class ExportService {
               ['Email', ':', ''],
               ['Signature [Not required for electronic submission]', ':', '']
             ]
-          } 
+          }
         }
       ],
       styles: {
@@ -607,7 +636,7 @@ export class ExportService {
         secHeaderCell: { fillColor: '#003366', color: 'white', bold: true, alignment: 'center', fontSize: 9, padding: [0, 2, 0, 2] },
         tHead: { fillColor: '#f2f2f2', bold: true, fontSize: 8 },
         tBold: { bold: true, fontSize: 8 },
-        dataTable: { fontSize: 8, margin: [0, 0, 0, 5] },
+        dataTable: { fontSize: 8, margin: [0, 0, 0, 2] },
         borderedTable: { margin: [0, 0, 0, 2] }
       }
     };
