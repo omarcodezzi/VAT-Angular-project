@@ -142,9 +142,15 @@ export class ExportService {
 
     const docDef: any = {
       pageSize: 'A4',
-      pageMargins: [30, 25, 30, 30],
+      pageMargins: [30, 30, 30, 30],
       content: [
-        { stack: [{ text: "GOVERNMENT OF THE PEOPLE'S REPUBLIC OF BANGLADESH", style: 'header' }, { text: "NATIONAL BOARD OF REVENUE", style: 'header' }, { text: "\nVALUE ADDED TAX RETURN FORM (Mushak-9.1)", style: 'subHeader' }] },
+        {
+          stack: [{ text: "GOVERNMENT OF THE PEOPLE'S REPUBLIC OF BANGLADESH", style: 'header' },
+          { text: "NATIONAL BOARD OF REVENUE", style: 'header' },
+          { text: "\nVALUE ADDED TAX RETURN FORM (Mushak-9.1)", style: 'subHeader' },
+          { text: "\n[Rule 47(1)]", style: 'subHeader' },
+          { text: "\n", style: 'subHeader' }]
+        },
 
         this.createFullWidthHeader("SECTION - 1: TAXPAYER'S INFORMATION"),
         {
@@ -170,11 +176,11 @@ export class ExportService {
               ['1. Tax Period', ':', { text: s.period || 'Oct / 2022', alignment: 'center' }],
               ['2. Type of Return\n[Please select your desired option]', ':', {
                 stack: [
-                  { columns: [{ width: '70%', text: 'A) Main/Original Return (Section 64)' }, { table: { widths: ['35%'], body: [[' ']] }, margin: [0, 0, 10, 2], alignment: 'right' }] },
-                  { columns: [{ width: '70%', text: 'B) Late Return (section 65)' }, { table: { widths: ['35%'], body: [[' ']] }, margin: [0, 0, 10, 2], alignment: 'right' }] },
-                  { columns: [{ width: '70%', text: 'C) Amend Return (section 66)' }, { table: { widths: ['35%'], body: [[' ']] }, margin: [0, 0, 10, 2], alignment: 'right' }] },
-                  { columns: [{ width: '70%', text: 'D) Full or Additional or Alternative Return (Section 67)' }, { table: { widths: ['35%'], body: [[' ']] }, margin: [0, 0, 10, 2], alignment: 'right' }] }
-                ], 
+                  { columns: [{ width: '70%', text: 'A) Main/Original Return (Section 64)' }, { table: { widths: ['35%'], body: [[' ']] }, margin: [0, 0, 10, 5], alignment: 'right' }] },
+                  { columns: [{ width: '70%', text: 'B) Late Return (section 65)' }, { table: { widths: ['35%'], body: [[' ']] }, margin: [0, 0, 10, 5], alignment: 'right' }] },
+                  { columns: [{ width: '70%', text: 'C) Amend Return (section 66)' }, { table: { widths: ['35%'], body: [[' ']] }, margin: [0, 0, 10, 5], alignment: 'right' }] },
+                  { columns: [{ width: '70%', text: 'D) Full or Additional or Alternative Return (Section 67)' }, { table: { widths: ['35%'], body: [[' ']] }, margin: [0, 0, 10, 5], alignment: 'right' }] }
+                ], margin: [0, 5, 0, 5]
               }],
               // Row 3: Any activities in this Tax Period?
               [
@@ -185,20 +191,20 @@ export class ExportService {
                     {
                       alignment: 'center',
                       columns: [
-                        { width: '*', text: '' },  
+                        { width: '*', text: '' },
                         {
                           width: 'auto',
                           columns: [
                             // Yes Option
                             { width: 'auto', table: { widths: [20], body: [[' ']] }, margin: [0, 0, 5, 0] },
-                            { width: 'auto', text: 'Yes', fontSize: 7, margin: [0, 2, 25, 0] }, 
+                            { width: 'auto', text: 'Yes', fontSize: 7, margin: [0, 2, 25, 0] },
 
                             // No Option
                             { width: 'auto', table: { widths: [20], body: [[' ']] }, margin: [0, 0, 5, 0] },
                             { width: 'auto', text: 'No', fontSize: 7, margin: [0, 2, 0, 0] }
                           ]
                         },
-                        { width: '*', text: '' } 
+                        { width: '*', text: '' }
                       ]
                     },
                     {
@@ -209,6 +215,7 @@ export class ExportService {
                       color: '#333333'
                     }
                   ],
+                  margin: [0, 10, 0, 10] // Vertical padding for the whole cell
                 }
               ],
               ['4. Date of Submission', ':', { text: s.date || '03-Oct-2022', alignment: 'center' }]
@@ -274,7 +281,7 @@ export class ExportService {
         {
           stack: [
             {
-              canvas: [{ type: 'rect', x: 0, y: 0, w: 535, h: 55, color: '#fcd5b4' }]
+              canvas: [{ type: 'rect', x: 0, y: 0, w: 535, h: 45, color: '#fcd5b4' }]
             },
             {
               text: [
@@ -283,7 +290,7 @@ export class ExportService {
                 "3) If the products/services you supply consist of both standard rated and non-standard rated, then fill up note 10-20 for the raw materials that were used to produce/supply standard rated goods/services and fill up note 21-22 for the raw materials that were used to produce/supply non-standard rated goods/services and show the value proportionately in note 10-22 as applicable."
               ],
               fontSize: 7,
-              margin: [5, -50, 5, 10]
+              margin: [5, -43, 5, 2]
             }
           ],
           // margin: [0, 5, 0, 10]
@@ -631,12 +638,12 @@ export class ExportService {
         }
       ],
       styles: {
-        header: { fontSize: 10, bold: true, alignment: 'center' },
-        subHeader: { fontSize: 9, bold: true, alignment: 'center', color: '#003366' },
-        secHeaderCell: { fillColor: '#003366', color: 'white', bold: true, alignment: 'center', fontSize: 9, padding: [0, 2, 0, 2] },
-        tHead: { fillColor: '#f2f2f2', bold: true, fontSize: 8 },
-        tBold: { bold: true, fontSize: 8 },
-        dataTable: { fontSize: 8, margin: [0, 0, 0, 2] },
+        header: { fontSize: 8, bold: true, alignment: 'center' },
+        subHeader: { fontSize: 7, bold: true, alignment: 'center', color: '#003366' },
+        secHeaderCell: { fillColor: '#003366', color: 'white', bold: true, alignment: 'center', fontSize: 7, padding: [0, 2, 0, 2] },
+        tHead: { fillColor: '#f2f2f2', bold: true, fontSize: 7 },
+        tBold: { bold: true, fontSize: 7 },
+        dataTable: { fontSize: 7, margin: [0, 0, 0, 5] },
         borderedTable: { margin: [0, 0, 0, 2] }
       }
     };
