@@ -266,7 +266,7 @@ export class ExportService {
               [{ text: 'Retail/Whole Sale/Trade Based Supply', colSpan: 2 }, {}, '8', '0.00', '0.00', '0.00', { text: 'Sub form', fillColor: '#d9d9d9' }],
               // Row 9: Total
               [
-                { text: 'Total Sales Value & Total Payable Taxes', colSpan: 2, style: 'tBold' }, {},
+                { text: 'Total Sales Value & Total Payable Taxes', colSpan: 2, style: 'tBold', bold: true  }, {},
                 { text: '9', style: 'tBold' },
                 { text: (n.note9?.val || 159270.30).toLocaleString(undefined, { minimumFractionDigits: 2 }), style: 'tBold', fillColor: '#d9d9d9' },
                 { text: '0.00', style: 'tBold', fillColor: '#d9d9d9' },
@@ -330,7 +330,7 @@ export class ExportService {
 
               // Total Row (Note 23)
               [
-                { text: 'Total Input Tax Credit', colSpan: 1, style: 'tBold' },
+                { text: 'Total Input Tax Credit', colSpan: 1, style: 'tBold', bold: true },
                 {},
                 { text: '23', style: 'tBold' },
                 { text: (n.note23?.val || 3717678.34).toLocaleString(), style: 'tBold', fillColor: '#d9d9d9' },
@@ -342,7 +342,6 @@ export class ExportService {
         },
 
         { text: '', pageBreak: 'before' },
-        // Inside exportFullMushakPdf
         this.createFullWidthHeader("SECTION - 5: INCREASING ADJUSTMENTS (VAT)"),
         {
           style: 'dataTable',
@@ -365,7 +364,13 @@ export class ExportService {
                 {
                   stack: [
                     'Any Other Adjustments (please specify below)',
-                    { text: 'VAT on House Rent', margin: [0, 5, 0, 0], bold: true }
+                    {
+                      margin: [0, 5, 0, 0],
+                      table: { 
+                        width: '*', 
+                        body: [[{ text: 'VAT on House Rent', fontSize: 7, bold: true }]] },
+                    },
+                    // { text: 'VAT on House Rent', margin: [0, 5, 0, 0], bold: true }
                   ]
                 },
                 { text: '27', alignment: 'center' },
@@ -374,7 +379,7 @@ export class ExportService {
               ],
               // Row 5: Total (Note 28)
               [
-                { text: 'Total Increasing Adjustment', style: 'tBold' },
+                { text: 'Total Increasing Adjustment', style: 'tBold', bold: true},
                 { text: '28', style: 'tBold', alignment: 'center' },
                 { text: (n.note28 || '0.00'), style: 'tBold', alignment: 'right' },
                 { text: '', border: [false, false, false, false] }
@@ -410,7 +415,7 @@ export class ExportService {
                     'Any Other Adjustments (please specify below)',
                     {
                       table: { widths: ['*'], body: [[' ']] },
-                      margin: [0, 5, 10, 0]
+                      margin: [0, 5, 10, 2]
                     }
                   ]
                 },
@@ -420,7 +425,7 @@ export class ExportService {
               ],
               // Row 5: Total Decreasing Adjustment (Note 33)
               [
-                { text: 'Total Decreasing Adjustment', style: 'tBold' },
+                { text: 'Total Decreasing Adjustment', style: 'tBold', bold: true },
                 { text: '33', style: 'tBold', alignment: 'center' },
                 { text: (n.note33 || '0.00'), style: 'tBold', alignment: 'right' },
                 { text: '', border: [false, false, false, false] }
