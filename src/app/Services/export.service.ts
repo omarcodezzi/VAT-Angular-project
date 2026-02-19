@@ -140,9 +140,22 @@ export class ExportService {
     const t = data?.taxpayer || {};
     const s = data?.returnSubmission || {};
 
+    (pdfMake as any).fonts = {
+      Arial: {
+        normal: 'Roboto-Regular.ttf',
+        bold: 'Roboto-Medium.ttf',
+        italics: 'Roboto-Italic.ttf',
+        bolditalics: 'Roboto-MediumItalic.ttf'
+      }
+    };
+
     const docDef: any = {
       pageSize: 'A4',
       pageMargins: [30, 30, 30, 30],
+      defaultStyle: {
+        font: 'Arial',
+        fontSize: 7
+      },
       content: [
         {
           stack: [{ text: "GOVERNMENT OF THE PEOPLE'S REPUBLIC OF BANGLADESH", style: 'header' },
@@ -266,7 +279,7 @@ export class ExportService {
               [{ text: 'Retail/Whole Sale/Trade Based Supply', colSpan: 2 }, {}, '8', '0.00', '0.00', '0.00', { text: 'Sub form', fillColor: '#d9d9d9' }],
               // Row 9: Total
               [
-                { text: 'Total Sales Value & Total Payable Taxes', colSpan: 2, style: 'tBold', bold: true  }, {},
+                { text: 'Total Sales Value & Total Payable Taxes', colSpan: 2, style: 'tBold', bold: true }, {},
                 { text: '9', style: 'tBold' },
                 { text: (n.note9?.val || 159270.30).toLocaleString(undefined, { minimumFractionDigits: 2 }), style: 'tBold', fillColor: '#d9d9d9' },
                 { text: '0.00', style: 'tBold', fillColor: '#d9d9d9' },
@@ -366,9 +379,10 @@ export class ExportService {
                     'Any Other Adjustments (please specify below)',
                     {
                       margin: [0, 5, 0, 0],
-                      table: { 
-                        width: '*', 
-                        body: [[{ text: 'VAT on House Rent', fontSize: 7, bold: true }]] },
+                      table: {
+                        width: '*',
+                        body: [[{ text: 'VAT on House Rent', fontSize: 7, bold: true }]]
+                      },
                     },
                     // { text: 'VAT on House Rent', margin: [0, 5, 0, 0], bold: true }
                   ]
@@ -379,7 +393,7 @@ export class ExportService {
               ],
               // Row 5: Total (Note 28)
               [
-                { text: 'Total Increasing Adjustment', style: 'tBold', bold: true},
+                { text: 'Total Increasing Adjustment', style: 'tBold', bold: true },
                 { text: '28', style: 'tBold', alignment: 'center' },
                 { text: (n.note28 || '0.00'), style: 'tBold', alignment: 'right' },
                 { text: '', border: [false, false, false, false] }
@@ -643,13 +657,13 @@ export class ExportService {
         }
       ],
       styles: {
-        header: { fontSize: 8, bold: true, alignment: 'center' },
-        subHeader: { fontSize: 7, bold: true, alignment: 'center', color: '#003366' },
-        secHeaderCell: { fillColor: '#003366', color: 'white', bold: true, alignment: 'center', fontSize: 7, padding: [0, 2, 0, 2] },
-        tHead: { fillColor: '#f2f2f2', bold: true, fontSize: 7 },
-        tBold: { bold: true, fontSize: 7 },
-        dataTable: { fontSize: 7, margin: [0, 0, 0, 5] },
-        borderedTable: { margin: [0, 0, 0, 2] }
+        header: {font: 'Arial', fontSize: 8, bold: true, alignment: 'center' },
+        subHeader: {font: 'Arial', fontSize: 7, bold: true, alignment: 'center', color: '#003366' },
+        secHeaderCell: {font: 'Arial', fillColor: '#003366', color: 'white', bold: true, alignment: 'center', fontSize: 7, padding: [0, 2, 0, 2] },
+        tHead: {font: 'Arial', fillColor: '#f2f2f2', bold: true, fontSize: 7 },
+        tBold: {font: 'Arial', bold: true, fontSize: 7 },
+        dataTable: {font: 'Arial', fontSize: 7, margin: [0, 0, 0, 5] },
+        borderedTable: {font: 'Arial', margin: [0, 0, 0, 2] }
       }
     };
     pdfMake.createPdf(docDef).download('Mushak_9.1_Full_Report.pdf');

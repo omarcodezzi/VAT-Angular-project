@@ -228,6 +228,15 @@ downloadFullMushakPdf() {
   this.exportService.exportFullMushakPdf(data);
 }
 
+exportFullMushakPdfBangla() {
+  const data = this.exportService.mushakStaticData;
+  if (!data || !data.notes) {
+    console.error("Mushak static data is missing!");
+    return;
+  }
+  this.exportService.exportFullMushakPdf(data);
+}
+
   // For the Full Formatted Excel Report
   downloadFullMushakExcel() {
     this.exportService.exportFullMushakExcel(this.exportService.mushakStaticData);
