@@ -234,7 +234,7 @@ exportFullMushakPdfBangla() {
     console.error("Mushak static data is missing!");
     return;
   }
-  this.exportService.exportFullMushakPdf(data);
+  this.exportService.exportFullMushakPdfBangla(data);
 }
 
   // For the Full Formatted Excel Report
