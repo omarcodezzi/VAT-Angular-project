@@ -1,0 +1,24 @@
+{
+  "mushak_values": {
+    "taxpayer": {
+      "bin": "1234567890123",
+      "name": "Hasanuzzaman Enterprise",
+      "address": "Mirpur, Dhaka, Bangladesh",
+      "businessNature": "Software Services",
+      "activity": "Development"
+    },
+    "returnSubmission": {
+      "period": "January / 2026",
+      "type": "Main",
+      "hasActivity": true,
+      "date": "2026-02-19"
+    },
+    "notes": {
+      "note1": { "val": 500000, "sd": 0, "vat": 0 },
+      "note4": { "val": 159270.30, "sd": 0, "vat": 23890.55 },
+      "note9": { "val": 1104270.30, "sd": 0, "vat": 31140.55 },
+      "note14": { "val": 3717678.34, "vat": 557651.75 },
+      "note23": { "val": 3717678.34, "vat": 557651.75 }
+    }
+  }
+}

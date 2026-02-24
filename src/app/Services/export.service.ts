@@ -5,6 +5,9 @@ import { saveAs } from 'file-saver';
 // pdfmake imports
 import pdfMakeImport from 'pdfmake/build/pdfmake';
 import pdfFontsImport from 'pdfmake/build/vfs_fonts';
+import { MushakData } from './MushakData';
+import { forkJoin, map, Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 // Make pdfMake and pdfFonts mutable
 const pdfMake: any = pdfMakeImport;
@@ -28,31 +31,43 @@ if (!vfs) {
   providedIn: 'root',
 })
 export class ExportService {
+  constructor(private http: HttpClient) { }
 
-  // STATIC DATA matching the Mushak-9.1 Form
-  public mushakStaticData = {
-    taxpayer: {
-      bin: '123456789',
-      name: 'VAT Learning Mission (DTCL)',
-      address: 'Dhaka, Bangladesh',
-      businessNature: 'Proprietorship',
-      activity: 'Retail/Wholesale, Trading'
-    },
-    returnSubmission: {
-      period: 'Oct / 2022',
-      type: 'A) Main/Original Return (Section 64)',
-      date: '03-Oct-2022'
-    },
-    notes: {
-      note4: { val: 159270.30, sd: 0.00, vat: 23890.55 },
-      note9: { val: 159270.30, sd: 0.00, vat: 23890.55 },
-      note14: { val: 3717678.34, vat: 557651.75 },
-      note23: { val: 3717678.34, vat: 557651.75 },
-      note28: 0.00, note33: 0.00, note34: -533761.20,
-      note35: 1979177.91, note50: 1979177.91, note52: 1445416.71,
-      note54: 0.00, note65: 1979177.91, note67: 0.00, note68: 0.00
-    }
-  };
+  getMergedMushakData(apiEndpoint: string, lang: 'en' | 'bl'): Observable<any> {
+    const labels$ = this.http.get<any>(`i18n/${lang}/dummyData.json`);
+    const values$ = this.http.get<any>(apiEndpoint);
+
+    return forkJoin([labels$, values$]).pipe(
+      map(([labels, values]) => {
+        return {
+          labels: labels, // সম্পূর্ণ JSON লেবেলগুলো
+          values: values.taxpayer, // এপিআই থেকে আসা মানগুলো
+          notes: values.returnSubmission,
+          taxpayer: values.taxpayer || labels.taxpayer,
+          returnSubmission: this.mergeNotes(labels.notes, values.notes)
+        };
+      })
+    );
+  }
+
+  private mergeNotes(labelNotes: any, valueNotes: any): any {
+    const merged: any = {};
+    Object.keys(labelNotes).forEach(key => {
+      merged[key] = {
+        label: labelNotes[key],
+        val: valueNotes?.[key]?.val ?? 0,
+        vat: valueNotes?.[key]?.vat ?? 0,
+        sd: valueNotes?.[key]?.sd ?? 0
+      };
+    });
+    return merged;
+  }
+
+  // getMushakJsonData(): Observable<MushakData> {
+  //   debugger
+  //   return this.http.get<MushakData>('i18n/en/dummyData.json');
+  // }
+
 
   // --- 1. HS CODE EXPORTS ---
 
@@ -136,6 +151,8 @@ export class ExportService {
   }
 
   exportFullMushakPdf(data: any) {
+    debugger
+    const l = data.labels || {};
     const n = data?.notes || {};
     const t = data?.taxpayer || {};
     const s = data?.returnSubmission || {};
@@ -148,8 +165,14 @@ export class ExportService {
         bolditalics: window.location.origin + '/assets/fonts/Nunito-Regular.ttf'
       }
     };
+
+    const formatAmount = (val: any) => {
+      const num = parseFloat(val) || 0;
+      return num < 0 ? `(${Math.abs(num)})` : num.toFixed(2);
+    };
+
     const docDef: any = {
-      pageSize: 'A4',
+      pageSize: 'Legal',
       pageMargins: [30, 30, 30, 30],
       defaultStyle: {
         font: 'PlaywriteCU',
@@ -157,46 +180,46 @@ export class ExportService {
       },
       content: [
         {
-          stack: [{ text: "GOVERNMENT OF THE PEOPLE'S REPUBLIC OF BANGLADESH", style: 'header' },
-          { text: "NATIONAL BOARD OF REVENUE", style: 'header' },
-          { text: "\nVALUE ADDED TAX RETURN FORM (Mushak-9.1)", style: 'subHeader' },
-          { text: "\n[Rule 47(1)]", style: 'subHeader' },
+          stack: [{ text: l.titles.gov, style: 'header' },
+          { text: l.titles.nbr, style: 'header' },
+          { text: `\n${l.titles.form}`, style: 'subHeader' },
+          { text: `${l.titles.rule}\n`, style: 'subHeader' },
           { text: "\n", style: 'subHeader' }]
         },
 
-        this.createFullWidthHeader("SECTION - 1: TAXPAYER'S INFORMATION"),
+        this.createFullWidthHeader(l.sections.s1),
         {
           style: 'dataTable',
           table: {
             widths: ['40%', '2%', '58%'],
             body: [
-              ['1. BIN', ':', t.bin],
-              ['2. Name', ':', t.name],
-              ['3. Address', ':', t.address || ''],
-              ['4. Nature', ':', t.businessNature],
-              ['5. Activity', ':', t.activity]
+              [l.labels.bin, ':', t.bin],
+              [l.labels.name, ':', t.name],
+              [l.labels.address, ':', t.address || ''],
+              [l.labels.nature, ':', t.businessNature],
+              [l.labels.activity, ':', t.activity]
             ]
           }
         },
 
-        this.createFullWidthHeader("SECTION - 2: RETURN SUBMISSION DATA"),
+        this.createFullWidthHeader(l.sections.s2),
         {
           style: 'dataTable',
           table: {
             widths: ['40%', '2%', '58%'],
             body: [
-              ['1. Tax Period', ':', { text: s.period || 'Oct / 2022', alignment: 'center' }],
-              ['2. Type of Return\n[Please select your desired option]', ':', {
+              [l.labels.tax_period, ':', { text: s.period || 'Oct / 2022', alignment: 'center' }],
+              [l.labels.return_type, ':', {
                 stack: [
-                  { columns: [{ width: '70%', text: 'A) Main/Original Return (Section 64)' }, { table: { widths: ['35%'], body: [[' ']] }, margin: [0, 0, 10, 5], alignment: 'right' }] },
-                  { columns: [{ width: '70%', text: 'B) Late Return (section 65)' }, { table: { widths: ['35%'], body: [[' ']] }, margin: [0, 0, 10, 5], alignment: 'right' }] },
-                  { columns: [{ width: '70%', text: 'C) Amend Return (section 66)' }, { table: { widths: ['35%'], body: [[' ']] }, margin: [0, 0, 10, 5], alignment: 'right' }] },
-                  { columns: [{ width: '70%', text: 'D) Full or Additional or Alternative Return (Section 67)' }, { table: { widths: ['35%'], body: [[' ']] }, margin: [0, 0, 10, 5], alignment: 'right' }] }
+                  { columns: [{ width: '70%', text: l.return_options ? l.return_options[0] : '' }, { table: { widths: ['35%'], body: [[' ']] }, margin: [0, 0, 10, 5], alignment: 'right' }] },
+                  { columns: [{ width: '70%', text: l.return_options ? l.return_options[1] : '' }, { table: { widths: ['35%'], body: [[' ']] }, margin: [0, 0, 10, 5], alignment: 'right' }] },
+                  { columns: [{ width: '70%', text: l.return_options ? l.return_options[2] : '' }, { table: { widths: ['35%'], body: [[' ']] }, margin: [0, 0, 10, 5], alignment: 'right' }] },
+                  { columns: [{ width: '70%', text: l.return_options ? l.return_options[3] : '' }, { table: { widths: ['35%'], body: [[' ']] }, margin: [0, 0, 10, 5], alignment: 'right' }] }
                 ], margin: [0, 5, 0, 5]
               }],
               // Row 3: Any activities in this Tax Period?
               [
-                '3. Any activities in this Tax Period?',
+                l.labels.any_activities,
                 ':',
                 {
                   stack: [
@@ -209,33 +232,33 @@ export class ExportService {
                           columns: [
                             // Yes Option
                             { width: 'auto', table: { widths: [20], body: [[' ']] }, margin: [0, 0, 5, 0] },
-                            { width: 'auto', text: 'Yes', fontSize: 7, margin: [0, 2, 25, 0] },
+                            { width: 'auto', text: l.labels.yes, fontSize: 7, margin: [0, 2, 25, 0] },
 
                             // No Option
                             { width: 'auto', table: { widths: [20], body: [[' ']] }, margin: [0, 0, 5, 0] },
-                            { width: 'auto', text: 'No', fontSize: 7, margin: [0, 2, 0, 0] }
+                            { width: 'auto', text: l.labels.no, fontSize: 7, margin: [0, 2, 0, 0] }
                           ]
                         },
                         { width: '*', text: '' }
                       ]
                     },
                     {
-                      text: '[If Selected "No" Please Fill Only Section I, II & X]',
+                      text: l.labels.activity_note,
                       fontSize: 7,
                       alignment: 'center',
                       margin: [0, 5, 0, 0],
                       color: '#333333'
                     }
                   ],
-                  margin: [0, 10, 0, 10] // Vertical padding for the whole cell
+                  margin: [0, 10, 0, 10]
                 }
               ],
-              ['4. Date of Submission', ':', { text: s.date || '03-Oct-2022', alignment: 'center' }]
+              [l.labels.sub_date, ':', { text: s.date || 'Oct / 2022', alignment: 'center' }]
             ]
           }
         },
 
-        this.createFullWidthHeader("SECTION - 3: SUPPLY - OUTPUT TAX"),
+        this.createFullWidthHeader(l.sections.s3),
         {
           style: 'dataTable',
           table: {
@@ -244,63 +267,66 @@ export class ExportService {
             body: [
               // Table Header
               [
-                { text: 'Nature of Supply', style: 'tHead', colSpan: 2, alignment: 'center' },
+                { text: l.headers.nature_supply, style: 'tHead', colSpan: 2, alignment: 'center' },
                 {},
-                { text: 'Note', style: 'tHead', alignment: 'center' },
-                { text: 'Value (a)', style: 'tHead', alignment: 'center' },
-                { text: 'SD (b)', style: 'tHead', alignment: 'center' },
-                { text: 'VAT (c)', style: 'tHead', alignment: 'center' },
-                { text: '', style: 'tHead', border: [false, false, false, false] }
+                { text: l.headers.note, style: 'tHead', alignment: 'center' },
+                { text: l.headers.value, style: 'tHead', alignment: 'center' },
+                { text: l.headers.sd, style: 'tHead', alignment: 'center' },
+                { text: l.headers.vat, style: 'tHead', alignment: 'center' },
+                { text: '', border: [false, false, false, false] }
               ],
-              // Row 1 & 2: Zero Rated
+              // Note 1 & 2: Zero Rated
               [
-                { text: 'Zero Rated Goods/Service', rowSpan: 2 },
-                'Direct Export', '1', '0.00', { text: '', fillColor: '#d9d9d9' }, { text: '', fillColor: '#d9d9d9' }, 'সাবফর্ম'
+                { text: l.notes.note1.split('-')[0], rowSpan: 2 },
+                l.notes.note1.split('-')[1] || l.notes.note1, '1',
+                (n['note1']?.val || 0).toLocaleString(),
+                (n['note1']?.sd || 0).toLocaleString(),
+                (n['note1']?.vat || 0).toLocaleString(),
+                l.headers.sub_form
               ],
               [
-                {}, 'Deemed Export', '2', '0.00', { text: '', fillColor: '#d9d9d9' }, { text: '', fillColor: '#d9d9d9' }, 'সাবফর্ম'
+                {}, l.notes.note2.split('-')[1] || l.notes.note2, '2',
+                (n['note2']?.val || 0).toLocaleString(),
+                (n['note2']?.sd || 0).toLocaleString(),
+                (n['note2']?.vat || 0).toLocaleString(),
+                l.headers.sub_form
               ],
-              // Row 3: Exempted
-              [{ text: 'Exempted Goods/Service', colSpan: 2 }, {}, '3', '0.00', { text: '', fillColor: '#d9d9d9' }, { text: '', fillColor: '#d9d9d9' }, 'সাবফর্ম'],
-              // Row 4: Standard Rated
+              // Note 3: Exempted
+              [{ text: l.notes.note3, colSpan: 2 }, {}, '3', (n['note3']?.val || 0).toLocaleString(), '0.00', '0.00', l.headers.sub_form],
+              // Note 4: Standard Rated
               [
-                { text: 'Standard Rated Goods/Service', colSpan: 2 }, {}, '4',
-                (n.note4?.val || 159270.30).toLocaleString(undefined, { minimumFractionDigits: 2 }),
-                '0.00',
-                (n.note4?.vat || 23890.55).toLocaleString(undefined, { minimumFractionDigits: 2 }),
-                'সাবফর্ম'
+                { text: l.notes.note4, colSpan: 2 }, {}, '4',
+                (n['note4']?.val || 0).toLocaleString(undefined, { minimumFractionDigits: 2 }),
+                (n['note4']?.sd || 0).toLocaleString(),
+                (n['note4']?.vat || 0).toLocaleString(undefined, { minimumFractionDigits: 2 }),
+                l.headers.sub_form
               ],
-              // Rows 5-7
-              [{ text: 'Goods Based on MRP', colSpan: 2 }, {}, '5', '', '', '', 'সাবফর্ম'],
-              [{ text: 'Goods/Service Based on Specific VAT', colSpan: 2 }, {}, '6', '', '', '', 'সাবফর্ম'],
-              [{ text: 'Goods/Service Other than Standard Rate', colSpan: 2 }, {}, '7', '', '', '', 'সাবফর্ম'],
-              // Row 8
-              [{ text: 'Retail/Whole Sale/Trade Based Supply', colSpan: 2 }, {}, '8', '0.00', '0.00', '0.00', { text: 'সাবফর্ম', fillColor: '#d9d9d9' }],
-              // Row 9: Total
+              // Note 5-8: Other Categories
+              [{ text: l.notes.note5, colSpan: 2 }, {}, '5', (n['note5']?.val || 0).toLocaleString(), '0.00', '0.00', l.headers.sub_form],
+              [{ text: l.notes.note6, colSpan: 2 }, {}, '6', (n['note6']?.val || 0).toLocaleString(), '0.00', '0.00', l.headers.sub_form],
+              [{ text: l.notes.note7, colSpan: 2 }, {}, '7', (n['note7']?.val || 0).toLocaleString(), '0.00', '0.00', l.headers.sub_form],
+              [{ text: l.notes.note8, colSpan: 2 }, {}, '8', (n['note8']?.val || 0).toLocaleString(), '0.00', '0.00', l.headers.sub_form],
+              // Note 9: Total
               [
-                { text: 'Total Sales Value & Total Payable Taxes', colSpan: 2, style: 'tBold', bold: true }, {},
+                { text: l.notes.note9, colSpan: 2, style: 'tBold' }, {},
                 { text: '9', style: 'tBold' },
-                { text: (n.note9?.val || 159270.30).toLocaleString(undefined, { minimumFractionDigits: 2 }), style: 'tBold', fillColor: '#d9d9d9' },
-                { text: '0.00', style: 'tBold', fillColor: '#d9d9d9' },
-                { text: (n.note9?.vat || 23890.55).toLocaleString(undefined, { minimumFractionDigits: 2 }), style: 'tBold', fillColor: '#d9d9d9' },
+                { text: (n['note9']?.val || 0).toLocaleString(undefined, { minimumFractionDigits: 2 }), style: 'tBold', fillColor: '#d9d9d9' },
+                { text: (n['note9']?.sd || 0).toLocaleString(), style: 'tBold', fillColor: '#d9d9d9' },
+                { text: (n['note9']?.vat || 0).toLocaleString(undefined, { minimumFractionDigits: 2 }), style: 'tBold', fillColor: '#d9d9d9' },
                 { text: '', border: [false, false, false, false] }
               ]
             ]
           }
         },
 
-        this.createFullWidthHeader("SECTION - 4: PURCHASE - INPUT TAX"),
+        this.createFullWidthHeader(l.sections.s4),
         {
           stack: [
             {
               canvas: [{ type: 'rect', x: 0, y: 0, w: 535, h: 45, color: '#fcd5b4' }]
             },
             {
-              text: [
-                "1) If all the products/services you supply are standard rated, fill up note 10-20.\n",
-                "2) All the products/services you supply are not standard rated or input tax credit not taken within stipulated time period under section 46, fill up note 21-22.\n",
-                "3) If the products/services you supply consist of both standard rated and non-standard rated, then fill up note 10-20 for the raw materials that were used to produce/supply standard rated goods/services and fill up note 21-22 for the raw materials that were used to produce/supply non-standard rated goods/services and show the value proportionately in note 10-22 as applicable."
-              ],
+              text: l.labels.purchase_instruction.join('\n'),
               fontSize: 7,
               margin: [5, -43, 5, 2]
             }
@@ -314,35 +340,35 @@ export class ExportService {
             widths: ['35%', '15%', '5%', '17%', '17%', '11%'],
             body: [
               [
-                { text: 'Nature of Purchase', style: 'tHead', colSpan: 2, alignment: 'center' },
+                { text: l.labels.nature_purchase, style: 'tHead', colSpan: 2, alignment: 'center' },
                 {},
-                { text: 'Note', style: 'tHead', alignment: 'center' },
-                { text: 'Value (a)', style: 'tHead', alignment: 'center' },
-                { text: 'VAT (b)', style: 'tHead', alignment: 'center' },
+                { text: l.headers.note, style: 'tHead', alignment: 'center' },
+                { text: l.headers.value, style: 'tHead', alignment: 'center' },
+                { text: l.headers.vat, style: 'tHead', alignment: 'center' },
                 { text: '', border: [false, false, false, false] }
               ],
               // Zero Rated & Exempted (Notes 10-13)
-              [{ text: 'Zero Rated Goods/Service', rowSpan: 2 }, 'Local Purchase', '10', '0.00', { text: '', fillColor: '#d9d9d9' }, 'সাবফর্ম'],
-              [{}, 'Import', '11', '0.00', { text: '', fillColor: '#d9d9d9' }, 'সাবফর্ম'],
-              [{ text: 'Exempted Goods/Service', rowSpan: 2 }, 'Local Purchase', '12', '0.00', { text: '', fillColor: '#d9d9d9' }, 'সাবফর্ম'],
-              [{}, 'Import', '13', '0.00', { text: '', fillColor: '#d9d9d9' }, 'সাবফর্ম'],
+              [{ text: l.notes.note10, rowSpan: 2 }, l.labels.local_purchase, '10', n.note10?.val || '0.00', { text: '', fillColor: '#d9d9d9' }, l.headers.sub_form],
+              [{}, 'Import', '11', n.note11?.val || '0.00', { text: '', fillColor: '#d9d9d9' }, l.headers.sub_form],
+              [{ text: l.notes.note11, rowSpan: 2 }, l.labels.local_purchase, '12', n.note12?.val || '0.00', { text: '', fillColor: '#d9d9d9' }, l.headers.sub_form],
+              [{}, 'Import', '13', n.note13?.val || '0.00', { text: '', fillColor: '#d9d9d9' }, l.headers.sub_form],
 
               // Standard Rated - Main Data (Notes 14-15)
-              [{ text: 'Standard Rated Goods/Service', rowSpan: 2 }, 'Local Purchase', '14', (n.note14?.val || 3717678.34).toLocaleString(), (n.note14?.vat || 557651.75).toLocaleString(), 'সাবফর্ম'],
-              [{}, 'Import', '15', '0.00', '0.00', 'সাবফর্ম'],
+              [{ text: l.notes.note12, rowSpan: 2 }, l.labels.local_purchase, '14', n.note14?.val || '0.00', n.note14?.vat || '0.00', l.headers.sub_form],
+              [{}, 'Import', '15', n.note15?.val || '0.00', n.note15?.vat || '0.00', l.headers.sub_form],
 
               // Other Categories (Notes 16-22)
-              [{ text: 'Goods/Service Other than Standard Rate', rowSpan: 2 }, 'Local Purchase', '16', '0.00', '0.00', 'সাবফর্ম'],
-              [{}, 'Import', '17', '0.00', '0.00', 'সাবফর্ম'],
-              [{ text: 'Goods/Service Based on Specific VAT', rowSpan: 1 }, 'Local Purchase', '18', '0.00', '0.00', 'সাবফর্ম'],
-              [{ text: 'Goods/Service Not Admissible for Credit (Local Purchase)', rowSpan: 2 }, 'From Turnover Units', '19', '0.00', '0.00', 'সাবফর্ম'],
-              [{}, 'From Unregistered Entities', '20', '0.00', '0.00', 'সাবফর্ম'],
-              [{ text: 'Goods/Service Not Admissible for Credit (Taxpayers who sell only Exempted/ Specific VAT and Goods/Service Other than Standard Rate/\nCredits not taken\n', rowSpan: 2 }, 'Local Purchase', '21', '0.00', '0.00', 'সাবফর্ম'],
-              [{}, 'Import', '22', '0.00', '0.00', 'সাবফর্ম'],
+              [{ text: l.notes.note13, rowSpan: 2 }, l.labels.local_purchase, '16', n.note16?.val || '0.00', n.note16?.vat || '0.00', l.headers.sub_form],
+              [{}, 'Import', '17', n.note17?.val || '0.00', n.note17?.vat || '0.00', l.headers.sub_form],
+              [{ text: l.notes.note14, rowSpan: 1 }, l.labels.local_purchase, '18', n.note18?.val || '0.00', n.note18?.vat || '0.00', l.headers.sub_form],
+              [{ text: l.notes.note15, rowSpan: 2 }, 'From Turnover Units', '19', n.note19?.val || '0.00', n.note19?.vat || '0.00', l.headers.sub_form],
+              [{}, 'From Unregistered Entities', '20', n.note20?.val || '0.00', n.note20?.vat || '0.00', l.headers.sub_form],
+              [{ text: l.notes.note16, rowSpan: 2 }, l.labels.local_purchase, '21', n.note21?.val || '0.00', n.note21?.vat || '0.00', l.headers.sub_form],
+              [{}, 'Import', '22', n.note22?.val || n.note22?.val || '0.00', n.note22?.vat || '0.00', l.headers.sub_form],
 
               // Total Row (Note 23)
               [
-                { text: 'Total Input Tax Credit', colSpan: 1, style: 'tBold', bold: true },
+                { text: l.labels.total_input_credit, colSpan: 1, style: 'tBold', bold: true },
                 {},
                 { text: '23', style: 'tBold' },
                 { text: (n.note23?.val || 3717678.34).toLocaleString(), style: 'tBold', fillColor: '#d9d9d9' },
@@ -354,7 +380,7 @@ export class ExportService {
         },
 
         { text: '', pageBreak: 'before' },
-        this.createFullWidthHeader("SECTION - 5: INCREASING ADJUSTMENTS (VAT)"),
+        this.createFullWidthHeader(l.sections.s5),
         {
           style: 'dataTable',
           table: {
@@ -362,39 +388,39 @@ export class ExportService {
             widths: ['50%', '10%', '25%', '15%'],
             body: [
               [
-                { text: 'Adjustment Details', style: 'tHead', alignment: 'center' },
-                { text: 'Note', style: 'tHead', alignment: 'center' },
-                { text: 'VAT Amount', style: 'tHead', alignment: 'center' },
+                { text: l.headers.adj_details, style: 'tHead', alignment: 'center' },
+                { text: l.headers.note, style: 'tHead', alignment: 'center' },
+                { text: l.headers.vat_amount, style: 'tHead', alignment: 'center' },
                 { text: '', style: 'tHead', border: [false, false, false, false] }
               ],
               // Note 24-26
-              ['Due to VAT Deducted at Source by the supply', { text: '24', alignment: 'center' }, { text: '0.00', alignment: 'right' }, 'সাবফর্ম'],
-              ['Payment Not Made Through Banking Channel', { text: '25', alignment: 'center' }, { text: '0.00', alignment: 'right' }, 'সাবফর্ম'],
-              ['Issuance of Debit Note', { text: '26', alignment: 'center' }, '', 'সাবফর্ম'],
+              [l.notes.note24, { text: '24', alignment: 'center' }, { text: '0.00', alignment: 'right' }, l.headers.sub_form],
+              [l.notes.note25, { text: '25', alignment: 'center' }, { text: '0.00', alignment: 'right' }, l.headers.sub_form],
+              [l.notes.note26, { text: '26', alignment: 'center' }, '', l.headers.sub_form],
               // Note 27: Other Adjustments with Stacked Label
               [
                 {
                   stack: [
-                    'Any Other Adjustments (please specify below)',
+                    l.notes.note27,
                     {
                       margin: [0, 5, 0, 0],
                       table: {
                         width: '*',
-                        body: [[{ text: 'VAT on House Rent', fontSize: 7, bold: true }]]
+                        body: [[{ text: l.notes.note27_sub, fontSize: 7, bold: true }]]
                       },
                     },
                     // { text: 'VAT on House Rent', margin: [0, 5, 0, 0], bold: true }
                   ]
                 },
                 { text: '27', alignment: 'center' },
-                '',
-                'সাবফর্ম'
+                { text: n.note27?.val || '0.00', alignment: 'right' },
+                l.headers.sub_form
               ],
               // Row 5: Total (Note 28)
               [
-                { text: 'Total Increasing Adjustment', style: 'tBold', bold: true },
+                { text: l.labels.total_inc_adj, style: 'tBold', bold: true },
                 { text: '28', style: 'tBold', alignment: 'center' },
-                { text: (n.note28 || '0.00'), style: 'tBold', alignment: 'right' },
+                { text: n.note28?.val || n.note28 || '0.00', style: 'tBold', alignment: 'right' },
                 { text: '', border: [false, false, false, false] }
               ]
             ]
@@ -402,7 +428,7 @@ export class ExportService {
         },
 
         // Inside exportFullMushakPdf
-        this.createFullWidthHeader("SECTION - 6: DECREASING ADJUSTMENTS (VAT)"),
+        this.createFullWidthHeader(l.sections.s6),
         {
           style: 'dataTable',
           table: {
@@ -410,22 +436,22 @@ export class ExportService {
             widths: ['50%', '10%', '25%', '15%'],
             body: [
               [
-                { text: 'Adjustment Details', style: 'tHead', alignment: 'center' },
-                { text: 'Note', style: 'tHead', alignment: 'center' },
-                { text: 'VAT Amount', style: 'tHead', alignment: 'center' },
+                { text: l.headers.adj_details, style: 'tHead', alignment: 'center' },
+                { text: l.headers.note, style: 'tHead', alignment: 'center' },
+                { text: l.headers.vat_amount, style: 'tHead', alignment: 'center' },
                 { text: '', style: 'tHead', border: [false, false, false, false] }
               ],
               // Note 29: VDS from supplies delivered
-              ['Due to VAT Deducted at Source from the supplies delivered', { text: '29', alignment: 'center' }, { text: '0.00', alignment: 'right' }, 'সাবফর্ম'],
+              [l.notes.note29, { text: '29', alignment: 'center' }, { text: n.note29?.val || '0.00', alignment: 'right' }, l.headers.sub_form],
               // Note 30: Advance Tax
-              ['Advance Tax Paid at Import Stage', { text: '30', alignment: 'center' }, '', 'সাবফর্ম'],
+              [l.notes.note30, { text: '30', alignment: 'center' }, { text: n.note30?.val || '0.00', alignment: 'right' }, l.headers.sub_form],
               // Note 31: Credit Note
-              ['Issuance of Credit Note', { text: '31', alignment: 'center' }, { text: '0.00', alignment: 'right' }, 'সাবফর্ম'],
+              [l.notes.note31, { text: '31', alignment: 'center' }, { text: n.note31?.val || '0.00', alignment: 'right' }, l.headers.sub_form],
               // Note 32: Other Adjustments with empty box
               [
                 {
                   stack: [
-                    'Any Other Adjustments (please specify below)',
+                    l.notes.note32,
                     {
                       table: { widths: ['*'], body: [[' ']] },
                       margin: [0, 5, 10, 2]
@@ -433,12 +459,12 @@ export class ExportService {
                   ]
                 },
                 { text: '32', alignment: 'center' },
-                { text: '0.00', alignment: 'right' },
-                'সাবফর্ম'
+                { text: n.note32?.val || '0.00', alignment: 'right' },
+                l.headers.sub_form
               ],
               // Row 5: Total Decreasing Adjustment (Note 33)
               [
-                { text: 'Total Decreasing Adjustment', style: 'tBold', bold: true },
+                { text: l.labels.total_dec_adj, style: 'tBold', bold: true },
                 { text: '33', style: 'tBold', alignment: 'center' },
                 { text: (n.note33 || '0.00'), style: 'tBold', alignment: 'right' },
                 { text: '', border: [false, false, false, false] }
@@ -447,7 +473,7 @@ export class ExportService {
           }
         },
 
-        this.createFullWidthHeader("SECTION - 7: NET TAX CALCULATION"),
+        this.createFullWidthHeader(l.sections.s7),
         {
           style: 'dataTable',
           table: {
@@ -456,36 +482,36 @@ export class ExportService {
             body: [
               // Row 0: Header
               [
-                { text: 'Items', style: 'tHead', alignment: 'center' },
-                { text: 'Note', style: 'tHead', alignment: 'center' },
-                { text: 'Amount', style: 'tHead', alignment: 'center' }
+                { text: l.headers.items, style: 'tHead', alignment: 'center' },
+                { text: l.headers.note, style: 'tHead', alignment: 'center' },
+                { text: l.headers.amount, style: 'tHead', alignment: 'center' }
               ],
               // Notes 34 - 53
-              ['Net Payable VAT for the Tax Period (Section- 45) (9C-23B+28-33)', '34', { text: `(${Math.abs(n.note34 || 533761.20).toLocaleString()})`, alignment: 'right' }],
-              ['Net Payable VAT for the Tax Period after Adjustment with Closing Balance and balance of form 18.6 [34-(52+56)]', '35', { text: `(${Math.abs(n.note35 || 1979177.91).toLocaleString()})`, alignment: 'right' }],
-              ['Net Payable Supplementary Duty for the Tax Period (Before adjustment with Closing Balance) [9B+38-(39+40)]', '36', { text: '0.00', alignment: 'right' }],
-              ['Net Payable Supplementary Duty for the Tax Period after Adjusted with Closing Balance and balance of form 18.6 [36-(53+57)', '37', { text: '0.00', alignment: 'right' }],
-              ['Supplementary Duty Against Issuance of Debit Note', '38', { text: '0.00', alignment: 'right' }],
-              ['Supplementary Duty Against Issuance of Credit Note', '39', { text: '0.00', alignment: 'right' }],
-              ['Supplementary Duty Paid on Inputs Against Exports', '40', { text: '0.00', alignment: 'right' }],
-              ['Interest on Overdue VAT (Based on note 35)', '41', { text: '0.00', alignment: 'right' }],
-              ['Interest on Overdue SD (Based on note 37)', '42', { text: '0.00', alignment: 'right' }],
-              ['Fine/Penalty for Non-submission of Return', '43', { text: '0.00', alignment: 'right' }],
-              ['Other Fine/Penalty/Interest', '44', { text: '0.00', alignment: 'right' }],
-              ['Payable Excise Duty', '45', { text: '0.00', alignment: 'right' }],
-              ['Payable Development Surcharge', '46', { text: '0.00', alignment: 'right' }],
-              ['Payable ICT Development Surcharge', '47', { text: '0.00', alignment: 'right' }],
-              ['Payable Health Care Surcharge', '48', { text: '0.00', alignment: 'right' }],
-              ['Payable Environmental Protection Surcharge', '49', { text: '0.00', alignment: 'right' }],
-              ['Net payable VAT for treasury deposit (35+41+43+44)', '50', { text: `(${Math.abs(n.note50 || 1979177.91).toLocaleString()})`, alignment: 'right', style: 'tBold' }],
-              ['Net payable SD for treasury deposit (37+42)', '51', { text: '0.00', alignment: 'right' }],
-              ['Closing Balance of Last Tax Period (VAT)', '52', { text: (n.note52 || 1445416.71).toLocaleString(), alignment: 'right', style: 'tBold' }],
-              ['Closing Balance of Last Tax Period (SD)', '53', { text: '0.00', alignment: 'right' }]
+              [l.notes.note34, '34', { text: formatAmount(n.note34?.val || n.note34), alignment: 'right' }],
+              [l.notes.note35, '35', { text: formatAmount(n.note35?.val || n.note35), alignment: 'right' }],
+              [l.notes.note36, '36', { text: formatAmount(n.note36?.val || n.note36), alignment: 'right' }],
+              [l.notes.note37, '37', { text: formatAmount(n.note37?.val || n.note37), alignment: 'right' }],
+              [l.notes.note38, '38', { text: formatAmount(n.note38?.val || n.note38), alignment: 'right' }],
+              [l.notes.note39, '39', { text: formatAmount(n.note39?.val || n.note39), alignment: 'right' }],
+              [l.notes.note40, '40', { text: formatAmount(n.note40?.val || n.note40), alignment: 'right' }],
+              [l.notes.note41, '41', { text: formatAmount(n.note41?.val || n.note41), alignment: 'right' }],
+              [l.notes.note42, '42', { text: formatAmount(n.note42?.val || n.note42), alignment: 'right' }],
+              [l.notes.note43, '43', { text: formatAmount(n.note43?.val || n.note43), alignment: 'right' }],
+              [l.notes.note44, '44', { text: formatAmount(n.note44?.val || n.note44), alignment: 'right' }],
+              [l.notes.note45, '45', { text: formatAmount(n.note45?.val || n.note45), alignment: 'right' }],
+              [l.notes.note46, '46', { text: formatAmount(n.note46?.val || n.note46), alignment: 'right' }],
+              [l.notes.note47, '47', { text: formatAmount(n.note47?.val || n.note47), alignment: 'right' }],
+              [l.notes.note48, '48', { text: formatAmount(n.note48?.val || n.note48), alignment: 'right' }],
+              [l.notes.note49, '49', { text: formatAmount(n.note49?.val || n.note49), alignment: 'right' }],
+              [l.notes.note50, '50', { text: formatAmount(n.note50?.val || n.note50), alignment: 'right', style: 'tBold' }],
+              [l.notes.note51, '51', { text: formatAmount(n.note51?.val || n.note51), alignment: 'right' }],
+              [l.notes.note52, '52', { text: formatAmount(n.note52?.val || n.note52), alignment: 'right', style: 'tBold' }],
+              [l.notes.note53, '53', { text: formatAmount(n.note53?.val || n.note53), alignment: 'right' }]
             ]
           }
         },
 
-        this.createFullWidthHeader("SECTION - 8: ADJUSTMENT FOR OLD ACCOUNT CURRENT BALANCE"),
+        this.createFullWidthHeader(l.sections.s8),
         {
           style: 'dataTable',
           table: {
@@ -494,37 +520,37 @@ export class ExportService {
             body: [
               // Row 0: Header
               [
-                { text: 'Items', style: 'tHead', alignment: 'center' },
-                { text: 'Note', style: 'tHead', alignment: 'center' },
-                { text: 'Amount', style: 'tHead', alignment: 'center' }
+                { text: l.headers.items, style: 'tHead', alignment: 'center' },
+                { text: l.headers.note, style: 'tHead', alignment: 'center' },
+                { text: l.headers.amount, style: 'tHead', alignment: 'center' }
               ],
               // Notes 54 - 57
               [
-                'Remaining Balance (VAT) from Mushak-18.6, [ Rule 118(5)]',
+                l.notes.note54,
                 { text: '54', alignment: 'center' },
                 { text: (n.note54 || '0.00').toLocaleString(), alignment: 'right' }
               ],
               [
-                'Remaining Balance (SD) from Mushak-18.6, [ Rule 118(5)]',
+                l.notes.note55,
                 { text: '55', alignment: 'center' },
-                { text: '0.00', alignment: 'right' }
+                { text: (n.note55?.val || n.note55 || '0.00'), alignment: 'right' }
               ],
               [
-                'Decreasing Adjustment for Note 54 (up to 30% of Note 34)',
+                l.notes.note56,
                 { text: '56', alignment: 'center' },
-                { text: '0.00', alignment: 'right' }
+                { text: (n.note56?.val || n.note56 || '0.00'), alignment: 'right' }
               ],
               [
-                'Decreasing Adjustment for Note 55 (up to 30% of Note 36)',
+                l.notes.note57,
                 { text: '57', alignment: 'center' },
-                { text: '0.00', alignment: 'right' }
+                { text: (n.note57?.val || n.note57 || '0.00'), alignment: 'right' }
               ]
             ]
           }
         },
 
         { text: '', pageBreak: 'before' },
-        this.createFullWidthHeader("SECTION - 9: ACCOUNTS CODE WISE PAYMENT SCHEDULE (TREASURY DEPOSIT)"),
+        this.createFullWidthHeader(l.sections.s9),
         {
           style: 'dataTable',
           table: {
@@ -532,31 +558,31 @@ export class ExportService {
             widths: ['35%', '10%', '25%', '18%', '12%'],
             body: [
               [
-                { text: 'Items', style: 'tHead', alignment: 'center' },
-                { text: 'Note', style: 'tHead', alignment: 'center' },
-                { text: 'Account Code', style: 'tHead', alignment: 'center' },
-                { text: 'Amount', style: 'tHead', alignment: 'center' },
+                { text: l.headers.items, style: 'tHead', alignment: 'center' },
+                { text: l.headers.note, style: 'tHead', alignment: 'center' },
+                { text: l.headers.acc_code, style: 'tHead', alignment: 'center' },
+                { text: l.headers.amount, style: 'tHead', alignment: 'center' },
                 { text: '', style: 'tHead' }
               ],
               // Row 58: VAT Deposit
-              ['VAT Deposit for the Current', '58', '1/1133/0030/0311', '0.00', 'সাবফর্ম'],
+              [l.notes.note58, '58', n.note58?.code || '1/1133/0030/0311', n.note58?.val || '0.00', l.headers.sub_form],
               // Row 59: SD Deposit
-              ['SD Deposit for the Current Tax Period', '59', '1/1133/0018/ 0711-0721', '0.00', 'সাবফর্ম'],
+              [l.notes.note59, '59', n.note59?.code || '1/1133/0018/0711-0721', n.note59?.val || '0.00', l.headers.sub_form],
               // Row 60: Excise Duty
-              ['Excise Duty', '60', '1/1133/Acv‡ikbvj †KvW/0311', '0.00', 'সাবফর্ম'],
+              [l.notes.note60, '60', n.note60?.code || '1/1133/Acv‡ikbvj †KvW/0311', n.note60?.val || '0.00', l.headers.sub_form],
               // Row 61: Development Surcharge
-              ['Development Surcharge', '61', '1/1133/Acv‡ikbvj', '0.00', 'সাবফর্ম'],
+              [l.notes.note61, '61', n.note61?.code || '1/1133/Acv‡ikbvj', n.note61?.val || '0.00', l.headers.sub_form],
               // Row 62: ICT Development Surcharge
-              ['ICT Development Surcharge', '62', '1/1103/Acv‡ikbvj †KvW/1901', '0.00', 'সাবফর্ম'],
+              [l.notes.note62, '62', n.note62?.code || '1/1103/Acv‡ikbvj †KvW/1901', n.note62?.val || '0.00', l.headers.sub_form],
               // Row 63: Health Care Surcharge
-              ['Health Care Surcharge', '63', '1/1133/Acv‡ikbvj †KvW/0601', '0.00', 'সাবফর্ম'],
+              [l.notes.note63, '63', n.note63?.code || '1/1133/Acv‡ikbvj †KvW/0601', n.note63?.val || '0.00', l.headers.sub_form],
               // Row 64: Environmental Protection Surcharge
-              ['Environmental Protection Surcharge', '64', '1/1103/Acv‡ikbvj †KvW/2225', '0.00', 'সাবফর্ম']
+              [l.notes.note64, '64', n.note64?.code || '1/1103/Acv‡ikbvj †KvW/2225', n.note64?.val || '0.00', l.headers.sub_form]
             ]
           }
         },
 
-        this.createFullWidthHeader("SECTION - 10: CLOSING BALANCE"),
+        this.createFullWidthHeader(l.sections.s10),
         {
           style: 'dataTable',
           table: {
@@ -565,27 +591,27 @@ export class ExportService {
             body: [
               // Row 0: Header
               [
-                { text: 'Items', style: 'tHead', alignment: 'center' },
-                { text: 'Note', style: 'tHead', alignment: 'center' },
-                { text: 'Amount', style: 'tHead', alignment: 'center' }
+                { text: l.headers.items, style: 'tHead', alignment: 'center' },
+                { text: l.headers.note, style: 'tHead', alignment: 'center' },
+                { text: l.headers.amount, style: 'tHead', alignment: 'center' }
               ],
               // Row 65: Closing Balance (VAT)
               [
-                'Closing Balance (VAT) [58 - (50 + 67) + The refund amount not approved]',
+                l.notes.note65,
                 { text: '65', alignment: 'center' },
-                { text: (n.note65 || 1979177.91).toLocaleString(), alignment: 'right', style: 'tBold' }
+                { text: (n.note65?.val || n.note65 || '0.00'), alignment: 'right', style: 'tBold' }
               ],
               // Row 66: Closing Balance (SD)
               [
-                'Closing Balance (SD) [59 - (51 + 68) + The refund amount not approved]',
+                l.notes.note66,
                 { text: '66', alignment: 'center' },
-                { text: '0.00', alignment: 'right' }
+                { text: (n.note66?.val || n.note66 || '0.00'), alignment: 'right' }
               ]
             ]
           }
         },
 
-        this.createFullWidthHeader("SECTION - 11: REFUND"),
+        this.createFullWidthHeader(l.sections.s11),
         {
           style: 'dataTable',
           table: {
@@ -593,13 +619,19 @@ export class ExportService {
             body: [
               // Header Row
               [
-                { text: 'I am interested to get refund of my Closing Balance', rowSpan: 3, margin: [0, 10] },
-                { text: 'Items', style: 'tHead', alignment: 'center' },
-                { text: 'Note', style: 'tHead', alignment: 'center' },
+                { text: l.labels.interest_refund, rowSpan: 3, margin: [0, 10] },
+                { text: l.headers.items, style: 'tHead', alignment: 'center' },
+                { text: l.headers.note, style: 'tHead', alignment: 'center' },
                 {
                   columns: [
-                    { text: 'Yes', fontSize: 7 }, { text: '[  ]', fontSize: 7 },
-                    { text: 'No', fontSize: 7 }, { text: '[  ]', fontSize: 7 }
+                    // { text: l.labels.yes, fontSize: 7 }, { text: '[  ]', fontSize: 7 },
+                    // { text: l.labels.no, fontSize: 7 }, { text: '[  ]', fontSize: 7 }
+                    { width: 'auto', table: { widths: [20], body: [[' ']] }, margin: [0, 0, 5, 0] },
+                    { width: 'auto', text: l.labels.yes, fontSize: 7, margin: [0, 2, 25, 0] },
+
+                    // No Option
+                    { width: 'auto', table: { widths: [20], body: [[' ']] }, margin: [0, 0, 5, 0] },
+                    { width: 'auto', text: l.labels.no, fontSize: 7, margin: [0, 2, 0, 0] }
                   ],
                   style: 'tHead'
                 }
@@ -607,22 +639,22 @@ export class ExportService {
               // Note 67
               [
                 {},
-                'Requested Amount for Refund (VAT)',
+                l.labels.req_refund_vat,
                 { text: '67', alignment: 'center' },
-                { text: (n.note67 || '0.00').toLocaleString(), alignment: 'right' }
+                { text: (n.note67?.val || n.note67 || '0.00'), alignment: 'right' }
               ],
               // Note 68
               [
                 {},
-                'Requested Amount for Refund (SD)',
+                l.labels.req_refund_sd,
                 { text: '68', alignment: 'center' },
-                { text: (n.note68 || '0.00').toLocaleString(), alignment: 'right' }
+                { text: (n.note68?.val || n.note68 || '0.00'), alignment: 'right' }
               ]
             ]
           }
         },
 
-        this.createFullWidthHeader("SECTION - 12: DECLARATION"),
+        this.createFullWidthHeader(l.sections.s12),
         {
           style: 'dataTable',
           margin: [0, 0, 0, 0],
@@ -631,7 +663,7 @@ export class ExportService {
             body: [
               [
                 {
-                  text: "I hereby declare that all information provided in this Return Form are complete, true & accurate. In case of any untrue/incomplete statement, I may be subjected to penal action under The Value Added Tax and Supplementary Duty Act, 2012 or any other applicable Act prevailing at present.",
+                  text: l.labels.declaration_text,
                   fillColor: '#d9d9d9', // Gray background for the disclaimer
                   fontSize: 7,
                   margin: [5, 5, 5, 5]
@@ -645,12 +677,12 @@ export class ExportService {
           table: {
             widths: ['35%', '5%', '60%'], // Matches the alignment of Section 1
             body: [
-              ['Name', ':', 'Hasanuzzaman'],
-              ['Designation', ':', ''],
-              ['Mobile Number', ':', ''],
-              ['National ID/Passport Number', ':', ''],
-              ['Email', ':', ''],
-              ['Signature [Not required for electronic submission]', ':', '']
+              [l.labels.name, ':', t.name || ''],
+              [l.labels.designation, ':', t.designation || ''],
+              [l.labels.mobile, ':', t.mobile || ''],
+              [l.labels.nid_passport, ':', t.nid_passport || ''],
+              [l.labels.email, ':', t.email || ''],
+              [l.labels.signature, ':', '']
             ]
           }
         }
@@ -668,6 +700,53 @@ export class ExportService {
     pdfMake.createPdf(docDef).download('Mushak_9.1_Full_Report.pdf');
   }
 
+  // ফন্টের নাম অনুযায়ী স্টাইল জেনারেট করার ফাংশন
+private getMushakStyles(fontName: string) {
+  return {
+    header: { 
+      font: fontName, 
+      fontSize: 8, 
+      bold: true, 
+      alignment: 'center' 
+    },
+    subHeader: { 
+      font: fontName, 
+      fontSize: 7, 
+      bold: true, 
+      alignment: 'center', 
+      color: '#003366' 
+    },
+    secHeaderCell: { 
+      font: fontName, 
+      fillColor: '#003366', 
+      color: 'white', 
+      bold: true, 
+      alignment: 'center', 
+      fontSize: 7, 
+      padding: [0, 2, 0, 2] 
+    },
+    tHead: { 
+      font: fontName, 
+      fillColor: '#f2f2f2', 
+      bold: true, 
+      fontSize: 7 
+    },
+    tBold: { 
+      font: fontName, 
+      bold: true, 
+      fontSize: 7 
+    },
+    dataTable: { 
+      font: fontName, 
+      fontSize: 7, 
+      margin: [0, 0, 0, 5] 
+    },
+    borderedTable: { 
+      font: fontName, 
+      margin: [0, 0, 0, 2] 
+    }
+  };
+}
   // --- MERGED MUSHAK-9.1 EXCEL (ALL SECTIONS 1-12) ---
   async exportFullMushakExcel(data: any) {
     const workbook = new ExcelJS.Workbook();

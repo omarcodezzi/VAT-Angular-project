@@ -219,27 +219,28 @@ export class ExcelImportComponent {
     this.exportService.exportPdf(rows, 'VAT_HS_Code.pdf');
   }
 
-downloadFullMushakPdf() {
-  const data = this.exportService.mushakStaticData;
-  if (!data || !data.notes) {
-    console.error("Mushak static data is missing!");
-    return;
-  }
-  this.exportService.exportFullMushakPdf(data);
+downloadMushakReport(lang: 'en' | 'bl') {
+  const apiEndpoint = 'http://localhost:3000/mushak_values';  
+  
+  this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
+    next: (data) => {
+      if (lang === 'en') {
+        this.exportService.exportFullMushakPdf(data);
+      } else {
+        this.exportService.exportFullMushakPdfBangla(data);
+      }
+    },  
+    error: (err) => console.error("API Connection Failed!", err)
+  });
 }
 
-exportFullMushakPdfBangla() {
-  const data = this.exportService.mushakStaticData;
-  if (!data || !data.notes) {
-    console.error("Mushak static data is missing!");
-    return;
-  }
-  this.exportService.exportFullMushakPdfBangla(data);
-}
-
-  // For the Full Formatted Excel Report
-  downloadFullMushakExcel() {
-    this.exportService.exportFullMushakExcel(this.exportService.mushakStaticData);
-  }
+// Full Formatted Excel Report
+// downloadFullMushakExcel() {
+//   this.exportService.getMushakJsonData().subscribe({
+//     next: (data) => {
+//       this.exportService.exportFullMushakExcel(data);
+//     }
+//   });
+// }
  
 }

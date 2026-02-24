@@ -17,15 +17,15 @@
 
     <div class="mt-4 p-3 border rounded bg-light">
       <h6>Official NBR Reports (Mushak-9.1)</h6>
-      <button class="btn btn-outline-primary me-2" (click)="downloadFullMushakPdf()">
+      <button class="btn btn-outline-primary me-2" (click)="downloadMushakReport('en')">
         Download PDF
       </button>
-      <button class="btn btn-outline-primary me-2" (click)="exportFullMushakPdfBangla()">
+      <button class="btn btn-outline-primary me-2" (click)="downloadMushakReport('bl')">
         Download PDF Bangla
       </button>
-      <button class="btn btn-outline-success" (click)="downloadFullMushakExcel()">
+      <!-- <button class="btn btn-outline-success" (click)="downloadFullMushakExcel()">
         Download Excel
-      </button>
+      </button> -->
     </div>
 
   </div>
