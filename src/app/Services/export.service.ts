@@ -34,26 +34,27 @@ export class ExportService {
   constructor(private http: HttpClient) { }
 
   getMergedMushakData(apiEndpoint: string, lang: string): Observable<any> {
-  const labels$ = this.http.get(`i18n/${lang}/dummyData.json`);
-  const values$ = this.http.get(apiEndpoint);
+    const labels$ = this.http.get(`i18n/${lang}/dummyData.json`);
+    const values$ = this.http.get(apiEndpoint);
 
-  return forkJoin([labels$, values$]).pipe(
-    map(([labels, values]: [any, any]) => {
-      const mergedNotes: Record<string, any> = {}; 
-      
-      Object.keys(labels.notes).forEach(key => {
-        mergedNotes[key] = values.notes?.[key] || { val: '0.00', sd: '0.00', vat: '0.00' };
-      });
+    return forkJoin([labels$, values$]).pipe(
+      map(([labels, values]: [any, any]) => {
+        const mergedNotes: Record<string, any> = {};
 
-      return {
-        labels: labels,
-        notes: mergedNotes,
-        taxpayer: values.taxpayer,
-        returnSubmission: values.returnSubmission
-      };
-    })
-  );
-}
+        Object.keys(labels.notes).forEach(key => {
+          mergedNotes[key] = values.notes?.[key] || { val: '0.00', sd: '0.00', vat: '0.00' };
+        });
+
+        return {
+          labels: labels,
+          notes: mergedNotes,
+          taxpayer: values.taxpayer,
+          returnSubmission: values.returnSubmission,
+          mushak_4_3_data: values.mushak_values?.mushak_4_3_data || values.mushak_4_3_data || {}
+        };
+      })
+    );
+  }
 
   private mergeNotes(labelNotes: any, valueNotes: any): any {
     const merged: any = {};
@@ -703,7 +704,7 @@ export class ExportService {
     pdfMake.createPdf(docDef).download('Mushak_9.1_Full_Report.pdf');
   }
 
- 
+
   // --- MERGED MUSHAK-9.1 EXCEL (ALL SECTIONS 1-12) ---
   async exportFullMushakExcel(data: any) {
     const workbook = new ExcelJS.Workbook();
@@ -887,9 +888,9 @@ export class ExportService {
     const buffer = await workbook.xlsx.writeBuffer();
     saveAs(new Blob([buffer]), 'Mushak_9.1_Full_Report.xlsx');
   }
- 
 
-    exportFullMushakPdfBangla(data: any) {
+
+  exportFullMushakPdfBangla(data: any) {
     debugger
     const l = data.labels || {};
     const n = data?.notes || {};
@@ -898,10 +899,10 @@ export class ExportService {
 
     (pdfMake as any).fonts = {
       PlaywriteCU: {
-        normal: window.location.origin + '/assets/fonts/NotoSansBengali-VariableFont_wdth,wght.ttf',
-        bold: window.location.origin + '/assets/fonts/NotoSansBengali-VariableFont_wdth,wght.ttf',
-        italics: window.location.origin + '/assets/fonts/NotoSansBengali-VariableFont_wdth,wght.ttf',
-        bolditalics: window.location.origin + '/assets/fonts/NotoSansBengali-VariableFont_wdth,wght.ttf'
+        normal: window.location.origin + '/assets/fonts/kalpurush.ttf',
+        bold: window.location.origin + '/assets/fonts/kalpurush.ttf',
+        italics: window.location.origin + '/assets/fonts/kalpurush.ttf',
+        bolditalics: window.location.origin + '/assets/fonts/kalpurush.ttf'
       }
     };
 
@@ -1435,5 +1436,135 @@ export class ExportService {
       }
     };
     pdfMake.createPdf(docDef).download('Mushak_9.1_Full_Report.pdf');
+  }
+
+  exportInputOutputCoefficientBangla(data: any) {
+    debugger
+    const l = (data.labels.mushak43 || {}) as any;
+    const info = data.mushak_4_3_data.companyInfo || {};
+    const items = (data.mushak_4_3_data.items || []) as any[];
+    const f = l.footer || {};
+
+    (pdfMake as any).fonts = {
+      kalpurush: {
+        normal: window.location.origin + '/assets/fonts/kalpurush.ttf',
+        bold: window.location.origin + '/assets/fonts/kalpurush.ttf',
+      }
+    };
+
+    const safeText = (val: any, isNum = false) => {
+      return val !== undefined && val !== null ? val.toString() : '';
+    };
+
+    const docDef: any = {
+      pageSize: 'A4',
+      pageOrientation: 'landscape',
+      defaultStyle: { font: 'kalpurush', fontSize: 8 },
+      content: [
+        {
+          columns: [
+            { text: '', width: '*' },
+            {
+              stack: [
+                { text: l.titles.gov, style: 'header' },
+                { text: l.titles.nbr, style: 'header' },
+                { text: l.titles.form, style: 'subHeader' },
+                { text: l.titles.rule, style: 'subHeader' }
+              ], width: 300
+            },
+            { text: l.titles.m_name, alignment: 'right', bold: true, fontSize: 12, width: '*' }
+          ]
+        },
+
+        {
+          margin: [0, 15, 0, 10],
+          table: {
+            widths: ['25%', '2%', '73%'],
+            body: [
+              [l.info.comp_name, ':', info.name],
+              [l.info.address, ':', info.address],
+              [l.info.bin, ':', safeText(info.bin, true)],
+              [l.info.sub_date, ':', safeText(info.submissionDate, true)],
+              [l.info.first_supply, ':', safeText(info.firstSupplyDate, true)]
+            ]
+          },
+          layout: 'noBorders'
+        },
+
+        // মূল টেবিল (১২টি কলাম)
+        {
+          table: {
+            headerRows: 2,
+            widths: [25, 50, 80, 50, 80, 50, 45, 45, 35, 75, 50, 40],
+            body: [
+              [
+                { text: l.headers.sl, rowSpan: 2, alignment: 'center' },
+                { text: l.headers.hs_code, rowSpan: 2, alignment: 'center' },
+                { text: l.headers.item_desc, rowSpan: 2, alignment: 'center' },
+                { text: l.headers.unit, rowSpan: 2, alignment: 'center' },
+                { text: l.headers.item_desc_wastage_pencentage, colSpan: 5, alignment: 'center' },
+                {}, {}, {}, {},
+                { text: l.headers.price_correction, colSpan: 2, alignment: 'center' },
+                {},
+                { text: l.headers.remarks, rowSpan: 2, alignment: 'center' }
+              ],
+              [
+                {}, {}, {}, {},
+                l.headers.raw_material, l.headers.buy_price, l.headers.qty_w, l.headers.qty_wo, l.headers.wastage_p,
+                l.headers.va_sector, l.headers.va_value, {}
+              ],
+              ...items.map((item, idx) => [
+                { text: (idx + 1).toString(), alignment: 'center' },
+                safeText(item.hsCode, true),
+                safeText(item.itemName),
+                safeText(item.unit),
+                safeText(item.rawMaterialName),
+                safeText(item.price, true),
+                safeText(item.qtyInclWastage, true),
+                safeText(item.wastageQty, true),
+                { text: item.wastagePercent + '%', alignment: 'right' },
+                safeText(item.vaSector),
+                safeText(item.vaValue, true),
+                safeText(item.remarks)
+              ])
+            ]
+          }
+        },
+        {
+          margin: [0, 20, 0, 10],
+          columns: [
+            { text: '', width: '*' },
+            {
+              stack: [
+                { text: f.auth_person_title, bold: true },
+                { text: f.designation, margin: [0, 5, 0, 5] },
+                { text: f.signature },
+                { text: f.seal, margin: [0, 5, 0, 0] }
+              ],
+              width: 250,
+              alignment: 'left'
+            }
+          ]
+        },
+
+        // ৩. বিশেষ দ্রষ্টব্য সেকশন (বামে)
+        {
+          stack: [
+            { text: f.special_note_title, bold: true, decoration: 'underline', margin: [0, 10, 0, 5] },
+            {
+              text: (f.notes || []).join('\n'),
+              fontSize: 7,
+              lineHeight: 1.4
+            }
+          ]
+        }
+      ],
+      styles: {
+        header: { fontSize: 11, bold: true, alignment: 'center' },
+        subHeader: { fontSize: 9, alignment: 'center' }
+      }
+    };
+
+    pdfMake.createPdf(docDef).download('Mushak_4.3_Report.pdf');
   }
 }
