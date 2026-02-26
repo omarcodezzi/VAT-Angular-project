@@ -140,5 +140,47 @@
     "items": "Items",
     "amount": "Amount",
     "acc_code": "Account Code"
+  },
+  "mushak43": {
+    "titles": {
+      "gov": "Government of the People's Republic of Bangladesh",
+      "nbr": "National Board of Revenue",
+      "form": "Input-Output Coefficient Declaration",
+      "rule": "(See Rule 21)",
+      "m_name": "Mushak-4.3"
+    },
+    "info": {
+      "comp_name": "Name of the Institution:",
+      "address": "Address:",
+      "bin": "BIN:",
+      "sub_date": "Date of Submission:",
+      "first_supply": "Date of first supply as per declared coefficient:"
+    },
+    "headers": {
+      "sl": "SL No (1)",
+      "hs_code": "HS Code (2)",
+      "item_desc": "Name & Description of Goods/Service (3)",
+      "unit": "Unit of Supply (4)",
+      "raw_material": "Description (5)",
+      "buy_price": "Purchase Price (6)",
+      "qty_w": "Quantity Incl. Wastage (7)",
+      "qty_wo": "Quantity of Wastage (8)",
+      "wastage_p": "Percentage (9)",
+      "va_sector": "Value Addition Sector (10)",
+      "va_value": "Value (11)",
+      "remarks": "Remarks (12)"
+    },
+    "footer": {
+      "auth_person_title": "Name of Authorized Person of the Institution:",
+      "designation": "Designation:",
+      "signature": "Signature:",
+      "seal": "Seal:",
+      "special_note_title": "Special Notes:",
+      "notes": [
+        "1. Declaration must be submitted online or to the divisional office 15 days before first supply.",
+        "2. New declaration is required if the price of goods or raw materials changes by more than 7.5%.",
+        "3. Bill of Entry or Challan must be attached as proof of raw material purchase."
+      ]
+    }
   }
 }

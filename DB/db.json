@@ -208,53 +208,57 @@
         "val": "0.00"
       }
     },
-    "mushak_4_3_data": {
-      "companyInfo": {
-        "name": "পারটেক্স বেভারেজ লি:",
-        "address": "জাঙ্গালিয়াপাড়া, বাংলাবাজার, ভাওয়াল মির্জাপুর, জয়দেবপুর, গাজীপুর।",
-        "bin": "000000733",
-        "submissionDate": "11/09/2022",
-        "firstSupplyDate": "20/09/2022"
-      },
-      "items": [
-        {
-          "hsCode": "2202.10.00",
-          "itemName": "আরসি কোলা ৫০০ মিলি পিইটি (কোমলপানীয়)",
-          "unit": "প্রতি কেইস (২৪ বোতল)",
-          "rawMaterialName": "কনসেনট্রেট",
-          "price": "1613.49",
-          "qtyInclWastage": "53.93 গ্রাম",
-          "wastageQty": "1.19 গ্রাম",
-          "wastagePercent": "2.25",
-          "vaSector": "বেতন ও মজুরী",
-          "vaValue": "12.88" 
-        },
-        {
-          "hsCode": "1701.99.00",
-          "itemName": "আরসি কোলা ৫০০ মিলি পিইটি",
-          "unit": "প্রতি কেইস (২৪ বোতল)",
-          "rawMaterialName": "চিনি",
-          "price": "73.25",
-          "qtyInclWastage": "44.06 গ্রাম",
-          "wastageQty": "0.99 গ্রাম",
-          "wastagePercent": "2.25",
-          "vaSector": "ফ্যাক্টরী ওভার হেড",
-          "vaValue": "13.60",
-          "remarks": ""
-        },
-        {
-          "hsCode": "3907.61.00",
-          "itemName": "আরসি কোলা ৫০০ মিলি পিইটি",
-          "unit": "প্রতি কেইস (২৪ বোতল)",
-          "rawMaterialName": "রেজিন (পিইটি)",
-          "price": "800.40",
-          "qtyInclWastage": "79.70 গ্রাম",
-          "wastageQty": "17.61 গ্রাম",
-          "wastagePercent": "22.09",
-          "vaSector": "মুনাফা",
-          "vaValue": "5.02"
+      "mushak_values": {
+        "mushak_4_3_data": {
+          "en": {
+            "companyInfo": {
+              "name": "Partex Beverage Ltd.",
+              "address": "Jangaliapara, Banglabazar, Bhawal Mirzapur, Gazipur.",
+              "bin": "000000733",
+              "submissionDate": "11/09/2022",
+              "firstSupplyDate": "20/09/2022"
+            },
+            "items": [
+              {
+                "hsCode": "2202.10.00",
+                "itemName": "RC Cola 500ml PET",
+                "unit": "Case (24 Bottles)",
+                "rawMaterialName": "Concentrate",
+                "price": "1613.49",
+                "qtyInclWastage": "53.93 gm",
+                "wastageQty": "1.19 gm",
+                "wastagePercent": "2.25",
+                "vaSector": "Salary & Wages",
+                "vaValue": "12.88",
+                "remarks": "Normal loss"
+              }
+            ]
+          },
+          "bl": {
+            "companyInfo": {
+              "name": "পারটেক্স বেভারেজ লি:",
+              "address": "জাঙ্গালিয়াপাড়া, বাংলাবাজার, ভাওয়াল মির্জাপুর, গাজীপুর।",
+              "bin": "000000৭৩৩",
+              "submissionDate": "১১/০৯/২০২২",
+              "firstSupplyDate": "২০/০৯/২০২২"
+            },
+            "items": [
+              {
+                "hsCode": "2202.10.00",
+                "itemName": "আরসি কোলা ৫০০ মিলি পিইটি",
+                "unit": "কেইস (২৪ বোতল)",
+                "rawMaterialName": "কনসেনট্রেট",
+                "price": "১৬১৩.৪৯",
+                "qtyInclWastage": "৫৩.৯৩ গ্রাম",
+                "wastageQty": "১.১৯ গ্রাম",
+                "wastagePercent": "২.২৫",
+                "vaSector": "বেতন ও মজুরী",
+                "vaValue": "১২.৮৮",
+                "remarks": "স্বাভাবিক অপচয়"
+              }
+            ]
+          }
         }
-      ]
+      }
     }
   }
-}

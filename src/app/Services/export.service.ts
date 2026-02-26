@@ -156,7 +156,7 @@ export class ExportService {
     };
   }
 
-  exportFullMushakPdf(data: any) {
+  exportFullMushakPdf(data: any, lang: string) {
     debugger
     const l = data.labels || {};
     const n = data?.notes || {};
@@ -706,7 +706,7 @@ export class ExportService {
 
 
   // --- MERGED MUSHAK-9.1 EXCEL (ALL SECTIONS 1-12) ---
-  async exportFullMushakExcel(data: any) {
+  async exportFullMushakExcel(data: any, lang: string) {
     const workbook = new ExcelJS.Workbook();
     const sheet = workbook.addWorksheet('Mushak-9.1');
 
@@ -890,7 +890,7 @@ export class ExportService {
   }
 
 
-  exportFullMushakPdfBangla(data: any) {
+  exportFullMushakPdfBangla(data: any, lang: string) {  
     debugger
     const l = data.labels || {};
     const n = data?.notes || {};
@@ -1438,11 +1438,149 @@ export class ExportService {
     pdfMake.createPdf(docDef).download('Mushak_9.1_Full_Report.pdf');
   }
 
-  exportInputOutputCoefficientBangla(data: any) {
+  exportInputOutputCoefficientEnglish(data: any, lang: string) {
+    const l = (data.labels.mushak43 || {}) as any;
+    const f = (l.footer || {}) as any;
+
+    // Data mapping from mushak_values
+    const mainData = data.mushak_values?.mushak_4_3_data[lang] || data.mushak_4_3_data[lang] || {};
+    const info = (mainData.companyInfo || {}) as any;
+    const items = (mainData.items || []) as any[];
+
+    (pdfMake as any).fonts = {
+      Nunito: {
+        normal: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
+        bold: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
+        italics: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
+        bolditalics: window.location.origin + '/assets/fonts/Nunito-Regular.ttf'
+      }
+    };
+
+    const safe = (val: any) => val !== undefined && val !== null ? val.toString() : '';
+
+    const docDef: any = {
+      pageSize: 'A4',
+      pageOrientation: 'landscape',
+      defaultStyle: { font: 'Nunito', fontSize: 8 },
+      content: [
+        // Header Section
+        {
+          columns: [
+            { text: '', width: '*' },
+            {
+              stack: [
+                { text: l.titles.gov, style: 'header' },
+                { text: l.titles.nbr, style: 'header' },
+                { text: l.titles.form, style: 'subHeader' },
+                { text: l.titles.rule, style: 'subHeader' }
+              ], width: 400
+            },
+            { text: l.titles.m_name, alignment: 'right', bold: true, fontSize: 12, width: '*' }
+          ]
+        },
+
+        // Institution Information
+        {
+          margin: [0, 15, 0, 10],
+          table: {
+            widths: ['30%', '2%', '68%'],
+            body: [
+              [l.info.comp_name, ':', info.name],
+              [l.info.address, ':', info.address],
+              [l.info.bin, ':', safe(info.bin)],
+              [l.info.sub_date, ':', safe(info.submissionDate)],
+              [l.info.first_supply, ':', safe(info.firstSupplyDate)]
+            ]
+          },
+          layout: 'noBorders'
+        },
+
+        // Main Data Table (12 Columns)
+        {
+          table: {
+            headerRows: 2,
+            widths: [25, 55, 90, 60, 90, 45, 45, 45, 40, 80, 50, 45],
+            body: [
+              // Row 1: Merged Headers 
+              [
+                { text: l.headers.sl, rowSpan: 2, alignment: 'center', bold: true },
+                { text: l.headers.hs_code, rowSpan: 2, alignment: 'center', bold: true },
+                { text: l.headers.item_desc, rowSpan: 2, alignment: 'center', bold: true },
+                { text: l.headers.unit, rowSpan: 2, alignment: 'center', bold: true },
+                { text: 'Description of Raw Materials, Quantity & Purchase Price', colSpan: 5, alignment: 'center', bold: true },
+                {}, {}, {}, {},
+                { text: 'Value Addition Details', colSpan: 2, alignment: 'center', bold: true },
+                {},
+                { text: l.headers.remarks, rowSpan: 2, alignment: 'center', bold: true }
+              ],
+              // Row 2: Sub-headers
+              [
+                {}, {}, {}, {},
+                { text: l.headers.raw_material, bold: true }, { text: l.headers.buy_price, bold: true },
+                { text: l.headers.qty_w, bold: true }, { text: l.headers.qty_wo, bold: true },
+                { text: l.headers.wastage_p, bold: true }, { text: l.headers.va_sector, bold: true },
+                { text: l.headers.va_value, bold: true }, {}
+              ],
+              // Data Mapping
+              ...items.map((item, idx) => [
+                { text: (idx + 1).toString(), alignment: 'center' },
+                safe(item.hsCode),
+                safe(item.itemName),
+                safe(item.unit),
+                safe(item.rawMaterialName),
+                { text: safe(item.price), alignment: 'right' },
+                { text: safe(item.qtyInclWastage), alignment: 'right' },
+                { text: safe(item.wastageQty), alignment: 'right' },
+                { text: safe(item.wastagePercent) + '%', alignment: 'right' },
+                safe(item.vaSector),
+                { text: safe(item.vaValue), alignment: 'right' },
+                safe(item.remarks)
+              ])
+            ]
+          }
+        },
+
+        // Footer Section [cite: 30, 31, 32, 33]
+        {
+          margin: [0, 20, 0, 10],
+          columns: [
+            { text: '', width: '*' },
+            {
+              stack: [
+                { text: f.auth_person_title, bold: true },
+                { text: f.designation, margin: [0, 5, 0, 5] },
+                { text: f.signature },
+                { text: f.seal, margin: [0, 5, 0, 0] }
+              ],
+              width: 280
+            }
+          ]
+        },
+        {
+          stack: [
+            { text: f.special_note_title, bold: true, decoration: 'underline', margin: [0, 10, 0, 5] },
+            {
+              ol: f.notes || [],
+              fontSize: 7,
+              lineHeight: 1.3
+            }
+          ]
+        }
+      ],
+      styles: {
+        header: { fontSize: 11, bold: true, alignment: 'center' },
+        subHeader: { fontSize: 9, alignment: 'center' }
+      }
+    };
+
+    pdfMake.createPdf(docDef).download('Mushak_4.3_English_Report.pdf');
+  }
+
+  exportInputOutputCoefficientBangla(data: any, lang: string) {
     debugger
     const l = (data.labels.mushak43 || {}) as any;
-    const info = data.mushak_4_3_data.companyInfo || {};
-    const items = (data.mushak_4_3_data.items || []) as any[];
+    const info = data.mushak_4_3_data[lang]?.companyInfo || {};
+    const items = (data.mushak_4_3_data[lang]?.items || []) as any[];
     const f = l.footer || {};
 
     (pdfMake as any).fonts = {

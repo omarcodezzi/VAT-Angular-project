@@ -225,9 +225,9 @@ downloadMushakReport(lang: 'en' | 'bl') {
   this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
     next: (data) => {
       if (lang === 'en') {
-        this.exportService.exportFullMushakPdf(data);
+        this.exportService.exportFullMushakPdf(data, lang);
       } else {
-        this.exportService.exportFullMushakPdfBangla(data);
+        this.exportService.exportFullMushakPdfBangla(data, lang);
       }
     },  
     error: (err) => console.error("API Connection Failed!", err)
@@ -241,9 +241,9 @@ downloadInputOutputCoefficient(lang: 'en' | 'bl') {
   this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
     next: (data) => {
       if (lang === 'en') {
-        this.exportService.exportFullMushakPdf(data);
+        this.exportService.exportInputOutputCoefficientEnglish(data, lang);
       } else {
-        this.exportService.exportInputOutputCoefficientBangla(data);
+        this.exportService.exportInputOutputCoefficientBangla(data, lang);
       }
     },  
     error: (err) => console.error("API Connection Failed!", err)
