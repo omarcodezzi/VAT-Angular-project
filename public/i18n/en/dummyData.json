@@ -141,7 +141,7 @@
     "amount": "Amount",
     "acc_code": "Account Code"
   },
-  "mushak43": {
+  "mushak_4_3": {
     "titles": {
       "gov": "Government of the People's Republic of Bangladesh",
       "nbr": "National Board of Revenue",
@@ -177,10 +177,51 @@
       "seal": "Seal:",
       "special_note_title": "Special Notes:",
       "notes": [
-        "1. Declaration must be submitted online or to the divisional office 15 days before first supply.",
-        "2. New declaration is required if the price of goods or raw materials changes by more than 7.5%.",
-        "3. Bill of Entry or Challan must be attached as proof of raw material purchase."
+        "Declaration must be submitted online or to the divisional office 15 days before first supply.",
+        "New declaration is required if the price of goods or raw materials changes by more than 7.5%.",
+        "Bill of Entry or Challan must be attached as proof of raw material purchase."
       ]
+    }
+  },
+  "mushak_6_1": {
+    "titles": {
+      "gov": "Government of the People's Republic of Bangladesh",
+      "nbr": "National Board of Revenue",
+      "form": "Purchase Account Book",
+      "rule": "[See Rule 40(1)(a) and 41(a)]",
+      "m_name": "Mushak-6.1",
+      "sub_title": "Purchase of Goods/Service Materials"
+    },
+    "info": {
+      "comp_name": "Name of the Institution:",
+      "address": "Address:",
+      "bin": "Business Identification Number (BIN):"
+    },
+    "headers": {
+      "sl": "SL No (1)",
+      "date": "Date (2)",
+      "opening_stock": "Opening Balance of Raw Materials",
+      "qty": "Quantity (Unit)",
+      "value": "Value (Excl. all taxes)",
+      "invoice_info": "Invoice/Bill of Entry No & Date",
+      "seller_info": "Seller/Supplier Information",
+      "item_desc": "Description (10)",
+      "purchase_info": "Purchased Raw Materials",
+      "vat_info": "Total Raw Materials",
+      "usage_info": "Usage of Materials",
+      "closing_stock": "Closing Balance of Materials",
+      "remarks": "Remarks (21)"
+    },
+    "sub_headers": {
+      "qty": "Qty",
+      "val": "Value",
+      "no": "No",
+      "date": "Date",
+      "name": "Name",
+      "addr": "Address",
+      "bin": "BIN",
+      "sd": "SD",
+      "vat": "VAT"
     }
   }
 }

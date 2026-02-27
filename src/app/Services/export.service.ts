@@ -70,7 +70,7 @@ export class ExportService {
   }
 
   // getMushakJsonData(): Observable<MushakData> {
-  //   debugger
+  //   
   //   return this.http.get<MushakData>('i18n/en/dummyData.json');
   // }
 
@@ -157,7 +157,7 @@ export class ExportService {
   }
 
   exportFullMushakPdf(data: any, lang: string) {
-    debugger
+    
     const l = data.labels || {};
     const n = data?.notes || {};
     const t = data?.taxpayer || {};
@@ -890,8 +890,7 @@ export class ExportService {
   }
 
 
-  exportFullMushakPdfBangla(data: any, lang: string) {  
-    debugger
+  exportFullMushakPdfBangla(data: any, lang: string) {
     const l = data.labels || {};
     const n = data?.notes || {};
     const t = data?.taxpayer || {};
@@ -1439,7 +1438,7 @@ export class ExportService {
   }
 
   exportInputOutputCoefficientEnglish(data: any, lang: string) {
-    const l = (data.labels.mushak43 || {}) as any;
+    const l = (data.labels.mushak_4_3 || {}) as any;
     const f = (l.footer || {}) as any;
 
     // Data mapping from mushak_values
@@ -1573,12 +1572,11 @@ export class ExportService {
       }
     };
 
-    pdfMake.createPdf(docDef).download('Mushak_4.3_English_Report.pdf');
+    pdfMake.createPdf(docDef).download('mushak_4_3_English_Report.pdf');
   }
 
   exportInputOutputCoefficientBangla(data: any, lang: string) {
-    debugger
-    const l = (data.labels.mushak43 || {}) as any;
+    const l = (data.labels.mushak_4_3 || {}) as any;
     const info = data.mushak_4_3_data[lang]?.companyInfo || {};
     const items = (data.mushak_4_3_data[lang]?.items || []) as any[];
     const f = l.footer || {};
@@ -1703,6 +1701,195 @@ export class ExportService {
       }
     };
 
-    pdfMake.createPdf(docDef).download('Mushak_4.3_Report.pdf');
+    pdfMake.createPdf(docDef).download('mushak_4_3_Report.pdf');
+  }
+
+  exportmushak_6_1English(data: any, lang: string) {
+    (pdfMake as any).fonts = {
+      Nunito: {
+        normal: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
+        bold: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
+        italics: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
+        bolditalics: window.location.origin + '/assets/fonts/Nunito-Regular.ttf'
+      }
+    };
+
+    const l = (data.labels?.mushak_6_1 || {}) as any;
+    const targetData = data.mushak_values?.[lang] || data[lang] || {};
+    const m61 = (targetData.mushak_6_1_data || {}) as any;
+    const info = (m61.companyInfo || {}) as any;
+    const items = (m61.items || []) as any[];
+
+    const safe = (val: any) => (val !== undefined && val !== null) ? val.toString() : ' ';
+
+    const docDef: any = {
+      pageSize: 'A4',
+      pageOrientation: 'landscape',
+      defaultStyle: { font: 'Nunito', fontSize: 6 },
+      content: [
+        { text: safe(l.titles?.m_name), alignment: 'right', bold: true },
+        { text: safe(l.titles?.gov), alignment: 'center', bold: true },
+        { text: safe(l.titles?.nbr), alignment: 'center', bold: true },
+        { text: safe(l.titles?.form), alignment: 'center', bold: true, fontSize: 10 },
+        { text: safe(l.titles?.rule), alignment: 'center', fontSize: 7, margin: [0, 0, 0, 5] },
+        { text: safe(l.titles?.sub_title), alignment: 'center', decoration: 'underline' },
+
+        // Institution Information Section
+        {
+          margin: [0, 10, 0, 10],
+          table: {
+            widths: ['25%', '2%', '73%'],
+            body: [
+              [l.info?.comp_name, ':', safe(info.name)],
+              [l.info?.address, ':', safe(info.address)],
+              [l.info?.bin, ':', safe(info.bin)]
+            ]
+          },
+          layout: 'noBorders'
+        },
+
+        // Main Table (21 Columns as per PDF)
+        {
+          table: {
+            headerRows: 3,
+            widths: [15, 30, 25, 25, 30, 30, 35, 35, 35, 40, 30, 30, 25, 25, 30, 30, 30, 30, 30, 30, 30],
+            body: [
+              // Row 1: Merged Headers
+              [
+                { text: l.headers?.sl, rowSpan: 2, bold: true, alignment: 'center' },
+                { text: l.headers?.date, rowSpan: 2, bold: true, alignment: 'center' },
+                { text: l.headers?.opening_stock, colSpan: 2, alignment: 'center', bold: true }, {},
+                { text: l.headers?.invoice_info, colSpan: 2, alignment: 'center', bold: true }, {},
+                { text: l.headers?.seller_info, colSpan: 3, alignment: 'center', bold: true }, {}, {},
+                { text: l.headers?.item_desc, rowSpan: 2, bold: true, alignment: 'center' },
+                { text: l.headers?.purchase_info, colSpan: 4, alignment: 'center', bold: true }, {}, {}, {},
+                { text: l.headers?.total_materials, colSpan: 2, alignment: 'center', bold: true }, {},
+                { text: l.headers?.usage_info, colSpan: 2, alignment: 'center', bold: true }, {},
+                { text: l.headers?.closing_stock, colSpan: 2, alignment: 'center', bold: true }, {},
+                { text: l.headers?.remarks, rowSpan: 2, bold: true, alignment: 'center' }
+              ],
+              // Row 2: Sub-headers
+              [
+                {}, {}, 'Qty', 'Value', 'No', 'Date', 'Name', 'Address', 'BIN', '', 'Qty', 'Value', 'SD', 'VAT', 'Qty', 'Value', 'Qty', 'Value', 'Qty', 'Value', ''
+              ],
+              // Row 3: Column Reference Numbers (1-21)
+              Array.from({ length: 21 }, (_, i) => ({ text: `(${i + 1})`, alignment: 'center', fontSize: 5 })),
+
+              // Data Mapping from items
+              ...items.map((item: any) => [
+                safe(item.sl), safe(item.date), safe(item.opening_qty), safe(item.opening_val),
+                safe(item.invoice_no), safe(item.invoice_date), safe(item.seller_name),
+                safe(item.seller_address), safe(item.seller_bin), safe(item.item_desc),
+                safe(item.purchase_qty), safe(item.purchase_val), safe(item.sd), safe(item.vat),
+                safe(item.total_qty), safe(item.total_val), safe(item.used_qty), safe(item.used_val),
+                safe(item.closing_qty), safe(item.closing_val), safe(item.remarks)
+              ])
+            ]
+          }
+        }
+      ]
+    };
+    pdfMake.createPdf(docDef).download(`mushak_6_1_English.pdf`);
+  }
+
+  exportmushak_6_1Bangla(data: any, lang: string) {
+    
+    const l = (data.labels?.mushak_6_1 || {}) as any;
+    const targetData = data.labels?.mushak_6_1 || {}; 
+    const info = (targetData.info || {}) as any;
+    const items = (targetData.items || []) as any[];
+    const sh = (data.labels?.mushak_6_1?.sub_headers || {}) as any;
+
+    const safe = (val: any) => val !== undefined && val !== null ? val.toString() : ' ';
+
+    (pdfMake as any).fonts = {
+      PlaywriteCU: {
+        normal: window.location.origin + '/assets/fonts/kalpurush.ttf',
+        bold: window.location.origin + '/assets/fonts/kalpurush.ttf',
+        italics: window.location.origin + '/assets/fonts/kalpurush.ttf',
+        bolditalics: window.location.origin + '/assets/fonts/kalpurush.ttf'
+      }
+    };
+
+    const docDef: any = {
+      pageSize: 'A4',
+      pageOrientation: 'landscape',
+      defaultStyle: { font: 'PlaywriteCU', fontSize: 6 },
+      content: [
+        { text: safe(l.titles?.m_name), alignment: 'right', bold: true },  
+        { text: safe(l.titles?.gov), alignment: 'center', bold: true },
+        { text: safe(l.titles?.nbr), alignment: 'center', bold: true },
+        { text: safe(l.titles?.form), alignment: 'center', bold: true, fontSize: 10 },  
+        { text: safe(l.titles?.rule), alignment: 'center', fontSize: 7 },  
+
+        {
+          margin: [0, 10, 0, 10],
+          table: {
+            widths: ['25%', '2%', '73%'],
+            body: [
+              [l.info?.comp_name, ':', safe(info.name)],
+              [l.info?.address, ':', safe(info.address)],
+              [l.info?.bin, ':', safe(info.bin)]
+            ]
+          },
+          layout: 'noBorders'
+        },
+
+        {
+          table: {
+            headerRows: 3,
+            widths: [15, 30, 25, 25, 30, 30, 35, 35, 35, 40, 30, 30, 25, 25, 30, 30, 30, 30, 30, 30, 30],
+            body: [
+              // Row 1: Merged Headers 
+              [
+                { text: l.headers?.sl, rowSpan: 2, bold: true },
+                { text: l.headers?.date, rowSpan: 2, bold: true },
+                { text: l.headers?.opening_stock, colSpan: 2, alignment: 'center', bold: true }, {},
+                { text: l.headers?.invoice_info, colSpan: 2, alignment: 'center', bold: true }, {},
+                { text: l.headers?.seller_info, colSpan: 3, alignment: 'center', bold: true }, {}, {},
+                { text: l.headers?.item_desc, rowSpan: 2, bold: true },
+                { text: l.headers?.purchase_info, colSpan: 4, alignment: 'center', bold: true }, {}, {}, {},
+                { text: l.headers?.total_materials, colSpan: 2, alignment: 'center', bold: true }, {},
+                { text: l.headers?.usage_info, colSpan: 2, alignment: 'center', bold: true }, {},
+                { text: l.headers?.closing_stock, colSpan: 2, alignment: 'center', bold: true }, {},
+                { text: l.headers?.remarks, rowSpan: 2, bold: true }
+              ],
+              // Row 2: Sub-headers 
+              [
+                {}, {},
+                sh.qty || ' ', sh.val || ' ', // opening
+                sh.no || ' ', sh.date || ' ', // invoice
+                sh.name || ' ', sh.addr || ' ', sh.bin || ' ', // seller
+                {},
+                sh.qty || ' ', sh.val || ' ', sh.sd || ' ', sh.vat || ' ', // purchase
+                sh.qty || ' ', sh.val || ' ', // total
+                sh.qty || ' ', sh.val || ' ', // usage
+                sh.qty || ' ', sh.val || ' ', // closing
+                {}
+              ],
+              // Row 3: Column Numbers (1) to (21) 
+              Array.from({ length: 21 }, (_, i) => ({ text: `(${i + 1})`, alignment: 'center', fontSize: 5 })),
+
+              // Data Rows from db.json
+              ...items.map((item: any) => [
+                safe(item.sl), safe(item.date), safe(item.opening_qty), safe(item.opening_val),
+                safe(item.invoice_no), safe(item.invoice_date), safe(item.seller_name),
+                safe(item.seller_address), safe(item.seller_bin), safe(item.item_desc),
+                safe(item.purchase_qty), safe(item.purchase_val), safe(item.sd), safe(item.vat),
+                safe(item.total_qty), safe(item.total_val), safe(item.used_qty), safe(item.used_val),
+                safe(item.closing_qty), safe(item.closing_val), safe(item.remarks)
+              ])
+            ]
+          }
+        },
+
+        { text: '\n' + safe(l.footer?.note_title), bold: true, decoration: 'underline' },
+        {
+          ol: l.footer?.notes || [],
+          fontSize: 6.5
+        }
+      ]
+    };
+    pdfMake.createPdf(docDef).download(`mushak_6_1_${lang}.pdf`);
   }
 }

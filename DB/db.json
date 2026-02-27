@@ -208,57 +208,123 @@
         "val": "0.00"
       }
     },
-      "mushak_values": {
-        "mushak_4_3_data": {
-          "en": {
-            "companyInfo": {
-              "name": "Partex Beverage Ltd.",
-              "address": "Jangaliapara, Banglabazar, Bhawal Mirzapur, Gazipur.",
-              "bin": "000000733",
-              "submissionDate": "11/09/2022",
-              "firstSupplyDate": "20/09/2022"
-            },
-            "items": [
-              {
-                "hsCode": "2202.10.00",
-                "itemName": "RC Cola 500ml PET",
-                "unit": "Case (24 Bottles)",
-                "rawMaterialName": "Concentrate",
-                "price": "1613.49",
-                "qtyInclWastage": "53.93 gm",
-                "wastageQty": "1.19 gm",
-                "wastagePercent": "2.25",
-                "vaSector": "Salary & Wages",
-                "vaValue": "12.88",
-                "remarks": "Normal loss"
-              }
-            ]
-          },
-          "bl": {
-            "companyInfo": {
-              "name": "পারটেক্স বেভারেজ লি:",
-              "address": "জাঙ্গালিয়াপাড়া, বাংলাবাজার, ভাওয়াল মির্জাপুর, গাজীপুর।",
-              "bin": "000000৭৩৩",
-              "submissionDate": "১১/০৯/২০২২",
-              "firstSupplyDate": "২০/০৯/২০২২"
-            },
-            "items": [
-              {
-                "hsCode": "2202.10.00",
-                "itemName": "আরসি কোলা ৫০০ মিলি পিইটি",
-                "unit": "কেইস (২৪ বোতল)",
-                "rawMaterialName": "কনসেনট্রেট",
-                "price": "১৬১৩.৪৯",
-                "qtyInclWastage": "৫৩.৯৩ গ্রাম",
-                "wastageQty": "১.১৯ গ্রাম",
-                "wastagePercent": "২.২৫",
-                "vaSector": "বেতন ও মজুরী",
-                "vaValue": "১২.৮৮",
-                "remarks": "স্বাভাবিক অপচয়"
-              }
-            ]
+    "mushak_4_3_data": {
+      "en": {
+        "companyInfo": {
+          "name": "Partex Beverage Ltd.",
+          "address": "Jangaliapara, Banglabazar, Bhawal Mirzapur, Gazipur.",
+          "bin": "000000733",
+          "submissionDate": "11/09/2022",
+          "firstSupplyDate": "20/09/2022"
+        },
+        "items": [
+          {
+            "hsCode": "2202.10.00",
+            "itemName": "RC Cola 500ml PET",
+            "unit": "Case (24 Bottles)",
+            "rawMaterialName": "Concentrate",
+            "price": "1613.49",
+            "qtyInclWastage": "53.93 gm",
+            "wastageQty": "1.19 gm",
+            "wastagePercent": "2.25",
+            "vaSector": "Salary & Wages",
+            "vaValue": "12.88",
+            "remarks": "Normal loss"
           }
-        }
+        ]
+      },
+      "bl": {
+        "companyInfo": {
+          "name": "পারটেক্স বেভারেজ লি:",
+          "address": "জাঙ্গালিয়াপাড়া, বাংলাবাজার, ভাওয়াল মির্জাপুর, গাজীপুর।",
+          "bin": "000000৭৩৩",
+          "submissionDate": "১১/০৯/২০২২",
+          "firstSupplyDate": "২০/০৯/২০২২"
+        },
+        "items": [
+          {
+            "hsCode": "2202.10.00",
+            "itemName": "আরসি কোলা ৫০০ মিলি পিইটি",
+            "unit": "কেইস (২৪ বোতল)",
+            "rawMaterialName": "কনসেনট্রেট",
+            "price": "১৬১৩.৪৯",
+            "qtyInclWastage": "৫৩.৯৩ গ্রাম",
+            "wastageQty": "১.১৯ গ্রাম",
+            "wastagePercent": "২.২৫",
+            "vaSector": "বেতন ও মজুরী",
+            "vaValue": "১২.৮৮",
+            "remarks": "স্বাভাবিক অপচয়"
+          }
+        ]
+      }
+    },
+    "bl": {
+      "mushak_6_1_data": {
+        "companyInfo": {
+          "name": "হাসানুজ্জামান আইটি সলিউশনস",
+          "address": "মিরপুর, ঢাকা",
+          "bin": "১২৩৪৫৬৭৮৯০১২৩"
+        },
+        "items": [
+          {
+            "sl": "১",
+            "date": "০১/০১/২০২৬",
+            "opening_qty": "১০০",
+            "opening_val": "৫০০০",
+            "invoice_no": "INV-001",
+            "invoice_date": "০২/০১/২০২৬",
+            "seller_name": "ABC Suppliers",
+            "seller_address": "Dhaka",
+            "seller_bin": "987654321",
+            "item_desc": "Raw Material A",
+            "purchase_qty": "৫০০",
+            "purchase_val": "২৫০০০",
+            "sd": "০",
+            "vat": "৩৭৫০",
+            "total_qty": "৬০০",
+            "total_val": "৩০০০০",
+            "used_qty": "৫০",
+            "used_val": "২৫০০",
+            "closing_qty": "৫৫০",
+            "closing_val": "২৭৫০০",
+            "remarks": "সঠিক"
+          }
+        ]
+      }
+    },
+    "en": {
+      "mushak_6_1_data": {
+        "companyInfo": {
+          "name": "Hasanuzzaman IT Solutions",
+          "address": "Mirpur, Dhaka",
+          "bin": "1234567890123"
+        },
+        "items": [
+          {
+            "sl": "1",
+            "date": "01/01/2026",
+            "opening_qty": "100",
+            "opening_val": "5000",
+            "invoice_no": "INV-001",
+            "invoice_date": "02/01/2026",
+            "seller_name": "ABC Suppliers",
+            "seller_address": "Dhaka",
+            "seller_bin": "987654321",
+            "item_desc": "Raw Material A",
+            "purchase_qty": "500",
+            "purchase_val": "25000",
+            "sd": "0",
+            "vat": "3750",
+            "total_qty": "600",
+            "total_val": "30000",
+            "used_qty": "50",
+            "used_val": "2500",
+            "closing_qty": "550",
+            "closing_val": "27500",
+            "remarks": "OK"
+          }
+        ]
       }
     }
   }
+}
