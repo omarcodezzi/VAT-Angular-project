@@ -50,7 +50,8 @@ export class ExportService {
           notes: mergedNotes,
           taxpayer: values.taxpayer,
           returnSubmission: values.returnSubmission,
-          mushak_4_3_data: values.mushak_values?.mushak_4_3_data || values.mushak_4_3_data || {}
+          mushak_4_3_data: values.mushak_values?.mushak_4_3_data || values.mushak_4_3_data || {},
+          mushak_6_1_data: values.mushak_values?.mushak_6_1_data || values.mushak_6_1_data || {}
         };
       })
     );
@@ -157,7 +158,7 @@ export class ExportService {
   }
 
   exportFullMushakPdf(data: any, lang: string) {
-    
+
     const l = data.labels || {};
     const n = data?.notes || {};
     const t = data?.taxpayer || {};
@@ -1713,12 +1714,12 @@ export class ExportService {
         bolditalics: window.location.origin + '/assets/fonts/Nunito-Regular.ttf'
       }
     };
-
+    debugger
     const l = (data.labels?.mushak_6_1 || {}) as any;
-    const targetData = data.mushak_values?.[lang] || data[lang] || {};
-    const m61 = (targetData.mushak_6_1_data || {}) as any;
-    const info = (m61.companyInfo || {}) as any;
-    const items = (m61.items || []) as any[];
+    const targetData = data.mushak_6_1_data?.[lang] || {};
+    const info = (targetData.companyInfo || {}) as any;
+    const items = (targetData.items || []) as any[];
+    const sh = (data.labels?.mushak_6_1?.sub_headers || {}) as any;
 
     const safe = (val: any) => (val !== undefined && val !== null) ? val.toString() : ' ';
 
@@ -1738,7 +1739,7 @@ export class ExportService {
         {
           margin: [0, 10, 0, 10],
           table: {
-            widths: ['25%', '2%', '73%'],
+            widths: ['15%', '2%', '83%'],
             body: [
               [l.info?.comp_name, ':', safe(info.name)],
               [l.info?.address, ':', safe(info.address)],
@@ -1751,31 +1752,68 @@ export class ExportService {
         // Main Table (21 Columns as per PDF)
         {
           table: {
-            headerRows: 3,
-            widths: [15, 30, 25, 25, 30, 30, 35, 35, 35, 40, 30, 30, 25, 25, 30, 30, 30, 30, 30, 30, 30],
+            headerRows: 4,
+            widths: [15, 33, 18, 25, 35, 33, 45, 40, 33, 45, 22, 25, 22, 22, 20, 25, 20, 25, 24, 22, 24],
             body: [
-              // Row 1: Merged Headers
+              // Row 1: Merged Headers 
               [
-                { text: l.headers?.sl, rowSpan: 2, bold: true, alignment: 'center' },
-                { text: l.headers?.date, rowSpan: 2, bold: true, alignment: 'center' },
+                {
+                  text: safe(l.titles?.sub_title),
+                  colSpan: 21,
+                  alignment: 'center',
+                  bold: true,
+                  margin: [0, 2, 0, 2]
+                },
+                {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+              ],
+
+              [
+                { text: l.headers?.sl, rowSpan: 3, bold: true, alignment: 'center' },
+                { text: l.headers?.date, rowSpan: 3, bold: true, alignment: 'center' },
                 { text: l.headers?.opening_stock, colSpan: 2, alignment: 'center', bold: true }, {},
-                { text: l.headers?.invoice_info, colSpan: 2, alignment: 'center', bold: true }, {},
+                { text: l.headers?.purchase_info, colSpan: 14, alignment: 'center', bold: true },
+                {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+                {}, {},
+                { text: l.headers?.closing_stock, colSpan: 2, alignment: 'center', bold: true }, {},
+                { text: l.headers?.remarks, rowSpan: 3, bold: true, alignment: 'center' }
+              ],
+
+              [
+                {}, {},
+                sh.qty || ' ', sh.val || ' ',
+                { text: l.headers?.invoice_info, rowSpan: 2, alignment: 'center', bold: true },
+                { text: sh.date || ' ', rowSpan: 2, alignment: 'center', bold: true },
                 { text: l.headers?.seller_info, colSpan: 3, alignment: 'center', bold: true }, {}, {},
                 { text: l.headers?.item_desc, rowSpan: 2, bold: true, alignment: 'center' },
-                { text: l.headers?.purchase_info, colSpan: 4, alignment: 'center', bold: true }, {}, {}, {},
-                { text: l.headers?.total_materials, colSpan: 2, alignment: 'center', bold: true }, {},
-                { text: l.headers?.usage_info, colSpan: 2, alignment: 'center', bold: true }, {},
-                { text: l.headers?.closing_stock, colSpan: 2, alignment: 'center', bold: true }, {},
-                { text: l.headers?.remarks, rowSpan: 2, bold: true, alignment: 'center' }
+                { text: sh.qty || ' ', rowSpan: 2, bold: true, alignment: 'center' },
+                { text: sh.val || ' ', rowSpan: 2, bold: true, alignment: 'center' },
+                { text: sh.sd || ' ', rowSpan: 2, bold: true, alignment: 'center' },
+                { text: sh.vat || ' ', rowSpan: 2, bold: true, alignment: 'center' },
+                { text: l.headers?.total_materials, colSpan: 2, alignment: 'center', bold: true },
+                {},
+                { text: l.headers?.prod_info, colSpan: 2, alignment: 'center', bold: true },
+                {},
+                { text: l.headers?.qty || ' ', rowSpan: 2, alignment: 'center', bold: true },
+                { text: l.headers?.value || ' ', rowSpan: 2, alignment: 'center', bold: true },
+                {}
               ],
-              // Row 2: Sub-headers
+              // Row 2: Sub-headers 
               [
-                {}, {}, 'Qty', 'Value', 'No', 'Date', 'Name', 'Address', 'BIN', '', 'Qty', 'Value', 'SD', 'VAT', 'Qty', 'Value', 'Qty', 'Value', 'Qty', 'Value', ''
+                {}, {},
+                {}, {},
+                sh.no || ' ', {},
+                sh.name || ' ', sh.addr || ' ', sh.bin || ' ',
+                {},
+                {}, {}, {}, {},
+                sh.qty || ' ', sh.val || ' ',
+                sh.qty || ' ', sh.val || ' ',
+                {}, {},
+                {}
               ],
-              // Row 3: Column Reference Numbers (1-21)
+              // Row 3: Column Numbers (1) to (21) 
               Array.from({ length: 21 }, (_, i) => ({ text: `(${i + 1})`, alignment: 'center', fontSize: 5 })),
 
-              // Data Mapping from items
+              // Data Rows from db.json
               ...items.map((item: any) => [
                 safe(item.sl), safe(item.date), safe(item.opening_qty), safe(item.opening_val),
                 safe(item.invoice_no), safe(item.invoice_date), safe(item.seller_name),
@@ -1786,6 +1824,17 @@ export class ExportService {
               ])
             ]
           }
+        },
+        {
+          margin: [0, 20, 0, 0],
+          stack: [
+            { text: l.footer?.special_note_title, bold: true, decoration: 'underline', fontSize: 8 },
+            {
+              ul: (l.footer?.notes || []).map((note: string) => ({ text: note, margin: [0, 2, 0, 0] })),
+              fontSize: 7,
+              lineHeight: 1.3
+            }
+          ]
         }
       ]
     };
@@ -1793,10 +1842,10 @@ export class ExportService {
   }
 
   exportmushak_6_1Bangla(data: any, lang: string) {
-    
+    debugger
     const l = (data.labels?.mushak_6_1 || {}) as any;
-    const targetData = data.labels?.mushak_6_1 || {}; 
-    const info = (targetData.info || {}) as any;
+    const targetData = data.mushak_6_1_data?.[lang] || {};
+    const info = (targetData.companyInfo || {}) as any;
     const items = (targetData.items || []) as any[];
     const sh = (data.labels?.mushak_6_1?.sub_headers || {}) as any;
 
@@ -1816,16 +1865,16 @@ export class ExportService {
       pageOrientation: 'landscape',
       defaultStyle: { font: 'PlaywriteCU', fontSize: 6 },
       content: [
-        { text: safe(l.titles?.m_name), alignment: 'right', bold: true },  
+        { text: safe(l.titles?.m_name), alignment: 'right', bold: true },
         { text: safe(l.titles?.gov), alignment: 'center', bold: true },
         { text: safe(l.titles?.nbr), alignment: 'center', bold: true },
-        { text: safe(l.titles?.form), alignment: 'center', bold: true, fontSize: 10 },  
-        { text: safe(l.titles?.rule), alignment: 'center', fontSize: 7 },  
+        { text: safe(l.titles?.form), alignment: 'center', bold: true, fontSize: 10 },
+        { text: safe(l.titles?.rule), alignment: 'center', fontSize: 7 },
 
         {
           margin: [0, 10, 0, 10],
           table: {
-            widths: ['25%', '2%', '73%'],
+            widths: ['15%', '2%', '83%'],
             body: [
               [l.info?.comp_name, ':', safe(info.name)],
               [l.info?.address, ':', safe(info.address)],
@@ -1837,34 +1886,63 @@ export class ExportService {
 
         {
           table: {
-            headerRows: 3,
-            widths: [15, 30, 25, 25, 30, 30, 35, 35, 35, 40, 30, 30, 25, 25, 30, 30, 30, 30, 30, 30, 30],
+            headerRows: 5,
+            // widths: [15, 32, 17, 25, 30, 32, 40, 40, 30, 40, 17, 25, 20, 20, 17, 25, 17, 25, 20, 20, 20],
+              widths: [15, 32, 17, 28, 35, 32, 45, 40, 30, 45, 17, 28, 28, 28, 17, 25, 17, 25, 20, 20, 20],
             body: [
               // Row 1: Merged Headers 
               [
-                { text: l.headers?.sl, rowSpan: 2, bold: true },
-                { text: l.headers?.date, rowSpan: 2, bold: true },
+                {
+                  text: safe(l.titles?.sub_title),
+                  colSpan: 21,
+                  alignment: 'center',
+                  bold: true,
+                  margin: [0, 2, 0, 2]
+                },
+                {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+              ],
+
+              [
+                { text: l.headers?.sl, rowSpan: 3, bold: true, alignment: 'center' },
+                { text: l.headers?.date, rowSpan: 3, bold: true, alignment: 'center' },
                 { text: l.headers?.opening_stock, colSpan: 2, alignment: 'center', bold: true }, {},
-                { text: l.headers?.invoice_info, colSpan: 2, alignment: 'center', bold: true }, {},
-                { text: l.headers?.seller_info, colSpan: 3, alignment: 'center', bold: true }, {}, {},
-                { text: l.headers?.item_desc, rowSpan: 2, bold: true },
-                { text: l.headers?.purchase_info, colSpan: 4, alignment: 'center', bold: true }, {}, {}, {},
-                { text: l.headers?.total_materials, colSpan: 2, alignment: 'center', bold: true }, {},
-                { text: l.headers?.usage_info, colSpan: 2, alignment: 'center', bold: true }, {},
+                { text: l.headers?.purchase_info, colSpan: 14, alignment: 'center', bold: true },
+                {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {},
+                {}, {},
                 { text: l.headers?.closing_stock, colSpan: 2, alignment: 'center', bold: true }, {},
-                { text: l.headers?.remarks, rowSpan: 2, bold: true }
+                { text: l.headers?.remarks, rowSpan: 3, bold: true, alignment: 'center' }
+              ],
+
+              [
+                {}, {},
+                sh.qty || ' ', sh.val || ' ',
+                { text: l.headers?.invoice_info, rowSpan: 2, alignment: 'center', bold: true },
+                { text: sh.date || ' ', rowSpan: 2, alignment: 'center', bold: true },
+                { text: l.headers?.seller_info, colSpan: 3, alignment: 'center', bold: true }, {}, {},
+                { text: l.headers?.item_desc, rowSpan: 2, bold: true, alignment: 'center' },
+                { text: sh.qty || ' ', rowSpan: 2, bold: true, alignment: 'center' },
+                { text: sh.val || ' ', rowSpan: 2, bold: true, alignment: 'center' },
+                { text: sh.sd || ' ', rowSpan: 2, bold: true, alignment: 'center' },
+                { text: sh.vat || ' ', rowSpan: 2, bold: true, alignment: 'center' },
+                { text: l.headers?.total_materials, colSpan: 2, alignment: 'center', bold: true },
+                {},
+                { text: l.headers?.prod_info, colSpan: 2, alignment: 'center', bold: true },
+                {},
+                { text: l.headers?.qty || ' ', rowSpan: 2, alignment: 'center', bold: true },
+                { text: l.headers?.value || ' ', rowSpan: 2, alignment: 'center', bold: true },
+                {}
               ],
               // Row 2: Sub-headers 
               [
                 {}, {},
-                sh.qty || ' ', sh.val || ' ', // opening
-                sh.no || ' ', sh.date || ' ', // invoice
-                sh.name || ' ', sh.addr || ' ', sh.bin || ' ', // seller
+                {}, {},
+                sh.no || ' ', {},
+                sh.name || ' ', sh.addr || ' ', sh.bin || ' ',
                 {},
-                sh.qty || ' ', sh.val || ' ', sh.sd || ' ', sh.vat || ' ', // purchase
-                sh.qty || ' ', sh.val || ' ', // total
-                sh.qty || ' ', sh.val || ' ', // usage
-                sh.qty || ' ', sh.val || ' ', // closing
+                {}, {}, {}, {},
+                sh.qty || ' ', sh.val || ' ',
+                sh.qty || ' ', sh.val || ' ',
+                {}, {},
                 {}
               ],
               // Row 3: Column Numbers (1) to (21) 
@@ -1883,10 +1961,16 @@ export class ExportService {
           }
         },
 
-        { text: '\n' + safe(l.footer?.note_title), bold: true, decoration: 'underline' },
         {
-          ol: l.footer?.notes || [],
-          fontSize: 6.5
+          margin: [0, 20, 0, 0],
+          stack: [
+            { text: data.labels.footer?.special_note_title, bold: true, decoration: 'underline', fontSize: 8 },
+            {
+              ul: (data.labels.footer?.notes || []).map((note: string) => ({ text: note, margin: [0, 2, 0, 0] })),
+              fontSize: 7,
+              lineHeight: 1.3
+            }
+          ]
         }
       ]
     };

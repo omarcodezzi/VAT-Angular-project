@@ -258,8 +258,8 @@
         ]
       }
     },
-    "bl": {
-      "mushak_6_1_data": {
+    "mushak_6_1_data": {
+      "bl": {
         "companyInfo": {
           "name": "হাসানুজ্জামান আইটি সলিউশনস",
           "address": "মিরপুর, ঢাকা",
@@ -290,10 +290,8 @@
             "remarks": "সঠিক"
           }
         ]
-      }
-    },
-    "en": {
-      "mushak_6_1_data": {
+      },
+      "en": {
         "companyInfo": {
           "name": "Hasanuzzaman IT Solutions",
           "address": "Mirpur, Dhaka",
