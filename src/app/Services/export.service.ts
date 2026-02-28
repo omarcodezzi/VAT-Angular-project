@@ -1964,9 +1964,9 @@ export class ExportService {
         {
           margin: [0, 20, 0, 0],
           stack: [
-            { text: data.labels.footer?.special_note_title, bold: true, decoration: 'underline', fontSize: 8 },
+            { text: l.footer?.special_note_title, bold: true, decoration: 'underline', fontSize: 8 },
             {
-              ul: (data.labels.footer?.notes || []).map((note: string) => ({ text: note, margin: [0, 2, 0, 0] })),
+              ul: (l.footer?.notes || []).map((note: string) => ({ text: note, margin: [0, 2, 0, 0] })),
               fontSize: 7,
               lineHeight: 1.3
             }
