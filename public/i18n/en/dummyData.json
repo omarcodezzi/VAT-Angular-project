@@ -231,5 +231,46 @@
         "Copies of the Bill of Entry or Invoice must be preserved as supporting documents for the purchase of raw materials."
       ]
     }
+  },
+  "mushak_6_2": {
+    "titles": {
+      "gov": "Government of the People's Republic of Bangladesh",
+      "nbr": "National Board of Revenue",
+      "form": "Sales Account Book",
+      "rule": "[See Rule 40(1)(b) and Rule 41(a)]",
+      "m_name": "Mushak-6.2",
+      "sub_title": "Sales of Goods/Services"
+    },
+    "headers": {
+      "sl": "Serial No.",
+      "date": "Date",
+      "opening": "Opening Balance of Manufactured Goods",
+      "production": "Production",
+      "total": "Total Manufactured Goods/Services",
+      "buyer": "Buyer/Recipient Information",
+      "invoice": "Invoice Details",
+      "sales": "Description of Sold/Supplied Goods",
+      "closing": "Closing Balance of Goods",
+      "remarks": "Remarks"
+    },
+    "sub_headers": {
+      "qty": "Quantity (Unit)",
+      "val": "Value (Excl. all taxes)",
+      "no": "Number",
+      "sd": "Supplementary Duty (if any)",
+      "vat": "VAT",
+      "name": "Name",
+      "addr": "Address",
+      "bin": "Registration/Enlistment/National ID No.",
+      "date": "Date",
+      "item_desc": "Description",
+      "tax": "Taxable Value"
+    },
+    "footer": {
+      "note_title": "Special Notes:",
+      "notes": [
+        "In cases where goods are sold to an unregistered person, the full name, address, and National ID number of said person must be compulsorily mentioned in the relevant columns [(9), (10), and (11)]."
+      ]
+    }
   }
 }

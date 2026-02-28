@@ -323,6 +323,84 @@
           }
         ]
       }
+    },
+    "mushak_6_2_data": {
+      "bl": {
+        "companyInfo": {
+          "name": "হাসানুজ্জামান আইটি সলিউশনস",
+          "address": "মিরপুর, ঢাকা",
+          "bin": "১২৩৪৫৬৭৮৯০১২৩"
+        },
+        "items": [
+          {
+            "sl": "১",
+            "date": "০১/০১/২০২৬",
+            "opening_qty": "৫০০",
+            "opening_val": "২৫০০০",
+            "prod_qty": "১০০০",
+            "prod_val": "৫০০০০",
+            "total_qty": "১৫০০",
+            "total_val": "৭৫০০০",
+            "buyer_name": "মেসার্স রহিম ট্রেডার্স",
+            "buyer_address": "মিরপুর, ঢাকা",
+            "buyer_bin": "৯৮৭৬৫৪৩২১",
+            "invoice_date": "০২/০১/২০২৬",
+            "invoice_no": "INV-S-001",
+            "item_desc": "সফটওয়্যার লাইসেন্স",
+            "sales_qty": "২০০",
+            "sales_val": "১০০০০",
+            "sd": "০",
+            "vat": "১৫০০",
+            "closing_qty": "১৩০০",
+            "closing_val": "৬৫০০০",
+            "remarks": "সঠিক"
+          }
+        ],
+        "footer": {
+          "note_title": "বিশেষ দ্রষ্টব্যঃ",
+          "notes": [
+            "যেইক্ষেত্রে অনিবন্ধিত ব্যক্তির নিকট পণ্য বিক্রয় করা হইবে সেইক্ষেত্রে উক্ত ব্যক্তির পূর্ণাঙ্গ নাম, ঠিকানাও জাতীয় পরিচয়পত্র নম্বর যথাযথভাবে সংশ্লিষ্ট কলামে [(৯), (১০) ও (১১)] আবশ্যিকভাবে উল্লেখ করিতে হইবে।"
+          ]
+        }
+      },
+      "en": {
+        "companyInfo": {
+          "name": "Hasanuzzaman IT Solutions",
+          "address": "Mirpur, Dhaka",
+          "bin": "1234567890123"
+        },
+        "items": [
+          {
+            "sl": "1",
+            "date": "01/01/2026",
+            "opening_qty": "500",
+            "opening_val": "25000",
+            "prod_qty": "1000",
+            "prod_val": "50000",
+            "total_qty": "1500",
+            "total_val": "75000",
+            "buyer_name": "M/S Rahim Traders",
+            "buyer_address": "Mirpur, Dhaka",
+            "buyer_bin": "987654321",
+            "invoice_date": "02/01/2026",
+            "invoice_no": "INV-S-001",
+            "item_desc": "Software License",
+            "sales_qty": "200",
+            "sales_val": "10000",
+            "sd": "0",
+            "vat": "1500",
+            "closing_qty": "1300",
+            "closing_val": "65000",
+            "remarks": "OK"
+          }
+        ],
+        "footer": {
+          "note_title": "Special Notes:",
+          "notes": [
+            "In cases where goods are sold to an unregistered person, the full name, address, and National ID number of said person must be compulsorily mentioned in the relevant columns [(9), (10), and (11)]."
+          ]
+        }
+      }
     }
   }
 }
