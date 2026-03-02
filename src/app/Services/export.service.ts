@@ -52,7 +52,8 @@ export class ExportService {
           returnSubmission: values.returnSubmission,
           mushak_4_3_data: values.mushak_values?.mushak_4_3_data || values.mushak_4_3_data || {},
           mushak_6_1_data: values.mushak_values?.mushak_6_1_data || values.mushak_6_1_data || {},
-          mushak_6_2_data: values.mushak_values?.mushak_6_2_data || values.mushak_6_2_data || {}
+          mushak_6_2_data: values.mushak_values?.mushak_6_2_data || values.mushak_6_2_data || {},
+          mushak_6_2_1_data: values.mushak_values?.mushak_6_2_1_data || values.mushak_6_2_1_data || {}
         };
       })
     );
@@ -2151,8 +2152,8 @@ export class ExportService {
                 { text: '(৪)', alignment: 'center', fontSize: 4.5, fillColor: '#f5f5f5' },
                 { text: '(৫)', alignment: 'center', fontSize: 4.5, fillColor: '#f5f5f5' },
                 { text: '(৬)', alignment: 'center', fontSize: 4.5, fillColor: '#f5f5f5' },
-                { text: '(৭)\n=(৩+৫)', alignment: 'center', fontSize: 4, fillColor: '#f5f5f5' }, 
-                { text: '(৮)\n=(৪+৬)', alignment: 'center', fontSize: 4, fillColor: '#f5f5f5' },  
+                { text: '(৭)\n=(৩+৫)', alignment: 'center', fontSize: 4, fillColor: '#f5f5f5' },
+                { text: '(৮)\n=(৪+৬)', alignment: 'center', fontSize: 4, fillColor: '#f5f5f5' },
                 { text: '(৯)', alignment: 'center', fontSize: 4.5, fillColor: '#f5f5f5' },
                 { text: '(১০)', alignment: 'center', fontSize: 4.5, fillColor: '#f5f5f5' },
                 { text: '(১১)', alignment: 'center', fontSize: 4.5, fillColor: '#f5f5f5' },
@@ -2163,8 +2164,8 @@ export class ExportService {
                 { text: '(১৬)', alignment: 'center', fontSize: 4.5, fillColor: '#f5f5f5' },
                 { text: '(১৭)', alignment: 'center', fontSize: 4.5, fillColor: '#f5f5f5' },
                 { text: '(১৮)', alignment: 'center', fontSize: 4.5, fillColor: '#f5f5f5' },
-                { text: '(১৯)\n=(৭-১৫)', alignment: 'center', fontSize: 4, fillColor: '#f5f5f5' },  
-                { text: '(২০)\n=(৮-১৬)', alignment: 'center', fontSize: 4, fillColor: '#f5f5f5' },  
+                { text: '(১৯)\n=(৭-১৫)', alignment: 'center', fontSize: 4, fillColor: '#f5f5f5' },
+                { text: '(২০)\n=(৮-১৬)', alignment: 'center', fontSize: 4, fillColor: '#f5f5f5' },
                 { text: '(২১)', alignment: 'center', fontSize: 4.5, fillColor: '#f5f5f5' }
               ],
 
@@ -2194,4 +2195,221 @@ export class ExportService {
     pdfMake.createPdf(docDef).download(`Mushak_6.2_Bangla.pdf`);
   }
 
+  exportMushak_6_2_1English(data: any, lang: string) {
+    const l = (data.labels?.mushak_6_2_1 || {}) as any;
+    const targetData = data.mushak_6_2_1_data?.[lang] || {};
+    const items = (targetData.items || []) as any[];
+    const sh = (data.labels?.mushak_6_2_1?.sub_headers || {}) as any;
+
+    const safe = (val: any) => (val !== undefined && val !== null) ? val.toString() : ' ';
+
+    (pdfMake as any).fonts = {
+      Nunito: {
+        normal: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
+        bold: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
+        italics: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
+        bolditalics: window.location.origin + '/assets/fonts/Nunito-Regular.ttf'
+      }
+    };
+
+    const docDef: any = {
+      pageSize: 'A4',
+      pageOrientation: 'landscape',
+      pageMargins: [18, 30, 18, 30],
+      defaultStyle: { font: 'Nunito', fontSize: 5 },
+      content: [
+        { text: safe(l.titles?.m_name), alignment: 'right', bold: true },
+        { text: safe(l.titles?.gov), alignment: 'center', bold: true },
+        { text: safe(l.titles?.nbr), alignment: 'center', bold: true },
+        { text: safe(l.titles?.form), alignment: 'center', bold: true, fontSize: 10 },
+        { text: safe(l.titles?.rule), alignment: 'center', fontSize: 6.5, margin: [0, 0, 0, 5] },
+
+        {
+          table: {
+            headerRows: 4,
+            widths: [11, 27, 20, 20, 20, 20, 20, 20, 37, 35, 25, 19, 27, 37, 20, 20, 17, 20, 25, 25, 20, 19, 20, 20, 20, 15],
+            body: [
+              [
+                { text: l.headers?.sl, rowSpan: 3, bold: true },
+                { text: l.headers?.date, rowSpan: 3, bold: true },
+                { text: l.headers?.opening, colSpan: 2, bold: true, alignment: 'center' }, {},
+                { text: l.headers?.purchase, colSpan: 2, bold: true, alignment: 'center' }, {},
+                { text: l.headers?.total, colSpan: 2, bold: true, alignment: 'center' }, {},
+                { text: l.headers?.seller, colSpan: 3, bold: true, alignment: 'center' }, {}, {},
+                { text: l.headers?.p_invoice, colSpan: 2, bold: true, alignment: 'center' }, {},
+                { text: l.headers?.sales_desc, colSpan: 5, bold: true, alignment: 'center' }, {}, {}, {}, {},
+                { text: l.headers?.buyer, colSpan: 3, bold: true, alignment: 'center' }, {}, {},
+                { text: l.headers?.s_invoice, colSpan: 2, bold: true, alignment: 'center' }, {},
+                { text: l.headers?.closing, colSpan: 2, bold: true, alignment: 'center' }, {},
+                { text: l.headers?.remarks, rowSpan: 3, bold: true }
+              ],
+              [
+                {}, {},
+                { text: sh.qty, rowSpan: 2, bold: true }, { text: sh.val, rowSpan: 2, bold: true },
+                { text: sh.qty, rowSpan: 2, bold: true }, { text: sh.val, rowSpan: 2, bold: true },
+                { text: sh.qty, rowSpan: 2, bold: true }, { text: sh.val, rowSpan: 2, bold: true },
+                { text: '', colSpan: 3 }, {}, {},
+                sh.no, sh.date,
+                sh.item_desc, sh.qty, sh.tax, sh.sd, sh.vat,
+                { text: '', colSpan: 3 }, {}, {},
+                { text: '', colSpan: 2 }, {},
+                sh.qty, sh.val, {}
+              ],
+              [
+                {}, {},
+                {}, {}, {}, {}, {}, {},
+                sh.name, sh.addr, sh.bin,
+                {}, {},
+                {}, {}, {}, {}, {},
+                sh.name, sh.addr, sh.bin,
+                sh.no, sh.date,
+                {}, {}, {}
+              ],
+              [
+                '(1)', '(2)', '(3)', '(4)', '(5)', '(6)',
+                { text: '(7)\n=(3+5)', fontSize: 4 }, { text: '(8)\n=(4+6)', fontSize: 4 },
+                '(9)', '(10)', '(11)', '(12)', '(13)', '(14)', '(15)', '(16)', '(17)', '(18)',
+                '(19)', '(20)', '(21)', '(22)', '(23)',
+                { text: '(24)\n=(7-15)', fontSize: 4 }, { text: '(25)\n=(8-16)', fontSize: 4 }, '(26)'
+              ].map(num => ({ text: typeof num === 'string' ? num : num.text, alignment: 'center', fillColor: '#f5f5f5', fontSize: 4.5 })),
+
+              // Data Rows
+              ...items.map(item => [
+                safe(item.sl), safe(item.date), safe(item.op_qty), safe(item.op_val),
+                safe(item.p_qty), safe(item.p_val), safe(item.tot_qty), safe(item.tot_val),
+                safe(item.s_name), safe(item.s_addr), safe(item.s_bin),
+                safe(item.p_inv_no), safe(item.p_inv_date),
+                safe(item.item_desc), safe(item.s_qty), safe(item.s_val), safe(item.sd), safe(item.vat),
+                safe(item.b_name), safe(item.b_addr), safe(item.b_bin),
+                safe(item.s_inv_no), safe(item.s_inv_date),
+                safe(item.cl_qty), safe(item.cl_val), safe(item.remarks)
+              ])
+            ]
+          }
+        },
+
+        // Footer Notes [cite: 17, 18, 19]
+        {
+          margin: [0, 15, 0, 0],
+          stack: [
+            { text: safe(l.footer?.note_title), bold: true, decoration: 'underline', fontSize: 8 },
+            {
+              ul: (l.footer?.notes || []).map((note: string) => ({ text: note, margin: [0, 2, 0, 0] })),
+              fontSize: 6.5
+            }
+          ]
+        }
+      ]
+    };
+    pdfMake.createPdf(docDef).download(`Mushak_6.2_English.pdf`);
+  }
+
+  exportMushak_6_2_1Bangla(data: any, lang: string) {
+    const l = (data.labels?.mushak_6_2_1 || {}) as any;
+    const targetData = data.mushak_6_2_1_data?.[lang] || {};
+    const items = (targetData.items || []) as any[];
+    const sh = (data.labels?.mushak_6_2_1?.sub_headers || {}) as any;
+
+    const safe = (val: any) => (val !== undefined && val !== null) ? val.toString() : ' ';
+
+    (pdfMake as any).fonts = {
+      PlaywriteCU: {
+        normal: window.location.origin + '/assets/fonts/kalpurush.ttf',
+        bold: window.location.origin + '/assets/fonts/kalpurush.ttf',
+        italics: window.location.origin + '/assets/fonts/kalpurush.ttf',
+        bolditalics: window.location.origin + '/assets/fonts/kalpurush.ttf'
+      }
+    };
+
+    const docDef: any = {
+      pageSize: 'A4',
+      pageOrientation: 'landscape',
+      pageMargins: [20, 30, 20, 30],
+      defaultStyle: { font: 'PlaywriteCU', fontSize: 5 },
+      content: [
+        { text: safe(l.titles?.m_name), alignment: 'right', bold: true },
+        { text: safe(l.titles?.gov), alignment: 'center', bold: true },
+        { text: safe(l.titles?.nbr), alignment: 'center', bold: true },
+        { text: safe(l.titles?.form), alignment: 'center', bold: true, fontSize: 10 },
+        { text: safe(l.titles?.rule), alignment: 'center', fontSize: 6.5, margin: [0, 0, 0, 5] },
+
+        {
+          table: {
+            headerRows: 4,
+            widths: [12, 26, 15, 22, 15, 22, 15, 22, 40, 35, 25, 20, 26, 40, 15, 22, 16, 20, 25, 25, 20, 20, 20, 18, 20, 12],
+            body: [
+              [
+                { text: l.headers?.sl, rowSpan: 3, bold: true },
+                { text: l.headers?.date, rowSpan: 3, bold: true },
+                { text: l.headers?.opening, colSpan: 2, bold: true, alignment: 'center' }, {},
+                { text: l.headers?.purchase, colSpan: 2, bold: true, alignment: 'center' }, {},
+                { text: l.headers?.total, colSpan: 2, bold: true, alignment: 'center' }, {},
+                { text: l.headers?.seller, colSpan: 3, bold: true, alignment: 'center' }, {}, {},
+                { text: l.headers?.p_invoice, colSpan: 2, bold: true, alignment: 'center' }, {},
+                { text: l.headers?.sales_desc, colSpan: 5, bold: true, alignment: 'center' }, {}, {}, {}, {},
+                { text: l.headers?.buyer, colSpan: 3, bold: true, alignment: 'center' }, {}, {},
+                { text: l.headers?.s_invoice, colSpan: 2, bold: true, alignment: 'center' }, {},
+                { text: l.headers?.closing, colSpan: 2, bold: true, alignment: 'center' }, {},
+                { text: l.headers?.remarks, rowSpan: 3, bold: true }
+              ],
+              [
+                {}, {},
+                { text: sh.qty, rowSpan: 2, bold: true }, { text: sh.val, rowSpan: 2, bold: true },
+                { text: sh.qty, rowSpan: 2, bold: true }, { text: sh.val, rowSpan: 2, bold: true },
+                { text: sh.qty, rowSpan: 2, bold: true }, { text: sh.val, rowSpan: 2, bold: true },
+                { text: '', colSpan: 3 }, {}, {},
+                sh.no, sh.date,
+                sh.item_desc, sh.qty, sh.tax, sh.sd, sh.vat,
+                { text: '', colSpan: 3 }, {}, {},
+                { text: '', colSpan: 2 }, {},
+                sh.qty, sh.val, {}
+              ],
+              [
+                {}, {},
+                {}, {}, {}, {}, {}, {},
+                sh.name, sh.addr, sh.bin,
+                {}, {},
+                {}, {}, {}, {}, {},
+                sh.name, sh.addr, sh.bin,
+                sh.no, sh.date,
+                {}, {}, {}
+              ],
+              [
+                '(১)', '(২)', '(৩)', '(৪)', '(৫)', '(৬)',
+                { text: '(৭)\n=(৩+৫)', fontSize: 4 }, { text: '(৮)\n=(৪+৬)', fontSize: 4 },
+                '(৯)', '(১০)', '(১১)', '(১২)', '(১৩)', '(১৪)', '(১৫)', '(১৬)', '(১৭)', '(১৮)',
+                '(১৯)', '(২০)', '(২১)', '(২২)', '(২৩)',
+                { text: '(২৪)\n=(৭-১৫)', fontSize: 4 }, { text: '(২৫)\n=(৮-১৬)', fontSize: 4 }, '(২৬)'
+              ].map(num => ({ text: typeof num === 'string' ? num : num.text, alignment: 'center', fillColor: '#f5f5f5', fontSize: 4.5 })),
+
+              // Data Rows
+              ...items.map(item => [
+                safe(item.sl), safe(item.date), safe(item.op_qty), safe(item.op_val),
+                safe(item.p_qty), safe(item.p_val), safe(item.tot_qty), safe(item.tot_val),
+                safe(item.s_name), safe(item.s_addr), safe(item.s_bin),
+                safe(item.p_inv_no), safe(item.p_inv_date),
+                safe(item.item_desc), safe(item.s_qty), safe(item.s_val), safe(item.sd), safe(item.vat),
+                safe(item.b_name), safe(item.b_addr), safe(item.b_bin),
+                safe(item.s_inv_no), safe(item.s_inv_date),
+                safe(item.cl_qty), safe(item.cl_val), safe(item.remarks)
+              ])
+            ]
+          }
+        },
+
+        // Footer Notes [cite: 17, 18, 19]
+        {
+          margin: [0, 15, 0, 0],
+          stack: [
+            { text: safe(l.footer?.note_title), bold: true, decoration: 'underline', fontSize: 8 },
+            {
+              ul: (l.footer?.notes || []).map((note: string) => ({ text: note, margin: [0, 2, 0, 0] })),
+              fontSize: 6.5
+            }
+          ]
+        }
+      ]
+    };
+    pdfMake.createPdf(docDef).download('Mushak_6.2.1_Bangla.pdf');
+  }
 }

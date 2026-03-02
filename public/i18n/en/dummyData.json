@@ -272,5 +272,48 @@
         "In cases where goods are sold to an unregistered person, the full name, address, and National ID number of said person must be compulsorily mentioned in the relevant columns [(9), (10), and (11)]."
       ]
     }
+  },
+  "mushak_6_2_1": {
+    "titles": {
+      "gov": "Government of the People's Republic of Bangladesh",
+      "nbr": "National Board of Revenue",
+      "form": "Purchase-Sales Account Book",
+      "rule": "[See Rule 40(1)(khkh) and Rule 41(a)]",
+      "m_name": "Mushak-6.2.1",
+      "sub_title": "Purchase & Sales of Goods"
+    },
+    "headers": {
+      "sl": "Serial No.",
+      "date": "Date",
+      "opening": "Opening Balance of Saleable Goods",
+      "purchase": "Purchase",
+      "total": "Total Goods",
+      "seller": "Seller Information",
+      "p_invoice": "Purchase Invoice/Bill of Entry Details",
+      "sales_desc": "Description of Sold/Supplied Goods",
+      "buyer": "Buyer Information",
+      "s_invoice": "Sales Invoice Details",
+      "closing": "Closing Balance of Goods",
+      "remarks": "Remarks"
+    },
+    "sub_headers": {
+      "qty": "Quantity (Unit)",
+      "val": "Value (Excl. all taxes)",
+      "name": "Name",
+      "addr": "Address",
+      "bin": "Reg/Enlistment/National ID No.",
+      "no": "Number",
+      "date": "Date",
+      "item_desc": "Description",
+      "tax": "Taxable Value",
+      "sd": "Supplementary Duty (if any)",
+      "vat": "VAT"
+    },
+    "footer": {
+      "note_title": "Special Notes:",
+      "notes": [
+        "In cases where goods are purchased from or sold to an unregistered person, the full name, address, and National ID number of said person must be compulsorily mentioned in the relevant columns [(9), (10), (11), (19), (20), and (21)]."
+      ]
+    }
   }
 }
