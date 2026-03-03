@@ -352,5 +352,40 @@
       "signature_label": "Signature",
       "seal_label": "Seal"
     }
+  },
+  "mushak_6_4": {
+    "titles": {
+      "gov": "Government of the People's Republic of Bangladesh",
+      "nbr": "National Board of Revenue",
+      "form": "Chalanpatra of Contract-based Production",
+      "rule": "[See Rule 40, Sub-rule (1) (Clause Ghat)]",
+      "m_name": "Mushak-6.4"
+    },
+    "info": {
+      "registered_person": "Name of Registered Person",
+      "registered_person_bin": "BIN of Registered Person",
+      "chalan_address": "Address of Chalan Issue",
+      "buyer_name": "Name of Goods Recipient",
+      "buyer_bin": "BIN of Recipient",
+      "dest_addr": "Destination",
+      "inv_no": "Chalan Number",
+      "inv_date": "Issue Date",
+      "inv_time": "Issue Time"
+    },
+    "headers": {
+      "sl": "SL No.",
+      "desc": "Nature (Input or Produced Goods)",
+      "details": "Description of Goods",
+      "qty": "Quantity",
+      "remarks": "Remarks",
+      "total": "Total"
+    },
+    "footer": {
+      "note": "",
+      "auth_label": "Name of Authorized Person of the Institution",
+      "designation_label": "Designation",
+      "signature_label": "Signature",
+      "seal_label": "Seal"
+    }
   }
 }

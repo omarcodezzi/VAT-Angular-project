@@ -528,7 +528,79 @@
         "total_sd": "0.00",
         "total_vat": "500.00",
         "grand_total": "10500.00"
-      } 
+      }
+    },
+    "mushak_6_4_data": {
+      "en": {
+        "formData": {
+          "registered_person": "Example Company Ltd.",
+          "registered_person_bin": "001234567-0001",
+          "chalan_address": "Plot #10, Road #5, Sector-3, Uttara, Dhaka-1230",
+          "recipient_name": "Client Industries Bangladesh",
+          "recipient_bin": "009876543-0002",
+          "destination": "Chittagong Port",
+          "chalan_number": "CHL-2023-001",
+          "issue_time": "10:30 AM",
+          "issue_date": "2023-05-20"
+        },
+        "tableData": {
+          "rows": [
+            {
+              "goods_description": "Raw Cotton",
+              "goods_details": "Imported Grade A",
+              "quantity": "5000 kg",
+              "remarks": "N/A"
+            },
+            {
+              "goods_description": "Polyester Fiber",
+              "goods_details": "1.5 Denier, Virgin",
+              "quantity": "2500 kg",
+              "remarks": "N/A"
+            }
+          ],
+          "total_quantity": "7500 kg"
+        },
+        "footer": {
+          "printed_from": "Trovee VAT Solutions",
+          "client": "Best Businesss Bond Ltd.",
+          "report_date_time": "20/05/2023 05:23 PM"
+        }
+      },
+      "bl": {
+        "formData": {
+          "registered_person": "উদাহরণ কোম্পানি লিঃ",
+          "registered_person_bin": "০০১২৩৪৫৬৭-০০০১",
+          "chalan_address": "প্লট #১০, রোড #৫, সেক্টর-৩, উত্তরা, ঢাকা-১২৩০",
+          "recipient_name": "ক্লায়েন্ট ইন্ডাস্ট্রিজ বাংলাদেশ",
+          "recipient_bin": "০০৯৮৭৬৫৪৩-০০০২",
+          "destination": "চট্টগ্রাম বন্দর",
+          "chalan_number": "সিএইচএল-২০২৩-০০১",
+          "issue_time": "১০:৩০ এ.এম.",
+          "issue_date": "২০২৩-০৫-২০"
+        },
+        "tableData": {
+          "rows": [
+            {
+              "goods_description": "কাঁচা তুলা",
+              "goods_details": "আমদানিকৃত গ্রেড এ",
+              "quantity": "৫০০০ কেজি",
+              "remarks": "প্রযোজ্য নয়"
+            },
+            {
+              "goods_description": "পলিয়েস্টার ফাইবার",
+              "goods_details": "১.৫ ডেনিয়ার, ভার্জিন",
+              "quantity": "২৫০০ কেজি",
+              "remarks": "প্রযোজ্য নয়"
+            }
+          ],
+          "total_quantity": "৭৫০০ কেজি"
+        },
+        "footer": {
+          "printed_from": "Trovee VAT Solutions",
+          "client": "Best Businesss Bond Ltd.",
+          "report_date_time": "20/05/2023 05:23 PM"
+        }
+      }
     }
   }
 }

@@ -54,7 +54,8 @@ export class ExportService {
           mushak_6_1_data: values.mushak_values?.mushak_6_1_data || values.mushak_6_1_data || {},
           mushak_6_2_data: values.mushak_values?.mushak_6_2_data || values.mushak_6_2_data || {},
           mushak_6_2_1_data: values.mushak_values?.mushak_6_2_1_data || values.mushak_6_2_1_data || {},
-          mushak_6_3_data: values.mushak_values?.mushak_6_3_data || values.mushak_6_3_data || {}
+          mushak_6_3_data: values.mushak_values?.mushak_6_3_data || values.mushak_6_3_data || {},
+          mushak_6_4_data: values.mushak_values?.mushak_6_4_data || values.mushak_6_4_data || { items: [] }
         };
       })
     );
@@ -2652,5 +2653,253 @@ export class ExportService {
       ]
     };
     pdfMake.createPdf(docDef).download(`Mushak_6.3_${lang}.pdf`);
+  }
+
+  exportMushak_6_4English(data: any, lang: string) {
+    const l = (data.labels?.mushak_6_4 || {}) as any;
+    const targetData = data.mushak_6_4_data?.[lang] || {};
+    const items = (targetData.tableData?.rows || []) as any[];
+
+    const safe = (val: any) => (val !== undefined && val !== null) ? val.toString() : '';
+
+    const toBnNum = (n: any) => {
+      if (!n) return '';
+      return n.toString().replace(/\d/g, (d: any) => "০১২৩৪৫৬৭৮৯"[d]);
+    };
+
+    (pdfMake as any).fonts = {
+      Nunito: {
+        normal: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
+        bold: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
+        italics: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
+        bolditalics: window.location.origin + '/assets/fonts/Nunito-Regular.ttf'
+      }
+    };
+
+    const docDef: any = {
+      pageSize: 'A4',
+      pageMargins: [30, 30, 30, 30],
+      defaultStyle: { font: 'Nunito', fontSize: 9 },
+      content: [
+        { text: safe(l.titles?.m_name), alignment: 'right', bold: true },
+        { text: safe(l.titles?.gov), alignment: 'center', bold: true },
+        { text: safe(l.titles?.nbr), alignment: 'center', bold: true },
+        { text: safe(l.titles?.form), alignment: 'center', bold: true, fontSize: 13, margin: [0, 5, 0, 0] },
+        { text: safe(l.titles?.rule), alignment: 'center', fontSize: 8.5, margin: [0, 0, 0, 15] },
+
+        {
+          columns: [
+            {
+              width: '*',
+              stack: [
+                { text: `${l.info?.registered_person} : ${safe(targetData.formData?.registered_person)}` },
+                { text: `${l.info?.registered_person_bin} : ${safe(targetData.formData?.registered_person_bin)}` },
+                { text: `${l.info?.chalan_address} : ${safe(targetData.formData?.chalan_address)}` }
+              ]
+            },
+            {
+              width: '25%',
+              stack: [
+                { text: `${l.info?.inv_no} :`, bold: true },
+                { text: `${l.info?.inv_date} :` },
+                { text: `${l.info?.inv_time} :` }
+              ],
+              alignment: 'right',
+              margin: [0, 0, 10, 0]
+            },
+            {
+              width: '20%',
+              stack: [
+                { text: safe(targetData.formData?.chalan_number), bold: true },
+                { text: safe(targetData.formData?.issue_date) },
+                { text: safe(targetData.formData?.issue_time) }
+              ],
+              alignment: 'left'
+            }
+          ],
+          margin: [0, 0, 0, 10]
+        },
+
+        {
+          stack: [
+            { text: `${l.info?.buyer_name} : ${safe(targetData.formData?.recipient_name)}` },
+            { text: `${l.info?.buyer_bin} : ${safe(targetData.formData?.recipient_bin || '-')}` },
+            { text: `${l.info?.dest_addr} : ${safe(targetData.formData?.destination)}` }
+          ],
+          margin: [0, 0, 0, 15]
+        },
+
+        {
+          table: {
+            headerRows: 2,
+            widths: [30, '*', '*', 70, 70],
+            body: [
+              [
+                { text: l.headers?.sl, bold: true, alignment: 'center' },
+                { text: l.headers?.desc, bold: true, alignment: 'center' },
+                { text: l.headers?.details, bold: true, alignment: 'center' },
+                { text: l.headers?.qty, bold: true, alignment: 'center' },
+                { text: l.headers?.remarks, bold: true, alignment: 'center' }
+              ],
+              [
+                { text: '1', alignment: 'center', fontSize: 7 },
+                { text: '2', alignment: 'center', fontSize: 7 },
+                { text: '3', alignment: 'center', fontSize: 7 },
+                { text: '4', alignment: 'center', fontSize: 7 },
+                { text: '5', alignment: 'center', fontSize: 7 }
+              ],
+              ...items.map((item, index) => [
+                { text: (index + 1).toString(), alignment: 'center' },
+                safe(item.goods_description),
+                safe(item.goods_details),
+                { text: safe(item.quantity)},
+                safe(item.remarks)
+              ]),
+              [
+                { text: l.headers?.total, colSpan: 3, alignment: 'right', bold: true },
+                {}, {},
+                { text: safe(targetData.tableData?.total_quantity), bold: true, alignment: 'left' },
+                {}
+              ]
+            ]
+          }
+        },
+
+        {
+          margin: [0, 30, 0, 0],
+          stack: [
+            { text: `${l.footer?.auth_label} : ${safe(targetData.auth_person || '')}`, bold: true },
+            { text: `${l.footer?.designation_label} : ${safe(targetData.designation || '')}` },
+            { text: `${l.footer?.signature_label} : ____________________`, margin: [0, 5, 0, 0] },
+            { text: `${l.footer?.seal_label} :`, margin: [0, 5, 0, 0] },
+          ],
+        }
+      ]
+    };
+    pdfMake.createPdf(docDef).download(`Mushak_6.4_Bangla.pdf`);
+  }
+
+  exportMushak_6_4Bangla(data: any, lang: string) {
+    const l = (data.labels?.mushak_6_4 || {}) as any;
+    const targetData = data.mushak_6_4_data?.[lang] || {};
+    const items = (targetData.tableData?.rows || []) as any[];
+
+    const safe = (val: any) => (val !== undefined && val !== null) ? val.toString() : '';
+
+    const toBnNum = (n: any) => {
+      if (!n) return '';
+      return n.toString().replace(/\d/g, (d: any) => "০১২৩৪৫৬৭৮৯"[d]);
+    };
+
+    (pdfMake as any).fonts = {
+      PlaywriteCU: {
+        normal: window.location.origin + '/assets/fonts/kalpurush.ttf',
+        bold: window.location.origin + '/assets/fonts/kalpurush.ttf',
+        italics: window.location.origin + '/assets/fonts/kalpurush.ttf',
+        bolditalics: window.location.origin + '/assets/fonts/kalpurush.ttf'
+      }
+    };
+
+    const docDef: any = {
+      pageSize: 'A4',
+      pageMargins: [30, 30, 30, 30],
+      defaultStyle: { font: 'PlaywriteCU', fontSize: 9 },
+      content: [
+        { text: safe(l.titles?.m_name), alignment: 'right', bold: true },
+        { text: safe(l.titles?.gov), alignment: 'center', bold: true },
+        { text: safe(l.titles?.nbr), alignment: 'center', bold: true },
+        { text: safe(l.titles?.form), alignment: 'center', bold: true, fontSize: 13, margin: [0, 5, 0, 0] },
+        { text: safe(l.titles?.rule), alignment: 'center', fontSize: 8.5, margin: [0, 0, 0, 15] },
+
+        {
+          columns: [
+            {
+              width: '*',
+              stack: [
+                { text: `${l.info?.registered_person} : ${safe(targetData.formData?.registered_person)}` },
+                { text: `${l.info?.registered_person_bin} : ${safe(targetData.formData?.registered_person_bin)}` },
+                { text: `${l.info?.chalan_address} : ${safe(targetData.formData?.chalan_address)}` }
+              ]
+            },
+            {
+              width: '25%',
+              stack: [
+                { text: `${l.info?.inv_no} :`, bold: true },
+                { text: `${l.info?.inv_date} :` },
+                { text: `${l.info?.inv_time} :` }
+              ],
+              alignment: 'right',
+              margin: [0, 0, 10, 0]
+            },
+            {
+              width: '20%',
+              stack: [
+                { text: safe(targetData.formData?.chalan_number), bold: true },
+                { text: safe(targetData.formData?.issue_date) },
+                { text: safe(targetData.formData?.issue_time) }
+              ],
+              alignment: 'left'
+            }
+          ],
+          margin: [0, 0, 0, 10]
+        },
+
+        {
+          stack: [
+            { text: `${l.info?.buyer_name} : ${safe(targetData.formData?.recipient_name)}` },
+            { text: `${l.info?.buyer_bin} : ${safe(targetData.formData?.recipient_bin || '-')}` },
+            { text: `${l.info?.dest_addr} : ${safe(targetData.formData?.destination)}` }
+          ],
+          margin: [0, 0, 0, 15]
+        },
+
+        {
+          table: {
+            headerRows: 2,
+            widths: [30, '*', '*', 70, 70],
+            body: [
+              [
+                { text: l.headers?.sl, bold: true, alignment: 'center' },
+                { text: l.headers?.desc, bold: true, alignment: 'center' },
+                { text: l.headers?.details, bold: true, alignment: 'center' },
+                { text: l.headers?.qty, bold: true, alignment: 'center' },
+                { text: l.headers?.remarks, bold: true, alignment: 'center' }
+              ],
+              [
+                { text: toBnNum(1), alignment: 'center', fontSize: 8 },
+                { text: toBnNum(2), alignment: 'center', fontSize: 8 },
+                { text: toBnNum(3), alignment: 'center', fontSize: 8 },
+                { text: toBnNum(4), alignment: 'center', fontSize: 8 },
+                { text: toBnNum(5), alignment: 'center', fontSize: 8 }
+              ],
+              ...items.map((item, index) => [
+                { text: toBnNum(index + 1), alignment: 'center' },
+                safe(item.goods_description),
+                safe(item.goods_details),
+                { text: safe(item.quantity),},
+                safe(item.remarks)
+              ]),
+              [
+                { text: l.headers?.total, colSpan: 3, alignment: 'right', bold: true },
+                {}, {},
+                { text: safe(targetData.tableData?.total_quantity), bold: true, alignment: 'left' },
+                {}
+              ]
+            ]
+          }
+        },
+
+        {
+          margin: [0, 30, 0, 0],
+          stack: [
+            { text: `${l.footer?.auth_label} : ${safe(targetData.auth_person || '')}`, bold: true },
+            { text: `${l.footer?.designation_label} : ${safe(targetData.designation || '')}` },
+            { text: `${l.footer?.signature_label} : ____________________`, margin: [0, 5, 0, 0] },
+            { text: `${l.footer?.seal_label} :`, margin: [0, 5, 0, 0] },
+          ],
+        }
+      ]
+    };
+    pdfMake.createPdf(docDef).download(`Mushak_6.4_Bangla.pdf`);
   }
 }

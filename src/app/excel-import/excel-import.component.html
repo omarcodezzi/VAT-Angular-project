@@ -14,50 +14,55 @@
         Refresh
       </button>
     </div>
+  </div>
 
-    <div class="mt-4 p-3 border rounded bg-light">
-      <h6>Official NBR Reports (Mushak-9.1)</h6>
-      <button class="btn btn-outline-primary me-2" (click)="downloadMushakReport('en')">
-        Download 9.1
-      </button>
-      <button class="btn btn-outline-primary me-2" (click)="downloadMushakReport('bl')">
-        Download 9.1 Bangla
-      </button>
-      <button class="btn btn-outline-primary me-2" (click)="downloadInputOutputCoefficient('en')">
-        Download 4.3
-      </button>
-      <button class="btn btn-outline-primary me-2" (click)="downloadInputOutputCoefficient('bl')">
-        Download 4.3 Bangla
-      </button>
-      <button class="btn btn-outline-primary me-2" (click)="downloadmushak_6_1('en')">
-        Download 6.1
-      </button>
-      <button class="btn btn-outline-primary me-2" (click)="downloadmushak_6_1('bl')">
-        Download 6.1 Bangla
-      </button>
-      <button class="btn btn-outline-primary me-2" (click)="downloadmushak_6_2('en')">
-        Download 6.2
-      </button>
-      <button class="btn btn-outline-primary me-2" (click)="downloadmushak_6_2('bl')">
-        Download 6.2 Bangla
-      </button>
-      <button class="btn btn-outline-primary me-2" (click)="downloadmushak_6_2_1('en')">
-        Download 6.2.1
-      </button>
-      <button class="btn btn-outline-primary me-2" (click)="downloadmushak_6_2_1('bl')">
-        Download 6.2.1 Bangla
-      </button>
-      <button class="btn btn-outline-primary me-2" (click)="downloadmushak_6_3('en')">
-        Download 6.3
-      </button>
-      <button class="btn btn-outline-primary me-2" (click)="downloadmushak_6_3('bl')">
-        Download 6.3 Bangla
-      </button>
-      <!-- <button class="btn btn-outline-success" (click)="downloadFullMushakExcel()">
-        Download Excel
-      </button> -->
-    </div>
-
+  <div class="mt-4 p-3 border rounded bg-light">
+    <h6>Official NBR Reports (Mushak-9.1)</h6>
+    <button class="btn btn-outline-primary me-2 mb-2" (click)="downloadMushakReport('en')">
+      Download 9.1
+    </button>
+    <button class="btn btn-outline-primary me-2 mb-2" (click)="downloadMushakReport('bl')">
+      Download 9.1 Bangla
+    </button>
+    <button class="btn btn-outline-primary me-2 mb-2" (click)="downloadInputOutputCoefficient('en')">
+      Download 4.3
+    </button>
+    <button class="btn btn-outline-primary me-2 mb-2" (click)="downloadInputOutputCoefficient('bl')">
+      Download 4.3 Bangla
+    </button>
+    <button class="btn btn-outline-primary me-2 mb-2" (click)="downloadmushak_6_1('en')">
+      Download 6.1
+    </button>
+    <button class="btn btn-outline-primary me-2 mb-2" (click)="downloadmushak_6_1('bl')">
+      Download 6.1 Bangla
+    </button>
+    <button class="btn btn-outline-primary me-2 mb-2" (click)="downloadmushak_6_2('en')">
+      Download 6.2
+    </button>
+    <button class="btn btn-outline-primary me-2 mb-2" (click)="downloadmushak_6_2('bl')">
+      Download 6.2 Bangla
+    </button>
+    <button class="btn btn-outline-primary me-2 mb-2" (click)="downloadmushak_6_2_1('en')">
+      Download 6.2.1
+    </button>
+    <button class="btn btn-outline-primary me-2 mb-2" (click)="downloadmushak_6_2_1('bl')">
+      Download 6.2.1 Bangla
+    </button>
+    <button class="btn btn-outline-primary me-2 mb-2" (click)="downloadmushak_6_3('en')">
+      Download 6.3
+    </button>
+    <button class="btn btn-outline-primary me-2 mb-2" (click)="downloadmushak_6_3('bl')">
+      Download 6.3 Bangla
+    </button>
+    <button class="btn btn-outline-primary me-2 mb-2" (click)="downloadmushak_6_4('en')">
+      Download 6.4
+    </button>
+    <button class="btn btn-outline-primary me-2 mb-2" (click)="downloadmushak_6_4('bl')">
+      Download 6.4 Bangla
+    </button>
+    <!-- <button class="btn btn-outline-success" (click)="downloadFullMushakExcel()">
+      Download Excel
+    </button> -->
   </div>
 
   <div *ngIf="errorText()">
