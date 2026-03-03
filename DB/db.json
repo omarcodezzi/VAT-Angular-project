@@ -601,6 +601,52 @@
           "report_date_time": "20/05/2023 05:23 PM"
         }
       }
+    },
+    "mushak_6_5_data": {
+      "en": {
+        "formData": {
+          "registered_person": "Hasanuzzaman IT Solutions",
+          "registered_person_bin": "1234567890123",
+          "sender_info": "Main Warehouse, Mirpur-10, Dhaka",
+          "receiver_info": "Branch Office, Uttara Sector-4, Dhaka",
+          "chalan_number": "TR-2026-009",
+          "issue_date": "03/03/2026",
+          "issue_time": "02:30 PM"
+        },
+        "tableData": {
+          "rows": [
+            {
+              "desc": "Server Rack Cabinet",
+              "qty": "5 Units",
+              "price_no_tax": "50000.00",
+              "tax_amount": "7500.00",
+              "remarks": "Internal Transfer"
+            }
+          ]
+        }
+      },
+      "bl": {
+        "formData": {
+          "registered_person": "হাসানুজ্জামান আইটি সলিউশনস",
+          "registered_person_bin": "১২৩৪৫৬৭৮৯০১২৩",
+          "sender_info": "প্রধান গুদাম, মিরপুর-১০, ঢাকা",
+          "receiver_info": "শাখা অফিস, উত্তরা সেক্টর-৪, ঢাকা",
+          "chalan_number": "টিআর-২০২৬-০০৯",
+          "issue_date": "০৩/০৩/২০২৬",
+          "issue_time": "০২:৩০ পি.এম."
+        },
+        "tableData": {
+          "rows": [
+            {
+              "desc": "সার্ভার র‍্যাক ক্যাবিনেট",
+              "qty": "৫ ইউনিট",
+              "price_no_tax": "৫০০০০.০০",
+              "tax_amount": "৭৫০০.০০",
+              "remarks": "অভ্যন্তরীণ স্থানান্তর"
+            }
+          ]
+        }
+      }
     }
   }
 }

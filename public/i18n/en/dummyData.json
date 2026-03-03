@@ -387,5 +387,37 @@
       "signature_label": "Signature",
       "seal_label": "Seal"
     }
+  },
+  "mushak_6_5": {
+    "titles": {
+      "gov": "Government of the People's Republic of Bangladesh",
+      "nbr": "National Board of Revenue",
+      "form": "Goods Transfer Chalan of Centrally Registered Institution",
+      "rule": "[See Rule 40, Sub-rule (1) (Clause Uma)]",
+      "m_name": "Mushak-6.5"
+    },
+    "info": {
+      "registered_person": "Name of Registered Person",
+      "registered_person_bin": "BIN of Registered Person",
+      "sender_info": "Name & Address of Sending Unit/Warehouse",
+      "receiver_info": "Name & Address of Receiving Unit/Warehouse",
+      "inv_no": "Chalan Number",
+      "inv_date": "Issue Date",
+      "inv_time": "Issue Time"
+    },
+    "headers": {
+      "sl": "SL",
+      "desc": "Description of Goods (including Brand Name)",
+      "qty": "Quantity",
+      "price_no_tax": "Value Excluding Tax",
+      "tax_amount": "Applicable Tax Amount",
+      "remarks": "Remarks"
+    },
+    "footer": {
+      "auth_label": "Name of Authorized Person",
+      "designation_label": "Designation",
+      "signature_label": "Signature",
+      "seal_label": "Seal"
+    }
   }
 }

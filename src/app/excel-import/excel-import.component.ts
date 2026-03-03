@@ -256,9 +256,9 @@ downloadmushak_6_1(lang: 'en' | 'bl') {
   this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
     next: (data) => {
       if (lang === 'en') {
-        this.exportService.exportmushak_6_1English(data, lang);
+        this.exportService.exportmushak_6_1_English(data, lang);
       } else {
-        this.exportService.exportmushak_6_1Bangla(data, lang);
+        this.exportService.exportmushak_6_1_Bangla(data, lang);
       }
     },  
     error: (err) => console.error("API Connection Failed!", err)
@@ -272,9 +272,9 @@ downloadmushak_6_2(lang: 'en' | 'bl') {
   this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
     next: (data) => {
       if (lang === 'en') {
-        this.exportService.exportMushak_6_2English(data, lang);
+        this.exportService.exportMushak_6_2_English(data, lang);
       } else {
-        this.exportService.exportMushak_6_2Bangla(data, lang);
+        this.exportService.exportMushak_6_2_Bangla(data, lang);
       }
     },  
     error: (err) => console.error("API Connection Failed!", err)
@@ -287,9 +287,9 @@ downloadmushak_6_2_1(lang: 'en' | 'bl') {
   this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
     next: (data) => {
       if (lang === 'en') {
-        this.exportService.exportMushak_6_2_1English(data, lang);
+        this.exportService.exportMushak_6_2_1_English(data, lang);
       } else {
-        this.exportService.exportMushak_6_2_1Bangla(data, lang);
+        this.exportService.exportMushak_6_2_1_Bangla(data, lang);
       }
     },  
     error: (err) => console.error("API Connection Failed!", err)
@@ -302,15 +302,14 @@ downloadmushak_6_3(lang: 'en' | 'bl') {
   this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
     next: (data) => {
       if (lang === 'en') {
-        this.exportService.exportMushak_6_3English(data, lang);
+        this.exportService.exportMushak_6_3_English(data, lang);
       } else {
-        this.exportService.exportMushak_6_3Bangla(data, lang);
+        this.exportService.exportMushak_6_3_Bangla(data, lang);
       }
     },  
     error: (err) => console.error("API Connection Failed!", err)
   });
 }
-
 
 downloadmushak_6_4(lang: 'en' | 'bl') {
   const apiEndpoint = 'http://localhost:3000/mushak_values';  
@@ -318,9 +317,24 @@ downloadmushak_6_4(lang: 'en' | 'bl') {
   this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
     next: (data) => {
       if (lang === 'en') {
-        this.exportService.exportMushak_6_4English(data, lang);
+        this.exportService.exportMushak_6_4_English(data, lang);
       } else {
-        this.exportService.exportMushak_6_4Bangla(data, lang);
+        this.exportService.exportMushak_6_4_Bangla(data, lang);
+      }
+    },  
+    error: (err) => console.error("API Connection Failed!", err)
+  });
+}
+
+downloadmushak_6_5(lang: 'en' | 'bl') {
+  const apiEndpoint = 'http://localhost:3000/mushak_values';  
+  
+  this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
+    next: (data) => {
+      if (lang === 'en') {
+        this.exportService.exportMushak_6_5_English(data, lang);
+      } else {
+        this.exportService.exportMushak_6_5_Bangla(data, lang);
       }
     },  
     error: (err) => console.error("API Connection Failed!", err)
