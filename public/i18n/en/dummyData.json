@@ -419,5 +419,39 @@
       "signature_label": "Signature",
       "seal_label": "Seal"
     }
+  },
+  "mushak_6_6": {
+    "titles": {
+      "gov": "Government of the People's Republic of Bangladesh",
+      "nbr": "National Board of Revenue",
+      "form": "Certificate of Tax Deduction at Source",
+      "rule": "[See Rule 40, Sub-rule (1) (Clause Chha)]",
+      "m_name": "Mushak-6.6"
+    },
+    "info": {
+      "withholding_entity": "Name of Withholding Entity",
+      "withholding_address": "Address of Withholding Entity",
+      "withholding_bin": "BIN of Withholding Entity",
+      "cert_no": "VDS Certificate No.",
+      "issue_date": "Issue Date",
+      "notes":"This is to certified that VAT has been deducted at source from the supplier having VAT deductitble at Source in accordance with section 49 of the Act. The VAT so deducted has been deposited in the government treasury by book transfer/treasury challan/increasing adjustment in the return. A copy has been attached.(If Applicable)"
+    },
+    "headers": {
+      "sl": "SL No.",
+      "supplier": "Supplier",
+      "name": "Name",
+      "bin": "BIN",
+      "invoice_info": "Concerned Tax Invoice",
+      "number": "Number",
+      "issueDate": "Issue Date",
+      "total_value": "Total Value Supply(BDT)",
+      "vat_amount": "Amount of VAT(BDT)",
+      "vds_amount": "Amount of VAT withheld at source(BDT)"
+    },
+    "footer": {
+      "auth_label": "Signature of Authorized Officer",
+      "name_label": "Name",
+      "signature_label": "Signature"
+    }
   }
 }

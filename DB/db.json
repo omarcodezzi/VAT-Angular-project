@@ -647,6 +647,58 @@
           ]
         }
       }
+    },
+    "mushak_6_6_data": {
+      "en": {
+        "formData": {
+          "withholding_entity": "Divine IT Limited",
+          "withholding_address": "House 29, Road 12, Sector 10, Uttara, Dhaka-1230",
+          "withholding_bin": "1234567890123",
+          "cert_no": "123456789",
+          "issue_date": "2019-08-28"
+        },
+        "tableData": {
+          "rows": [
+            {
+              "name": "Arif Corp.",
+              "bin": "9876543210123",
+              "invoice_no": "PI-1105/3303",
+              "invoice_date": "2019-07-22",
+              "total_value": "150137.19",
+              "vat_amount": "10474.69",
+              "vds_amount": "10474.69"
+            }
+          ],
+          "total_supply": "150137.19",
+          "total_vat": "10474.69",
+          "total_vds": "10474.69"
+        }
+      },
+      "bl": {
+        "formData": {
+          "withholding_entity": "ডিভাইন আইটি লিমিটেড",
+          "withholding_address": "হাউজ ২৯, রোড ১২, সেক্টর ১০, উত্তরা, ঢাকা-১২৩০",
+          "withholding_bin": "১২৩৪৫৬৭৮৯০১২৩",
+          "cert_no": "১২৩৪৫৬৭৮৯",
+          "issue_date": "২৮/০৮/২০১৯"
+        },
+        "tableData": {
+          "rows": [
+            {
+              "name": "আরিফ কর্পোরেশন",
+              "bin": "৯৮৭৬৫৪৩২১০১২৩",
+              "invoice_no": "পিআই-১১০৫/৩৩০৩",
+              "invoice_date": "২২/০৭/২০১৯",
+              "total_value": "১৫০১৩৭.১৯",
+              "vat_amount": "১০৪৭৪.৬৯",
+              "vds_amount": "১০৪৭৪.৬৯"
+            }
+          ],
+          "total_supply": "১৫০১৩৭.১৯",
+          "total_vat": "১০৪৭৪.৬৯",
+          "total_vds": "১০৪৭৪.৬৯"
+        }
+      }
     }
   }
 }

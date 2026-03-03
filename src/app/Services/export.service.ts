@@ -57,6 +57,7 @@ export class ExportService {
           mushak_6_3_data: values.mushak_values?.mushak_6_3_data || values.mushak_6_3_data || {},
           mushak_6_4_data: values.mushak_values?.mushak_6_4_data || values.mushak_6_4_data || { items: [] },
           mushak_6_5_data: values.mushak_values?.mushak_6_5_data || values.mushak_6_5_data || { items: [] },
+          mushak_6_6_data: values.mushak_values?.mushak_6_6_data || values.mushak_6_6_data || { items: [] }
         };
       })
     );
@@ -2935,7 +2936,7 @@ export class ExportService {
         {
           columns: [
             {
-              width: '*', 
+              width: '*',
               stack: [
                 { text: `${l.info?.registered_person} : ${safe(targetData.formData?.registered_person)}` },
                 { text: `${l.info?.registered_person_bin} : ${safe(targetData.formData?.registered_person_bin)}` },
@@ -2944,7 +2945,7 @@ export class ExportService {
               ]
             },
             {
-              width: 'auto', 
+              width: 'auto',
               stack: [
                 {
                   columns: [
@@ -3130,5 +3131,243 @@ export class ExportService {
       ]
     };
     pdfMake.createPdf(docDef).download(`Mushak_6.5_Bangla.pdf`);
+  }
+
+  exportMushak_6_6_Bangla(data: any, lang: string) {
+    const l = (data.labels?.mushak_6_6 || {}) as any;
+    const targetData = data.mushak_6_6_data?.bl || {};
+    const items = (targetData.tableData?.rows || []) as any[];
+
+    const safe = (val: any) => (val !== undefined && val !== null) ? val.toString() : '';
+    const toBnNum = (n: any) => n.toString().replace(/\d/g, (d: any) => "০১২৩৪৫৬৭৮৯"[d]);
+
+    (pdfMake as any).fonts = {
+      PlaywriteCU: {
+        normal: window.location.origin + '/assets/fonts/kalpurush.ttf',
+        bold: window.location.origin + '/assets/fonts/kalpurush.ttf',
+        italics: window.location.origin + '/assets/fonts/kalpurush.ttf',
+        bolditalics: window.location.origin + '/assets/fonts/kalpurush.ttf'
+      }
+    };
+
+    const docDef: any = {
+      pageSize: 'A4',
+      pageMargins: [30, 30, 30, 30],
+      defaultStyle: { font: 'PlaywriteCU', fontSize: 9 },
+      content: [
+        { text: safe(l.titles?.m_name), alignment: 'right', bold: true },
+        { text: safe(l.titles?.gov), alignment: 'center', bold: true },
+        { text: safe(l.titles?.nbr), alignment: 'center', bold: true },
+        { text: safe(l.titles?.form), alignment: 'center', bold: true, fontSize: 12, margin: [0, 5, 0, 0] },
+        { text: safe(l.titles?.rule), alignment: 'center', fontSize: 8, margin: [0, 0, 0, 15] },
+
+        {
+          columns: [
+            {
+              width: '*',
+              stack: [
+                { text: `${l.info?.withholding_entity} : ${safe(targetData.formData?.withholding_entity)}` },
+                { text: `${l.info?.withholding_address} : ${safe(targetData.formData?.withholding_address)}` },
+                { text: `${l.info?.withholding_bin} : ${safe(targetData.formData?.withholding_bin)}` }
+              ]
+            },
+            {
+              width: 'auto',
+              stack: [
+                { text: `${l.info?.cert_no} : ${safe(targetData.formData?.cert_no)}`, bold: true },
+                { text: `${l.info?.issue_date} : ${safe(targetData.formData?.issue_date)}` }
+              ],
+              alignment: 'right'
+            }
+          ],
+          margin: [0, 0, 0, 15]
+        },
+
+        { text: `${l.info?.notes}`, margin: [0, 0, 0, 15] },
+
+        {
+          table: {
+            headerRows: 2,
+            widths: [22, '*', 65, 50, 55, 60, 55, 55],
+            body: [
+              [
+                { text: l.headers?.sl, rowSpan: 2, bold: true, alignment: 'center', margin: [0, 8, 0, 0] },
+                { text: l.headers?.supplier, colSpan: 2, bold: true, alignment: 'center' }, {},
+                { text: l.headers?.invoice_info, colSpan: 2, bold: true, alignment: 'center' }, {},
+                { text: l.headers?.total_value, rowSpan: 2, bold: true, alignment: 'center', margin: [0, 8, 0, 0] },
+                { text: l.headers?.vat_amount, rowSpan: 2, bold: true, alignment: 'center', margin: [0, 8, 0, 0] },
+                { text: l.headers?.vds_amount, rowSpan: 2, bold: true, alignment: 'center', margin: [0, 8, 0, 0] }
+              ],
+              [
+                {},
+                { text: l.headers?.name, bold: true, alignment: 'center' },
+                { text: l.headers?.bin, bold: true, alignment: 'center' },
+                { text: l.headers?.number, bold: true, alignment: 'center' },
+                { text: l.headers?.issueDate, bold: true, alignment: 'center' },
+                {}, {}, {}
+              ],
+              [
+                { text: '১', alignment: 'center', fontSize: 7 },
+                { text: '২', alignment: 'center', fontSize: 7 },
+                { text: '৩', alignment: 'center', fontSize: 7 },
+                { text: '৪', alignment: 'center', fontSize: 7 },
+                { text: '৫', alignment: 'center', fontSize: 7 },
+                { text: '৬', alignment: 'center', fontSize: 7 },
+                { text: '৭', alignment: 'center', fontSize: 7 },
+                { text: '৮', alignment: 'center', fontSize: 7 }
+              ],
+              ...items.map((item, index) => [
+                { text: (index + 1).toString(), alignment: 'center' },
+                safe(item.name),
+                { text: safe(item.bin), alignment: 'center' },
+                { text: safe(item.invoice_no), alignment: 'center' },
+                { text: safe(item.invoice_date), alignment: 'center' },
+                { text: safe(item.total_value), alignment: 'right' },
+                { text: safe(item.vat_amount), alignment: 'right' },
+                { text: safe(item.vds_amount), alignment: 'right' }
+              ]),
+              [
+                { text: `${l.headers?.total}`, colSpan: 5, alignment: 'right', bold: true },
+                {}, {}, {}, {},
+                { text: safe(targetData.tableData?.total_supply), bold: true, alignment: 'right' },
+                { text: safe(targetData.tableData?.total_vat), bold: true, alignment: 'right' },
+                { text: safe(targetData.tableData?.total_vds), bold: true, alignment: 'right' }
+              ]
+            ]
+          }
+        },
+
+        {
+          margin: [0, 30, 0, 0],
+          stack: [
+            { text: l.footer?.auth_label, bold: true },
+            { text: `${l.footer?.signature_label} : ____________________`, margin: [0, 5, 0, 0] },
+            { text: `${l.footer?.name_label} : ${safe(targetData.formData?.auth_name || '')}`, margin: [0, 5, 0, 0] }
+          ]
+        }
+      ]
+    };
+    pdfMake.createPdf(docDef).download(`Mushak_6.6_Bangla.pdf`);
+  }
+
+  exportMushak_6_6_English(data: any, lang: string) {
+    debugger
+    const l = (data.labels?.mushak_6_6 || {}) as any;
+    const targetData = data.mushak_6_6_data?.en || {};
+    const items = (targetData.tableData?.rows || []) as any[];
+
+    const safe = (val: any) => (val !== undefined && val !== null) ? val.toString() : '';
+
+    (pdfMake as any).fonts = {
+      Nunito: {
+        normal: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
+        bold: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
+        italics: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
+        bolditalics: window.location.origin + '/assets/fonts/Nunito-Regular.ttf'
+      }
+    };
+
+    const docDef: any = {
+      pageSize: 'A4',
+      pageMargins: [30, 30, 30, 30],
+      defaultStyle: { font: 'Nunito', fontSize: 8.5 },
+      content: [
+        { text: safe(l.titles?.m_name), alignment: 'right', bold: true },
+        { text: safe(l.titles?.gov), alignment: 'center', bold: true },
+        { text: safe(l.titles?.nbr), alignment: 'center', bold: true },
+        { text: safe(l.titles?.form), alignment: 'center', bold: true, fontSize: 11, margin: [0, 5, 0, 0] },
+        { text: safe(l.titles?.rule), alignment: 'center', fontSize: 7.5, margin: [0, 0, 0, 15] },
+
+        {
+          columns: [
+            {
+              width: '*',
+              stack: [
+                { text: `${l.info?.withholding_entity}: ${safe(targetData.formData?.withholding_entity)}` },
+                { text: `${l.info?.withholding_address}: ${safe(targetData.formData?.withholding_address)}` },
+                { text: `${l.info?.withholding_bin}: ${safe(targetData.formData?.withholding_bin)}` }
+              ]
+            },
+            {
+              width: 'auto',
+              stack: [
+                { text: `${l.info?.cert_no}: ${safe(targetData.formData?.cert_no)}`, bold: true },
+                { text: `${l.info?.issue_date}: ${safe(targetData.formData?.issue_date)}` }
+              ],
+              alignment: 'right'
+            }
+          ],
+          margin: [0, 0, 0, 15]
+        },
+
+        {
+          text: `${l.info?.notes}`,
+          margin: [0, 0, 0, 10],
+          fontSize: 7.5
+        },
+
+        {
+          table: {
+            headerRows: 2,
+            widths: [20, '*', 65, 50, 55, 60, 55, 55],
+            body: [
+              [
+                { text: l.headers?.sl, rowSpan: 2, bold: true, alignment: 'center', margin: [0, 8, 0, 0] },
+                { text: l.headers?.supplier, colSpan: 2, bold: true, alignment: 'center' }, {},
+                { text: l.headers?.invoice_info, colSpan: 2, bold: true, alignment: 'center' }, {},
+                { text: l.headers?.total_value, rowSpan: 2, bold: true, alignment: 'center', margin: [0, 8, 0, 0] },
+                { text: l.headers?.vat_amount, rowSpan: 2, bold: true, alignment: 'center', margin: [0, 8, 0, 0] },
+                { text: l.headers?.vds_amount, rowSpan: 2, bold: true, alignment: 'center', margin: [0, 8, 0, 0] }
+              ],
+              [
+                {},
+                { text: l.headers?.name, bold: true, alignment: 'center' },
+                { text: l.headers?.bin, bold: true, alignment: 'center' },
+                { text: l.headers?.number, bold: true, alignment: 'center' },
+                { text: l.headers?.issueDate, bold: true, alignment: 'center' },
+                {}, {}, {}
+              ],
+              [
+                { text: '1', alignment: 'center', fontSize: 7 },
+                { text: '2', alignment: 'center', fontSize: 7 },
+                { text: '3', alignment: 'center', fontSize: 7 },
+                { text: '4', alignment: 'center', fontSize: 7 },
+                { text: '5', alignment: 'center', fontSize: 7 },
+                { text: '6', alignment: 'center', fontSize: 7 },
+                { text: '7', alignment: 'center', fontSize: 7 },
+                { text: '8', alignment: 'center', fontSize: 7 }
+              ],
+              ...items.map((item, index) => [
+                { text: (index + 1).toString(), alignment: 'center' },
+                safe(item.name),
+                { text: safe(item.bin), alignment: 'center' },
+                { text: safe(item.invoice_no), alignment: 'center' },
+                { text: safe(item.invoice_date), alignment: 'center' },
+                { text: safe(item.total_value), alignment: 'right' },
+                { text: safe(item.vat_amount), alignment: 'right' },
+                { text: safe(item.vds_amount), alignment: 'right' }
+              ]),
+              [
+                { text: 'Total:', colSpan: 5, alignment: 'right', bold: true },
+                {}, {}, {}, {},
+                { text: safe(targetData.tableData?.total_supply), bold: true, alignment: 'right' },
+                { text: safe(targetData.tableData?.total_vat), bold: true, alignment: 'right' },
+                { text: safe(targetData.tableData?.total_vds), bold: true, alignment: 'right' }
+              ]
+            ]
+          }
+        },
+
+        {
+          margin: [0, 30, 0, 0],
+          stack: [
+            { text: l.footer?.auth_label, bold: true },
+            { text: `${l.footer?.signature_label}: ____________________`, margin: [0, 5, 0, 0] },
+            { text: `${l.footer?.name_label}: ${safe(targetData.formData?.auth_name || '')}`, margin: [0, 5, 0, 0] }
+          ]
+        }
+      ]
+    };
+    pdfMake.createPdf(docDef).download(`Mushak_6.6_English.pdf`);
   }
 }
