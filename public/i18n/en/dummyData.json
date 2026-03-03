@@ -315,5 +315,42 @@
         "In cases where goods are purchased from or sold to an unregistered person, the full name, address, and National ID number of said person must be compulsorily mentioned in the relevant columns [(9), (10), (11), (19), (20), and (21)]."
       ]
     }
+  },
+  "mushak_6_3": {
+    "titles": {
+      "gov": "Government of the People's Republic of Bangladesh",
+      "nbr": "National Board of Revenue",
+      "form": "Tax Invoice",
+      "rule": "[See Rule 40(1)(c) and Rule 40(1)(f)]",
+      "m_name": "Mushak-6.3"
+    },
+    "info": {
+      "buyer_name": "Buyer Name",
+      "buyer_bin": "Buyer BIN",
+      "dest_addr": "Destination of Supply",
+      "inv_no": "Invoice Number",
+      "inv_date": "Issue Date",
+      "inv_time": "Issue Time"
+    },
+    "headers": {
+      "sl": "SL",
+      "desc": "Description of Goods/Services",
+      "unit": "Unit of Supply",
+      "qty": "Quantity",
+      "u_price": "Unit Price (BDT)",
+      "t_price": "Total Price (BDT)",
+      "sd_amount": "SD Amount (BDT)",
+      "vat_rate": "VAT Rate / Specific Tax",
+      "vat_amount": "VAT Amount (BDT)",
+      "total_incl_all": "Total Incl. All Taxes",
+      "grand_total": "Grand Total"
+    },
+    "footer": {
+      "note": "* In case of supplies subject to deduction at source, the form will be treated as a combined tax invoice and tax deduction at source certificate and it will be applicable for supplies subject to tax deduction at source.",
+      "auth_label": "Name of Authorized Person",
+      "designation_label": "Designation",
+      "signature_label": "Signature",
+      "seal_label": "Seal"
+    }
   }
 }

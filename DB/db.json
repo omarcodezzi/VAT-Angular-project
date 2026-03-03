@@ -467,6 +467,68 @@
           }
         ]
       }
+    },
+    "mushak_6_3_data": {
+      "bl": {
+        "seller_name": "হাসানুজ্জামান আইটি সলিউশনস",
+        "seller_bin": "১২৩৪৫৬৭৮৯০১২৩",
+        "invoice_address": "মিরপুর, ঢাকা",
+        "delivery_dest": "উত্তরা, ঢাকা",
+        "invoice_no": "ইনভ-২০২৬-০০১",
+        "issue_date": "০২/০৩/২০২৬",
+        "issue_time": "১৫:৩০",
+        "buyer_name": "রহিম এন্টারপ্রাইজ",
+        "buyer_bin": "৯৮৭৬৫৪৩২১০১২৩",
+        "auth_person": "মোহাম্মদ হাসান",
+        "designation": "ব্যবস্থাপনা পরিচালক",
+        "items": [
+          {
+            "desc": "সফটওয়্যার ডেভেলপমেন্ট সার্ভিস",
+            "unit": "জন-মাস",
+            "qty": "২",
+            "u_price": "৫০০০.০০",
+            "t_price": "১০০০০.০০",
+            "sd_amount": "০.০০",
+            "vat_rate": "৫%",
+            "vat_amount": "৫০০.০০",
+            "total_incl_all": "১০৫০০.০০"
+          }
+        ],
+        "total_t_price": "১০০০০.০০",
+        "total_sd": "০.০০",
+        "total_vat": "৫০০.০০",
+        "grand_total": "১০৫০০.০০"
+      },
+      "en": {
+        "seller_name": "Hasanuzzaman IT Solutions",
+        "seller_bin": "1234567890123",
+        "invoice_address": "Mirpur, Dhaka",
+        "delivery_dest": "Uttara, Dhaka",
+        "invoice_no": "INV-2026-001",
+        "issue_date": "02/03/2026",
+        "issue_time": "15:30",
+        "buyer_name": "Rahim Enterprise",
+        "buyer_bin": "9876543210123",
+        "auth_person": "Mohammad Hasan",
+        "designation": "Managing Director",
+        "items": [
+          {
+            "desc": "Software Development Service",
+            "unit": "Man-Month",
+            "qty": "2",
+            "u_price": "5000.00",
+            "t_price": "10000.00",
+            "sd_amount": "0.00",
+            "vat_rate": "5%",
+            "vat_amount": "500.00",
+            "total_incl_all": "10500.00"
+          }
+        ],
+        "total_t_price": "10000.00",
+        "total_sd": "0.00",
+        "total_vat": "500.00",
+        "grand_total": "10500.00"
+      } 
     }
   }
 }
