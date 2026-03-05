@@ -219,12 +219,12 @@ export class ExcelImportComponent {
     this.exportService.exportPdf(rows, 'VAT_HS_Code.pdf');
   }
 
-downloadMushakReport(lang: 'en' | 'bl') {
+downloadMushakReport(lang: 'EN' | 'BN') {
   const apiEndpoint = 'http://localhost:3000/mushak_values';  
   
   this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
     next: (data) => {
-      if (lang === 'en') {
+      if (lang === 'EN') {
         this.exportService.exportFullMushakPdf(data, lang);
       } else {
         this.exportService.exportFullMushakPdfBangla(data, lang);
@@ -235,12 +235,12 @@ downloadMushakReport(lang: 'en' | 'bl') {
 }
 
 
-downloadInputOutputCoefficient(lang: 'en' | 'bl') {
+downloadInputOutputCoefficient(lang: 'EN' | 'BN') {
   const apiEndpoint = 'http://localhost:3000/mushak_values';  
   
   this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
     next: (data) => {
-      if (lang === 'en') {
+      if (lang === 'EN') {
         this.exportService.exportInputOutputCoefficientEnglish(data, lang);
       } else {
         this.exportService.exportInputOutputCoefficientBangla(data, lang);
@@ -250,12 +250,12 @@ downloadInputOutputCoefficient(lang: 'en' | 'bl') {
   });
 }
 
-downloadmushak_6_1(lang: 'en' | 'bl') {
+downloadmushak_6_1(lang: 'EN' | 'BN') {
   const apiEndpoint = 'http://localhost:3000/mushak_values';  
   
   this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
     next: (data) => {
-      if (lang === 'en') {
+      if (lang === 'EN') {
         this.exportService.exportmushak_6_1_English(data, lang);
       } else {
         this.exportService.exportmushak_6_1_Bangla(data, lang);
@@ -266,12 +266,12 @@ downloadmushak_6_1(lang: 'en' | 'bl') {
 }
 
 
-downloadmushak_6_2(lang: 'en' | 'bl') {
+downloadmushak_6_2(lang: 'EN' | 'BN') {
   const apiEndpoint = 'http://localhost:3000/mushak_values';  
   
   this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
     next: (data) => {
-      if (lang === 'en') {
+      if (lang === 'EN') {
         this.exportService.exportMushak_6_2_English(data, lang);
       } else {
         this.exportService.exportMushak_6_2_Bangla(data, lang);
@@ -281,12 +281,12 @@ downloadmushak_6_2(lang: 'en' | 'bl') {
   });
 }
 
-downloadmushak_6_2_1(lang: 'en' | 'bl') {
+downloadmushak_6_2_1(lang: 'EN' | 'BN') {
   const apiEndpoint = 'http://localhost:3000/mushak_values';  
   
   this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
     next: (data) => {
-      if (lang === 'en') {
+      if (lang === 'EN') {
         this.exportService.exportMushak_6_2_1_English(data, lang);
       } else {
         this.exportService.exportMushak_6_2_1_Bangla(data, lang);
@@ -296,12 +296,12 @@ downloadmushak_6_2_1(lang: 'en' | 'bl') {
   });
 }
 
-downloadmushak_6_3(lang: 'en' | 'bl') {
+downloadmushak_6_3(lang: 'EN' | 'BN') {
   const apiEndpoint = 'http://localhost:3000/mushak_values';  
   
   this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
     next: (data) => {
-      if (lang === 'en') {
+      if (lang === 'EN') {
         this.exportService.exportMushak_6_3_English(data, lang);
       } else {
         this.exportService.exportMushak_6_3_Bangla(data, lang);
@@ -311,12 +311,12 @@ downloadmushak_6_3(lang: 'en' | 'bl') {
   });
 }
 
-downloadmushak_6_4(lang: 'en' | 'bl') {
+downloadmushak_6_4(lang: 'EN' | 'BN') {
   const apiEndpoint = 'http://localhost:3000/mushak_values';  
   
   this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
     next: (data) => {
-      if (lang === 'en') {
+      if (lang === 'EN') {
         this.exportService.exportMushak_6_4_English(data, lang);
       } else {
         this.exportService.exportMushak_6_4_Bangla(data, lang);
@@ -326,12 +326,12 @@ downloadmushak_6_4(lang: 'en' | 'bl') {
   });
 }
 
-downloadmushak_6_5(lang: 'en' | 'bl') {
+downloadmushak_6_5(lang: 'EN' | 'BN') {
   const apiEndpoint = 'http://localhost:3000/mushak_values';  
   
   this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
     next: (data) => {
-      if (lang === 'en') {
+      if (lang === 'EN') {
         this.exportService.exportMushak_6_5_English(data, lang);
       } else {
         this.exportService.exportMushak_6_5_Bangla(data, lang);
@@ -341,15 +341,30 @@ downloadmushak_6_5(lang: 'en' | 'bl') {
   });
 }
 
-downloadmushak_6_6(lang: 'en' | 'bl') {
+downloadmushak_6_6(lang: 'EN' | 'BN') {
   const apiEndpoint = 'http://localhost:3000/mushak_values';  
   
   this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
     next: (data) => {
-      if (lang === 'en') {
+      if (lang === 'EN') {
         this.exportService.exportMushak_6_6_English(data, lang);
       } else {
         this.exportService.exportMushak_6_6_Bangla(data, lang);
+      }
+    },  
+    error: (err) => console.error("API Connection Failed!", err)
+  });
+}
+
+downloadmushak_6_7(lang: 'EN' | 'BN') {
+  const apiEndpoint = 'http://localhost:3000/mushak_values';  
+  
+  this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
+    next: (data) => {
+      if (lang === 'EN') {
+        this.exportService.exportMushak_6_7_English(data, lang);
+      } else {
+        this.exportService.exportMushak_6_7_Bangla(data, lang);
       }
     },  
     error: (err) => console.error("API Connection Failed!", err)

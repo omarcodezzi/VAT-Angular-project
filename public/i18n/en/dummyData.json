@@ -434,7 +434,7 @@
       "withholding_bin": "BIN of Withholding Entity",
       "cert_no": "VDS Certificate No.",
       "issue_date": "Issue Date",
-      "notes":"This is to certified that VAT has been deducted at source from the supplier having VAT deductitble at Source in accordance with section 49 of the Act. The VAT so deducted has been deposited in the government treasury by book transfer/treasury challan/increasing adjustment in the return. A copy has been attached.(If Applicable)"
+      "notes": "This is to certified that VAT has been deducted at source from the supplier having VAT deductitble at Source in accordance with section 49 of the Act. The VAT so deducted has been deposited in the government treasury by book transfer/treasury challan/increasing adjustment in the return. A copy has been attached.(If Applicable)"
     },
     "headers": {
       "sl": "SL No.",
@@ -452,6 +452,53 @@
       "auth_label": "Signature of Authorized Officer",
       "name_label": "Name",
       "signature_label": "Signature"
+    }
+  },
+  "mushak_6_7": {
+    "titles": {
+      "gov": "Government of the People's Republic of Bangladesh",
+      "nbr": "National Board of Revenue",
+      "form": "Credit Note",
+      "rule": "[See Clause(g) of Sub-Rule (1) of Rule 40]",
+      "m_name": "Mushak-6.7"
+    },
+    "info": {
+      "seller_title": "Return of Supplier",
+      "seller_name": "Name",
+      "seller_bin": "BIN",
+      "orig_inv_no": "Original Invoice Number",
+      "orig_inv_date": "Date of Issue",
+      "buyer_name": "Recipient of Supplies Returned",
+      "buyer_bin": "BIN",
+      "credit_note_no": "Credit Note No",
+      "inv_date": "Date of Issue",
+      "inv_time": "Time of Issue",
+      "recipient_title": "Recipient of Supplies returned",
+      "recipient_name": "Name",
+      "recipient_bin": "BIN"
+    },
+    "headers": {
+      "sl": "SL No.",
+      "details": "Details of supplies returned",
+      "unit": "Unit of Supply",
+      "qty": "Quantity",
+      "u_price": "Unit Price (TAKA)",
+      "t_price": "Total Price (TAKA)",
+      "reasons": "Reasons for return"
+    },
+    "summary": {
+      "total_val": "Total Value",
+      "deduction": "Subtraction of deduction",
+      "val_incl_vat": "Value inclusive of VAT",
+      "vat_amount": "Amount of VAT",
+      "sd_amount": "Amount of Supplementary Duty",
+      "total_tax": "Total Tax"
+    },
+    "footer": {
+      "auth_label": "Signature of Officer-in-charge",
+      "unitPrice":"1. Unit Price of production/Service inclusive of VAT/ Supplementary Duty tax.",
+      "deduction":"2. Amount of deduction, if any for refund.",
+      "totalTax":"3. Summation of VAT and supplementary Duty."
     }
   }
 }

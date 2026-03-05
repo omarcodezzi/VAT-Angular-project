@@ -209,7 +209,7 @@
       }
     },
     "mushak_4_3_data": {
-      "en": {
+      "EN": {
         "companyInfo": {
           "name": "Partex Beverage Ltd.",
           "address": "Jangaliapara, Banglabazar, Bhawal Mirzapur, Gazipur.",
@@ -233,7 +233,7 @@
           }
         ]
       },
-      "bl": {
+      "BN": {
         "companyInfo": {
           "name": "পারটেক্স বেভারেজ লি:",
           "address": "জাঙ্গালিয়াপাড়া, বাংলাবাজার, ভাওয়াল মির্জাপুর, গাজীপুর।",
@@ -259,7 +259,7 @@
       }
     },
     "mushak_6_1_data": {
-      "bl": {
+      "BN": {
         "companyInfo": {
           "name": "হাসানুজ্জামান আইটি সলিউশনস",
           "address": "মিরপুর, ঢাকা",
@@ -291,7 +291,7 @@
           }
         ]
       },
-      "en": {
+      "EN": {
         "companyInfo": {
           "name": "Hasanuzzaman IT Solutions",
           "address": "Mirpur, Dhaka",
@@ -325,7 +325,7 @@
       }
     },
     "mushak_6_2_data": {
-      "bl": {
+      "BN": {
         "companyInfo": {
           "name": "হাসানুজ্জামান আইটি সলিউশনস",
           "address": "মিরপুর, ঢাকা",
@@ -363,7 +363,7 @@
           ]
         }
       },
-      "en": {
+      "EN": {
         "companyInfo": {
           "name": "Hasanuzzaman IT Solutions",
           "address": "Mirpur, Dhaka",
@@ -403,7 +403,7 @@
       }
     },
     "mushak_6_2_1_data": {
-      "bl": {
+      "BN": {
         "items": [
           {
             "sl": "১",
@@ -435,7 +435,7 @@
           }
         ]
       },
-      "en": {
+      "EN": {
         "items": [
           {
             "sl": "1",
@@ -469,7 +469,7 @@
       }
     },
     "mushak_6_3_data": {
-      "bl": {
+      "BN": {
         "seller_name": "হাসানুজ্জামান আইটি সলিউশনস",
         "seller_bin": "১২৩৪৫৬৭৮৯০১২৩",
         "invoice_address": "মিরপুর, ঢাকা",
@@ -499,7 +499,7 @@
         "total_vat": "৫০০.০০",
         "grand_total": "১০৫০০.০০"
       },
-      "en": {
+      "EN": {
         "seller_name": "Hasanuzzaman IT Solutions",
         "seller_bin": "1234567890123",
         "invoice_address": "Mirpur, Dhaka",
@@ -531,7 +531,7 @@
       }
     },
     "mushak_6_4_data": {
-      "en": {
+      "EN": {
         "formData": {
           "registered_person": "Example Company Ltd.",
           "registered_person_bin": "001234567-0001",
@@ -566,7 +566,7 @@
           "report_date_time": "20/05/2023 05:23 PM"
         }
       },
-      "bl": {
+      "BN": {
         "formData": {
           "registered_person": "উদাহরণ কোম্পানি লিঃ",
           "registered_person_bin": "০০১২৩৪৫৬৭-০০০১",
@@ -603,7 +603,7 @@
       }
     },
     "mushak_6_5_data": {
-      "en": {
+      "EN": {
         "formData": {
           "registered_person": "Hasanuzzaman IT Solutions",
           "registered_person_bin": "1234567890123",
@@ -625,7 +625,7 @@
           ]
         }
       },
-      "bl": {
+      "BN": {
         "formData": {
           "registered_person": "হাসানুজ্জামান আইটি সলিউশনস",
           "registered_person_bin": "১২৩৪৫৬৭৮৯০১২৩",
@@ -649,7 +649,7 @@
       }
     },
     "mushak_6_6_data": {
-      "en": {
+      "EN": {
         "formData": {
           "withholding_entity": "Divine IT Limited",
           "withholding_address": "House 29, Road 12, Sector 10, Uttara, Dhaka-1230",
@@ -674,7 +674,7 @@
           "total_vds": "10474.69"
         }
       },
-      "bl": {
+      "BN": {
         "formData": {
           "withholding_entity": "ডিভাইন আইটি লিমিটেড",
           "withholding_address": "হাউজ ২৯, রোড ১২, সেক্টর ১০, উত্তরা, ঢাকা-১২৩০",
@@ -697,6 +697,70 @@
           "total_supply": "১৫০১৩৭.১৯",
           "total_vat": "১০৪৭৪.৬৯",
           "total_vds": "১০৪৭৪.৬৯"
+        }
+      }
+    },
+    "mushak_6_7_data": {
+      "EN": {
+        "formData": {
+          "seller_name": "Divine IT Limited",
+          "seller_bin": "1234567890123",
+          "orig_inv_no": "INV-2026-005",
+          "orig_inv_date": "2026-02-15",
+          "recipient_name": "Arif Corp.",
+          "recipient_bin": "9876543210987",
+          "credit_note_no": "CN-2026-001",
+          "issue_date": "2026-03-05",
+          "issue_time": "11:30 AM"
+        },
+        "tableData": {
+          "rows": [
+            {
+              "details": "Defective Cargo Pant - Blue",
+              "unit": "Pcs",
+              "qty": "10",
+              "u_price": "700.00",
+              "t_price": "7000.00"
+            }
+          ],
+          "reasons": "Goods returned due to manufacturing defect in stitching.",
+          "total_val": "7000.00",
+          "deduction": "0.00",
+          "val_incl_vat": "7350.00",
+          "vat_amount": "350.00",
+          "sd_amount": "0.00",
+          "total_tax": "350.00"
+        }
+      },
+      "BN": {
+        "formData": {
+          "seller_name": "ডিভাইন আইটি লিমিটেড",
+          "seller_bin": "১২৩৪৫৬৭৮৯০১২৩",
+          "orig_inv_no": "ইনভ-২০২৬-০০৫",
+          "orig_inv_date": "১৫/০২/২০২৬",
+          "recipient_name": "আরিফ কর্পোরেশন",
+          "recipient_bin": "৯৮৭৬৫৪৩২১০৯৮৭",
+          "credit_note_no": "সিএন-২০২৬-০০১",
+          "issue_date": "০৫/০৩/২০২৬",
+          "issue_time": "১১:৩০ এ.এম."
+        },
+        "tableData": {
+          "rows": [
+            {
+              "details": "ত্রুটিপূর্ণ কার্গো প্যান্ট - নীল",
+              "unit": "পিস",
+              "qty": "১০",
+              "u_price": "৭০০.০০",
+              "t_price": "৭০০০.০০"
+            }
+          ],
+          "reasons": "সেলাইয়ে ত্রুটি থাকায় পণ্য ফেরত দেওয়া হয়েছে।",
+          "total_val": "৭০০০.০০",
+          "deduction": "০.০০",
+          "val_incl_vat": "৭৩৫০.০০",
+          "vat_amount": "৩৫০.০০",
+          "sd_amount": "০.০০",
+          "total_tax": "৩৫০.০০"
         }
       }
     }
