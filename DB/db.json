@@ -763,6 +763,70 @@
           "total_tax": "৩৫০.০০"
         }
       }
+    },
+    "mushak_6_8_data": {
+      "EN": {
+        "formData": {
+          "seller_name": "Divine IT Limited",
+          "seller_bin": "1234567890123",
+          "orig_inv_no": "INV-2026-0012",
+          "orig_inv_date": "2026-02-10",
+          "recipient_name": "Arif Corp.",
+          "recipient_bin": "9876543210987",
+          "debit_note_no": "DN-2026-001",
+          "issue_date": "2026-03-05",
+          "issue_time": "04:30 PM"
+        },
+        "tableData": {
+          "rows": [
+            {
+              "details": "Polyester Fabric - Grade A",
+              "unit": "Meter",
+              "qty": "500",
+              "u_price": "120.00",
+              "t_price": "60000.00"
+            }
+          ],
+          "reasons": "Price adjustment due to increase in raw material costs and exchange rate fluctuations.",
+          "total_val": "60000.00",
+          "deduction": "0.00",
+          "val_incl_vat": "63000.00",
+          "vat_amount": "3000.00",
+          "sd_amount": "0.00",
+          "total_tax": "3000.00"
+        }
+      },
+      "BN": {
+        "formData": {
+          "seller_name": "ডিভাইন আইটি লিমিটেড",
+          "seller_bin": "১২৩৪৫৬৭৮৯০১২৩",
+          "orig_inv_no": "ইনভ-২০২৬-০০১২",
+          "orig_inv_date": "১০/০২/২০২৬",
+          "recipient_name": "আরিফ কর্পোরেশন",
+          "recipient_bin": "৯৮৭৬৫৪৩২১০৯৮৭",
+          "debit_note_no": "ডিএন-২০২৬-০০১",
+          "issue_date": "০৫/০৩/২০২৬",
+          "issue_time": "০৪:৩০ পি.এম."
+        },
+        "tableData": {
+          "rows": [
+            {
+              "details": "পলিয়েস্টার ফেব্রিক - গ্রেড এ",
+              "unit": "মিটার",
+              "qty": "৫০০",
+              "u_price": "১২০.০০",
+              "t_price": "৬০০০০.০০"
+            }
+          ],
+          "reasons": "কাঁচামালের দাম বৃদ্ধি এবং বিনিময় হারের পরিবর্তনের কারণে মূল্য সমন্বয় করা হয়েছে।",
+          "total_val": "৬০০০০.০০",
+          "deduction": "০.০০",
+          "val_incl_vat": "৬৩০০০.০০",
+          "vat_amount": "৩০০০.০০",
+          "sd_amount": "০.০০",
+          "total_tax": "৩০০০.০০"
+        }
+      }
     }
   }
 }

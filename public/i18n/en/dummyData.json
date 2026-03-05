@@ -496,9 +496,56 @@
     },
     "footer": {
       "auth_label": "Signature of Officer-in-charge",
-      "unitPrice":"1. Unit Price of production/Service inclusive of VAT/ Supplementary Duty tax.",
-      "deduction":"2. Amount of deduction, if any for refund.",
-      "totalTax":"3. Summation of VAT and supplementary Duty."
+      "unitPrice": "1. Unit Price of production/Service inclusive of VAT/ Supplementary Duty tax.",
+      "deduction": "2. Amount of deduction, if any for refund.",
+      "totalTax": "3. Summation of VAT and supplementary Duty."
+    }
+  },
+  "mushak_6_8": {
+    "titles": {
+      "gov": "Government of the People's Republic of Bangladesh",
+      "nbr": "National Board of Revenue",
+      "form": "Debit Note",
+      "rule": "[see Clauses (g) of Sub -Rule (1) of Rule 40]",
+      "m_name": "MUSHAK 6.8"
+    },
+    "info": {
+      "seller_title": "Return of Supplier",
+      "name": "Name",
+      "bin": "BIN",
+      "orig_inv_no": "Original Invoice Number",
+      "orig_inv_date": "Date of Issue",
+      "buyer_name": "Recipient of Supplies Returned",
+      "buyer_bin": "BIN",
+      "credit_note_no": "Credit Note No",
+      "inv_date": "Date of Issue",
+      "inv_time": "Time of Issue",
+      "recipient_title": "Recipient of Supplies returned",
+      "recipient_name": "Name",
+      "recipient_bin": "BIN"
+    },
+    "headers": {
+      "sl": "SL No",
+      "details": "Details of supplies returned",
+      "unit": "Unit of Supply",
+      "qty": "Quantity",
+      "u_price": "Unit Price (TAKA)",
+      "t_price": "Total Price (TAKA)",
+      "reasons": "Reasons for return"
+    },
+    "summary": {
+      "total_val_label": "Total Value",
+      "deduction": "Subtraction of deduction",
+      "val_incl_vat": "Value inclusive of VAT",
+      "vat_amount": "Amount of VAT",
+      "sd_amount": "Amount of Supplementary Duty",
+      "total_tax": "Total Tax"
+    },
+    "footer": {
+      "auth_label": "Signature of Office-in-charge",
+      "note1": "1. Unit Price of prduction/Service inclusive of VAT/ Supplementary Duty tax.",
+      "note2": "2. Amount of deduction, if any for refund.",
+      "note3": "3. Summation of VAT and supplementary Duty."
     }
   }
 }
