@@ -877,6 +877,64 @@
           "turnover_tax": "৩০০.০০"
         }
       }
+    },
+    "mushak_6_10_data": {
+      "EN": {
+        "formData": {
+          "person_name": "Divine IT Limited",
+          "bin": "1234567890123",
+          "auth_name": "John Doe",
+          "date": "2026-03-06"
+        },
+        "purchaseData": [
+          {
+            "inv_no": "P-2026-001",
+            "date": "2026-03-01",
+            "val": "250000.00",
+            "name": "Textile World",
+            "addr": "Gazipur, Bangladesh",
+            "id": "9988776655443"
+          }
+        ],
+        "salesData": [
+          {
+            "inv_no": "S-2026-005",
+            "date": "2026-03-05",
+            "val": "300000.00",
+            "name": "Fashion Global",
+            "addr": "Gulshan, Dhaka",
+            "id": "1122334455667"
+          }
+        ]
+      },
+      "BN": {
+        "formData": {
+          "person_name": "ডিভাইন আইটি লিমিটেড",
+          "bin": "১২৩৪৫৬৭৮৯০১২৩",
+          "auth_name": "জন ডো",
+          "date": "০৬/০৩/২০২৬"
+        },
+        "purchaseData": [
+          {
+            "inv_no": "পি-২০২৬-০০১",
+            "date": "০১/০৩/২০২৬",
+            "val": "২৫০০০০.০০",
+            "name": "টেক্সটাইল ওয়ার্ল্ড",
+            "addr": "গাজীপুর, বাংলাদেশ",
+            "id": "৯৯৮৮৭৭৬৬৫৫৪৪৩"
+          }
+        ],
+        "salesData": [
+          {
+            "inv_no": "এস-২০২৬-০০৫",
+            "date": "০৫/০৩/২০২৬",
+            "val": "৩০০০০০.০০",
+            "name": "ফ্যাশন গ্লোবাল",
+            "addr": "গুলশান, ঢাকা",
+            "id": "১১২২৩৩৪৪৫৫৬৬৭"
+          }
+        ]
+      }
     }
   }
 }

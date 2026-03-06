@@ -579,5 +579,37 @@
       "note1": "1. 3% Turnover Tax is included in unit and total price.",
       "note2": "2. Amount obtained by multiplying total value by 3/103."
     }
+  },
+  "mushak_6_10": {
+    "titles": {
+      "gov": "Government of the People's Republic of Bangladesh",
+      "nbr": "National Board of Revenue",
+      "form": "Form 6.10",
+      "sub": "Information of Purchase-Sales invoices valued above BDT 2 (Two) Lac",
+      "rule": "[See Rule 42, Sub-rule (1)]"
+    },
+    "info": {
+      "name": "Name of Registered/Listed Person:",
+      "bin": "BIN:"
+    },
+    "sections": {
+      "part_a": "Part-A: Purchase Account Information",
+      "part_b": "Part-B: Sales Account Information"
+    },
+    "headers": {
+      "sl": "SL No.",
+      "inv_no": "Invoice No.",
+      "inv_date": "Issue Date",
+      "value": "Value",
+      "seller_name": "Seller Name",
+      "seller_address": "Seller Address",
+      "seller_id": "Seller BIN/ NID No.",
+      "buyer_name": "Buyer Name",
+      "buyer_address": "Buyer Address",
+      "buyer_id": "Buyer BIN/ NID No."
+    },
+    "notes": {
+      "special_note": "* In cases where goods/services are purchased from an unregistered person or sold to an unregistered person, the full name, address, and National ID number of said person must be compulsorily mentioned in the relevant columns [(7), (8), and (9)]."
+    }
   }
 }

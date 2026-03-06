@@ -60,7 +60,8 @@ export class ExportService {
           mushak_6_6_data: values.mushak_values?.mushak_6_6_data || values.mushak_6_6_data || { items: [] },
           mushak_6_7_data: values.mushak_values?.mushak_6_7_data || values.mushak_6_7_data || { items: [] },
           mushak_6_8_data: values.mushak_values?.mushak_6_8_data || values.mushak_6_8_data || { items: [] },
-          mushak_6_9_data: values.mushak_values?.mushak_6_9_data || values.mushak_6_9_data || { items: [] }
+          mushak_6_9_data: values.mushak_values?.mushak_6_9_data || values.mushak_6_9_data || { items: [] },
+          mushak_6_10_data: values.mushak_values?.mushak_6_10_data || values.mushak_6_10_data || { items: [] }
         };
       })
     );
@@ -909,7 +910,7 @@ export class ExportService {
     (pdfMake as any).fonts = {
       PlaywriteCU: {
         normal: window.location.origin + '/assets/fonts/kalpurush.ttf',
-        bold: window.location.origin + '/assets/fonts/kalpurush.ttf',
+        bold: window.location.origin + '/assets/fonts/Kalpurush-Bold.ttf',
         italics: window.location.origin + '/assets/fonts/kalpurush.ttf',
         bolditalics: window.location.origin + '/assets/fonts/kalpurush.ttf'
       }
@@ -1594,7 +1595,7 @@ export class ExportService {
     (pdfMake as any).fonts = {
       kalpurush: {
         normal: window.location.origin + '/assets/fonts/kalpurush.ttf',
-        bold: window.location.origin + '/assets/fonts/kalpurush.ttf',
+        bold: window.location.origin + '/assets/fonts/Kalpurush-Bold.ttf',
       }
     };
 
@@ -1860,7 +1861,7 @@ export class ExportService {
     (pdfMake as any).fonts = {
       PlaywriteCU: {
         normal: window.location.origin + '/assets/fonts/kalpurush.ttf',
-        bold: window.location.origin + '/assets/fonts/kalpurush.ttf',
+        bold: window.location.origin + '/assets/fonts/Kalpurush-Bold.ttf',
         italics: window.location.origin + '/assets/fonts/kalpurush.ttf',
         bolditalics: window.location.origin + '/assets/fonts/kalpurush.ttf'
       }
@@ -2092,7 +2093,7 @@ export class ExportService {
     (pdfMake as any).fonts = {
       PlaywriteCU: {
         normal: window.location.origin + '/assets/fonts/kalpurush.ttf',
-        bold: window.location.origin + '/assets/fonts/kalpurush.ttf',
+        bold: window.location.origin + '/assets/fonts/Kalpurush-Bold.ttf',
         italics: window.location.origin + '/assets/fonts/kalpurush.ttf',
         bolditalics: window.location.origin + '/assets/fonts/kalpurush.ttf'
       }
@@ -2316,7 +2317,7 @@ export class ExportService {
     (pdfMake as any).fonts = {
       PlaywriteCU: {
         normal: window.location.origin + '/assets/fonts/kalpurush.ttf',
-        bold: window.location.origin + '/assets/fonts/kalpurush.ttf',
+        bold: window.location.origin + '/assets/fonts/Kalpurush-Bold.ttf',
         italics: window.location.origin + '/assets/fonts/kalpurush.ttf',
         bolditalics: window.location.origin + '/assets/fonts/kalpurush.ttf'
       }
@@ -2544,7 +2545,7 @@ export class ExportService {
     (pdfMake as any).fonts = {
       PlaywriteCU: {
         normal: window.location.origin + '/assets/fonts/kalpurush.ttf',
-        bold: window.location.origin + '/assets/fonts/kalpurush.ttf',
+        bold: window.location.origin + '/assets/fonts/Kalpurush-Bold.ttf',
         italics: window.location.origin + '/assets/fonts/kalpurush.ttf',
         bolditalics: window.location.origin + '/assets/fonts/kalpurush.ttf'
       }
@@ -2792,7 +2793,7 @@ export class ExportService {
     (pdfMake as any).fonts = {
       PlaywriteCU: {
         normal: window.location.origin + '/assets/fonts/kalpurush.ttf',
-        bold: window.location.origin + '/assets/fonts/kalpurush.ttf',
+        bold: window.location.origin + '/assets/fonts/Kalpurush-Bold.ttf',
         italics: window.location.origin + '/assets/fonts/kalpurush.ttf',
         bolditalics: window.location.origin + '/assets/fonts/kalpurush.ttf'
       }
@@ -3025,7 +3026,7 @@ export class ExportService {
     (pdfMake as any).fonts = {
       PlaywriteCU: {
         normal: window.location.origin + '/assets/fonts/kalpurush.ttf',
-        bold: window.location.origin + '/assets/fonts/kalpurush.ttf',
+        bold: window.location.origin + '/assets/fonts/Kalpurush-Bold.ttf',
         italics: window.location.origin + '/assets/fonts/kalpurush.ttf',
         bolditalics: window.location.origin + '/assets/fonts/kalpurush.ttf'
       }
@@ -3139,7 +3140,7 @@ export class ExportService {
     (pdfMake as any).fonts = {
       PlaywriteCU: {
         normal: window.location.origin + '/assets/fonts/kalpurush.ttf',
-        bold: window.location.origin + '/assets/fonts/kalpurush.ttf',
+        bold: window.location.origin + '/assets/fonts/Kalpurush-Bold.ttf',
         italics: window.location.origin + '/assets/fonts/kalpurush.ttf',
         bolditalics: window.location.origin + '/assets/fonts/kalpurush.ttf'
       }
@@ -3508,7 +3509,7 @@ export class ExportService {
     (pdfMake as any).fonts = {
       PlaywriteCU: {
         normal: window.location.origin + '/assets/fonts/kalpurush.ttf',
-        bold: window.location.origin + '/assets/fonts/kalpurush.ttf',
+        bold: window.location.origin + '/assets/fonts/Kalpurush-Bold.ttf',
         italics: window.location.origin + '/assets/fonts/kalpurush.ttf',
         bolditalics: window.location.origin + '/assets/fonts/kalpurush.ttf'
       }
@@ -3777,7 +3778,7 @@ export class ExportService {
     (pdfMake as any).fonts = {
       PlaywriteCU: {
         normal: window.location.origin + '/assets/fonts/kalpurush.ttf',
-        bold: window.location.origin + '/assets/fonts/kalpurush.ttf',
+        bold: window.location.origin + '/assets/fonts/Kalpurush-Bold.ttf',
         italics: window.location.origin + '/assets/fonts/kalpurush.ttf',
         bolditalics: window.location.origin + '/assets/fonts/kalpurush.ttf'
       }
@@ -4009,7 +4010,7 @@ export class ExportService {
     (pdfMake as any).fonts = {
       PlaywriteCU: {
         normal: window.location.origin + '/assets/fonts/kalpurush.ttf',
-        bold: window.location.origin + '/assets/fonts/kalpurush.ttf',
+        bold: window.location.origin + '/assets/fonts/Kalpurush-Bold.ttf',
         italics: window.location.origin + '/assets/fonts/kalpurush.ttf',
         bolditalics: window.location.origin + '/assets/fonts/kalpurush.ttf'
       }
@@ -4095,5 +4096,200 @@ export class ExportService {
       ]
     };
     pdfMake.createPdf(docDef).download(`Mushak_6.9_${lang}.pdf`);
+  }
+
+  exportMushak_6_10_Bangla(data: any, lang: string) {
+    const l = (data.labels?.mushak_6_10 || {}) as any;
+    const targetData = data.mushak_6_10_data[lang] || {};
+    const safe = (val: any) => (val !== undefined && val !== null) ? val.toString() : '';
+
+    const toBnNum = (n: any) => lang === 'bl' ? n.toString().replace(/\d/g, (d: any) => "০১২৩৪৫৬৭৮৯"[d]) : n;
+
+    (pdfMake as any).fonts = {
+      PlaywriteCU: {
+        normal: window.location.origin + '/assets/fonts/kalpurush.ttf',
+        bold: window.location.origin + '/assets/fonts/Kalpurush-Bold.ttf',
+        italics: window.location.origin + '/assets/fonts/kalpurush.ttf',
+        bolditalics: window.location.origin + '/assets/fonts/kalpurush.ttf'
+      }
+    };
+
+    const docDef: any = {
+      pageSize: 'A4',
+      pageMargins: [30, 30, 30, 30],
+      defaultStyle: { font: 'PlaywriteCU', fontSize: 8 },
+      content: [
+        { text: safe(l.titles?.gov), alignment: 'center'},
+        { text: safe(l.titles?.nbr), alignment: 'center'},
+        { text: safe(l.titles?.sub), alignment: 'center', bold: true, fontSize: 9, margin: [0, 5, 0, 0] },
+        { text: safe(l.titles?.rule), alignment: 'center', fontSize: 7, margin: [0, 2, 0, 10] },
+        { text: safe(l.titles?.form), alignment: 'right', bold: true },
+
+        { text: `${l.info?.name} ${safe(targetData.formData?.person_name)}` },
+        { text: `${l.info?.bin} ${toBnNum(safe(targetData.formData?.bin))}`, margin: [0, 0, 0, 15] },
+
+        // Part-A: Purchase [cite: 46-47]
+        { text: l.sections?.part_a, bold: true, margin: [0, 5, 0, 5], decoration: 'underline' },
+        {
+          table: {
+            headerRows: 1,
+            widths: [20, 50, 55, 60, '*', '*', 70],
+            body: [
+              [l.headers?.sl, l.headers?.inv_no, l.headers?.inv_date, l.headers?.value, l.headers?.seller_name, l.headers?.seller_address, l.headers?.seller_id].map(h => ({ text: h, alignment: 'center' })),
+              ...(targetData.purchaseData || []).map((p: any, i: number) => [
+                { text: toBnNum(i + 1), alignment: 'center' }, // ১, ২, ৩ নিশ্চিত করবে
+                safe(p.inv_no),
+                toBnNum(safe(p.date)),
+                { text: toBnNum(safe(p.val)), alignment: 'right' },
+                safe(p.name),
+                safe(p.addr),
+                toBnNum(safe(p.id))
+              ])
+            ]
+          }
+        },
+
+        // Part-B: Sales [cite: 48-49]
+        { text: l.sections?.part_b, bold: true, margin: [0, 15, 0, 5], decoration: 'underline' },
+        {
+          table: {
+            headerRows: 1,
+            widths: [20, 50, 55, 60, '*', '*', 70],
+            body: [
+              [l.headers?.sl, l.headers?.inv_no, l.headers?.inv_date, l.headers?.value, l.headers?.buyer_name, l.headers?.buyer_address, l.headers?.buyer_id].map(h => ({ text: h, alignment: 'center' })),
+              ...(targetData.salesData || []).map((s: any, i: number) => [
+                { text: toBnNum(i + 1), alignment: 'center' },
+                safe(s.inv_no),
+                toBnNum(safe(s.date)),
+                { text: toBnNum(safe(s.val)), alignment: 'right' },
+                safe(s.name),
+                safe(s.addr),
+                toBnNum(safe(s.id))
+              ])
+            ]
+          }
+        },
+
+        { text: '\nদায়িত্বপ্রাপ্ত ব্যক্তির স্বাক্ষর: ____________________', margin: [0, 30, 0, 0] },
+        { text: `নাম: ${safe(targetData.formData?.person_name)}` },
+        { text: `তারিখঃ ${toBnNum(new Date().toLocaleDateString())}` },
+        {
+          text: safe(l.notes?.special_note),
+          fontSize: 7.5,
+          italics: true,
+          margin: [0, 20, 0, 0],
+          alignment: 'justify', bold: true
+        }
+      ]
+    };
+    pdfMake.createPdf(docDef).download(`Mushak_6.10_Bangla.pdf`);
+  }
+
+  exportMushak_6_10_English(data: any, lang: string) {
+    debugger
+    const l = (data.labels?.mushak_6_10 || {}) as any;
+    const targetData = data.mushak_6_10_data[lang] || {};
+    const safe = (val: any) => (val !== undefined && val !== null) ? val.toString() : '';
+
+    (pdfMake as any).fonts = {
+      Nunito: {
+        normal: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
+        bold: window.location.origin + '/assets/fonts/Nunito-Bold.ttf',
+        italics: window.location.origin + '/assets/fonts/Nunito-Italic.ttf',
+        bolditalics: window.location.origin + '/assets/fonts/Nunito-BoldItalic.ttf'
+      }
+    };
+
+    const docDef: any = {
+      pageSize: 'A4',
+      pageMargins: [30, 30, 30, 30],
+      defaultStyle: { font: 'Nunito', fontSize: 8.5 },
+      content: [
+        { text: safe(l.titles?.gov), alignment: 'center'},
+        { text: safe(l.titles?.nbr), alignment: 'center'},
+        { text: safe(l.titles?.sub), alignment: 'center', bold: true, fontSize: 9.5, margin: [0, 5, 0, 0] },
+        { text: safe(l.titles?.rule), alignment: 'center', fontSize: 7, margin: [0, 2, 0, 10] },
+        { text: safe(l.titles?.form), alignment: 'right', bold: true, fontSize: 10 },
+
+        { text: `${l.info?.name} ${safe(targetData.formData?.person_name)}` },
+        { text: `${l.info?.bin} ${safe(targetData.formData?.bin)}`, margin: [0, 0, 0, 15] },
+
+        // Part-A: Purchase Info [cite: 46-47]
+        { text: safe(l.sections?.part_a), bold: true, margin: [0, 5, 0, 5], decoration: 'underline' },
+        {
+          table: {
+            headerRows: 1,
+            widths: [25, 55, 60, 65, '*', '*', 75],
+            body: [
+              [
+                { text: l.headers?.sl, alignment: 'center' },
+                { text: l.headers?.inv_no, alignment: 'center' },
+                { text: l.headers?.inv_date, alignment: 'center' },
+                { text: l.headers?.value, alignment: 'center' },
+                { text: l.headers?.seller_name, alignment: 'center' },
+                { text: l.headers?.seller_address, alignment: 'center' },
+                { text: l.headers?.seller_id, alignment: 'center' }
+              ],
+              ...(targetData.purchaseData || []).map((p: any, i: number) => [
+                { text: (i + 1).toString(), alignment: 'center' },
+                safe(p.inv_no),
+                safe(p.date),
+                { text: safe(p.val), alignment: 'right' },
+                safe(p.name),
+                safe(p.addr),
+                safe(p.id)
+              ])
+            ]
+          }
+        },
+
+        // Part-B: Sales Info [cite: 48-49]
+        { text: safe(l.sections?.part_b), bold: true, margin: [0, 15, 0, 5], decoration: 'underline' },
+        {
+          table: {
+            headerRows: 1,
+            widths: [25, 55, 60, 65, '*', '*', 75],
+            body: [
+              [
+                { text: l.headers?.sl, alignment: 'center' },
+                { text: l.headers?.inv_no, alignment: 'center' },
+                { text: l.headers?.inv_date, alignment: 'center' },
+                { text: l.headers?.value, alignment: 'center' },
+                { text: l.headers?.buyer_name, alignment: 'center' },
+                { text: l.headers?.buyer_address, alignment: 'center' },
+                { text: l.headers?.buyer_id, alignment: 'center' }
+              ],
+              ...(targetData.salesData || []).map((s: any, i: number) => [
+                { text: (i + 1).toString(), alignment: 'center' },
+                safe(s.inv_no),
+                safe(s.date),
+                { text: safe(s.val), alignment: 'right' },
+                safe(s.name),
+                safe(s.addr),
+                safe(s.id)
+              ])
+            ]
+          }
+        },
+
+        // Footer Section [cite: 50-52]
+        {
+          margin: [0, 30, 0, 0],
+          stack: [
+            { text: `Signature of Officer-in-charge: ____________________`, margin: [0, 0, 0, 5] },
+            { text: `Name: ${safe(targetData.formData?.auth_name || targetData.formData?.person_name)}` },
+            { text: `Date: ${safe(targetData.formData?.date || new Date().toLocaleDateString())}` }
+          ]
+        },
+        {
+          text: safe(l.notes?.special_note),
+          fontSize: 7.5,
+          italics: true,
+          margin: [0, 20, 0, 0],
+          alignment: 'justify', bold: true
+        }
+      ]
+    };
+    pdfMake.createPdf(docDef).download(`Mushak_6.10_English.pdf`);
   }
 }
