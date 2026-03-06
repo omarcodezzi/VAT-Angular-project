@@ -547,5 +547,37 @@
       "note2": "2. Amount of deduction, if any for refund.",
       "note3": "3. Summation of VAT and supplementary Duty."
     }
+  },
+  "mushak_6_9": {
+    "titles": {
+      "gov": "Government of the People's Republic of Bangladesh",
+      "nbr": "National Board of Revenue",
+      "form": "Turnover Tax Invoice",
+      "rule": "[See Rule 41, Clause (Kha)]",
+      "m_name": "MUSHAK-6.9"
+    },
+    "info": {
+      "listed_person": "Name of Listed Person",
+      "listed_bin": "BIN of Listed Person",
+      "issue_address": "Address of Issue",
+      "buyer_name": "Name of Buyer",
+      "buyer_bin": "BIN of Buyer",
+      "inv_no": "Invoice Number",
+      "inv_date": "Date of Issue"
+    },
+    "headers": {
+      "sl": "SL No.",
+      "desc": "Description of Supply",
+      "unit": "Unit of Supply",
+      "qty": "Quantity",
+      "u_price": "Unit Price (TAKA)",
+      "t_price": "Total Price (TAKA)",
+      "grand_total": "Grand Total Value",
+      "turnover_tax": "Amount of Turnover Tax"
+    },
+    "notes": {
+      "note1": "1. 3% Turnover Tax is included in unit and total price.",
+      "note2": "2. Amount obtained by multiplying total value by 3/103."
+    }
   }
 }

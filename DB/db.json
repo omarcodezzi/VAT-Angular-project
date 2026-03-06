@@ -827,6 +827,56 @@
           "total_tax": "৩০০০.০০"
         }
       }
+    },
+    "mushak_6_9_data": {
+      "EN": {
+        "formData": {
+          "listed_person": "Divine IT Limited",
+          "listed_bin": "1234567890123",
+          "issue_address": "House 29, Road 12, Sector 10, Uttara, Dhaka",
+          "buyer_name": "Arif Corp.",
+          "buyer_bin": "9876543210987",
+          "chalan_number": "TT-2026-005",
+          "issue_date": "2026-03-06"
+        },
+        "tableData": {
+          "rows": [
+            {
+              "desc": "Software Support Service",
+              "unit": "Month",
+              "qty": "1",
+              "u_price": "10300.00",
+              "t_price": "10300.00"
+            }
+          ],
+          "grand_total": "10300.00",
+          "turnover_tax": "300.00"
+        }
+      },
+      "BN": {
+        "formData": {
+          "listed_person": "ডিভাইন আইটি লিমিটেড",
+          "listed_bin": "১২৩৪৫৬৭৮৯০১২৩",
+          "issue_address": "হাউজ ২৯, রোড ১২, সেক্টর ১০, উত্তরা, ঢাকা",
+          "buyer_name": "আরিফ কর্পোরেশন",
+          "buyer_bin": "৯৮৭৬৫৪৩২১০৯৮৭",
+          "chalan_number": "টিটি-২০২৬-০০৫",
+          "issue_date": "০৬/০৩/২০২৬"
+        },
+        "tableData": {
+          "rows": [
+            {
+              "desc": "সফটওয়্যার সাপোর্ট সার্ভিস",
+              "unit": "মাস",
+              "qty": "১",
+              "u_price": "১০৩০০.০০",
+              "t_price": "১০৩০০.০০"
+            }
+          ],
+          "grand_total": "১০৩০০.০০",
+          "turnover_tax": "৩০০.০০"
+        }
+      }
     }
   }
 }

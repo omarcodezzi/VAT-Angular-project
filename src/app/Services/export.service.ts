@@ -59,7 +59,8 @@ export class ExportService {
           mushak_6_5_data: values.mushak_values?.mushak_6_5_data || values.mushak_6_5_data || { items: [] },
           mushak_6_6_data: values.mushak_values?.mushak_6_6_data || values.mushak_6_6_data || { items: [] },
           mushak_6_7_data: values.mushak_values?.mushak_6_7_data || values.mushak_6_7_data || { items: [] },
-          mushak_6_8_data: values.mushak_values?.mushak_6_8_data || values.mushak_6_8_data || { items: [] }
+          mushak_6_8_data: values.mushak_values?.mushak_6_8_data || values.mushak_6_8_data || { items: [] },
+          mushak_6_9_data: values.mushak_values?.mushak_6_9_data || values.mushak_6_9_data || { items: [] }
         };
       })
     );
@@ -175,9 +176,9 @@ export class ExportService {
     (pdfMake as any).fonts = {
       PlaywriteCU: {
         normal: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
-        bold: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
-        italics: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
-        bolditalics: window.location.origin + '/assets/fonts/Nunito-Regular.ttf'
+        bold: window.location.origin + '/assets/fonts/Nunito-Bold.ttf',
+        italics: window.location.origin + '/assets/fonts/Nunito-Italic.ttf',
+        bolditalics: window.location.origin + '/assets/fonts/Nunito-BoldItalic.ttf'
       }
     };
 
@@ -1458,9 +1459,9 @@ export class ExportService {
     (pdfMake as any).fonts = {
       Nunito: {
         normal: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
-        bold: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
-        italics: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
-        bolditalics: window.location.origin + '/assets/fonts/Nunito-Regular.ttf'
+        bold: window.location.origin + '/assets/fonts/Nunito-Bold.ttf',
+        italics: window.location.origin + '/assets/fonts/Nunito-Italic.ttf',
+        bolditalics: window.location.origin + '/assets/fonts/Nunito-BoldItalic.ttf'
       }
     };
 
@@ -1708,7 +1709,7 @@ export class ExportService {
       }
     };
 
-    pdfMake.createPdf(docDef).download(`mushak_4_3_${lang}.pdf`);    
+    pdfMake.createPdf(docDef).download(`mushak_4_3_${lang}.pdf`);
   }
 
   exportmushak_6_1_English(data: any, lang: string) {
@@ -1723,9 +1724,9 @@ export class ExportService {
     (pdfMake as any).fonts = {
       Nunito: {
         normal: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
-        bold: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
-        italics: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
-        bolditalics: window.location.origin + '/assets/fonts/Nunito-Regular.ttf'
+        bold: window.location.origin + '/assets/fonts/Nunito-Bold.ttf',
+        italics: window.location.origin + '/assets/fonts/Nunito-Italic.ttf',
+        bolditalics: window.location.origin + '/assets/fonts/Nunito-BoldItalic.ttf'
       }
     };
 
@@ -2000,9 +2001,9 @@ export class ExportService {
     (pdfMake as any).fonts = {
       Nunito: {
         normal: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
-        bold: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
-        italics: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
-        bolditalics: window.location.origin + '/assets/fonts/Nunito-Regular.ttf'
+        bold: window.location.origin + '/assets/fonts/Nunito-Bold.ttf',
+        italics: window.location.origin + '/assets/fonts/Nunito-Italic.ttf',
+        bolditalics: window.location.origin + '/assets/fonts/Nunito-BoldItalic.ttf'
       }
     };
 
@@ -2206,9 +2207,9 @@ export class ExportService {
     (pdfMake as any).fonts = {
       Nunito: {
         normal: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
-        bold: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
-        italics: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
-        bolditalics: window.location.origin + '/assets/fonts/Nunito-Regular.ttf'
+        bold: window.location.origin + '/assets/fonts/Nunito-Bold.ttf',
+        italics: window.location.origin + '/assets/fonts/Nunito-Italic.ttf',
+        bolditalics: window.location.origin + '/assets/fonts/Nunito-BoldItalic.ttf'
       }
     };
 
@@ -2423,9 +2424,9 @@ export class ExportService {
     (pdfMake as any).fonts = {
       Nunito: {
         normal: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
-        bold: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
-        italics: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
-        bolditalics: window.location.origin + '/assets/fonts/Nunito-Regular.ttf'
+        bold: window.location.origin + '/assets/fonts/Nunito-Bold.ttf',
+        italics: window.location.origin + '/assets/fonts/Nunito-Italic.ttf',
+        bolditalics: window.location.origin + '/assets/fonts/Nunito-BoldItalic.ttf'
       }
     };
 
@@ -2667,9 +2668,9 @@ export class ExportService {
     (pdfMake as any).fonts = {
       Nunito: {
         normal: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
-        bold: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
-        italics: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
-        bolditalics: window.location.origin + '/assets/fonts/Nunito-Regular.ttf'
+        bold: window.location.origin + '/assets/fonts/Nunito-Bold.ttf',
+        italics: window.location.origin + '/assets/fonts/Nunito-Italic.ttf',
+        bolditalics: window.location.origin + '/assets/fonts/Nunito-BoldItalic.ttf'
       }
     };
 
@@ -2910,9 +2911,9 @@ export class ExportService {
     (pdfMake as any).fonts = {
       Nunito: {
         normal: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
-        bold: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
-        italics: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
-        bolditalics: window.location.origin + '/assets/fonts/Nunito-Regular.ttf'
+        bold: window.location.origin + '/assets/fonts/Nunito-Bold.ttf',
+        italics: window.location.origin + '/assets/fonts/Nunito-Italic.ttf',
+        bolditalics: window.location.origin + '/assets/fonts/Nunito-BoldItalic.ttf'
       }
     };
 
@@ -3254,9 +3255,9 @@ export class ExportService {
     (pdfMake as any).fonts = {
       Nunito: {
         normal: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
-        bold: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
-        italics: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
-        bolditalics: window.location.origin + '/assets/fonts/Nunito-Regular.ttf'
+        bold: window.location.origin + '/assets/fonts/Nunito-Bold.ttf',
+        italics: window.location.origin + '/assets/fonts/Nunito-Italic.ttf',
+        bolditalics: window.location.origin + '/assets/fonts/Nunito-BoldItalic.ttf'
       }
     };
 
@@ -3373,9 +3374,9 @@ export class ExportService {
     (pdfMake as any).fonts = {
       Nunito: {
         normal: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
-        bold: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
-        italics: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
-        bolditalics: window.location.origin + '/assets/fonts/Nunito-Regular.ttf'
+        bold: window.location.origin + '/assets/fonts/Nunito-Bold.ttf',
+        italics: window.location.origin + '/assets/fonts/Nunito-Italic.ttf',
+        bolditalics: window.location.origin + '/assets/fonts/Nunito-BoldItalic.ttf'
       }
     };
 
@@ -3642,9 +3643,9 @@ export class ExportService {
     (pdfMake as any).fonts = {
       Nunito: {
         normal: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
-        bold: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
-        italics: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
-        bolditalics: window.location.origin + '/assets/fonts/Nunito-Regular.ttf'
+        bold: window.location.origin + '/assets/fonts/Nunito-Bold.ttf',
+        italics: window.location.origin + '/assets/fonts/Nunito-Italic.ttf',
+        bolditalics: window.location.origin + '/assets/fonts/Nunito-BoldItalic.ttf'
       }
     };
 
@@ -3767,7 +3768,7 @@ export class ExportService {
     pdfMake.createPdf(docDef).download(`Mushak_6.8_${lang}.pdf`);
   }
 
-    exportMushak_6_8_Bangla(data: any, lang: string) {
+  exportMushak_6_8_Bangla(data: any, lang: string) {
     const l = (data.labels?.mushak_6_8 || {}) as any;
     const targetData = data.mushak_6_8_data[lang] || {};
     const items = (targetData.tableData?.rows || []) as any[];
@@ -3901,4 +3902,198 @@ export class ExportService {
     pdfMake.createPdf(docDef).download(`Mushak_6.8_${lang}.pdf`);
   }
 
+  exportMushak_6_9_English(data: any, lang: string) {
+    const l = (data.labels?.mushak_6_9 || {}) as any;
+    const targetData = data.mushak_6_9_data[lang] || {};
+    const items = (targetData.tableData?.rows || []) as any[];
+    const safe = (val: any) => (val !== undefined && val !== null) ? val.toString() : '';
+
+    (pdfMake as any).fonts = {
+      Nunito: {
+        normal: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
+        bold: window.location.origin + '/assets/fonts/Nunito-Bold.ttf',
+        italics: window.location.origin + '/assets/fonts/Nunito-Italic.ttf',
+        bolditalics: window.location.origin + '/assets/fonts/Nunito-BoldItalic.ttf'
+      }
+    };
+
+    const docDef: any = {
+      pageSize: 'A4',
+      pageMargins: [30, 30, 30, 30],
+      defaultStyle: { font: 'Nunito', fontSize: 9 },
+      content: [
+        { text: safe(l.titles?.m_name), alignment: 'right', bold: true },
+        { text: safe(l.titles?.gov), alignment: 'center', bold: true },
+        { text: safe(l.titles?.nbr), alignment: 'center', bold: true },
+        { text: safe(l.titles?.form), alignment: 'center', bold: true, fontSize: 11, margin: [0, 5, 0, 0] },
+        { text: safe(l.titles?.rule), alignment: 'center', fontSize: 8, margin: [0, 0, 0, 15] },
+
+        {
+          columns: [
+            {
+              width: '*',
+              stack: [
+                { text: `${safe(l.info?.listed_person)}: ${safe(targetData.formData?.listed_person)}` },
+                { text: `${safe(l.info?.listed_bin)}: ${safe(targetData.formData?.listed_bin)}` },
+                { text: `${safe(l.info?.issue_address)}: ${safe(targetData.formData?.issue_address)}` },
+                { text: `${safe(l.info?.inv_no)}: ${safe(targetData.formData?.chalan_number)}`, bold: true },
+                { text: `${safe(l.info?.inv_date)}: ${safe(targetData.formData?.issue_date)}` }
+              ]
+            },
+            {
+              width: 'auto',
+              stack: [
+                { text: `${safe(l.info?.buyer_name)}: ${safe(targetData.formData?.buyer_name)}` },
+                { text: `${safe(l.info?.buyer_bin)}: ${safe(targetData.formData?.buyer_bin)}` }
+              ],
+              alignment: 'right'
+            }
+          ],
+          margin: [0, 0, 0, 15]
+        },
+
+        {
+          table: {
+            headerRows: 1,
+            widths: [35, '*', 60, 60, 80, 80],
+            body: [
+              [
+                { text: l.headers?.sl, bold: true, alignment: 'center' },
+                { text: l.headers?.desc, bold: true, alignment: 'center' },
+                { text: l.headers?.unit, bold: true, alignment: 'center' },
+                { text: l.headers?.qty, bold: true, alignment: 'center' },
+                { text: l.headers?.u_price, bold: true, alignment: 'center' },
+                { text: l.headers?.t_price, bold: true, alignment: 'center' }
+              ],
+              ...items.map((item, index) => [
+                { text: (index + 1).toString(), alignment: 'center' },
+                safe(item.desc),
+                { text: safe(item.unit), alignment: 'center' },
+                { text: safe(item.qty), alignment: 'center' },
+                { text: safe(item.u_price), alignment: 'right' },
+                { text: safe(item.t_price), alignment: 'right' }
+              ]),
+              [
+                { text: safe(l.headers?.grand_total), colSpan: 5, alignment: 'right', bold: true },
+                {}, {}, {}, {},
+                { text: safe(targetData.tableData?.grand_total), alignment: 'right', bold: true }
+              ],
+              [
+                { text: safe(l.headers?.turnover_tax), colSpan: 5, alignment: 'right', bold: true },
+                {}, {}, {}, {},
+                { text: safe(targetData.tableData?.turnover_tax), alignment: 'right', bold: true }
+              ]
+            ]
+          }
+        },
+
+        {
+          margin: [0, 25, 0, 0],
+          stack: [
+            { text: safe(l.notes?.note1), fontSize: 8 },
+            { text: safe(l.notes?.note2), fontSize: 8, margin: [0, 5, 0, 0] }
+          ]
+        }
+      ]
+    };
+    pdfMake.createPdf(docDef).download(`Mushak_6.9_${lang}.pdf`);
+  }
+
+  exportMushak_6_9_Bangla(data: any, lang: string) {
+    const l = (data.labels?.mushak_6_9 || {}) as any;
+    const targetData = data.mushak_6_9_data[lang] || {};
+    const items = (targetData.tableData?.rows || []) as any[];
+    const safe = (val: any) => (val !== undefined && val !== null) ? val.toString() : '';
+    const toBnNum = (n: any) => lang === 'BN' ? n.toString().replace(/\d/g, (d: any) => "০১২৩৪৫৬৭৮৯"[d]) : n;
+
+    (pdfMake as any).fonts = {
+      PlaywriteCU: {
+        normal: window.location.origin + '/assets/fonts/kalpurush.ttf',
+        bold: window.location.origin + '/assets/fonts/kalpurush.ttf',
+        italics: window.location.origin + '/assets/fonts/kalpurush.ttf',
+        bolditalics: window.location.origin + '/assets/fonts/kalpurush.ttf'
+      }
+    };
+
+    const docDef: any = {
+      pageSize: 'A4',
+      pageMargins: [30, 30, 30, 30],
+      defaultStyle: { font: 'PlaywriteCU', fontSize: 9 },
+      content: [
+        { text: safe(l.titles?.m_name), alignment: 'right', bold: true },
+        { text: safe(l.titles?.gov), alignment: 'center', bold: true },
+        { text: safe(l.titles?.nbr), alignment: 'center', bold: true },
+        { text: safe(l.titles?.form), alignment: 'center', bold: true, fontSize: 12 },
+        { text: safe(l.titles?.rule), alignment: 'center', fontSize: 8.5, margin: [0, 2, 0, 15] },
+
+        {
+          columns: [
+            {
+              width: '*',
+              stack: [
+                { text: `${safe(l.info?.listed_person)} : ${safe(targetData.formData?.listed_person)}` },
+                { text: `${safe(l.info?.listed_bin)} : ${safe(targetData.formData?.listed_bin)}` },
+                { text: `${safe(l.info?.issue_address)} : ${safe(targetData.formData?.issue_address)}` },
+                { text: `${safe(l.info?.inv_no)} : ${safe(targetData.formData?.chalan_number)}`, bold: true },
+                { text: `${safe(l.info?.inv_date)} : ${safe(targetData.formData?.issue_date)}` }
+              ]
+            },
+            {
+              width: 'auto',
+              stack: [
+                { text: `${safe(l.info?.buyer_name)} : ${safe(targetData.formData?.buyer_name)}` },
+                { text: `${safe(l.info?.buyer_bin)} : ${safe(targetData.formData?.buyer_bin)}` }
+              ],
+              alignment: 'right'
+            }
+          ],
+          margin: [0, 0, 0, 15]
+        },
+
+        {
+          table: {
+            headerRows: 1,
+            widths: [35, '*', 60, 60, 80, 80],
+            body: [
+              [
+                { text: l.headers?.sl, bold: true, alignment: 'center' },
+                { text: l.headers?.desc, bold: true, alignment: 'center' },
+                { text: l.headers?.unit, bold: true, alignment: 'center' },
+                { text: l.headers?.qty, bold: true, alignment: 'center' },
+                { text: l.headers?.u_price, bold: true, alignment: 'center' },
+                { text: l.headers?.t_price, bold: true, alignment: 'center' }
+              ],
+              ...items.map((item, index) => [
+                { text: toBnNum(index + 1), alignment: 'center' },
+                safe(item.desc),
+                { text: safe(item.unit), alignment: 'center' },
+                { text: toBnNum(safe(item.qty)), alignment: 'center' },
+                { text: toBnNum(safe(item.u_price)), alignment: 'right' },
+                { text: toBnNum(safe(item.t_price)), alignment: 'right' }
+              ]),
+              [
+                { text: safe(l.headers?.grand_total), colSpan: 5, alignment: 'right', bold: true },
+                {}, {}, {}, {},
+                { text: toBnNum(safe(targetData.tableData?.grand_total)), alignment: 'right', bold: true }
+              ],
+              [
+                { text: safe(l.headers?.turnover_tax), colSpan: 5, alignment: 'right', bold: true },
+                {}, {}, {}, {},
+                { text: toBnNum(safe(targetData.tableData?.turnover_tax)), alignment: 'right', bold: true }
+              ]
+            ]
+          }
+        },
+
+        {
+          margin: [0, 25, 0, 0],
+          stack: [
+            { text: safe(l.notes?.note1), fontSize: 8 },
+            { text: safe(l.notes?.note2), fontSize: 8, margin: [0, 5, 0, 0] }
+          ]
+        }
+      ]
+    };
+    pdfMake.createPdf(docDef).download(`Mushak_6.9_${lang}.pdf`);
+  }
 }
