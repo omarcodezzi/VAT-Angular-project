@@ -213,6 +213,7 @@ export class ExcelImportComponent {
     this.exportService.exportPdf(rows, 'VAT_HS_Code.pdf');
   }
 
+<<<<<<< HEAD
   downloadMushakReport(lang: 'EN' | 'BN') {
     const apiEndpoint = 'http://localhost:3000/mushak_values';
 
@@ -431,4 +432,228 @@ export class ExcelImportComponent {
   //     }
   //   });
   // }
+=======
+downloadMushakReport(lang: 'EN' | 'BN') {
+  const apiEndpoint = 'http://localhost:3000/mushak_values';  
+  
+  this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
+    next: (data) => {
+      if (lang === 'EN') {
+        this.exportService.exportFullMushakPdf(data, lang);
+      } else {
+        this.exportService.exportFullMushakPdfBangla(data, lang);
+      }
+    },  
+    error: (err) => console.error("API Connection Failed!", err)
+  });
+}
+
+
+downloadInputOutputCoefficient(lang: 'EN' | 'BN') {
+  const apiEndpoint = 'http://localhost:3000/mushak_values';  
+  
+  this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
+    next: (data) => {
+      if (lang === 'EN') {
+        this.exportService.exportInputOutputCoefficientEnglish(data, lang);
+      } else {
+        this.exportService.exportInputOutputCoefficientBangla(data, lang);
+      }
+    },  
+    error: (err) => console.error("API Connection Failed!", err)
+  });
+}
+
+downloadmushak_6_1(lang: 'EN' | 'BN') {
+  const apiEndpoint = 'http://localhost:3000/mushak_values';  
+  
+  this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
+    next: (data) => {
+      if (lang === 'EN') {
+        this.exportService.exportmushak_6_1_English(data, lang);
+      } else {
+        this.exportService.exportmushak_6_1_Bangla(data, lang);
+      }
+    },  
+    error: (err) => console.error("API Connection Failed!", err)
+  });
+}
+
+
+downloadmushak_6_2(lang: 'EN' | 'BN') {
+  const apiEndpoint = 'http://localhost:3000/mushak_values';  
+  
+  this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
+    next: (data) => {
+      if (lang === 'EN') {
+        this.exportService.exportMushak_6_2_English(data, lang);
+      } else {
+        this.exportService.exportMushak_6_2_Bangla(data, lang);
+      }
+    },  
+    error: (err) => console.error("API Connection Failed!", err)
+  });
+}
+
+downloadmushak_6_2_1(lang: 'EN' | 'BN') {
+  const apiEndpoint = 'http://localhost:3000/mushak_values';  
+  
+  this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
+    next: (data) => {
+      if (lang === 'EN') {
+        this.exportService.exportMushak_6_2_1_English(data, lang);
+      } else {
+        this.exportService.exportMushak_6_2_1_Bangla(data, lang);
+      }
+    },  
+    error: (err) => console.error("API Connection Failed!", err)
+  });
+}
+
+downloadmushak_6_3(lang: 'EN' | 'BN') {
+  const apiEndpoint = 'http://localhost:3000/mushak_values';  
+  
+  this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
+    next: (data) => {
+      if (lang === 'EN') {
+        this.exportService.exportMushak_6_3_English(data, lang);
+      } else {
+        this.exportService.exportMushak_6_3_Bangla(data, lang);
+      }
+    },  
+    error: (err) => console.error("API Connection Failed!", err)
+  });
+}
+
+downloadmushak_6_4(lang: 'EN' | 'BN') {
+  const apiEndpoint = 'http://localhost:3000/mushak_values';  
+  
+  this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
+    next: (data) => {
+      if (lang === 'EN') {
+        this.exportService.exportMushak_6_4_English(data, lang);
+      } else {
+        this.exportService.exportMushak_6_4_Bangla(data, lang);
+      }
+    },  
+    error: (err) => console.error("API Connection Failed!", err)
+  });
+}
+
+downloadmushak_6_5(lang: 'EN' | 'BN') {
+  const apiEndpoint = 'http://localhost:3000/mushak_values';  
+  
+  this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
+    next: (data) => {
+      if (lang === 'EN') {
+        this.exportService.exportMushak_6_5_English(data, lang);
+      } else {
+        this.exportService.exportMushak_6_5_Bangla(data, lang);
+      }
+    },  
+    error: (err) => console.error("API Connection Failed!", err)
+  });
+}
+
+downloadmushak_6_6(lang: 'EN' | 'BN') {
+  const apiEndpoint = 'http://localhost:3000/mushak_values';  
+  
+  this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
+    next: (data) => {
+      if (lang === 'EN') {
+        this.exportService.exportMushak_6_6_English(data, lang);
+      } else {
+        this.exportService.exportMushak_6_6_Bangla(data, lang);
+      }
+    },  
+    error: (err) => console.error("API Connection Failed!", err)
+  });
+}
+
+downloadmushak_6_7(lang: 'EN' | 'BN') {
+  const apiEndpoint = 'http://localhost:3000/mushak_values';  
+  
+  this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
+    next: (data) => {
+      if (lang === 'EN') {
+        this.exportService.exportMushak_6_7_English(data, lang);
+      } else {
+        this.exportService.exportMushak_6_7_Bangla(data, lang);
+      }
+    },  
+    error: (err) => console.error("API Connection Failed!", err)
+  });
+}
+
+downloadmushak_6_8(lang: 'EN' | 'BN') {
+  const apiEndpoint = 'http://localhost:3000/mushak_values';  
+  
+  this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
+    next: (data) => {
+      if (lang === 'EN') {
+        this.exportService.exportMushak_6_8_English(data, lang);
+      } else {
+        this.exportService.exportMushak_6_8_Bangla(data, lang);
+      }
+    },  
+    error: (err) => console.error("API Connection Failed!", err)
+  });
+}
+
+downloadmushak_6_9(lang: 'EN' | 'BN') {
+  const apiEndpoint = 'http://localhost:3000/mushak_values';  
+  
+  this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
+    next: (data) => {
+      if (lang === 'EN') {
+        this.exportService.exportMushak_6_9_English(data, lang);
+      } else {
+        this.exportService.exportMushak_6_9_Bangla(data, lang);
+      }
+    },  
+    error: (err) => console.error("API Connection Failed!", err)
+  });
+}
+
+downloadmushak_6_10(lang: 'EN' | 'BN') {
+  const apiEndpoint = 'http://localhost:3000/mushak_values';  
+  
+  this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
+    next: (data) => {
+      if (lang === 'EN') {
+        this.exportService.exportMushak_6_10_English(data, lang);
+      } else {
+        this.exportService.exportMushak_6_10_Bangla(data, lang);
+      }
+    },  
+    error: (err) => console.error("API Connection Failed!", err)
+  });
+}
+
+
+downloadmushak_10_1(lang: 'EN' | 'BN') {
+  const apiEndpoint = 'http://localhost:3000/mushak_values';  
+  
+  this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
+    next: (data) => {
+      if (lang === 'EN') {
+        this.exportService.exportMushak_10_1(data, lang);
+      } else {
+        this.exportService.exportMushak_10_1(data, lang);
+      }
+    },  
+    error: (err) => console.error("API Connection Failed!", err)
+  });
+}
+  
+// Full Formatted Excel Report
+// downloadFullMushakExcel() {
+//   this.exportService.getMushakJsonData().subscribe({
+//     next: (data) => {
+//       this.exportService.exportFullMushakExcel(data);
+//     }
+//   });
+// }
+ 
+>>>>>>> c95636fd6d563959d0051720fa7ecbd5f75bd676
 }

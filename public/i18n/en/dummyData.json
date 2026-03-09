@@ -636,5 +636,54 @@
     "notes": {
       "special_note": "* In cases where goods/services are purchased from an unregistered person or sold to an unregistered person, the full name, address, and National ID number of said person must be compulsorily mentioned in the relevant columns [(7), (8), and (9)]."
     }
+  },
+  "mushak_10_1": {
+    "titles": {
+      "gov": "Government of the People's Republic of Bangladesh",
+      "nbr": "National Board of Revenue",
+      "form": "MUSHAK-10.1",
+      "name": "Tax Refund Application for Diplomatic or International Organizations",
+      "rule": "[Rule 55, Sub-rule (1)]"
+    },
+    "sections": {
+      "part1": "Part-1: Identity of Applicant",
+      "part2": "Part-2: Refund Claim",
+      "part3": "Part-3: Details of Refund Claim",
+      "part4": "Part-4: Declaration"
+    },
+    "info": {
+      "org_name": "(1) Name of Institution",
+      "bin": "(2) Business Identification Number (if any)",
+      "applicant_name": "(3) Name of Applicant",
+      "designation": "(4) Designation of Applicant/Authorized Representative",
+      "id_no": "(5) Identity Number of Applicant/Authorized Representative",
+      "actual_vat": "(1) Actual Paid VAT & Supplementary Duty (Total of Part-3)",
+      "attachments": "(2) Attachments (Tick where applicable)",
+      "att_a": "VAT Invoice",
+      "att_b": "Bill of Entry",
+      "att_c": "Letter of Authorization",
+      "att_d": "Identity Card",
+      "copy_no": "No. of Copies"
+    },
+    "headers": {
+      "sl": "SL",
+      "inv_no": "VAT Invoice/Bill No.",
+      "date": "Date",
+      "supplier": "Supplier",
+      "bin": "Supplier BIN",
+      "desc": "Description",
+      "value": "Value (Tk.)",
+      "vat_sd": "Paid VAT & SD (Tk.)",
+      "table_total": "Total (Provide this info in Part-2 SL-1):"
+    },
+    "declaration": {
+      "text": "I declare that the information provided in this submission is complete, true, and correct.",
+      "name": "Name",
+      "designation": "Designation",
+      "date": "Date",
+      "mobile": "Mobile No.",
+      "email": "Email",
+      "signature": "Signature"
+    }
   }
 }

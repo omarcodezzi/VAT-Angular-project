@@ -936,6 +936,7 @@
         ]
       }
     },
+<<<<<<< HEAD
     "mushak_2_3_data": {
       "EN": {
         "issuingAuthority": {
@@ -1002,6 +1003,58 @@
           "typeOfOwnership": "একমালিকানা",
           "majorAreaOfEconomicActivity": "সেবা"
         }
+=======
+    "mushak_10_1_data": {
+      "EN": {
+        "formData": {
+          "org_name": "United Nations Development Programme",
+          "bin": "1234567890123",
+          "applicant_name": "John Smith",
+          "designation": "Head of Finance",
+          "id_no": "UN-ID-9988",
+          "att_a": 123,
+          "att_b": "BE543",
+          "att_c": "Test",
+          "att_d": 4532
+        },
+        "tableData": [
+          {
+            "inv_no": "VAT-INV-5001",
+            "date": "2026-03-01",
+            "supplier": "Global Tech Ltd",
+            "supplier_bin": "9876543210111",
+            "desc": "IT Infrastructure Support",
+            "val": "500000.00",
+            "vat_sd": "75000.00"
+          }
+        ],
+        "total_vat": "75000.00"
+      },
+      "BN": {
+        "formData": {
+          "org_name": "ইউনাইটেড নেশনস ডেভেলপমেন্ট প্রোগ্রাম",
+          "bin": "১২৩৪৫৬৭৮৯০১২৩",
+          "applicant_name": "জন স্মিথ",
+          "designation": "অর্থ প্রধান",
+          "id_no": "ইউএন-আইডি-৯৯৮৮",
+          "att_a": "১২৩",
+          "att_b": "বিএ-৫৪৩",
+          "att_c": "টেস্ট",
+          "att_d": "৪৫৩২"
+        },
+        "tableData": [
+          {
+            "inv_no": "মূসক-চালান-৫০০১",
+            "date": "০১/০৩/২০২৬",
+            "supplier": "গ্লোবাল টেক লিঃ",
+            "supplier_bin": "৯৮৭৬৫৪৩২১০১১১",
+            "desc": "আইটি অবকাঠামো সহায়তা",
+            "val": "৫০০০০০.০০",
+            "vat_sd": "৭৫০০০.০০"
+          }
+        ],
+        "total_vat": "৭৫০০০.০০"
+>>>>>>> c95636fd6d563959d0051720fa7ecbd5f75bd676
       }
     }
   }

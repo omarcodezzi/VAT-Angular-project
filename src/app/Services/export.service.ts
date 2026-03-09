@@ -62,7 +62,9 @@ export class ExportService {
           mushak_6_7_data: values.mushak_values?.mushak_6_7_data || values.mushak_6_7_data || { items: [] },
           mushak_6_8_data: values.mushak_values?.mushak_6_8_data || values.mushak_6_8_data || { items: [] },
           mushak_6_9_data: values.mushak_values?.mushak_6_9_data || values.mushak_6_9_data || { items: [] },
-          mushak_6_10_data: values.mushak_values?.mushak_6_10_data || values.mushak_6_10_data || { items: [] }
+          mushak_6_10_data: values.mushak_values?.mushak_6_10_data || values.mushak_6_10_data || { items: [] },
+          mushak_6_11_data: values.mushak_values?.mushak_6_11_data || values.mushak_6_11_data || { items: [] },
+          mushak_10_1_data: values.mushak_values?.mushak_10_1_data || values.mushak_10_1_data || { items: [] },
         };
       })
     );
@@ -4181,8 +4183,8 @@ exportMushak_2_3(data: any, lang: string) {
       pageMargins: [30, 30, 30, 30],
       defaultStyle: { font: 'PlaywriteCU', fontSize: 8 },
       content: [
-        { text: safe(l.titles?.gov), alignment: 'center'},
-        { text: safe(l.titles?.nbr), alignment: 'center'},
+        { text: safe(l.titles?.gov), alignment: 'center' },
+        { text: safe(l.titles?.nbr), alignment: 'center' },
         { text: safe(l.titles?.sub), alignment: 'center', bold: true, fontSize: 9, margin: [0, 5, 0, 0] },
         { text: safe(l.titles?.rule), alignment: 'center', fontSize: 7, margin: [0, 2, 0, 10] },
         { text: safe(l.titles?.form), alignment: 'right', bold: true },
@@ -4244,7 +4246,7 @@ exportMushak_2_3(data: any, lang: string) {
         }
       ]
     };
-    pdfMake.createPdf(docDef).download(`Mushak_6.10_Bangla.pdf`);
+    pdfMake.createPdf(docDef).download(`Mushak_6.10_${lang}.pdf`);
   }
 
   exportMushak_6_10_English(data: any, lang: string) {
@@ -4267,8 +4269,8 @@ exportMushak_2_3(data: any, lang: string) {
       pageMargins: [30, 30, 30, 30],
       defaultStyle: { font: 'Nunito', fontSize: 8.5 },
       content: [
-        { text: safe(l.titles?.gov), alignment: 'center'},
-        { text: safe(l.titles?.nbr), alignment: 'center'},
+        { text: safe(l.titles?.gov), alignment: 'center' },
+        { text: safe(l.titles?.nbr), alignment: 'center' },
         { text: safe(l.titles?.sub), alignment: 'center', bold: true, fontSize: 9.5, margin: [0, 5, 0, 0] },
         { text: safe(l.titles?.rule), alignment: 'center', fontSize: 7, margin: [0, 2, 0, 10] },
         { text: safe(l.titles?.form), alignment: 'right', bold: true, fontSize: 10 },
@@ -4352,6 +4354,143 @@ exportMushak_2_3(data: any, lang: string) {
         }
       ]
     };
-    pdfMake.createPdf(docDef).download(`Mushak_6.10_English.pdf`);
+    pdfMake.createPdf(docDef).download(`Mushak_6.10_${lang}.pdf`);
   }
+
+  exportMushak_10_1(data: any, lang: string) {
+    debugger
+    const l = (data.labels?.mushak_10_1 || {}) as any;
+    const targetData = data.mushak_10_1_data?.[lang] || {};
+    const items = (targetData.tableData || []) as any[];
+    const safe = (val: any) => (val !== undefined && val !== null) ? val.toString() : '';
+    const toBnNum = (n: any) => lang === 'BN' ? n.toString().replace(/\d/g, (d: any) => "০১২৩৪৫৬৭৮৯"[d]) : n;
+
+    (pdfMake as any).fonts = {
+      Nunito: {
+        normal: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
+        bold: window.location.origin + '/assets/fonts/Nunito-Bold.ttf',
+        italics: window.location.origin + '/assets/fonts/Nunito-Italic.ttf',
+        bolditalics: window.location.origin + '/assets/fonts/Nunito-BoldItalic.ttf'
+      },
+      PlaywriteCU: {
+        normal: window.location.origin + '/assets/fonts/kalpurush.ttf',
+        bold: window.location.origin + '/assets/fonts/Kalpurush-Bold.ttf',
+        italics: window.location.origin + '/assets/fonts/kalpurush.ttf',
+        bolditalics: window.location.origin + '/assets/fonts/kalpurush.ttf'
+      }
+    };
+
+    const docDef: any = {
+      pageSize: 'A4',
+      pageMargins: [30, 30, 30, 30],
+      defaultStyle: { font: lang === 'BN' ? 'PlaywriteCU' : 'Nunito', fontSize: 8.5 },
+      content: [
+        {
+          columns: [
+            { width: '*', text: '' },  
+            {
+              width: 'auto',
+              table: {
+                widths: [80],
+                body: [[{ text: safe(l.titles?.form), alignment: 'center', bold: true }]]
+              }
+            }
+          ],
+          // margin: [0, 10, 0, 10]
+        },
+        { text: safe(l.titles?.gov), alignment: 'center', bold: true },
+        { text: safe(l.titles?.nbr), alignment: 'center', bold: true },
+        { text: safe(l.titles?.name), alignment: 'center', bold: true, fontSize: 10, margin: [0, 5, 0, 0] },
+        { text: safe(l.titles?.rule), alignment: 'center', fontSize: 7.5, margin: [0, 2, 0, 15] },
+
+        // Part-1
+        { table: { widths: ['*'], body: [[{ text: safe(l.sections?.part1), bold: true, fillColor: '#eeeeee', alignment: 'center' }]] } },
+        {
+          table: {
+            widths: [200, 10, '*'],
+            body: [
+              [{ text: l.info?.org_name }, ':', safe(targetData.formData?.org_name)],
+              [{ text: l.info?.bin }, ':', toBnNum(safe(targetData.formData?.bin))],
+              [{ text: l.info?.applicant_name }, ':', safe(targetData.formData?.applicant_name)],
+              [{ text: l.info?.designation }, ':', safe(targetData.formData?.designation)],
+              [{ text: l.info?.id_no }, ':', toBnNum(safe(targetData.formData?.id_no))]
+            ]
+          },
+          margin: [0, 0, 0, 15]
+        },
+
+        // Part-2
+        { table: { widths: ['*'], body: [[{ text: safe(l.sections?.part2), bold: true, fillColor: '#eeeeee', alignment: 'center' }]] }},
+        {
+          table: {
+            widths: [200, 10, '*'],
+            body: [
+              [{ text: l.info?.actual_vat, bold: true }, ':', { text: toBnNum(safe(targetData.total_vat)), bold: true }],
+              [{ text: l.info?.attachments }, ':', {
+                table: {
+                  widths: [15, '*', 60],
+                  body: [
+                    [{ text: l.info?.copy_no, colSpan: 3 , alignment: 'right', fontSize: 7, margin: [0, 0, 5, 0],border: [false, false, false, false] }, {}, {}],
+                    [{ text: '(a)', alignment: 'center' }, l.info?.att_a, { text: targetData.formData?.att_a , alignment: 'center' }],
+                    [{ text: '(b)', alignment: 'center' }, l.info?.att_b, { text: targetData.formData?.att_b , alignment: 'center' }],
+                    [{ text: '(c)', alignment: 'center' }, l.info?.att_c, { text: targetData.formData?.att_c , alignment: 'center' }],
+                    [{ text: '(d)', alignment: 'center' }, l.info?.att_d, { text: targetData.formData?.att_d , alignment: 'center' }]
+                  ]
+                },
+                // layout: 'lightHorizontalLines'
+              }]
+            ]
+          },
+          margin: [0, 0, 0, 15] 
+        },
+
+        // Part-3 Table
+        { table: { widths: ['*'], body: [[{ text: safe(l.sections?.part3), bold: true, fillColor: '#eeeeee', alignment: 'center' }]] }},
+        {
+          table: {
+            headerRows: 1,
+            widths: [25, '*', 45, 55, 60, 50, 50, 55],
+            body: [
+              [l.headers?.sl, l.headers?.inv_no, l.headers?.date, l.headers?.supplier, l.headers?.bin, l.headers?.desc, l.headers?.value, l.headers?.vat_sd].map(h => ({ text: h, bold: true, alignment: 'center', fontSize: 7 })),
+              ...items.map((row: any, i: number) => [
+                { text: toBnNum(i + 1), alignment: 'center' },
+                safe(row.inv_no),
+                toBnNum(safe(row.date)),
+                safe(row.supplier),
+                toBnNum(safe(row.supplier_bin)),
+                safe(row.desc),
+                { text: toBnNum(safe(row.val)), alignment: 'right' },
+                { text: toBnNum(safe(row.vat_sd)), alignment: 'right' }
+              ]),
+              [
+                { text: safe(l.headers?.table_total), colSpan: 7, alignment: 'right', bold: true, fontSize: 7 },
+                {}, {}, {}, {}, {}, {},
+                { text: toBnNum(safe(targetData.total_vat)), alignment: 'right', bold: true }
+              ]
+            ]
+          },
+          margin: [0, 0, 0, 15] 
+        },
+
+        // Part-4 Declaration
+        { table: { widths: ['*'], body: [[{ text: safe(l.sections?.part4), bold: true, fillColor: 'yellow', alignment: 'center' }]] }},
+        // { text: safe(l.declaration?.text), margin: [0, 5, 0, 10] },
+        {
+          table: {
+            widths: [80, '*', 150],
+            body: [
+              [{ text: l.declaration?.text, colSpan: 3 },{},{}],
+              [{ text: l.declaration?.name }, safe(targetData.formData?.applicant_name), { text: '', rowSpan: 4, border: [true, true, true, true] }],
+              [{ text: l.declaration?.designation }, safe(targetData.formData?.designation), ''],
+              [{ text: l.declaration?.date }, toBnNum(new Date().toLocaleDateString()), ''],
+              [{ text: l.declaration?.mobile }, '', ''],
+              [{ text: l.declaration?.email }, '', { text: l.declaration?.signature, alignment: 'center'}]
+            ]
+          }
+        }
+      ]
+    };
+    pdfMake.createPdf(docDef).download(`${l.titles?.form}_${lang}.pdf`);
+  }
+
 }
