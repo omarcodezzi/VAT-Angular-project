@@ -936,7 +936,6 @@
         ]
       }
     },
-<<<<<<< HEAD
     "mushak_2_3_data": {
       "EN": {
         "issuingAuthority": {
@@ -1003,7 +1002,8 @@
           "typeOfOwnership": "একমালিকানা",
           "majorAreaOfEconomicActivity": "সেবা"
         }
-=======
+      }
+    },
     "mushak_10_1_data": {
       "EN": {
         "formData": {
@@ -1054,7 +1054,6 @@
           }
         ],
         "total_vat": "৭৫০০০.০০"
->>>>>>> c95636fd6d563959d0051720fa7ecbd5f75bd676
       }
     },
     "mushak_18_1_data": {
