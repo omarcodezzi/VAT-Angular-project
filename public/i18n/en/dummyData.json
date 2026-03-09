@@ -141,6 +141,31 @@
     "amount": "Amount",
     "acc_code": "Account Code"
   },
+  "mushak_2_3": {
+  "titles": {
+    "gov": "Government of the People's Republic of Bangladesh",
+    "nbr": "National Board of Revenue",
+    "commissionerate": "Customs, Excise and VAT Commissionerate, Dhaka (South)",
+    "division": "Kotowali Division",
+    "form": "Value Added Tax Registration Certificate",
+    "rule": "[Value Added Tax and Supplementary Duty Act, 2012 (Act No. 47 of 2012)]",
+    "m_name": "Mushak-2.3"
+  },
+  "info": {
+    "name_of_entity": "Name of the Entity",
+    "trading_brand_name": "Trading Brand Name",
+    "old_bin": "Old BIN",
+    "etin": "e-TIN",
+    "address": "Address",
+    "issue_date": "Issue Date",
+    "effective_date": "Effective Date",
+    "type_of_ownership": "Type of Ownership",
+    "major_area": "Major Area of Economic Activity"
+  },
+  "footer": {
+    "note": "This is a system generated certificate and doesn't require any signature."
+  }
+},
   "mushak_4_3": {
     "titles": {
       "gov": "Government of the People's Republic of Bangladesh",

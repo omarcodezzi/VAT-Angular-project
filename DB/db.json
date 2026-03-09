@@ -936,6 +936,74 @@
         ]
       }
     },
+<<<<<<< HEAD
+    "mushak_2_3_data": {
+      "EN": {
+        "issuingAuthority": {
+          "country": "Bangladesh",
+          "government": "Government of the People's Republic of Bangladesh",
+          "board": "National Board of Revenue",
+          "formNumber": "Mushak-2.3",
+          "commissionerate": "Customs, Excise and VAT Commissionerate, Dhaka (South)",
+          "division": "Kotowali Division"
+        },
+        "certificateType": "Value Added Tax Registration Certificate",
+        "legalReference": "Value Added Tax and Supplementary Duty Act, 2012 (Act No. 47 of 2012)",
+        "businessDetails": {
+          "bin": "006474067-0205",
+          "nameOfEntity": "MEDI AID DIAGNOSTIC CENTER",
+          "tradingBrandName": null,
+          "oldBIN": null,
+          "eTIN": "569067648977",
+          "address": {
+            "street": "4,5 Mitford Road",
+            "policeStation": "Chalk Bazar PS",
+            "city": "Dhaka",
+            "postalCode": "1100",
+            "country": "Bangladesh",
+            "fullAddress": "4,5 Mitford Road, Chalk Bazar PS, Dhaka-1100, Bangladesh"
+          }
+        },
+        "registrationInfo": {
+          "issueDate": "2024-11-06",
+          "effectiveDate": "2024-11",
+          "typeOfOwnership": "Proprietorship",
+          "majorAreaOfEconomicActivity": "Services"
+        }
+      },
+      "BN": {
+        "issuingAuthority": {
+          "country": "বাংলাদেশ",
+          "government": "গণপ্রজাতন্ত্রী বাংলাদেশ সরকার",
+          "board": "জাতীয় রাজস্ব বোর্ড",
+          "formNumber": "মুশক-২.৩",
+          "commissionerate": "কাস্টমস, এক্সাইজ ও ভ্যাট কমিশনারেট, ঢাকা (দক্ষিণ)",
+          "division": "কোতোয়ালি বিভাগ"
+        },
+        "certificateType": "মূল্য সংযোজন কর নিবন্ধন সনদ",
+        "legalReference": "মূল্য সংযোজন কর ও সম্পূরক শুল্ক আইন, ২০১২ (আইন নং ৪৭ of ২০১২)",
+        "businessDetails": {
+          "bin": "০০৬৪৭৪০৬৭-০২০৫",
+          "nameOfEntity": "মেডি এইড ডায়াগনস্টিক সেন্টার",
+          "tradingBrandName": null,
+          "oldBIN": null,
+          "eTIN": "৫৬৯০৬৭৬৪৮৯৭৭",
+          "address": {
+            "street": "৪,৫ মিটফোর্ড রোড",
+            "policeStation": "চকবাজার থানা",
+            "city": "ঢাকা",
+            "postalCode": "১১০০",
+            "country": "বাংলাদেশ",
+            "fullAddress": "৪,৫ মিটফোর্ড রোড, চকবাজার থানা, ঢাকা-১১০০, বাংলাদেশ"
+          }
+        },
+        "registrationInfo": {
+          "issueDate": "০৬/১১/২০২৪",
+          "effectiveDate": "১১/২০২৪",
+          "typeOfOwnership": "একমালিকানা",
+          "majorAreaOfEconomicActivity": "সেবা"
+        }
+=======
     "mushak_10_1_data": {
       "EN": {
         "formData": {
@@ -986,6 +1054,7 @@
           }
         ],
         "total_vat": "৭৫০০০.০০"
+>>>>>>> c95636fd6d563959d0051720fa7ecbd5f75bd676
       }
     },
     "mushak_18_1_data": {
