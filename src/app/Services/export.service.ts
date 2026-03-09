@@ -4538,7 +4538,7 @@ exportMushak_2_3(data: any, lang: string) {
         { text: safe(l.titles?.rule), alignment: 'center', fontSize: 7.5, margin: [0, 2, 0, 15] },
 
         // Part-1: General Information
-        { table: { widths: ['*'], body: [[{ text: safe(l.sections?.part1), bold: true, fillColor: '#f4cccc', alignment: 'center' }]] }, margin: [0, 0, 0, 0] },
+        { table: { widths: ['*'], body: [[{ text: safe(l.sections?.part1), bold: true, fillColor: '#f4cccc', alignment: 'center' }]] }},
         {
           table: {
             widths: [200, 10, '*'],
@@ -4550,10 +4550,11 @@ exportMushak_2_3(data: any, lang: string) {
               [{ text: l.info?.nationality }, ':', safe(targetData.formData?.nationality)]
             ]
           }
+          , margin: [0, 0, 0, 10]
         },
 
         // Part-2: Educational Qualification
-        { table: { widths: ['*'], body: [[{ text: safe(l.sections?.part2), bold: true, fillColor: '#f4cccc', alignment: 'center' }]] }, margin: [0, 0, 0, 0] },
+        { table: { widths: ['*'], body: [[{ text: safe(l.sections?.part2), bold: true, fillColor: '#f4cccc', alignment: 'center' }]] }},
         {
           table: {
             widths: [200, 10, '*'],
@@ -4562,10 +4563,11 @@ exportMushak_2_3(data: any, lang: string) {
               [{ text: l.info?.inst }, ':', safe(targetData.formData?.inst)]
             ]
           }
+          , margin: [0, 0, 0, 10]
         },
 
         // Part-3: Eligibility
-        { table: { widths: ['*'], body: [[{ text: safe(l.sections?.part3), bold: true, fillColor: '#f4cccc', alignment: 'center' }]] }, margin: [0, 0, 0, 0] },
+        { table: { widths: ['*'], body: [[{ text: safe(l.sections?.part3), bold: true, fillColor: '#f4cccc', alignment: 'center' }]] }},
         { text: l.info?.eligible_note, fontSize: 7.5, margin: [0, 2, 0, 5] },
         {
           table: {
@@ -4576,11 +4578,11 @@ exportMushak_2_3(data: any, lang: string) {
               [l.eligibility?.c, { text: targetData.formData?.elig_c ? '✔' : '', alignment: 'center' }],
               [l.eligibility?.d, { text: targetData.formData?.elig_d ? '✔' : '', alignment: 'center' }]
             ]
-          }
+          }, margin: [0, 0, 0, 10]
         },
 
         // Part-4: Necessary Documents
-        { table: { widths: ['*'], body: [[{ text: l.sections?.part4, bold: true, fillColor: '#f4cccc', alignment: 'center' }]] }, margin: [0, 0, 0, 0] },
+        { table: { widths: ['*'], body: [[{ text: l.sections?.part4, bold: true, fillColor: '#f4cccc', alignment: 'center' }]] }},
         {
           table: {
             widths: [200, 10, '*'],
@@ -4605,6 +4607,6 @@ exportMushak_2_3(data: any, lang: string) {
         }
       ]
     };
-    pdfMake.createPdf(docDef).download(`${l.titles?.form}_${lang}.pdf`);
+    pdfMake.createPdf(docDef).download(`Mushak-10.1_${lang}.pdf`);
   }
 }
