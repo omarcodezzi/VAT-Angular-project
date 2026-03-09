@@ -660,5 +660,50 @@
       "email": "Email",
       "signature": "Signature"
     }
+  },
+  "mushak_18_1": {
+    "titles": {
+      "gov": "Government of the People's Republic of Bangladesh",
+      "nbr": "National Board of Revenue",
+      "form": "MUSHAK-18.1",
+      "name": "Application for VAT Consultant License",
+      "rule": "[ See Rule 109, Sub-rule (1) ]"
+    },
+    "sections": {
+      "part1": "Part-1: General Information",
+      "part2": "Part-2: Applicant's Educational Qualification",
+      "part3": "Part-3: Applicant's Eligibility",
+      "part4": "Part-4: Necessary Documents for Application",
+      "part5": "Part-5: Declaration"
+    },
+    "info": {
+      "bin": "Applicant's Business Identification Number",
+      "tin": "Applicant's Taxpayer Identification Number",
+      "app_name": "Applicant's Name",
+      "dob": "Applicant's Date of Birth",
+      "nationality": "Applicant's Nationality",
+      "last_degree": "Last Degree Earned by Applicant",
+      "inst": "Educational Institution",
+      "eligible_note": "Please tick (✔) the applicable one from the information below. Avoid if not applicable."
+    },
+    "eligibility": {
+      "a": "(a) Whether employed under the Government or any local authority",
+      "b": "(b) Whether dismissed or removed from any job",
+      "c": "(c) Whether convicted of any criminal offense? If convicted, whether 5 (five) years have passed after serving the sentence (with details of reason, nature, and provider of sentence)?",
+      "d": "(d) Whether his/her license as VAT Consultant, VAT Agent, Clearing & Forwarding, Freight Forwarder, or Income Tax Consultant was previously canceled?"
+    },
+    "docs": {
+      "a": "(a) Certificate of SSC or equivalent exam for age determination",
+      "b": "(b) Passport size photograph",
+      "c": "(c) Copy of certificate of highest educational qualification",
+      "d": "(d) Copy of National Identity Card",
+      "e": "(e) Pay order number, date and bank of BDT 10 (ten) thousand as exam fee in favor of Director General, Customs, Excise & VAT Training Academy",
+      "f": "(f) Necessary documents in support of Part-3"
+    },
+    "declaration": {
+      "text": "I declare that the information provided in this application is complete, true, and correct in all respects.",
+      "name": "Name",
+      "designation": "Designation"
+    }
   }
 }

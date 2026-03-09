@@ -416,7 +416,6 @@ downloadmushak_6_10(lang: 'EN' | 'BN') {
   });
 }
 
-
 downloadmushak_10_1(lang: 'EN' | 'BN') {
   const apiEndpoint = 'http://localhost:3000/mushak_values';  
   
@@ -432,6 +431,22 @@ downloadmushak_10_1(lang: 'EN' | 'BN') {
   });
 }
   
+
+downloadmushak_18_1(lang: 'EN' | 'BN') {
+  const apiEndpoint = 'http://localhost:3000/mushak_values';  
+  
+  this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
+    next: (data) => {
+      if (lang === 'EN') {
+        this.exportService.exportMushak_18_1(data, lang);
+      } else {
+        this.exportService.exportMushak_18_1(data, lang);
+      }
+    },  
+    error: (err) => console.error("API Connection Failed!", err)
+  });
+}
+
 // Full Formatted Excel Report
 // downloadFullMushakExcel() {
 //   this.exportService.getMushakJsonData().subscribe({

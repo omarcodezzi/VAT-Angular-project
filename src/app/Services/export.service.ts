@@ -64,6 +64,7 @@ export class ExportService {
           mushak_6_10_data: values.mushak_values?.mushak_6_10_data || values.mushak_6_10_data || { items: [] },
           mushak_6_11_data: values.mushak_values?.mushak_6_11_data || values.mushak_6_11_data || { items: [] },
           mushak_10_1_data: values.mushak_values?.mushak_10_1_data || values.mushak_10_1_data || { items: [] },
+          mushak_18_1_data: values.mushak_values?.mushak_18_1_data || values.mushak_18_1_data || { items: [] }
         };
       })
     );
@@ -4325,7 +4326,7 @@ export class ExportService {
       content: [
         {
           columns: [
-            { width: '*', text: '' },  
+            { width: '*', text: '' },
             {
               width: 'auto',
               table: {
@@ -4358,7 +4359,7 @@ export class ExportService {
         },
 
         // Part-2
-        { table: { widths: ['*'], body: [[{ text: safe(l.sections?.part2), bold: true, fillColor: '#eeeeee', alignment: 'center' }]] }},
+        { table: { widths: ['*'], body: [[{ text: safe(l.sections?.part2), bold: true, fillColor: '#eeeeee', alignment: 'center' }]] } },
         {
           table: {
             widths: [200, 10, '*'],
@@ -4368,22 +4369,22 @@ export class ExportService {
                 table: {
                   widths: [15, '*', 60],
                   body: [
-                    [{ text: l.info?.copy_no, colSpan: 3 , alignment: 'right', fontSize: 7, margin: [0, 0, 5, 0],border: [false, false, false, false] }, {}, {}],
-                    [{ text: '(a)', alignment: 'center' }, l.info?.att_a, { text: targetData.formData?.att_a , alignment: 'center' }],
-                    [{ text: '(b)', alignment: 'center' }, l.info?.att_b, { text: targetData.formData?.att_b , alignment: 'center' }],
-                    [{ text: '(c)', alignment: 'center' }, l.info?.att_c, { text: targetData.formData?.att_c , alignment: 'center' }],
-                    [{ text: '(d)', alignment: 'center' }, l.info?.att_d, { text: targetData.formData?.att_d , alignment: 'center' }]
+                    [{ text: l.info?.copy_no, colSpan: 3, alignment: 'right', fontSize: 7, margin: [0, 0, 5, 0], border: [false, false, false, false] }, {}, {}],
+                    [{ text: '(a)', alignment: 'center' }, l.info?.att_a, { text: targetData.formData?.att_a, alignment: 'center' }],
+                    [{ text: '(b)', alignment: 'center' }, l.info?.att_b, { text: targetData.formData?.att_b, alignment: 'center' }],
+                    [{ text: '(c)', alignment: 'center' }, l.info?.att_c, { text: targetData.formData?.att_c, alignment: 'center' }],
+                    [{ text: '(d)', alignment: 'center' }, l.info?.att_d, { text: targetData.formData?.att_d, alignment: 'center' }]
                   ]
                 },
                 // layout: 'lightHorizontalLines'
               }]
             ]
           },
-          margin: [0, 0, 0, 15] 
+          margin: [0, 0, 0, 15]
         },
 
         // Part-3 Table
-        { table: { widths: ['*'], body: [[{ text: safe(l.sections?.part3), bold: true, fillColor: '#eeeeee', alignment: 'center' }]] }},
+        { table: { widths: ['*'], body: [[{ text: safe(l.sections?.part3), bold: true, fillColor: '#eeeeee', alignment: 'center' }]] } },
         {
           table: {
             headerRows: 1,
@@ -4407,22 +4408,22 @@ export class ExportService {
               ]
             ]
           },
-          margin: [0, 0, 0, 15] 
+          margin: [0, 0, 0, 15]
         },
 
         // Part-4 Declaration
-        { table: { widths: ['*'], body: [[{ text: safe(l.sections?.part4), bold: true, fillColor: 'yellow', alignment: 'center' }]] }},
+        { table: { widths: ['*'], body: [[{ text: safe(l.sections?.part4), bold: true, fillColor: 'yellow', alignment: 'center' }]] } },
         // { text: safe(l.declaration?.text), margin: [0, 5, 0, 10] },
         {
           table: {
             widths: [80, '*', 150],
             body: [
-              [{ text: l.declaration?.text, colSpan: 3 },{},{}],
+              [{ text: l.declaration?.text, colSpan: 3 }, {}, {}],
               [{ text: l.declaration?.name }, safe(targetData.formData?.applicant_name), { text: '', rowSpan: 4, border: [true, true, true, true] }],
               [{ text: l.declaration?.designation }, safe(targetData.formData?.designation), ''],
               [{ text: l.declaration?.date }, toBnNum(new Date().toLocaleDateString()), ''],
               [{ text: l.declaration?.mobile }, '', ''],
-              [{ text: l.declaration?.email }, '', { text: l.declaration?.signature, alignment: 'center'}]
+              [{ text: l.declaration?.email }, '', { text: l.declaration?.signature, alignment: 'center' }]
             ]
           }
         }
@@ -4431,4 +4432,117 @@ export class ExportService {
     pdfMake.createPdf(docDef).download(`${l.titles?.form}_${lang}.pdf`);
   }
 
+  exportMushak_18_1(data: any, lang: string) {
+    const l = (data.labels?.mushak_18_1 || {}) as any;
+    const targetData = data.mushak_18_1_data?.[lang] || {};
+    const safe = (val: any) => (val !== undefined && val !== null) ? val.toString() : '';
+    const toBnNum = (n: any) => lang === 'BN' ? n.toString().replace(/\d/g, (d: any) => "০১২৩৪৫৬৭৮৯"[d]) : n;
+
+    (pdfMake as any).fonts = {
+      Nunito: {
+        normal: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
+        bold: window.location.origin + '/assets/fonts/Nunito-Bold.ttf',
+        italics: window.location.origin + '/assets/fonts/Nunito-Italic.ttf',
+        bolditalics: window.location.origin + '/assets/fonts/Nunito-BoldItalic.ttf'
+      },
+      PlaywriteCU: {
+        normal: window.location.origin + '/assets/fonts/kalpurush.ttf',
+        bold: window.location.origin + '/assets/fonts/Kalpurush-Bold.ttf',
+        italics: window.location.origin + '/assets/fonts/kalpurush.ttf',
+        bolditalics: window.location.origin + '/assets/fonts/kalpurush.ttf'
+      }
+    };
+
+    const docDef: any = {
+      pageSize: 'A4',
+      pageMargins: [30, 30, 30, 30],
+      defaultStyle: { font: lang === 'BN' ? 'PlaywriteCU' : 'Nunito', fontSize: 8.5 },
+      content: [
+        {
+          columns: [
+            { width: '*', text: '' },
+            {
+              width: 'auto',
+              table: {
+                widths: [80],
+                body: [[{ text: safe(l.titles?.form), alignment: 'center', bold: true }]]
+              }
+            }
+          ],
+        },
+        { text: safe(l.titles?.gov), alignment: 'center', bold: true },
+        { text: safe(l.titles?.nbr), alignment: 'center', bold: true },
+        { text: safe(l.titles?.name), alignment: 'center', bold: true, fontSize: 10, margin: [0, 5, 0, 0] },
+        { text: safe(l.titles?.rule), alignment: 'center', fontSize: 7.5, margin: [0, 2, 0, 15] },
+
+        // Part-1: General Information
+        { table: { widths: ['*'], body: [[{ text: safe(l.sections?.part1), bold: true, fillColor: '#f4cccc', alignment: 'center' }]] }, margin: [0, 0, 0, 0] },
+        {
+          table: {
+            widths: [200, 10, '*'],
+            body: [
+              [{ text: l.info?.bin }, ':', toBnNum(safe(targetData.formData?.bin))],
+              [{ text: l.info?.tin }, ':', toBnNum(safe(targetData.formData?.tin))],
+              [{ text: l.info?.app_name }, ':', safe(targetData.formData?.app_name)],
+              [{ text: l.info?.dob }, ':', toBnNum(safe(targetData.formData?.dob))],
+              [{ text: l.info?.nationality }, ':', safe(targetData.formData?.nationality)]
+            ]
+          }
+        },
+
+        // Part-2: Educational Qualification
+        { table: { widths: ['*'], body: [[{ text: safe(l.sections?.part2), bold: true, fillColor: '#f4cccc', alignment: 'center' }]] }, margin: [0, 0, 0, 0] },
+        {
+          table: {
+            widths: [200, 10, '*'],
+            body: [
+              [{ text: l.info?.last_degree }, ':', safe(targetData.formData?.last_degree)],
+              [{ text: l.info?.inst }, ':', safe(targetData.formData?.inst)]
+            ]
+          }
+        },
+
+        // Part-3: Eligibility
+        { table: { widths: ['*'], body: [[{ text: safe(l.sections?.part3), bold: true, fillColor: '#f4cccc', alignment: 'center' }]] }, margin: [0, 0, 0, 0] },
+        { text: l.info?.eligible_note, fontSize: 7.5, margin: [0, 2, 0, 5] },
+        {
+          table: {
+            widths: ['*', 25],
+            body: [
+              [l.eligibility?.a, { text: targetData.formData?.elig_a ? '✔' : '', alignment: 'center', border: [true, true, true, true] }],
+              [l.eligibility?.b, { text: targetData.formData?.elig_b ? '✔' : '', alignment: 'center' }],
+              [l.eligibility?.c, { text: targetData.formData?.elig_c ? '✔' : '', alignment: 'center' }],
+              [l.eligibility?.d, { text: targetData.formData?.elig_d ? '✔' : '', alignment: 'center' }]
+            ]
+          }
+        },
+
+        // Part-4: Necessary Documents
+        { table: { widths: ['*'], body: [[{ text: l.sections?.part4, bold: true, fillColor: '#f4cccc', alignment: 'center' }]] }, margin: [0, 0, 0, 0] },
+        {
+          table: {
+            widths: [200, 10, '*'],
+            body: [
+              [l.docs?.a, ':', targetData.formData?.doc_a || ''],
+              [l.docs?.b, ':', targetData.formData?.doc_b || ''],
+              [l.docs?.c, ':', targetData.formData?.doc_c || ''],
+              [l.docs?.d, ':', targetData.formData?.doc_d || ''],
+              [l.docs?.e, ':', targetData.formData?.doc_e || ''],
+              [l.docs?.f, ':', targetData.formData?.doc_f || '']
+            ]
+          }
+        },
+
+        // Part-5: Declaration
+        { table: { widths: ['*'], body: [[{ text: safe(l.sections?.part5), bold: true, fillColor: '#f4cccc', alignment: 'center' }]] }, margin: [0, 15, 0, 2] },
+        { text: l.declaration?.text, margin: [0, 5, 0, 10] },
+        {
+          columns: [
+            { width: '*', stack: [{ text: `${l.declaration?.name}: ${safe(targetData.formData?.app_name)}` }, { text: `${l.declaration?.designation}: ________________` }] },
+          ]
+        }
+      ]
+    };
+    pdfMake.createPdf(docDef).download(`${l.titles?.form}_${lang}.pdf`);
+  }
 }

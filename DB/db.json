@@ -987,6 +987,50 @@
         ],
         "total_vat": "৭৫০০০.০০"
       }
+    },
+    "mushak_18_1_data": {
+      "EN": {
+        "formData": {
+          "bin": "1234567890123",
+          "tin": "987654321011",
+          "app_name": "Riyad Hasan Niloy",
+          "dob": "1995-01-01",
+          "nationality": "Bangladeshi",
+          "last_degree": "B.Sc in Computer Science",
+          "inst": "University of Dhaka",
+          "elig_a": false,
+          "elig_b": false,
+          "elig_c": false,
+          "elig_d": false,
+          "doc_a": "Attached",
+          "doc_b": "Attached",
+          "doc_c": "Attached",
+          "doc_d": "Attached",
+          "doc_e": "PO-998, 01/03/2026, Sonali Bank",
+          "doc_f": "Attached"
+        }
+      },
+      "BN": {
+        "formData": {
+          "bin": "১২৩৪৫৬৭৮৯০১২৩",
+          "tin": "৯৮৭৬৫৪৩২১০১১",
+          "app_name": "রিয়াদ হাসান নিলয়",
+          "dob": "০১/০১/১৯৯৫",
+          "nationality": "বাংলাদেশী",
+          "last_degree": "বিএসসি ইন কম্পিউটার সায়েন্স",
+          "inst": "ঢাকা বিশ্ববিদ্যালয়",
+          "elig_a": false,
+          "elig_b": false,
+          "elig_c": false,
+          "elig_d": false,
+          "doc_a": "সংযুক্ত",
+          "doc_b": "সংযুক্ত",
+          "doc_c": "সংযুক্ত",
+          "doc_d": "সংযুক্ত",
+          "doc_e": "পে-অর্ডার-৯৯৮, ০১/০৩/২০২৬, সোনালী ব্যাংক",
+          "doc_f": "সংযুক্ত"
+        }
+      }
     }
   }
 }
