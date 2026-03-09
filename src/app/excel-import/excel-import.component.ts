@@ -1,19 +1,19 @@
-import { Component, computed, ElementRef, signal, ViewChild } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { bestSuggestion, normalizeHeader } from "../Services/string-utils";
-import { ExcelService } from "../Services/excel.service";
-import { FinalRow, HeaderCheckRow, REQUIRED_HEADERS, TaxHeader } from "../Services/types";
+import { Component, computed, ElementRef, signal, ViewChild } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { bestSuggestion, normalizeHeader } from '../Services/string-utils';
+import { ExcelService } from '../Services/excel.service';
+import { FinalRow, HeaderCheckRow, REQUIRED_HEADERS, TaxHeader } from '../Services/types';
 import * as XLSX from 'xlsx';
-import { HttpClient } from "@angular/common/http";
-import { ExportService } from "../Services/export.service";
-import { MushakService } from "../Services/mushak.service";
+import { HttpClient } from '@angular/common/http';
+import { ExportService } from '../Services/export.service';
+import { MushakService } from '../Services/mushak.service';
 
 @Component({
-  selector: "app-excel-import",
+  selector: 'app-excel-import',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: "./excel-import.component.html",
-  styleUrl: "./excel-import.component.css",
+  templateUrl: './excel-import.component.html',
+  styleUrl: './excel-import.component.css',
 })
 export class ExcelImportComponent {
   private excel = new ExcelService();
@@ -30,13 +30,15 @@ export class ExcelImportComponent {
     RD: undefined,
     VAT: undefined,
     AIT: undefined,
-    TTI: undefined
+    TTI: undefined,
     // Value, PurchaseValue, etc. are now optional, so no error here!
   });
 
-  constructor(private http: HttpClient, private exportService: ExportService, private mushakService: MushakService) {
-
-  }
+  constructor(
+    private http: HttpClient,
+    private exportService: ExportService,
+    private mushakService: MushakService,
+  ) {}
 
   headerChecks = computed<HeaderCheckRow[]>(() => {
     const headers = this.excelHeaders();
@@ -48,28 +50,25 @@ export class ExcelImportComponent {
       const manualMapping = map[expected];
       const exactMatch = headers.find((h) => normalizeHeader(h) === expN);
       const isMatched = !!(manualMapping || exactMatch);
-      const status = isMatched ? "OK" : "MISSING";
+      const status = isMatched ? 'OK' : 'MISSING';
 
-      const found = isMatched ? expected : (exactMatch || "-");
+      const found = isMatched ? expected : exactMatch || '-';
 
       return {
         expected,
         found,
         status,
         suggestion: bestSuggestion(expected, headers),
-        message: status === "OK" ? "Matched" : "Column missing"
+        message: status === 'OK' ? 'Matched' : 'Column missing',
       };
     });
   });
 
-
-
   canShowImportButton = computed(() => {
-    console.log("Header Checks Status:", this.headerChecks());
+    console.log('Header Checks Status:', this.headerChecks());
 
-    return this.headerChecks().every((row) => row.status === "OK");
+    return this.headerChecks().every((row) => row.status === 'OK');
   });
-
 
   finalRows = computed<FinalRow[]>(() => {
     if (!this.showFinalGrid() || !this.canShowImportButton()) return [];
@@ -85,7 +84,7 @@ export class ExcelImportComponent {
         const val = r[excelHeader];
 
         // 2. Strict check to allow 0 and 10 to show up
-        return (val !== undefined && val !== null && val !== '') ? val : 0;
+        return val !== undefined && val !== null && val !== '' ? val : 0;
       };
 
       return {
@@ -97,13 +96,10 @@ export class ExcelImportComponent {
         VAT: getValue('VAT'),
         RD: getValue('RD'),
         AIT: getValue('AIT'),
-        TTI: getValue('TTI') // This will now correctly pull from 'TTII'
+        TTI: getValue('TTI'), // This will now correctly pull from 'TTII'
       } as FinalRow;
     });
   });
-
-
-
 
   errorText = signal<string | null>(null);
   successText = signal<string | null>(null);
@@ -135,12 +131,11 @@ export class ExcelImportComponent {
     const headerCheckResults = this.headerChecks();
 
     headerCheckResults.forEach((row) => {
-      if (row.status === "OK" && row.found) {
+      if (row.status === 'OK' && row.found) {
         this.headerMap.update((m) => ({ ...m, [row.expected]: row.found }));
       }
     });
   }
-
 
   applySuggestion(expected: TaxHeader, suggestion?: string) {
     if (!suggestion) return;
@@ -153,20 +148,19 @@ export class ExcelImportComponent {
   }
 
   importData() {
-    debugger
+    debugger;
     if (this.canShowImportButton()) {
       this.showFinalGrid.set(true);
       this.successText.set(`Ready to import ${this.finalRows().length} rows ✅`);
     }
   }
 
-
   onSelectSuggestion(expected: TaxHeader, event: any) {
     const selectedValue = event.target.value;
     if (!selectedValue) return;
 
     // Find the check row to get the 'suggestion' (the actual Excel column name)
-    const checkRow = this.headerChecks().find(c => c.expected === expected);
+    const checkRow = this.headerChecks().find((c) => c.expected === expected);
     const actualExcelHeader = checkRow?.suggestion; // This will be 'AITI' or 'TTII'
 
     if (actualExcelHeader) {
@@ -195,7 +189,7 @@ export class ExcelImportComponent {
       TTI: undefined,
     });
     this.showFinalGrid.set(false);
-    fileInput.value = "";
+    fileInput.value = '';
   }
 
   saveFinalData() {
@@ -219,211 +213,222 @@ export class ExcelImportComponent {
     this.exportService.exportPdf(rows, 'VAT_HS_Code.pdf');
   }
 
-downloadMushakReport(lang: 'EN' | 'BN') {
-  const apiEndpoint = 'http://localhost:3000/mushak_values';  
-  
-  this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
-    next: (data) => {
-      if (lang === 'EN') {
-        this.exportService.exportFullMushakPdf(data, lang);
-      } else {
-        this.exportService.exportFullMushakPdfBangla(data, lang);
-      }
-    },  
-    error: (err) => console.error("API Connection Failed!", err)
-  });
-}
+  downloadMushakReport(lang: 'EN' | 'BN') {
+    const apiEndpoint = 'http://localhost:3000/mushak_values';
 
+    this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
+      next: (data) => {
+        if (lang === 'EN') {
+          this.exportService.exportFullMushakPdf(data, lang);
+        } else {
+          this.exportService.exportFullMushakPdfBangla(data, lang);
+        }
+      },
+      error: (err) => console.error('API Connection Failed!', err),
+    });
+  }
 
-downloadInputOutputCoefficient(lang: 'EN' | 'BN') {
-  const apiEndpoint = 'http://localhost:3000/mushak_values';  
-  
-  this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
-    next: (data) => {
-      if (lang === 'EN') {
-        this.exportService.exportInputOutputCoefficientEnglish(data, lang);
-      } else {
-        this.exportService.exportInputOutputCoefficientBangla(data, lang);
-      }
-    },  
-    error: (err) => console.error("API Connection Failed!", err)
-  });
-}
+  downloadInputOutputCoefficient(lang: 'EN' | 'BN') {
+    const apiEndpoint = 'http://localhost:3000/mushak_values';
 
-downloadmushak_6_1(lang: 'EN' | 'BN') {
-  const apiEndpoint = 'http://localhost:3000/mushak_values';  
-  
-  this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
-    next: (data) => {
-      if (lang === 'EN') {
-        this.exportService.exportmushak_6_1_English(data, lang);
-      } else {
-        this.exportService.exportmushak_6_1_Bangla(data, lang);
-      }
-    },  
-    error: (err) => console.error("API Connection Failed!", err)
-  });
-}
+    this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
+      next: (data) => {
+        if (lang === 'EN') {
+          this.exportService.exportInputOutputCoefficientEnglish(data, lang);
+        } else {
+          this.exportService.exportInputOutputCoefficientBangla(data, lang);
+        }
+      },
+      error: (err) => console.error('API Connection Failed!', err),
+    });
+  }
 
+  downloadmushak_2_3(lang: string) {
+    const apiEndpoint = 'http://localhost:3000/mushak_values';
 
-downloadmushak_6_2(lang: 'EN' | 'BN') {
-  const apiEndpoint = 'http://localhost:3000/mushak_values';  
-  
-  this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
-    next: (data) => {
-      if (lang === 'EN') {
-        this.exportService.exportMushak_6_2_English(data, lang);
-      } else {
-        this.exportService.exportMushak_6_2_Bangla(data, lang);
-      }
-    },  
-    error: (err) => console.error("API Connection Failed!", err)
-  });
-}
+    this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
+      next: (data) => {
+        if (lang === 'EN') {
+          this.exportService.exportMushak_2_3(data, lang);
+        } else {
+          this.exportService.exportMushak_2_3(data, lang);
+        }
+      },
+      error: (err) => console.error('API Connection Failed!', err),
+    });
+  }
 
-downloadmushak_6_2_1(lang: 'EN' | 'BN') {
-  const apiEndpoint = 'http://localhost:3000/mushak_values';  
-  
-  this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
-    next: (data) => {
-      if (lang === 'EN') {
-        this.exportService.exportMushak_6_2_1_English(data, lang);
-      } else {
-        this.exportService.exportMushak_6_2_1_Bangla(data, lang);
-      }
-    },  
-    error: (err) => console.error("API Connection Failed!", err)
-  });
-}
+  downloadmushak_6_1(lang: 'EN' | 'BN') {
+    const apiEndpoint = 'http://localhost:3000/mushak_values';
 
-downloadmushak_6_3(lang: 'EN' | 'BN') {
-  const apiEndpoint = 'http://localhost:3000/mushak_values';  
-  
-  this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
-    next: (data) => {
-      if (lang === 'EN') {
-        this.exportService.exportMushak_6_3_English(data, lang);
-      } else {
-        this.exportService.exportMushak_6_3_Bangla(data, lang);
-      }
-    },  
-    error: (err) => console.error("API Connection Failed!", err)
-  });
-}
+    this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
+      next: (data) => {
+        if (lang === 'EN') {
+          this.exportService.exportmushak_6_1_English(data, lang);
+        } else {
+          this.exportService.exportmushak_6_1_Bangla(data, lang);
+        }
+      },
+      error: (err) => console.error('API Connection Failed!', err),
+    });
+  }
 
-downloadmushak_6_4(lang: 'EN' | 'BN') {
-  const apiEndpoint = 'http://localhost:3000/mushak_values';  
-  
-  this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
-    next: (data) => {
-      if (lang === 'EN') {
-        this.exportService.exportMushak_6_4_English(data, lang);
-      } else {
-        this.exportService.exportMushak_6_4_Bangla(data, lang);
-      }
-    },  
-    error: (err) => console.error("API Connection Failed!", err)
-  });
-}
+  downloadmushak_6_2(lang: 'EN' | 'BN') {
+    const apiEndpoint = 'http://localhost:3000/mushak_values';
 
-downloadmushak_6_5(lang: 'EN' | 'BN') {
-  const apiEndpoint = 'http://localhost:3000/mushak_values';  
-  
-  this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
-    next: (data) => {
-      if (lang === 'EN') {
-        this.exportService.exportMushak_6_5_English(data, lang);
-      } else {
-        this.exportService.exportMushak_6_5_Bangla(data, lang);
-      }
-    },  
-    error: (err) => console.error("API Connection Failed!", err)
-  });
-}
+    this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
+      next: (data) => {
+        if (lang === 'EN') {
+          this.exportService.exportMushak_6_2_English(data, lang);
+        } else {
+          this.exportService.exportMushak_6_2_Bangla(data, lang);
+        }
+      },
+      error: (err) => console.error('API Connection Failed!', err),
+    });
+  }
 
-downloadmushak_6_6(lang: 'EN' | 'BN') {
-  const apiEndpoint = 'http://localhost:3000/mushak_values';  
-  
-  this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
-    next: (data) => {
-      if (lang === 'EN') {
-        this.exportService.exportMushak_6_6_English(data, lang);
-      } else {
-        this.exportService.exportMushak_6_6_Bangla(data, lang);
-      }
-    },  
-    error: (err) => console.error("API Connection Failed!", err)
-  });
-}
+  downloadmushak_6_2_1(lang: 'EN' | 'BN') {
+    const apiEndpoint = 'http://localhost:3000/mushak_values';
 
-downloadmushak_6_7(lang: 'EN' | 'BN') {
-  const apiEndpoint = 'http://localhost:3000/mushak_values';  
-  
-  this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
-    next: (data) => {
-      if (lang === 'EN') {
-        this.exportService.exportMushak_6_7_English(data, lang);
-      } else {
-        this.exportService.exportMushak_6_7_Bangla(data, lang);
-      }
-    },  
-    error: (err) => console.error("API Connection Failed!", err)
-  });
-}
+    this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
+      next: (data) => {
+        if (lang === 'EN') {
+          this.exportService.exportMushak_6_2_1_English(data, lang);
+        } else {
+          this.exportService.exportMushak_6_2_1_Bangla(data, lang);
+        }
+      },
+      error: (err) => console.error('API Connection Failed!', err),
+    });
+  }
 
-downloadmushak_6_8(lang: 'EN' | 'BN') {
-  const apiEndpoint = 'http://localhost:3000/mushak_values';  
-  
-  this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
-    next: (data) => {
-      if (lang === 'EN') {
-        this.exportService.exportMushak_6_8_English(data, lang);
-      } else {
-        this.exportService.exportMushak_6_8_Bangla(data, lang);
-      }
-    },  
-    error: (err) => console.error("API Connection Failed!", err)
-  });
-}
+  downloadmushak_6_3(lang: 'EN' | 'BN') {
+    const apiEndpoint = 'http://localhost:3000/mushak_values';
 
-downloadmushak_6_9(lang: 'EN' | 'BN') {
-  const apiEndpoint = 'http://localhost:3000/mushak_values';  
-  
-  this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
-    next: (data) => {
-      if (lang === 'EN') {
-        this.exportService.exportMushak_6_9_English(data, lang);
-      } else {
-        this.exportService.exportMushak_6_9_Bangla(data, lang);
-      }
-    },  
-    error: (err) => console.error("API Connection Failed!", err)
-  });
-}
+    this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
+      next: (data) => {
+        if (lang === 'EN') {
+          this.exportService.exportMushak_6_3_English(data, lang);
+        } else {
+          this.exportService.exportMushak_6_3_Bangla(data, lang);
+        }
+      },
+      error: (err) => console.error('API Connection Failed!', err),
+    });
+  }
 
-downloadmushak_6_10(lang: 'EN' | 'BN') {
-  const apiEndpoint = 'http://localhost:3000/mushak_values';  
-  
-  this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
-    next: (data) => {
-      if (lang === 'EN') {
-        this.exportService.exportMushak_6_10_English(data, lang);
-      } else {
-        this.exportService.exportMushak_6_10_Bangla(data, lang);
-      }
-    },  
-    error: (err) => console.error("API Connection Failed!", err)
-  });
-}
+  downloadmushak_6_4(lang: 'EN' | 'BN') {
+    const apiEndpoint = 'http://localhost:3000/mushak_values';
 
-  
-// Full Formatted Excel Report
-// downloadFullMushakExcel() {
-//   this.exportService.getMushakJsonData().subscribe({
-//     next: (data) => {
-//       this.exportService.exportFullMushakExcel(data);
-//     }
-//   });
-// }
- 
+    this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
+      next: (data) => {
+        if (lang === 'EN') {
+          this.exportService.exportMushak_6_4_English(data, lang);
+        } else {
+          this.exportService.exportMushak_6_4_Bangla(data, lang);
+        }
+      },
+      error: (err) => console.error('API Connection Failed!', err),
+    });
+  }
+
+  downloadmushak_6_5(lang: 'EN' | 'BN') {
+    const apiEndpoint = 'http://localhost:3000/mushak_values';
+
+    this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
+      next: (data) => {
+        if (lang === 'EN') {
+          this.exportService.exportMushak_6_5_English(data, lang);
+        } else {
+          this.exportService.exportMushak_6_5_Bangla(data, lang);
+        }
+      },
+      error: (err) => console.error('API Connection Failed!', err),
+    });
+  }
+
+  downloadmushak_6_6(lang: 'EN' | 'BN') {
+    const apiEndpoint = 'http://localhost:3000/mushak_values';
+
+    this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
+      next: (data) => {
+        if (lang === 'EN') {
+          this.exportService.exportMushak_6_6_English(data, lang);
+        } else {
+          this.exportService.exportMushak_6_6_Bangla(data, lang);
+        }
+      },
+      error: (err) => console.error('API Connection Failed!', err),
+    });
+  }
+
+  downloadmushak_6_7(lang: 'EN' | 'BN') {
+    const apiEndpoint = 'http://localhost:3000/mushak_values';
+
+    this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
+      next: (data) => {
+        if (lang === 'EN') {
+          this.exportService.exportMushak_6_7_English(data, lang);
+        } else {
+          this.exportService.exportMushak_6_7_Bangla(data, lang);
+        }
+      },
+      error: (err) => console.error('API Connection Failed!', err),
+    });
+  }
+
+  downloadmushak_6_8(lang: 'EN' | 'BN') {
+    const apiEndpoint = 'http://localhost:3000/mushak_values';
+
+    this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
+      next: (data) => {
+        if (lang === 'EN') {
+          this.exportService.exportMushak_6_8_English(data, lang);
+        } else {
+          this.exportService.exportMushak_6_8_Bangla(data, lang);
+        }
+      },
+      error: (err) => console.error('API Connection Failed!', err),
+    });
+  }
+
+  downloadmushak_6_9(lang: 'EN' | 'BN') {
+    const apiEndpoint = 'http://localhost:3000/mushak_values';
+
+    this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
+      next: (data) => {
+        if (lang === 'EN') {
+          this.exportService.exportMushak_6_9_English(data, lang);
+        } else {
+          this.exportService.exportMushak_6_9_Bangla(data, lang);
+        }
+      },
+      error: (err) => console.error('API Connection Failed!', err),
+    });
+  }
+
+  downloadmushak_6_10(lang: 'EN' | 'BN') {
+    const apiEndpoint = 'http://localhost:3000/mushak_values';
+
+    this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
+      next: (data) => {
+        if (lang === 'EN') {
+          this.exportService.exportMushak_6_10_English(data, lang);
+        } else {
+          this.exportService.exportMushak_6_10_Bangla(data, lang);
+        }
+      },
+      error: (err) => console.error('API Connection Failed!', err),
+    });
+  }
+
+  // Full Formatted Excel Report
+  // downloadFullMushakExcel() {
+  //   this.exportService.getMushakJsonData().subscribe({
+  //     next: (data) => {
+  //       this.exportService.exportFullMushakExcel(data);
+  //     }
+  //   });
+  // }
 }

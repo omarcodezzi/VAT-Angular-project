@@ -50,6 +50,7 @@ export class ExportService {
           notes: mergedNotes,
           taxpayer: values.taxpayer,
           returnSubmission: values.returnSubmission,
+          mushak_2_3_data: values.mushak_values?.mushak_2_3_data || values.mushak_2_3_data || {},
           mushak_4_3_data: values.mushak_values?.mushak_4_3_data || values.mushak_4_3_data || {},
           mushak_6_1_data: values.mushak_values?.mushak_6_1_data || values.mushak_6_1_data || {},
           mushak_6_2_data: values.mushak_values?.mushak_6_2_data || values.mushak_6_2_data || {},
@@ -1712,6 +1713,67 @@ export class ExportService {
 
     pdfMake.createPdf(docDef).download(`mushak_4_3_${lang}.pdf`);
   }
+
+  // Mushak 2.3 Export Function 
+exportMushak_2_3(data: any, lang: string) {
+  const l = (data.labels?.mushak_2_3 || {}) as any;
+  const targetData = data.mushak_2_3_data?.[lang] || {};
+  const d = targetData;
+
+  const safe = (val: any) => (val !== undefined && val !== null) ? val.toString() : 'N/A';
+
+  (pdfMake as any).fonts = {
+    PlaywriteCU: {
+      normal: window.location.origin + '/assets/fonts/kalpurush.ttf',
+      bold: window.location.origin + '/assets/fonts/Kalpurush-Bold.ttf',
+      italics: window.location.origin + '/assets/fonts/kalpurush.ttf',
+      bolditalics: window.location.origin + '/assets/fonts/kalpurush.ttf'
+    }
+  };
+
+  const docDef: any = {
+    pageSize: 'A4',
+    pageMargins: [40, 40, 40, 40],
+    defaultStyle: { font: 'PlaywriteCU', fontSize: 10 },
+    content: [
+      { text: safe(l.titles?.m_name), alignment: 'right', bold: true },
+      { text: safe(l.titles?.gov), alignment: 'center', bold: true, fontSize: 12 },
+      { text: safe(l.titles?.nbr), alignment: 'center', bold: true, fontSize: 11, margin: [0, 2, 0, 0] },
+      { text: safe(l.titles?.commissionerate), alignment: 'center', fontSize: 9, margin: [0, 2, 0, 0] },
+      { text: safe(l.titles?.division), alignment: 'center', fontSize: 9, margin: [0, 2, 0, 10] },
+      { text: safe(l.titles?.form), alignment: 'center', bold: true, fontSize: 13, margin: [0, 0, 0, 5] },
+      { text: safe(l.titles?.rule), alignment: 'center', fontSize: 8, italics: true, margin: [0, 0, 0, 15] },
+
+      // BIN
+      { text: safe(d.businessDetails?.bin), alignment: 'center', bold: true, fontSize: 16, margin: [0, 0, 0, 15] },
+
+      // Details Table
+      {
+        table: {
+          widths: [180, '*'],
+          body: [
+            [{ text: safe(l.info?.name_of_entity), bold: true }, { text: safe(d.businessDetails?.nameOfEntity) }],
+            [{ text: safe(l.info?.trading_brand_name), bold: true }, { text: safe(d.businessDetails?.tradingBrandName) }],
+            [{ text: safe(l.info?.old_bin), bold: true }, { text: safe(d.businessDetails?.oldBIN) }],
+            [{ text: safe(l.info?.etin), bold: true }, { text: safe(d.businessDetails?.eTIN) }],
+            [{ text: safe(l.info?.address), bold: true }, { text: safe(d.businessDetails?.address?.fullAddress) }],
+            [{ text: safe(l.info?.issue_date), bold: true }, { text: safe(d.registrationInfo?.issueDate) }],
+            [{ text: safe(l.info?.effective_date), bold: true }, { text: safe(d.registrationInfo?.effectiveDate) }],
+            [{ text: safe(l.info?.type_of_ownership), bold: true }, { text: safe(d.registrationInfo?.typeOfOwnership) }],
+            [{ text: safe(l.info?.major_area), bold: true }, { text: safe(d.registrationInfo?.majorAreaOfEconomicActivity) }],
+          ]
+        },
+        layout: 'lightHorizontalLines'
+      },
+
+      // Footer
+      { text: safe(l.footer?.note), alignment: 'center', fontSize: 8, italics: true, margin: [0, 30, 0, 0] }
+    ]
+  };
+
+  pdfMake.createPdf(docDef).download(`Mushak_2.3_${lang}.pdf`);
+}
+
 
   exportmushak_6_1_English(data: any, lang: string) {
     const l = (data.labels?.mushak_6_1 || {}) as any;
