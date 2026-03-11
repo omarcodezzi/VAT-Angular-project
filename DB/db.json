@@ -1099,6 +1099,122 @@
           "doc_f": "সংযুক্ত"
         }
       }
+    },
+    "mushak_18_2_data": {
+  "EN": {
+    "formData": {
+      "applicant_name": "John Doe Trading Co.",
+      "applicant_address": "123 Commerce Street, Motijheel, Dhaka-1000",
+      "applicant_bin": "000123456-0101",
+      "document_description": "VAT Return Documents for the year 2023-2024",
+      "document_quantity": "25 Pages",
+      "purpose_of_use": "For submission to the bank for loan processing",
+      "fee_challan_info": "Challan No: 1234567, Date: 01-01-2024, Amount: 500 BDT",
+      "officer_info": "Mr. Ahmed Khan, VAT Commissionerate, Dhaka"
+    },
+    "declaration": {
+      "signature": "John Doe",
+      "name": "John Doe",
+      "address": "123 Commerce Street, Motijheel, Dhaka-1000"
+    }
+  },
+  "BN": {
+    "formData": {
+      "applicant_name": "জন ডো ট্রেডিং কোং",
+      "applicant_address": "১২৩ কমার্স স্ট্রিট, মতিঝিল, ঢাকা-১০০০",
+      "applicant_bin": "০০০১২৩৪৫৬-০১০১",
+      "document_description": "২০২৩-২০২৪ অর্থবছরের ভ্যাট রিটার্ন দলিলপত্র",
+      "document_quantity": "২৫ পৃষ্ঠা",
+      "purpose_of_use": "ব্যাংক ঋণ প্রক্রিয়াকরণের জন্য জমা প্রদানের নিমিত্তে",
+      "fee_challan_info": "চালান নং: ১২৩৪৫৬৭, তারিখ: ০১-০১-২০২৪, পরিমাণ: ৫০০ টাকা",
+      "officer_info": "জনাব আহমেদ খান, ভ্যাট কমিশনারেট, ঢাকা"
+    },
+    "declaration": {
+      "signature": "জন ডো",
+      "name": "জন ডো",
+      "address": "১২৩ কমার্স স্ট্রিট, মতিঝিল, ঢাকা-১০০০"
+    }
+  }
+},
+    "mushak_18_3_data": {
+      "EN": {
+        "header": {
+          "applicantInfo": "Official Name, Logo, Address",
+          "formNumber": "Mushak-18.3"
+        },
+        "titles": {
+          "form": "Application for Obtaining VAT Certificate",
+          "rule": "[Rule 116, Sub-rule (1) refer]"
+        },
+        "body": {
+          "date": "Date:",
+          "to": "To",
+          "recipient": {
+            "designation": "Commissioner",
+            "department": "Customs, Excise and VAT Commissionerate, __________"
+          },
+          "subject": "Subject: Application for Obtaining VAT Certificate.",
+          "salutation": "Sir,",
+          "paragraph": "I, ............................................., am a VAT-registered business engaged in VAT-taxable trade/services at your commissionerate. Under the Value Added Tax and Supplementary Duty Act, 2012 and the Value Added Tax and Supplementary Duty Rules, 2016, there are no pending cases against me. I have no outstanding tax dues to the government under the said Act and Rules.",
+          "reasonIntro": "I hereby state that I need a VAT certificate for the following reasons:",
+          "reasons": {
+            "a": "(a)............................",
+            "b": "(b)............................"
+          },
+          "closing": "Therefore, I humbly request that a VAT certificate be issued in my favor."
+        },
+        "declaration": {
+          "title": "04 | Declaration",
+          "text": "I declare that the information provided in this application is complete, true and accurate.",
+          "fields": {
+            "name": "Name",
+            "address": "Address",
+            "bin": "BIN"
+          },
+          "name": "John Doe Trading Co.",
+          "address": "123 Commerce Street, Dhaka-1000",
+          "bin": "000123456-0101"
+        }
+      },
+      "BN": {
+        "header": {
+          "applicantInfo": "দাপ্তরিক নাম, লগো, ঠিকানা",
+          "formNumber": "মুসক-১৮.৩"
+        },
+        "titles": {
+          "form": "মুসক ছাড়পত্র প্রাপ্তির আবেদনপত্র",
+          "rule": "[বিধি ১১৬ এর উপ-বিধি (১) দ্রষ্টব্য]"
+        },
+        "body": {
+          "date": "তারিখ:",
+          "to": "বরাবর",
+          "recipient": {
+            "designation": "কমিশনার",
+            "department": "কাউমন, এক্সাইজ ও স্থাত কমিশনারেট, __________"
+          },
+          "subject": "বিষয়ঃ মুসক ছাড়পত্র প্রাপ্তির আবেদনপত্র।",
+          "salutation": "জনাব,",
+          "paragraph": "আমি ............................................., আপনার কর্মএলাকায় নিবন্ধিত একটি মূল্য সংযোজন করযোগ্য ব্যবসায় নিয়োজিত এবং নিয়মিত করদাতা। মূল্য সংযোজন কর ও সম্পূরক শুল্ক আইন, ২০১২ এবং মূল্য সংযোজন কর ও সম্পূরক শুল্ক বিধিমালা, ২০১৬ এর আওতায় আমার বিরুদ্ধে কোনো অভিযোগ নাই। আমার নিকট উক্ত আইন ও বিধিমালার আওতায় সরকারের কোনো বকেয়া কর পাওনা নাই। ",
+          "reasonIntro": "নিম্নবর্ণিত করণে আমার একটি মূসক ছাড়পত্রের প্রয়োজন, যথা: ",
+          "reasons": {
+            "a": "(ক)............................",
+            "b": "(খ)............................"
+          },
+          "closing": "এমতাবস্থায়, আমার অনুকূেল একিট মুসক ছাড়পত্র জাির অনুেরাধ করা হইল।"
+        },
+        "declaration": {
+          "title": "০৪ | ঘোষণা",
+          "text": "আমি ঘোষণা করিতেছি যে, এই আবেদনে প্রদত্ত তথ্য সর্বদিক থেকে সম্পূর্ণ, সত্য ও নির্ভুল।",
+          "fields": {
+            "name": "নাম",
+            "address": "ঠিকানা",
+            "bin": "বিআইএন"
+          },
+          "name": "জন ডো ট্রেডিং কোং",
+          "address": "১২৩ কমার্স স্ট্রিট, ঢাকা-১০০০",
+          "bin": "০০০১২৩৪৫৬-০১০১"
+        }
+      }
     }
   }
 }

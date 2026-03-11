@@ -38,7 +38,7 @@ export class ExcelImportComponent {
     private http: HttpClient,
     private exportService: ExportService,
     private mushakService: MushakService,
-  ) { }
+  ) {}
 
   headerChecks = computed<HeaderCheckRow[]>(() => {
     const headers = this.excelHeaders();
@@ -434,10 +434,9 @@ export class ExcelImportComponent {
           this.exportService.exportMushak_10_1(data, lang);
         }
       },
-      error: (err) => console.error("API Connection Failed!", err)
+      error: (err) => console.error('API Connection Failed!', err),
     });
   }
-
 
   downloadmushak_18_1(lang: 'EN' | 'BN') {
     const apiEndpoint = 'http://localhost:3000/mushak_values';
@@ -450,7 +449,39 @@ export class ExcelImportComponent {
           this.exportService.exportMushak_18_1(data, lang);
         }
       },
-      error: (err) => console.error("API Connection Failed!", err)
+      error: (err) => console.error('API Connection Failed!', err),
+    });
+  }
+
+    downloadmushak_18_2(lang: string) {
+    const apiEndpoint = 'http://localhost:3000/mushak_values';
+    // const i18nLang = lang === 'EN' ? 'en' : 'BN';
+
+    this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
+      next: (data) => {
+        if (lang === 'EN') {
+          this.exportService.exportMushak_18_2(data, lang);
+        } else {
+          this.exportService.exportMushak_18_2(data, lang);
+        }
+      },
+      error: (err) => console.error('API Connection Failed!', err),
+    });
+  }
+
+  downloadmushak_18_3(lang: string) {
+    const apiEndpoint = 'http://localhost:3000/mushak_values';
+    // const i18nLang = lang === 'EN' ? 'en' : 'BN';
+
+    this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
+      next: (data) => {
+        if (lang === 'EN') {
+          this.exportService.exportMushak_18_3(data, lang);
+        } else {
+          this.exportService.exportMushak_18_3(data, lang);
+        }
+      },
+      error: (err) => console.error('API Connection Failed!', err),
     });
   }
 
@@ -462,5 +493,4 @@ export class ExcelImportComponent {
   //     }
   //   });
   // }
-
 }
