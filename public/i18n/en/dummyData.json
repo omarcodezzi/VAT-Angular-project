@@ -798,16 +798,32 @@
       "nbr": "National Board of Revenue",
       "form": "MUSHAK-2.1",
       "name": "Application for VAT Registration and Turnover Tax Enlistment",
-      "rule": "[See Rule 4, Sub-rule (1) & Rule 5, Sub-rule (1)]"
+      "rule": "[ See Rule 4, Sub-rule (1) & Rule 5, Sub-rule (1) ]"
     },
     "sections": {
       "part1": "1. Taxpayer Identification Number (e-TIN)",
       "part2": "2. Name of the Person Eligible for Registration/Enlistment",
       "part3": "3. Address for Registration/Enlistment",
       "part4": "4. Address of Branch Units",
-      "part5": "5. Bank Account Information"
+      "part5": "5. Bank Account Information",
+      "part6": "6. Annual Turnover Amount",
+      "part7": "7. Nature of Registration (Tick [√] where applicable)",
+      "part8": "8. Are you a Withholding Entity?",
+      "part9": "9. Nature of Registered/Enlisted Person",
+      "part10": "10. Liability for Other Taxes",
+      "part11": "11. Effective Date of Registration/Enlistment",
+      "part12": "12. Nature of Application",
+      "part13": "13. Type of Application",
+      "part14": "14. Director/Partner/Proprietor Information",
+      "part15": "15. Nature of Business Activity",
+      "part16": "16. Nature of Economic Activity",
+      "part17": "17. Declaration"
     },
     "address_labels": {
+      "address": "Address",
+      "fill_any_one": "Fill any one",
+      "town_address": "Town address",
+      "village_address": "Village address",
       "holding": "Holding No",
       "mohalla": "Para/Mohalla",
       "road": "Road No/Name",
@@ -818,18 +834,31 @@
       "upazila": "Upazila",
       "post_code": "Postal Code",
       "mouza": "Mouza Name",
-      "phone": "Phone",
-      "fax": "Fax",
       "mobile": "Mobile",
       "email": "Email",
-      "web": "Website"
+      "web": "Website",
+      "phone": "Phone",
+      "fax": "Fax"
     },
     "bank_headers": {
       "sl": "SL",
       "acc_name": "Account Name",
       "acc_no": "Account Number",
       "bank_name": "Bank Name",
-      "branch": "Branch"
+      "branch": "Branch",
+      "amount": "Amount",
+      "inWord": "In Word"
+    },
+    "branch_labels": {
+      "sl": "Serial",
+      "addr_header": "Mouza with Address",
+      "contact_header": "Mobile/Phone/Email",
+      "address": "Address",
+      "mouza": "Mouza",
+      "mobile": "Mobile",
+      "phone": "Phone",
+      "email": "Email",
+      "note": "(Use additional paper if necessary)"
     }
   }
 }

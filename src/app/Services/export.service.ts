@@ -34,7 +34,7 @@ if (!vfs) {
   providedIn: 'root',
 })
 export class ExportService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getMergedMushakData(apiEndpoint: string, lang: string): Observable<any> {
     const labels$ = this.http.get(`i18n/${lang}/dummyData.json`);
@@ -54,7 +54,7 @@ export class ExportService {
           taxpayer: values.taxpayer,
           returnSubmission: values.returnSubmission,
           mushak_2_3_data: values.mushak_values?.mushak_2_3_data || values.mushak_2_3_data || {},
-
+          mushak_2_1_data: values.mushak_values?.mushak_2_1_data || values.mushak_2_1_data || {},
           mushak_4_3_data: values.mushak_values?.mushak_4_3_data || values.mushak_4_3_data || {},
           mushak_6_1_data: values.mushak_values?.mushak_6_1_data || values.mushak_6_1_data || {},
           mushak_6_2_data: values.mushak_values?.mushak_6_2_data || values.mushak_6_2_data || {},
@@ -7190,9 +7190,11 @@ export class ExportService {
   }
 
   exportMushak_2_1(data: any, lang: string) {
+    debugger
     const l = (data.labels?.mushak_2_1 || {}) as any;
     const targetData = data.mushak_2_1_data?.[lang] || {};
     const al = l.address_labels || {};
+    const bl = l.branch_labels || {};
     const safe = (val: any) => (val !== undefined && val !== null) ? val.toString() : '';
     const toBnNum = (n: any) => lang === 'BN' ? n.toString().replace(/\d/g, (d: any) => "০১২৩৪৫৬৭৮৯"[d]) : n;
 
@@ -7201,71 +7203,236 @@ export class ExportService {
         normal: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
         bold: window.location.origin + '/assets/fonts/Nunito-Bold.ttf',
         italics: window.location.origin + '/assets/fonts/Nunito-Italic.ttf',
-        bolditalics: window.location.origin + '/assets/fonts/Nunito-BoldItalic.ttf'
+        bolditalics: window.location.origin + '/assets/fonts/Nunito-BoldItalic.ttf',
       },
       PlaywriteCU: {
         normal: window.location.origin + '/assets/fonts/kalpurush.ttf',
         bold: window.location.origin + '/assets/fonts/Kalpurush-Bold.ttf',
         italics: window.location.origin + '/assets/fonts/kalpurush.ttf',
-        bolditalics: window.location.origin + '/assets/fonts/kalpurush.ttf'
-      }
+        bolditalics: window.location.origin + '/assets/fonts/kalpurush.ttf',
+      },
     };
-
     const docDef: any = {
       pageSize: 'A4',
       pageMargins: [30, 30, 30, 30],
-      defaultStyle: { font: lang === 'BN' ? 'PlaywriteCU' : 'Nunito', fontSize: 8.5 },
+      defaultStyle: { font: lang === 'BN' ? 'PlaywriteCU' : 'Nunito', fontSize: 8 },
       content: [
-        // Right Header Box
-        {
-          columns: [{ width: '*', text: '' }, { width: 'auto', table: { body: [[{ text: safe(l.titles?.form), bold: true }]] } }],
-          margin: [0, 0, 0, 10]
-        },
+        // --- PAGE 1: Identity & Address ---
+        { columns: [{ width: '*', text: '' }, { width: 'auto', table: { body: [[{ text: safe(l.titles?.form), bold: true }]] } }], margin: [0, 0, 0, 10] },
         { text: safe(l.titles?.gov), alignment: 'center', bold: true },
         { text: safe(l.titles?.nbr), alignment: 'center', bold: true },
         { text: safe(l.titles?.name), alignment: 'center', bold: true, fontSize: 10, margin: [0, 5, 0, 0] },
         { text: safe(l.titles?.rule), alignment: 'center', fontSize: 7, margin: [0, 0, 0, 15] },
 
-        // Section 1 & 2
+        // Sec 1 & 2 [cite: 9-13]
         { text: safe(l.sections?.part1), bold: true, margin: [0, 5, 0, 2] },
-        { table: { widths: ['*'], body: [[toBnNum(safe(targetData.formData?.tin))]] } },
-
+        { table: { widths: ['*'], body: [[{ text: toBnNum(safe(targetData.formData?.tin)), margin: [5, 2] }]] } },
         { text: safe(l.sections?.part2), bold: true, margin: [0, 5, 0, 2] },
-        { table: { widths: ['*'], body: [[safe(targetData.formData?.person_name)]] } },
+        { table: { widths: ['*'], body: [[{ text: safe(targetData.formData?.person_name), margin: [5, 2] }]] } },
 
-        // Section 3: Address Table [cite: 41]
+        // Sec 3: Address Table
         { text: safe(l.sections?.part3), bold: true, margin: [0, 5, 0, 2] },
         {
           table: {
-            widths: [80, '*', 80, '*'],
+            widths: [87, 100, 100, 100, 100],
             body: [
-              [{ text: al.holding, bold: true }, safe(targetData.formData?.address?.holding), { text: al.mohalla, bold: true }, safe(targetData.formData?.address?.mohalla)],
-              [{ text: al.road, bold: true }, safe(targetData.formData?.address?.road), { text: al.village, bold: true }, safe(targetData.formData?.address?.village)],
-              [{ text: al.area, bold: true }, safe(targetData.formData?.address?.area), { text: al.thana, bold: true }, safe(targetData.formData?.address?.thana)],
-              [{ text: al.district, bold: true }, safe(targetData.formData?.address?.district), { text: al.upazila, bold: true }, safe(targetData.formData?.address?.upazila)],
-              [{ text: al.post_code, bold: true }, toBnNum(safe(targetData.formData?.address?.post_code)), { text: al.mouza, bold: true }, safe(targetData.formData?.address?.mouza)],
-              [{ text: al.mobile, bold: true }, toBnNum(safe(targetData.formData?.address?.mobile)), { text: al.email, bold: true }, safe(targetData.formData?.address?.email)]
+              [
+                { text: al.address, rowSpan: 5, alignment: 'center', margin: [0, 25, 0, 0] },
+                { text: al.fill_any_one, colSpan: 4, alignment: 'center', bold: true },
+                {}, {}, {}
+              ],
+              [
+                {},
+                { text: al.town_address, colSpan: 2, alignment: 'center', fillColor: '#f2f2f2' },
+                {},
+                { text: al.village_address, colSpan: 2, alignment: 'center', fillColor: '#f2f2f2' }
+              ],
+              [
+                {},
+                { text: al.holding, bold: true },
+                { text: safe(targetData.formData?.address?.holding) },
+                { text: al.mohalla, bold: true },
+                { text: safe(targetData.formData?.address?.mohalla) }
+              ],
+              [
+                {},
+                { text: al.road, bold: true },
+                { text: safe(targetData.formData?.address?.road) },
+                { text: al.village, bold: true },
+                { text: safe(targetData.formData?.address?.village) }
+              ],
+              [
+                {},
+                { text: al.area, bold: true },
+                { text: safe(targetData.formData?.address?.area) },
+                { text: al.thana, bold: true },
+                { text: safe(targetData.formData?.address?.thana) }
+              ],
+              [
+                { text: al.district, bold: true },
+                { text: safe(targetData.formData?.address?.district), colSpan: 2 },
+                {},
+                { text: al.upazila, bold: true },
+                { text: safe(targetData.formData?.address?.upazila) }
+              ],
+              [
+                { text: al.post_code, bold: true },
+                { text: toBnNum(safe(targetData.formData?.address?.post_code)), colSpan: 2 },
+                {},
+                { text: al.mouza, bold: true },
+                { text: toBnNum(safe(targetData.formData?.address?.mouza)) }
+              ],
+              [
+                { text: al.phone, bold: true },
+                { text: safe(targetData.formData?.address?.phone), colSpan: 2 },
+                {},
+                { text: al.mobile, bold: true },
+                { text: safe(targetData.formData?.address?.mobile) }
+              ],
+              [
+                { text: al.email, bold: true },
+                { text: safe(targetData.formData?.address?.email), colSpan: 2 },
+                {},
+                { text: al.fax, bold: true },
+                { text: safe(targetData.formData?.address?.fax) }
+              ],
+              [
+                { text: al.web, bold: true },
+                { text: safe(targetData.formData?.address?.web), colSpan: 4 }
+              ]
+            ]
+          },
+          margin: [0, 0, 0, 10]
+        },
+
+        // Section 4: Address of Branch Units
+        { text: safe(l.sections?.part4), bold: true, margin: [0, 10, 0, 2] },
+        {
+          table: {
+            widths: [30, 60, '*', 60, '*'],
+            body: [
+              [
+                { text: bl.sl, alignment: 'center', bold: true },
+                { text: bl.addr_header, colSpan: 2, alignment: 'center', bold: true },
+                {},
+                { text: bl.contact_header, colSpan: 2, alignment: 'center', bold: true },
+                {}
+              ],
+              ...(targetData.branchData || []).flatMap((branch: any, index: number) => [
+                [
+                  { text: toBnNum(index + 1), rowSpan: 3, alignment: 'center', margin: [0, 15, 0, 0] },
+                  { text: al.address, bold: true, rowSpan: 2 },
+                  { text: safe(branch.address), rowSpan: 2 },
+                  { text: al.mobile, bold: true },
+                  { text: toBnNum(safe(branch.mobile)) }
+                ],
+                [
+                  {},
+                  { text: '', border: [true, false, true, false] },
+                  { text: '', border: [true, false, true, false] },
+                  { text: al.phone, bold: true },
+                  { text: toBnNum(safe(branch.phone)) }
+                ],
+                [
+                  {},
+                  { text: al.mouza, bold: true },
+                  { text: safe(branch.mouza) },
+                  { text: al.email, bold: true },
+                  { text: safe(branch.email) }
+                ]
+              ])
+            ]
+          }
+        },
+        { text: bl.note, fontSize: 7, alignment: 'right', margin: [0, 2, 0, 10] },
+
+        { text: safe(l.sections?.part5), bold: true, margin: [0, 10, 0, 2] },
+        {
+          table: {
+            headerRows: 1, widths: [30, '*', '*', '*', '*'],
+            body: [
+              [l.bank_headers?.sl, l.bank_headers?.acc_name, l.bank_headers?.acc_no, l.bank_headers?.bank_name, l.bank_headers?.branch].map(h => ({ text: h, bold: true, alignment: 'center' })),
+              ...(targetData.bankData || []).map((b: any, i: number) => [toBnNum(i + 1), safe(b.acc_name), toBnNum(safe(b.acc_no)), safe(b.bank), safe(b.branch)])
+            ]
+          },
+          pageBreak: 'after' // Correct placement to avoid Error
+        },
+        { text: bl.note, fontSize: 7, alignment: 'right', margin: [0, 2, 0, 10] },
+
+        // --- Section-6 ---
+        { text: safe(l.sections?.part6), bold: true, margin: [0, 5, 0, 2] },
+        { table: { widths: [80, '*'], body: [[l.bank_headers?.amount, toBnNum(safe(targetData.formData?.turnover))], [l.bank_headers?.inWord, ' ']] } },
+
+        { text: safe(l.sections?.part7), bold: true, margin: [0, 10, 0, 5] },
+        { columns: [{ text: `[ ${targetData.formData?.reg_nature === 'VAT' ? '√' : ' '} ] Registration for VAT`, width: 200 }, { text: `[ ${targetData.formData?.reg_nature === 'TT' ? '√' : ' '} ] Turnover Tax Enlistment` }] },
+
+        { text: safe(l.sections?.part8), bold: true, margin: [0, 10, 0, 5] },
+        { columns: [{ text: `[ ${targetData.formData?.is_vds ? '√' : ' '} ] Yes`, width: 100 }, { text: `[ ${!targetData.formData?.is_vds ? '√' : ' '} ] No` }] },
+
+        { text: safe(l.sections?.part9), bold: true, margin: [0, 10, 0, 2] },
+        { table: { widths: ['*', '*', '*'], body: [['[ ] Individual', '[ ] Proprietorship', '[ ] Partnership'], ['[√] Pvt Ltd Co', '[ ] Pub Ltd Co', '[ ] Foreign Co']] } },
+
+        { text: safe(l.sections?.part10), bold: true, margin: [0, 10, 0, 5] },
+        { columns: [{ text: '[ ] SD', width: 100 }, { text: '[ ] Excise Duty', width: 100 }, { text: '[ ] Surcharge' }] },
+
+        { text: safe(l.sections?.part11), bold: true, margin: [0, 10, 0, 2] },
+        { table: { widths: [100], body: [[toBnNum(safe(targetData.formData?.effective_date))]] } },
+
+        { text: safe(l.sections?.part12), bold: true, margin: [0, 10, 0, 5] },
+        { columns: [{ text: '[√] Mandatory', width: 100 }, { text: '[ ] Voluntary', width: 100 }, { text: '[ ] By Commissioner' }] },
+
+        { text: safe(l.sections?.part13), bold: true, margin: [0, 10, 0, 2] },
+        {
+          columns: [
+            { table: { widths: [20, '*'], body: [['SL', 'Old BIN'], [toBnNum(1), ' ']] } },
+            { table: { widths: [20, '*'], body: [['SL', 'Old BIN'], [toBnNum(11), ' ']] } }
+          ],
+          columnGap: 10, pageBreak: 'after'
+        },
+
+        // --- PAGE 3: Directors Info ---
+        { text: safe(l.sections?.part14), bold: true, margin: [0, 5, 0, 5] },
+        {
+          table: {
+            headerRows: 1, widths: [20, '*', 60, 40, '*'],
+            body: [
+              ['SL', 'Name', 'Designation', 'Share%', 'Identity Info'].map(h => ({ text: h, bold: true, alignment: 'center' })),
+              ...(targetData.directors || []).map((d: any, i: number) => [
+                toBnNum(i + 1), safe(d.name), safe(d.designation), toBnNum(safe(d.share)),
+                {
+                  table: {
+                    widths: [60, '*'],
+                    body: [['Type', safe(d.id_type)], ['Number', toBnNum(safe(d.id_no))], ['Country', 'BD']]
+                  },
+                  layout: 'noBorders'
+                }
+              ])
             ]
           }
         },
 
-        // Section 5: Bank Table [cite: 48]
-        { text: safe(l.sections?.part5), bold: true, margin: [0, 10, 0, 2] },
+        { text: safe(l.sections?.part15), bold: true, margin: [0, 15, 0, 5] },
+        { table: { widths: ['*', '*', '*'], body: [['[ ] Importer', '[ ] Service Provider', '[ ] Exporter'], ['[√] Supplier', '[ ] Minerals', '[ ] Manufacturer']] } },
+        { text: '', pageBreak: 'after' },
+
+        // --- PAGE 4: Eco Activity & Declaration ---
+        { text: safe(l.sections?.part16), bold: true, margin: [0, 5, 0, 5] },
+        { table: { widths: ['*', '*', '*'], body: [['[ ] Retail', '[ ] Wholesale', '[√] Manufacturer'], ['[ ] Construction', '[ ] Seasonal', '[ ] Service']] } },
+        { text: '(b) Detailed Description:', margin: [0, 10, 0, 2] },
+        { table: { widths: ['*'], body: [[{ text: safe(targetData.formData?.eco_desc), minHeight: 40 }]] } },
+
+        { text: safe(l.sections?.part17), bold: true, margin: [0, 15, 0, 5] },
         {
-          table: {
-            headerRows: 1,
-            widths: [30, '*', '*', '*', '*'],
-            body: [
-              [l.bank_headers?.sl, l.bank_headers?.acc_name, l.bank_headers?.acc_no, l.bank_headers?.bank_name, l.bank_headers?.branch].map(h => ({ text: h, bold: true, alignment: 'center' })),
-              ...(targetData.bankData || []).map((b: any, i: number) => [
-                { text: toBnNum(i + 1), alignment: 'center' },
-                safe(b.acc_name), toBnNum(safe(b.acc_no)), safe(b.bank), safe(b.branch)
-              ])
-            ]
-          }
+          padding: [10, 10, 10, 10],
+          stack: [
+            { columns: [{ text: '[√] (a) Owner', width: 150 }, { text: '(b) Director' }] },
+            { margin: [0, 10, 0, 0], columns: [{ text: `Name: ${safe(targetData.formData?.declarant_name)}`, width: '*' }, { text: `NID: ${toBnNum(safe(targetData.formData?.declarant_nid))}`, width: '*' }] },
+            { text: lang === 'BN' ? 'আমি ঘোষণা করিতেছি যে, এই আবেদনে প্রদত্ত তথ্য সর্বোতভাবে সম্পূর্ণ, সত্য ও নির্ভুল।' : 'I declare that the information provided is complete, true, and correct.', margin: [0, 15, 0, 0] },
+            { margin: [0, 20, 0, 0], columns: [{ text: `Date: ${toBnNum(new Date().toLocaleDateString())}` }, { text: 'Signature: _______________', alignment: 'right' }] }
+          ]
         }
       ]
     };
     pdfMake.createPdf(docDef).download(`${l.titles?.form}_${lang}.pdf`);
-}
+  }
 }

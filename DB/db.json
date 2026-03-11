@@ -1222,20 +1222,28 @@
           "tin": "987654321011",
           "person_name": "Divine IT Limited",
           "address": {
-            "holding_no": "29",
-            "road_name": "Road 12",
-            "block": "Sector 10",
+            "holding": "29",
+            "mohalla": "Sector 10",
+            "road": "Road 12",
+            "village": "N/A",
+            "area": "Uttara",
+            "thana": "Uttara West",
             "district": "Dhaka",
             "upazila": "Uttara",
             "post_code": "1230",
+            "mouza": "Uttara",
             "mobile": "017XXXXXXXX",
-            "email": "info@divineit.net"
+            "email": "info@divineit.net",
+            "web": "www.divineit.net"
           },
-          "annual_turnover": "5000000.00",
-          "reg_nature": "VAT Registration",
-          "is_withholding": "No",
+          "turnover": "5000000.00",
+          "reg_nature": "VAT",
+          "is_vds": true,
           "person_nature": "Private Limited Company",
-          "effective_date": "2026-03-11"
+          "effective_date": "11/03/2026",
+          "eco_activity": "Manufacturer of Software and IT Enabled Services",
+          "declarant_name": "Riyad Hasan",
+          "declarant_nid": "1995261XXXXXXXXXX"
         },
         "bankData": [
           {
@@ -1260,20 +1268,30 @@
           "tin": "৯৮৭৬৫৪৩২১০১১",
           "person_name": "ডিভাইন আইটি লিমিটেড",
           "address": {
-            "holding_no": "২৯",
-            "road_name": "রোড ১২",
-            "block": "সেক্টর ১০",
+            "holding": "২৯",
+            "mohalla": "সেক্টর ১০",
+            "road": "রোড ১২",
+            "village": "প্রযোজ্য নয়",
+            "area": "উত্তরা",
+            "thana": "উত্তরা পশ্চিম",
             "district": "ঢাকা",
             "upazila": "উত্তরা",
             "post_code": "১২৩০",
+            "mouza": "উত্তরা",
             "mobile": "০১৭XXXXXXXX",
-            "email": "info@divineit.net"
+            "email": "info@divineit.net",
+            "web": "www.divineit.net",
+            "phone": "০১৭XXXXXXXX",
+            "fax": "info@divineit.net"
           },
-          "annual_turnover": "৫০০০০০০.০০",
-          "reg_nature": "মূসকের জন্য নিবন্ধন",
-          "is_withholding": "না",
+          "turnover": "৫০০০০০০.০০",
+          "reg_nature": "VAT",
+          "is_vds": true,
           "person_nature": "প্রাইভেট লিমিটেড কোম্পানি",
-          "effective_date": "১১/০৩/২০২৬"
+          "effective_date": "১১/০৩/২০২৬",
+          "eco_activity": "সফটওয়্যার এবং আইটি এনাবল্ড সার্ভিস উৎপাদনকারী",
+          "declarant_name": "রিয়াদ হাসান",
+          "declarant_nid": "১৯৯৫২৬১XXXXXXXXXX"
         },
         "bankData": [
           {
@@ -1290,6 +1308,15 @@
             "share": "৬০",
             "id_type": "এনআইডি",
             "id_no": "১৯৯৫২৬১XXXXXXXXXX"
+          }
+        ],
+        "branchData": [
+          {
+            "address": "হাউজ ২৯, রোড ১২, উত্তরা, ঢাকা",
+            "mouza": "উত্তরা",
+            "mobile": "০১৭XXXXXXXX",
+            "phone": "০২-XXXXXX",
+            "email": "branch1@divineit.net"
           }
         ]
       }
