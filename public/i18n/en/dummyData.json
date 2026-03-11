@@ -142,30 +142,30 @@
     "acc_code": "Account Code"
   },
   "mushak_2_3": {
-  "titles": {
-    "gov": "Government of the People's Republic of Bangladesh",
-    "nbr": "National Board of Revenue",
-    "commissionerate": "Customs, Excise and VAT Commissionerate, Dhaka (South)",
-    "division": "Kotowali Division",
-    "form": "Value Added Tax Registration Certificate",
-    "rule": "[Value Added Tax and Supplementary Duty Act, 2012 (Act No. 47 of 2012)]",
-    "m_name": "Mushak-2.3"
+    "titles": {
+      "gov": "Government of the People's Republic of Bangladesh",
+      "nbr": "National Board of Revenue",
+      "commissionerate": "Customs, Excise and VAT Commissionerate, Dhaka (South)",
+      "division": "Kotowali Division",
+      "form": "Value Added Tax Registration Certificate",
+      "rule": "[Value Added Tax and Supplementary Duty Act, 2012 (Act No. 47 of 2012)]",
+      "m_name": "Mushak-2.3"
+    },
+    "info": {
+      "name_of_entity": "Name of the Entity",
+      "trading_brand_name": "Trading Brand Name",
+      "old_bin": "Old BIN",
+      "etin": "e-TIN",
+      "address": "Address",
+      "issue_date": "Issue Date",
+      "effective_date": "Effective Date",
+      "type_of_ownership": "Type of Ownership",
+      "major_area": "Major Area of Economic Activity"
+    },
+    "footer": {
+      "note": "This is a system generated certificate and doesn't require any signature."
+    }
   },
-  "info": {
-    "name_of_entity": "Name of the Entity",
-    "trading_brand_name": "Trading Brand Name",
-    "old_bin": "Old BIN",
-    "etin": "e-TIN",
-    "address": "Address",
-    "issue_date": "Issue Date",
-    "effective_date": "Effective Date",
-    "type_of_ownership": "Type of Ownership",
-    "major_area": "Major Area of Economic Activity"
-  },
-  "footer": {
-    "note": "This is a system generated certificate and doesn't require any signature."
-  }
-},
   "mushak_4_3": {
     "titles": {
       "gov": "Government of the People's Republic of Bangladesh",
@@ -729,6 +729,46 @@
       "text": "I declare that the information provided in this application is complete, true, and correct in all respects.",
       "name": "Name",
       "designation": "Designation"
+    }
+  },
+  "mushak_2_1": {
+    "titles": {
+      "gov": "Government of the People's Republic of Bangladesh",
+      "nbr": "National Board of Revenue",
+      "form": "MUSHAK-2.1",
+      "name": "Application for VAT Registration and Turnover Tax Enlistment",
+      "rule": "[See Rule 4, Sub-rule (1) & Rule 5, Sub-rule (1)]"
+    },
+    "sections": {
+      "part1": "1. Taxpayer Identification Number (e-TIN)",
+      "part2": "2. Name of the Person Eligible for Registration/Enlistment",
+      "part3": "3. Address for Registration/Enlistment",
+      "part4": "4. Address of Branch Units",
+      "part5": "5. Bank Account Information"
+    },
+    "address_labels": {
+      "holding": "Holding No",
+      "mohalla": "Para/Mohalla",
+      "road": "Road No/Name",
+      "village": "Village",
+      "area": "Block/Area",
+      "thana": "Thana",
+      "district": "District",
+      "upazila": "Upazila",
+      "post_code": "Postal Code",
+      "mouza": "Mouza Name",
+      "phone": "Phone",
+      "fax": "Fax",
+      "mobile": "Mobile",
+      "email": "Email",
+      "web": "Website"
+    },
+    "bank_headers": {
+      "sl": "SL",
+      "acc_name": "Account Name",
+      "acc_no": "Account Number",
+      "bank_name": "Bank Name",
+      "branch": "Branch"
     }
   }
 }
