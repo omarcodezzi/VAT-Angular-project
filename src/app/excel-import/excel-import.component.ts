@@ -243,6 +243,21 @@ export class ExcelImportComponent {
     });
   }
 
+  downloadmushak_2_1(lang: 'EN' | 'BN') {
+    const apiEndpoint = 'http://localhost:3000/mushak_values';
+
+    this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
+      next: (data) => {
+        if (lang === 'EN') {
+          this.exportService.exportMushak_2_1(data, lang);
+        } else {
+          this.exportService.exportMushak_2_1(data, lang);
+        }
+      },
+      error: (err) => console.error("API Connection Failed!", err)
+    });
+  }
+
   downloadmushak_2_3(lang: string) {
     const apiEndpoint = 'http://localhost:3000/mushak_values';
 
@@ -484,6 +499,7 @@ export class ExcelImportComponent {
       error: (err) => console.error('API Connection Failed!', err),
     });
   }
+
 
   // Full Formatted Excel Report
   // downloadFullMushakExcel() {

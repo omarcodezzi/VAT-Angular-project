@@ -1101,41 +1101,41 @@
       }
     },
     "mushak_18_2_data": {
-  "EN": {
-    "formData": {
-      "applicant_name": "John Doe Trading Co.",
-      "applicant_address": "123 Commerce Street, Motijheel, Dhaka-1000",
-      "applicant_bin": "000123456-0101",
-      "document_description": "VAT Return Documents for the year 2023-2024",
-      "document_quantity": "25 Pages",
-      "purpose_of_use": "For submission to the bank for loan processing",
-      "fee_challan_info": "Challan No: 1234567, Date: 01-01-2024, Amount: 500 BDT",
-      "officer_info": "Mr. Ahmed Khan, VAT Commissionerate, Dhaka"
+      "EN": {
+        "formData": {
+          "applicant_name": "John Doe Trading Co.",
+          "applicant_address": "123 Commerce Street, Motijheel, Dhaka-1000",
+          "applicant_bin": "000123456-0101",
+          "document_description": "VAT Return Documents for the year 2023-2024",
+          "document_quantity": "25 Pages",
+          "purpose_of_use": "For submission to the bank for loan processing",
+          "fee_challan_info": "Challan No: 1234567, Date: 01-01-2024, Amount: 500 BDT",
+          "officer_info": "Mr. Ahmed Khan, VAT Commissionerate, Dhaka"
+        },
+        "declaration": {
+          "signature": "John Doe",
+          "name": "John Doe",
+          "address": "123 Commerce Street, Motijheel, Dhaka-1000"
+        }
+      },
+      "BN": {
+        "formData": {
+          "applicant_name": "জন ডো ট্রেডিং কোং",
+          "applicant_address": "১২৩ কমার্স স্ট্রিট, মতিঝিল, ঢাকা-১০০০",
+          "applicant_bin": "০০০১২৩৪৫৬-০১০১",
+          "document_description": "২০২৩-২০২৪ অর্থবছরের ভ্যাট রিটার্ন দলিলপত্র",
+          "document_quantity": "২৫ পৃষ্ঠা",
+          "purpose_of_use": "ব্যাংক ঋণ প্রক্রিয়াকরণের জন্য জমা প্রদানের নিমিত্তে",
+          "fee_challan_info": "চালান নং: ১২৩৪৫৬৭, তারিখ: ০১-০১-২০২৪, পরিমাণ: ৫০০ টাকা",
+          "officer_info": "জনাব আহমেদ খান, ভ্যাট কমিশনারেট, ঢাকা"
+        },
+        "declaration": {
+          "signature": "জন ডো",
+          "name": "জন ডো",
+          "address": "১২৩ কমার্স স্ট্রিট, মতিঝিল, ঢাকা-১০০০"
+        }
+      }
     },
-    "declaration": {
-      "signature": "John Doe",
-      "name": "John Doe",
-      "address": "123 Commerce Street, Motijheel, Dhaka-1000"
-    }
-  },
-  "BN": {
-    "formData": {
-      "applicant_name": "জন ডো ট্রেডিং কোং",
-      "applicant_address": "১২৩ কমার্স স্ট্রিট, মতিঝিল, ঢাকা-১০০০",
-      "applicant_bin": "০০০১২৩৪৫৬-০১০১",
-      "document_description": "২০২৩-২০২৪ অর্থবছরের ভ্যাট রিটার্ন দলিলপত্র",
-      "document_quantity": "২৫ পৃষ্ঠা",
-      "purpose_of_use": "ব্যাংক ঋণ প্রক্রিয়াকরণের জন্য জমা প্রদানের নিমিত্তে",
-      "fee_challan_info": "চালান নং: ১২৩৪৫৬৭, তারিখ: ০১-০১-২০২৪, পরিমাণ: ৫০০ টাকা",
-      "officer_info": "জনাব আহমেদ খান, ভ্যাট কমিশনারেট, ঢাকা"
-    },
-    "declaration": {
-      "signature": "জন ডো",
-      "name": "জন ডো",
-      "address": "১২৩ কমার্স স্ট্রিট, মতিঝিল, ঢাকা-১০০০"
-    }
-  }
-},
     "mushak_18_3_data": {
       "EN": {
         "header": {
@@ -1214,6 +1214,84 @@
           "address": "১২৩ কমার্স স্ট্রিট, ঢাকা-১০০০",
           "bin": "০০০১২৩৪৫৬-০১০১"
         }
+      }
+    },
+    "mushak_2_1_data": {
+      "EN": {
+        "formData": {
+          "tin": "987654321011",
+          "person_name": "Divine IT Limited",
+          "address": {
+            "holding_no": "29",
+            "road_name": "Road 12",
+            "block": "Sector 10",
+            "district": "Dhaka",
+            "upazila": "Uttara",
+            "post_code": "1230",
+            "mobile": "017XXXXXXXX",
+            "email": "info@divineit.net"
+          },
+          "annual_turnover": "5000000.00",
+          "reg_nature": "VAT Registration",
+          "is_withholding": "No",
+          "person_nature": "Private Limited Company",
+          "effective_date": "2026-03-11"
+        },
+        "bankData": [
+          {
+            "acc_name": "Divine IT Limited",
+            "acc_no": "1234567890",
+            "bank": "Sonali Bank",
+            "branch": "Uttara Branch"
+          }
+        ],
+        "directors": [
+          {
+            "name": "Riyad Hasan",
+            "designation": "Managing Director",
+            "share": "60",
+            "id_type": "NID",
+            "id_no": "1995261XXXXXXXXXX"
+          }
+        ]
+      },
+      "BN": {
+        "formData": {
+          "tin": "৯৮৭৬৫৪৩২১০১১",
+          "person_name": "ডিভাইন আইটি লিমিটেড",
+          "address": {
+            "holding_no": "২৯",
+            "road_name": "রোড ১২",
+            "block": "সেক্টর ১০",
+            "district": "ঢাকা",
+            "upazila": "উত্তরা",
+            "post_code": "১২৩০",
+            "mobile": "০১৭XXXXXXXX",
+            "email": "info@divineit.net"
+          },
+          "annual_turnover": "৫০০০০০০.০০",
+          "reg_nature": "মূসকের জন্য নিবন্ধন",
+          "is_withholding": "না",
+          "person_nature": "প্রাইভেট লিমিটেড কোম্পানি",
+          "effective_date": "১১/০৩/২০২৬"
+        },
+        "bankData": [
+          {
+            "acc_name": "ডিভাইন আইটি লিমিটেড",
+            "acc_no": "১২৩৪৫৬৭৮৯০",
+            "bank": "সোনালী ব্যাংক",
+            "branch": "উত্তরা শাখা"
+          }
+        ],
+        "directors": [
+          {
+            "name": "রিয়াদ হাসান",
+            "designation": "ব্যবস্থাপনা পরিচালক",
+            "share": "৬০",
+            "id_type": "এনআইডি",
+            "id_no": "১৯৯৫২৬১XXXXXXXXXX"
+          }
+        ]
       }
     }
   }

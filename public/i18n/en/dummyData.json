@@ -791,5 +791,45 @@
       "addressValue": "123 Commerce Street, Dhaka-1000",
       "binValue": "000123456-0101"
     }
+  },
+  "mushak_2_1": {
+    "titles": {
+      "gov": "Government of the People's Republic of Bangladesh",
+      "nbr": "National Board of Revenue",
+      "form": "MUSHAK-2.1",
+      "name": "Application for VAT Registration and Turnover Tax Enlistment",
+      "rule": "[See Rule 4, Sub-rule (1) & Rule 5, Sub-rule (1)]"
+    },
+    "sections": {
+      "part1": "1. Taxpayer Identification Number (e-TIN)",
+      "part2": "2. Name of the Person Eligible for Registration/Enlistment",
+      "part3": "3. Address for Registration/Enlistment",
+      "part4": "4. Address of Branch Units",
+      "part5": "5. Bank Account Information"
+    },
+    "address_labels": {
+      "holding": "Holding No",
+      "mohalla": "Para/Mohalla",
+      "road": "Road No/Name",
+      "village": "Village",
+      "area": "Block/Area",
+      "thana": "Thana",
+      "district": "District",
+      "upazila": "Upazila",
+      "post_code": "Postal Code",
+      "mouza": "Mouza Name",
+      "phone": "Phone",
+      "fax": "Fax",
+      "mobile": "Mobile",
+      "email": "Email",
+      "web": "Website"
+    },
+    "bank_headers": {
+      "sl": "SL",
+      "acc_name": "Account Name",
+      "acc_no": "Account Number",
+      "bank_name": "Bank Name",
+      "branch": "Branch"
+    }
   }
 }
