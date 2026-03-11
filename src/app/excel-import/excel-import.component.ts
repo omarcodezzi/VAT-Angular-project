@@ -249,9 +249,9 @@ export class ExcelImportComponent {
     this.exportService.getMergedMushakData(apiEndpoint, lang).subscribe({
       next: (data) => {
         if (lang === 'EN') {
-          this.exportService.exportMushak_2_1(data, lang);
+          // this.exportService.exportMushak_2_1(data, lang);
         } else {
-          this.exportService.exportMushak_2_1(data, lang);
+          // this.exportService.exportMushak_2_1(data, lang);
         }
       },
       error: (err) => console.error("API Connection Failed!", err)
