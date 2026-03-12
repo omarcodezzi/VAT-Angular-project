@@ -808,7 +808,7 @@
       "part5": "5. Bank Account Information",
       "part6": "6. Annual Turnover Amount",
       "part7": "7. Nature of Registration (Tick [√] where applicable)",
-      "part8": "8. Are you a Withholding Entity?",
+      "part8": "8. Are you a Withholding Entity? (Tick [√] where applicable)",
       "part9": "9. Nature of Registered/Enlisted Person",
       "part10": "10. Liability for Other Taxes",
       "part11": "11. Effective Date of Registration/Enlistment",
@@ -859,6 +859,23 @@
       "phone": "Phone",
       "email": "Email",
       "note": "(Use additional paper if necessary)"
+    },
+    "reg_labels": {
+      "vat_reg": "Registration for VAT",
+      "tt_enlist": "Turnover Tax Enlistment",
+      "yes": "Yes",
+      "no": "No"
+    },
+    "nature": {
+      "natural": "Natural Person",
+      "proprietor": "Proprietorship",
+      "partnership": "Partnership",
+      "intl_org": "International Organization",
+      "pvt_ltd": "Private Limited Company",
+      "pub_ltd": "Public Limited Company",
+      "foreign": "Branch of Foreign Company",
+      "diplomat": "Diplomat",
+      "others": "Others (Specify)"
     }
   }
 }

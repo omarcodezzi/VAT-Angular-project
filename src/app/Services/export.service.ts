@@ -7212,6 +7212,7 @@ export class ExportService {
         bolditalics: window.location.origin + '/assets/fonts/kalpurush.ttf',
       },
     };
+    const tickImage = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH5AYWDA8p7zZ7WAAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLm3CYAAAAnZJREFUeNrt17FpAmEUBuDfS8YRLBygkYidpLOInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ+8B9k6YwVwN+f6AAAAAElFTkSuQmCC';
     const docDef: any = {
       pageSize: 'A4',
       pageMargins: [30, 30, 30, 30],
@@ -7363,14 +7364,153 @@ export class ExportService {
         { text: safe(l.sections?.part6), bold: true, margin: [0, 5, 0, 2] },
         { table: { widths: [80, '*'], body: [[l.bank_headers?.amount, toBnNum(safe(targetData.formData?.turnover))], [l.bank_headers?.inWord, ' ']] } },
 
+        // --- Section-7 ---
         { text: safe(l.sections?.part7), bold: true, margin: [0, 10, 0, 5] },
-        { columns: [{ text: `[ ${targetData.formData?.reg_nature === 'VAT' ? '√' : ' '} ] Registration for VAT`, width: 200 }, { text: `[ ${targetData.formData?.reg_nature === 'TT' ? '√' : ' '} ] Turnover Tax Enlistment` }] },
-
+        {
+          columns: [
+            {
+              width: 'auto',
+              table: {
+                widths: [20, 150],
+                body: [
+                  [
+                    {
+                      stack: [
+                        targetData.formData?.is_vat ? { image: tickImage, width: 12, height: 12, alignment: 'center', margin: [0, 2, 0, 0] } : ''
+                      ],
+                      alignment: 'center'
+                    },
+                    { text: safe(l.reg_labels?.vat_reg), margin: [5, 2] }
+                  ]
+                ]
+              },
+              margin: [0, 0, 15, 0]
+            },
+            {
+              width: 'auto',
+              table: {
+                widths: [20, 170],
+                body: [
+                  [
+                    {
+                      stack: [
+                        targetData.formData?.is_tt ? { image: tickImage, width: 12, height: 12, alignment: 'center', margin: [0, 2, 0, 0] } : ''
+                      ],
+                      alignment: 'center'
+                    },
+                    { text: safe(l.reg_labels?.tt_enlist), margin: [5, 2] }
+                  ]
+                ]
+              }
+            }
+          ]
+        },
+        // --- Section-8 ---
         { text: safe(l.sections?.part8), bold: true, margin: [0, 10, 0, 5] },
-        { columns: [{ text: `[ ${targetData.formData?.is_vds ? '√' : ' '} ] Yes`, width: 100 }, { text: `[ ${!targetData.formData?.is_vds ? '√' : ' '} ] No` }] },
+        {
+          columns: [
+            {
+              width: 'auto',
+              table: {
+                widths: [20, 150],
+                body: [
+                  [
+                    {
+                      stack: [
+                        targetData.formData?.is_vat ? { image: tickImage, width: 12, height: 12, alignment: 'center', margin: [0, 2, 0, 0] } : ''
+                      ],
+                      alignment: 'center'
+                    },
+                    { text: safe(l.reg_labels?.yes), margin: [5, 2] }
+                  ]
+                ]
+              },
+              margin: [0, 0, 15, 0]
+            },
+            {
+              width: 'auto',
+              table: {
+                widths: [20, 170],
+                body: [
+                  [
+                    {
+                      stack: [
+                        targetData.formData?.is_tt ? { image: tickImage, width: 12, height: 12, alignment: 'center', margin: [0, 2, 0, 0] } : ''
+                      ],
+                      alignment: 'center'
+                    },
+                    { text: safe(l.reg_labels?.no), margin: [5, 2] }
+                  ]
+                ]
+              }
+            }
+          ]
+        },
 
-        { text: safe(l.sections?.part9), bold: true, margin: [0, 10, 0, 2] },
-        { table: { widths: ['*', '*', '*'], body: [['[ ] Individual', '[ ] Proprietorship', '[ ] Partnership'], ['[√] Pvt Ltd Co', '[ ] Pub Ltd Co', '[ ] Foreign Co']] } },
+        // ৯। নিবন্ধন বা তালিকাভুক্তিযোগ্য ব্যক্তির প্রকৃতি (বক্স ডিজাইন)
+        { text: safe(l.sections?.part9), bold: true, margin: [0, 10, 0, 5] },
+        {
+          columns: [
+            // Column 1
+            {
+              width: 'auto',
+              stack: [
+                { table: { widths: [15, 100], body: [[{ text: '' }, { text: safe(l.nature?.natural), margin: [2, 1] }]] } ,margin: [0, 0, 0, 3]},
+                // { text: '', margin: [0, 1] },
+                { table: { widths: [15, 100], body: [[{ text: '' }, { text: safe(l.nature?.pvt_ltd), margin: [2, 1] }]] } ,margin: [0, 0, 0, 3]}
+              ]
+            },
+            // Column 2
+            {
+              width: 'auto',
+              stack: [
+                { table: { widths: [15, 110], body: [[{ text: '' }, { text: safe(l.nature?.proprietor), margin: [2, 1] }]] } ,margin: [0, 0, 0, 3]},
+                // { text: '', margin: [0, 1] },
+                { table: { widths: [15, 110], body: [[{ text: '' }, { text: safe(l.nature?.pub_ltd), margin: [2, 1] }]] },margin: [0, 0, 0, 3] }
+              ]
+            },
+            // Column 3
+            {
+              width: 'auto',
+              stack: [
+                { table: { widths: [15, 100], body: [[{ text: '' }, { text: safe(l.nature?.partnership), margin: [2, 1] }]] } ,margin: [0, 0, 0, 3]},
+                // { text: '', margin: [0, 1] },
+                { table: { widths: [15, 100], body: [[{ text: '' }, { text: safe(l.nature?.foreign), margin: [2, 1] }]] } ,margin: [0, 0, 0, 3]}
+              ]
+            },
+            // Column 4
+            {
+              width: 'auto',
+              stack: [
+                { table: { widths: [15, 100], body: [[{ text: '' }, { text: safe(l.nature?.intl_org), margin: [2, 1] }]] } ,margin: [0, 0, 0, 3]},
+                // { text: '', margin: [0, 1] },
+                { table: { widths: [15, 100], body: [[{ text: '' }, { text: safe(l.nature?.diplomat), margin: [2, 1] }]] },margin: [0, 0, 0, 3] }
+              ]
+            }
+          ],
+          columnGap: 5
+        },
+        // Others row
+        {
+          margin: [0, 3, 0, 0],
+          columns: [
+            {
+              width: 'auto',
+              table: {
+                widths: [15, 100],
+                body: [[{ text: '' }, { text: safe(l.nature?.others), margin: [2, 1] }]]
+              }
+            },
+            {
+              width: '*',
+              table: {
+                widths: ['*'],
+                body: [[{ text: safe(targetData.formData?.nature_others_text), minHeight: 15, margin: [5, 2] }]]
+              },
+              margin: [5, 0, 0, 0]
+            }
+          ]
+        },
 
         { text: safe(l.sections?.part10), bold: true, margin: [0, 10, 0, 5] },
         { columns: [{ text: '[ ] SD', width: 100 }, { text: '[ ] Excise Duty', width: 100 }, { text: '[ ] Surcharge' }] },
