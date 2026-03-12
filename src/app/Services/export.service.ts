@@ -10,7 +10,7 @@ import { forkJoin, map, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 //QR code generation
-import * as QRCode from 'qrcode';
+// import QRCode from 'qrcode';
 
 // Make pdfMake and pdfFonts mutable
 const pdfMake: any = pdfMakeImport;
@@ -2567,7 +2567,7 @@ export class ExportService {
   }
 
   // Mushak 2.3 Export Function
-exportMushak_2_3(data: any, lang: string) {
+  exportMushak_2_3(data: any, lang: string) {
     const l = (data.labels?.mushak_2_3 || {}) as any;
     const targetData = data.mushak_2_3_data?.[lang] || {};
     const d = targetData;
@@ -2583,328 +2583,183 @@ exportMushak_2_3(data: any, lang: string) {
       },
     };
 
-    const qrData = [
-      `Name: ${safe(d.businessDetails?.nameOfEntity)}`,
-      `BIN: ${safe(d.businessDetails?.bin)}`,
-      `Trading Name: ${safe(d.businessDetails?.tradingBrandName)}`,
-      `eTIN: ${safe(d.businessDetails?.eTIN)}`,
-      `Address: ${safe(d.businessDetails?.address?.fullAddress)}`,
-      `Issue Date: ${safe(d.registrationInfo?.issueDate)}`,
-      `Effective Date: ${safe(d.registrationInfo?.effectiveDate)}`,
-      `Ownership: ${safe(d.registrationInfo?.typeOfOwnership)}`,
-    ].join('\n');
+    // Generate QR code as base64 using qrcode library
+    // const QRCode = require('qrcode');
+    // QRCode.toDataURL(safe(d.businessDetails?.bin), { width: 80 }, (err: any, qrDataUrl: string) => {
+    //   const docDef: any = {
+    //     pageSize: 'A4',
+    //     pageMargins: [50, 40, 50, 40],
+    //     defaultStyle: { font: 'PlaywriteCU', fontSize: 10 },
+    //     content: [
+    //       // Top right: Mushak-2.3 box
+    //       {
+    //         columns: [
+    //           { text: '', width: '*' },
+    //           {
+    //             table: {
+    //               body: [
+    //                 [
+    //                   {
+    //                     text: safe(l.titles?.m_name),
+    //                     bold: true,
+    //                     fontSize: 9,
+    //                     margin: [4, 2, 4, 2],
+    //                   },
+    //                 ],
+    //               ],
+    //             },
+    //             layout: 'noBorders',
+    //             width: 'auto',
+    //           },
+    //         ],
+    //         margin: [0, 0, 0, 5],
+    //       },
 
-    const logoUrl = window.location.origin + '/assets/images/bangladesh-govt-logo.png';
+    //       // Government Header
+    //       {
+    //         stack: [
+    //           { text: safe(l.titles?.gov), alignment: 'center', bold: true, fontSize: 12 },
+    //           {
+    //             text: safe(l.titles?.nbr),
+    //             alignment: 'center',
+    //             bold: true,
+    //             fontSize: 11,
+    //             margin: [0, 2, 0, 8],
+    //           },
+    //           { text: safe(l.titles?.commissionerate), alignment: 'center', fontSize: 9 },
+    //           {
+    //             text: safe(l.titles?.division),
+    //             alignment: 'center',
+    //             fontSize: 9,
+    //             margin: [0, 0, 0, 10],
+    //           },
+    //         ],
+    //       },
 
-    fetch(logoUrl)
-      .then((res) => res.blob())
-      .then(
-        (blob) =>
-          new Promise<string>((resolve, reject) => {
-            const reader = new FileReader();
-            reader.onloadend = () => resolve(reader.result as string);
-            reader.onerror = reject;
-            reader.readAsDataURL(blob);
-          }),
-      )
-      .then((logoBase64) => {
-        QRCode.toDataURL(qrData, { width: 80 }, (err: any, qrDataUrl: string) => {
-          const docDef: any = {
-            pageSize: 'A4',
+    //       // Certificate Title
+    //       {
+    //         text: safe(l.titles?.form),
+    //         alignment: 'center',
+    //         bold: true,
+    //         fontSize: 13,
+    //         margin: [0, 0, 0, 8],
+    //       },
 
-            // Watermark background
-            background: function () {
-              return {
-                image: logoBase64,
-                width: 350,
-                opacity: 0.12,
-                absolutePosition: { x: 120, y: 220 },
-              };
-            },
+    //       // Sub text
+    //       {
+    //         text: safe(l.titles?.rule),
+    //         alignment: 'center',
+    //         fontSize: 9,
+    //         margin: [40, 0, 40, 12],
+    //       },
 
-            pageMargins: [50, 40, 50, 40],
-            defaultStyle: { font: 'PlaywriteCU', fontSize: 10 },
+    //       // BIN - bold, large, underline
+    //       {
+    //         text: `BIN : ${safe(d.businessDetails?.bin)}`,
+    //         alignment: 'center',
+    //         bold: true,
+    //         fontSize: 15,
+    //         decoration: 'underline',
+    //         margin: [0, 0, 0, 15],
+    //       },
 
-            content: [
+    //       // Details - label : value format (no table border, just rows)
+    //       {
+    //         table: {
+    //           widths: [160, 10, '*'],
+    //           body: [
+    //             [
+    //               { text: safe(l.info?.name_of_entity), border: [false, false, false, false] },
+    //               { text: ':', border: [false, false, false, false] },
+    //               {
+    //                 text: safe(d.businessDetails?.nameOfEntity),
+    //                 border: [false, false, false, false],
+    //               },
+    //             ],
+    //             [
+    //               { text: safe(l.info?.trading_brand_name), border: [false, false, false, false] },
+    //               { text: ':', border: [false, false, false, false] },
+    //               {
+    //                 text: safe(d.businessDetails?.tradingBrandName),
+    //                 border: [false, false, false, false],
+    //               },
+    //             ],
+    //             [
+    //               { text: safe(l.info?.old_bin), border: [false, false, false, false] },
+    //               { text: ':', border: [false, false, false, false] },
+    //               { text: safe(d.businessDetails?.oldBIN), border: [false, false, false, false] },
+    //             ],
+    //             [
+    //               { text: safe(l.info?.etin), border: [false, false, false, false] },
+    //               { text: ':', border: [false, false, false, false] },
+    //               { text: safe(d.businessDetails?.eTIN), border: [false, false, false, false] },
+    //             ],
+    //             [
+    //               { text: safe(l.info?.address), border: [false, false, false, false] },
+    //               { text: ':', border: [false, false, false, false] },
+    //               {
+    //                 text: safe(d.businessDetails?.address?.fullAddress),
+    //                 border: [false, false, false, false],
+    //               },
+    //             ],
+    //             [
+    //               { text: safe(l.info?.issue_date), border: [false, false, false, false] },
+    //               { text: ':', border: [false, false, false, false] },
+    //               {
+    //                 text: safe(d.registrationInfo?.issueDate),
+    //                 border: [false, false, false, false],
+    //               },
+    //             ],
+    //             [
+    //               { text: safe(l.info?.effective_date), border: [false, false, false, false] },
+    //               { text: ':', border: [false, false, false, false] },
+    //               {
+    //                 text: safe(d.registrationInfo?.effectiveDate),
+    //                 border: [false, false, false, false],
+    //               },
+    //             ],
+    //             [
+    //               { text: safe(l.info?.type_of_ownership), border: [false, false, false, false] },
+    //               { text: ':', border: [false, false, false, false] },
+    //               {
+    //                 text: safe(d.registrationInfo?.typeOfOwnership),
+    //                 border: [false, false, false, false],
+    //               },
+    //             ],
+    //             [
+    //               { text: safe(l.info?.major_area), border: [false, false, false, false] },
+    //               { text: ':', border: [false, false, false, false] },
+    //               {
+    //                 text: safe(d.registrationInfo?.majorAreaOfEconomicActivity),
+    //                 border: [false, false, false, false],
+    //               },
+    //             ],
+    //           ],
+    //         },
+    //         margin: [0, 0, 0, 30],
+    //       },
 
-              // ── Top right: Mushak-2.3 label ──
-              {
-                columns: [
-                  { text: '', width: '*' },
-                  {
-                    table: {
-                      body: [
-                        [
-                          {
-                            text: safe(l.titles?.m_name),
-                            bold: true,
-                            fontSize: 9,
-                            margin: [6, 2, 6, 2],
-                          },
-                        ],
-                      ],
-                    },
-                    width: 'auto',
-                  },
-                ],
-                margin: [0, 0, 0, 6],
-              },
+    //       // QR Code center
+    //       {
+    //         image: qrDataUrl,
+    //         width: 80,
+    //         alignment: 'center',
+    //         margin: [0, 0, 0, 20],
+    //       },
 
-              // ── Logo top center ──
-              {
-                image: logoBase64,
-                width: 50,
-                alignment: 'center',
-                margin: [0, 0, 0, 6],
-              },
+    //       // Footer note
+    //       {
+    //         text: safe(l.footer?.note),
+    //         alignment: 'center',
+    //         fontSize: 8,
+    //         italics: true,
+    //       },
+    //     ],
+    //   };
 
-              // ── Government Header ──
-              {
-                stack: [
-                  {
-                    text: safe(l.titles?.gov),
-                    alignment: 'center',
-                    bold: true,
-                    fontSize: 12,
-                    margin: [0, 0, 0, 2],
-                  },
-                  {
-                    text: safe(l.titles?.nbr),
-                    alignment: 'center',
-                    bold: true,
-                    fontSize: 11,
-                    margin: [0, 0, 0, 8],
-                  },
-                  {
-                    text: safe(l.titles?.commissionerate),
-                    alignment: 'center',
-                    fontSize: 9,
-                    margin: [0, 0, 0, 2],
-                  },
-                  {
-                    text: safe(l.titles?.division),
-                    alignment: 'center',
-                    fontSize: 9,
-                    margin: [0, 0, 0, 10],
-                  },
-                ],
-              },
-
-              // ── Certificate Title ──
-              {
-                text: safe(l.titles?.form),
-                alignment: 'center',
-                bold: true,
-                fontSize: 13,
-                margin: [0, 0, 0, 8],
-              },
-
-              // ── Sub rule text ──
-              {
-                text: safe(l.titles?.rule),
-                alignment: 'center',
-                fontSize: 9,
-                margin: [40, 0, 40, 12],
-              },
-
-              // ── BIN ──
-              {
-                text: `BIN : ${safe(d.businessDetails?.bin)}`,
-                alignment: 'center',
-                bold: true,
-                fontSize: 15,
-                decoration: 'underline',
-                margin: [0, 0, 0, 15],
-              },
-
-              // ── Details table ──
-              {
-                table: {
-                  widths: [170, 8, '*'],
-                  body: [
-                    [
-                      {
-                        text: safe(l.info?.name_of_entity),
-                        border: [false, false, false, false],
-                        margin: [0, 2, 0, 2],
-                      },
-                      {
-                        text: ':',
-                        border: [false, false, false, false],
-                        margin: [0, 2, 0, 2],
-                      },
-                      {
-                        text: safe(d.businessDetails?.nameOfEntity),
-                        border: [false, false, false, false],
-                        margin: [4, 2, 0, 2],
-                      },
-                    ],
-                    [
-                      {
-                        text: safe(l.info?.trading_brand_name),
-                        border: [false, false, false, false],
-                        margin: [0, 2, 0, 2],
-                      },
-                      {
-                        text: ':',
-                        border: [false, false, false, false],
-                        margin: [0, 2, 0, 2],
-                      },
-                      {
-                        text: safe(d.businessDetails?.tradingBrandName),
-                        border: [false, false, false, false],
-                        margin: [4, 2, 0, 2],
-                      },
-                    ],
-                    [
-                      {
-                        text: safe(l.info?.old_bin),
-                        border: [false, false, false, false],
-                        margin: [0, 2, 0, 2],
-                      },
-                      {
-                        text: ':',
-                        border: [false, false, false, false],
-                        margin: [0, 2, 0, 2],
-                      },
-                      {
-                        text: safe(d.businessDetails?.oldBIN),
-                        border: [false, false, false, false],
-                        margin: [4, 2, 0, 2],
-                      },
-                    ],
-                    [
-                      {
-                        text: safe(l.info?.etin),
-                        border: [false, false, false, false],
-                        margin: [0, 2, 0, 2],
-                      },
-                      {
-                        text: ':',
-                        border: [false, false, false, false],
-                        margin: [0, 2, 0, 2],
-                      },
-                      {
-                        text: safe(d.businessDetails?.eTIN),
-                        border: [false, false, false, false],
-                        margin: [4, 2, 0, 2],
-                      },
-                    ],
-                    [
-                      {
-                        text: safe(l.info?.address),
-                        border: [false, false, false, false],
-                        margin: [0, 2, 0, 2],
-                      },
-                      {
-                        text: ':',
-                        border: [false, false, false, false],
-                        margin: [0, 2, 0, 2],
-                      },
-                      {
-                        text: safe(d.businessDetails?.address?.fullAddress),
-                        border: [false, false, false, false],
-                        margin: [4, 2, 0, 2],
-                      },
-                    ],
-                    [
-                      {
-                        text: safe(l.info?.issue_date),
-                        border: [false, false, false, false],
-                        margin: [0, 2, 0, 2],
-                      },
-                      {
-                        text: ':',
-                        border: [false, false, false, false],
-                        margin: [0, 2, 0, 2],
-                      },
-                      {
-                        text: safe(d.registrationInfo?.issueDate),
-                        border: [false, false, false, false],
-                        margin: [4, 2, 0, 2],
-                      },
-                    ],
-                    [
-                      {
-                        text: safe(l.info?.effective_date),
-                        border: [false, false, false, false],
-                        margin: [0, 2, 0, 2],
-                      },
-                      {
-                        text: ':',
-                        border: [false, false, false, false],
-                        margin: [0, 2, 0, 2],
-                      },
-                      {
-                        text: safe(d.registrationInfo?.effectiveDate),
-                        border: [false, false, false, false],
-                        margin: [4, 2, 0, 2],
-                      },
-                    ],
-                    [
-                      {
-                        text: safe(l.info?.type_of_ownership),
-                        border: [false, false, false, false],
-                        margin: [0, 2, 0, 2],
-                      },
-                      {
-                        text: ':',
-                        border: [false, false, false, false],
-                        margin: [0, 2, 0, 2],
-                      },
-                      {
-                        text: safe(d.registrationInfo?.typeOfOwnership),
-                        border: [false, false, false, false],
-                        margin: [4, 2, 0, 2],
-                      },
-                    ],
-                    [
-                      {
-                        text: safe(l.info?.major_area),
-                        border: [false, false, false, false],
-                        margin: [0, 2, 0, 2],
-                      },
-                      {
-                        text: ':',
-                        border: [false, false, false, false],
-                        margin: [0, 2, 0, 2],
-                      },
-                      {
-                        text: safe(d.registrationInfo?.majorAreaOfEconomicActivity),
-                        border: [false, false, false, false],
-                        margin: [4, 2, 0, 2],
-                      },
-                    ],
-                  ],
-                },
-                margin: [0, 0, 0, 30],
-              },
-
-              // ── QR Code center ──
-              {
-                image: qrDataUrl,
-                width: 80,
-                alignment: 'center',
-                margin: [0, 70, 0, 20],
-              },
-
-              // ── Footer note ──
-              {
-                text: safe(l.footer?.note),
-                alignment: 'center',
-                fontSize: 8,
-                italics: true,
-              },
-            ],
-          };
-
-          pdfMake.createPdf(docDef).download(`Mushak_2.3_${lang}.pdf`);
-        });
-      })
-      .catch((err) => {
-        console.error('Logo load failed:', err);
-      });
-  } 
+    //   pdfMake.createPdf(docDef).download(`Mushak_2.3_${lang}.pdf`);
+    // });
+  }
 
   exportmushak_6_1_English(data: any, lang: string) {
     const l = (data.labels?.mushak_6_1 || {}) as any;
@@ -7339,9 +7194,9 @@ exportMushak_2_3(data: any, lang: string) {
     const l = (data.labels?.mushak_2_1 || {}) as any;
     const targetData = data.mushak_2_1_data?.[lang] || {};
     const al = l.address_labels || {};
-    const safe = (val: any) => (val !== undefined && val !== null ? val.toString() : '');
-    const toBnNum = (n: any) =>
-      lang === 'BN' ? n.toString().replace(/\d/g, (d: any) => '০১২৩৪৫৬৭৮৯'[d]) : n;
+    const bl = l.branch_labels || {};
+    const safe = (val: any) => (val !== undefined && val !== null) ? val.toString() : '';
+    const toBnNum = (n: any) => lang === 'BN' ? n.toString().replace(/\d/g, (d: any) => "০১২৩৪৫৬৭৮৯"[d]) : n;
 
     (pdfMake as any).fonts = {
       Nunito: {
@@ -7363,23 +7218,11 @@ exportMushak_2_3(data: any, lang: string) {
       pageMargins: [30, 30, 30, 30],
       defaultStyle: { font: lang === 'BN' ? 'PlaywriteCU' : 'Nunito', fontSize: 8 },
       content: [
-        // Right Header Box
-        {
-          columns: [
-            { width: '*', text: '' },
-            { width: 'auto', table: { body: [[{ text: safe(l.titles?.form), bold: true }]] } },
-          ],
-          margin: [0, 0, 0, 10],
-        },
+        // --- PAGE 1: Identity & Address ---
+        { columns: [{ width: '*', text: '' }, { width: 'auto', table: { body: [[{ text: safe(l.titles?.form), bold: true }]] } }], margin: [0, 0, 0, 10] },
         { text: safe(l.titles?.gov), alignment: 'center', bold: true },
         { text: safe(l.titles?.nbr), alignment: 'center', bold: true },
-        {
-          text: safe(l.titles?.name),
-          alignment: 'center',
-          bold: true,
-          fontSize: 10,
-          margin: [0, 5, 0, 0],
-        },
+        { text: safe(l.titles?.name), alignment: 'center', bold: true, fontSize: 10, margin: [0, 5, 0, 0] },
         { text: safe(l.titles?.rule), alignment: 'center', fontSize: 7, margin: [0, 0, 0, 15] },
 
         // Sec 1 & 2 [cite: 9-13]
@@ -7395,43 +7238,484 @@ exportMushak_2_3(data: any, lang: string) {
             widths: [87, 100, 100, 100, 100],
             body: [
               [
+                { text: al.address, rowSpan: 5, alignment: 'center', margin: [0, 25, 0, 0] },
+                { text: al.fill_any_one, colSpan: 4, alignment: 'center', bold: true },
+                {}, {}, {}
+              ],
+              [
+                {},
+                { text: al.town_address, colSpan: 2, alignment: 'center', fillColor: '#f2f2f2' },
+                {},
+                { text: al.village_address, colSpan: 2, alignment: 'center', fillColor: '#f2f2f2' }
+              ],
+              [
+                {},
                 { text: al.holding, bold: true },
-                safe(targetData.formData?.address?.holding),
+                { text: safe(targetData.formData?.address?.holding) },
                 { text: al.mohalla, bold: true },
-                safe(targetData.formData?.address?.mohalla),
+                { text: safe(targetData.formData?.address?.mohalla) }
               ],
               [
+                {},
                 { text: al.road, bold: true },
-                safe(targetData.formData?.address?.road),
+                { text: safe(targetData.formData?.address?.road) },
                 { text: al.village, bold: true },
-                safe(targetData.formData?.address?.village),
+                { text: safe(targetData.formData?.address?.village) }
               ],
               [
+                {},
                 { text: al.area, bold: true },
-                safe(targetData.formData?.address?.area),
+                { text: safe(targetData.formData?.address?.area) },
                 { text: al.thana, bold: true },
-                safe(targetData.formData?.address?.thana),
+                { text: safe(targetData.formData?.address?.thana) }
               ],
               [
                 { text: al.district, bold: true },
-                safe(targetData.formData?.address?.district),
+                { text: safe(targetData.formData?.address?.district), colSpan: 2 },
+                {},
                 { text: al.upazila, bold: true },
-                safe(targetData.formData?.address?.upazila),
+                { text: safe(targetData.formData?.address?.upazila) }
               ],
               [
                 { text: al.post_code, bold: true },
-                toBnNum(safe(targetData.formData?.address?.post_code)),
+                { text: toBnNum(safe(targetData.formData?.address?.post_code)), colSpan: 2 },
+                {},
                 { text: al.mouza, bold: true },
-                safe(targetData.formData?.address?.mouza),
+                { text: toBnNum(safe(targetData.formData?.address?.mouza)) }
               ],
               [
+                { text: al.phone, bold: true },
+                { text: safe(targetData.formData?.address?.phone), colSpan: 2 },
+                {},
                 { text: al.mobile, bold: true },
-                toBnNum(safe(targetData.formData?.address?.mobile)),
-                { text: al.email, bold: true },
-                safe(targetData.formData?.address?.email),
+                { text: safe(targetData.formData?.address?.mobile) }
               ],
-            ],
+              [
+                { text: al.email, bold: true },
+                { text: safe(targetData.formData?.address?.email), colSpan: 2 },
+                {},
+                { text: al.fax, bold: true },
+                { text: safe(targetData.formData?.address?.fax) }
+              ],
+              [
+                { text: al.web, bold: true },
+                { text: safe(targetData.formData?.address?.web), colSpan: 4 }
+              ]
+            ]
           },
+          margin: [0, 0, 0, 10]
+        },
+
+        // Section 4: Address of Branch Units
+        { text: safe(l.sections?.part4), bold: true, margin: [0, 10, 0, 2] },
+        {
+          table: {
+            widths: [30, 60, '*', 60, '*'],
+            body: [
+              [
+                { text: bl.sl, alignment: 'center', bold: true },
+                { text: bl.addr_header, colSpan: 2, alignment: 'center', bold: true },
+                {},
+                { text: bl.contact_header, colSpan: 2, alignment: 'center', bold: true },
+                {}
+              ],
+              ...(targetData.branchData || []).flatMap((branch: any, index: number) => [
+                [
+                  { text: toBnNum(index + 1), rowSpan: 3, alignment: 'center', margin: [0, 15, 0, 0] },
+                  { text: al.address, bold: true, rowSpan: 2 },
+                  { text: safe(branch.address), rowSpan: 2 },
+                  { text: al.mobile, bold: true },
+                  { text: toBnNum(safe(branch.mobile)) }
+                ],
+                [
+                  {},
+                  { text: '', border: [true, false, true, false] },
+                  { text: '', border: [true, false, true, false] },
+                  { text: al.phone, bold: true },
+                  { text: toBnNum(safe(branch.phone)) }
+                ],
+                [
+                  {},
+                  { text: al.mouza, bold: true },
+                  { text: safe(branch.mouza) },
+                  { text: al.email, bold: true },
+                  { text: safe(branch.email) }
+                ]
+              ])
+            ]
+          }
+        },
+        { text: bl.note, fontSize: 7, alignment: 'right', margin: [0, 2, 0, 10] },
+
+        { text: safe(l.sections?.part5), bold: true, margin: [0, 10, 0, 2] },
+        {
+          table: {
+            headerRows: 1, widths: [30, '*', '*', '*', '*'],
+            body: [
+              [l.bank_headers?.sl, l.bank_headers?.acc_name, l.bank_headers?.acc_no, l.bank_headers?.bank_name, l.bank_headers?.branch].map(h => ({ text: h, bold: true, alignment: 'center' })),
+              ...(targetData.bankData || []).map((b: any, i: number) => [toBnNum(i + 1), safe(b.acc_name), toBnNum(safe(b.acc_no)), safe(b.bank), safe(b.branch)])
+            ]
+          },
+          pageBreak: 'after' // Correct placement to avoid Error
+        },
+        { text: bl.note, fontSize: 7, alignment: 'right', margin: [0, 2, 0, 10] },
+
+        // --- Section-6 ---
+        { text: safe(l.sections?.part6), bold: true, margin: [0, 5, 0, 2] },
+        { table: { widths: [80, '*'], body: [[l.bank_headers?.amount, toBnNum(safe(targetData.formData?.turnover))], [l.bank_headers?.inWord, ' ']] } },
+
+        // --- Section-7 ---
+        { text: safe(l.sections?.part7), bold: true, margin: [0, 10, 0, 5] },
+        {
+          columns: [
+            {
+              width: 'auto',
+              table: {
+                widths: [20, 150],
+                body: [
+                  [
+                    {
+                      stack: [
+                        targetData.formData?.is_vat ? { image: tickImage, width: 12, height: 12, alignment: 'center', margin: [0, 2, 0, 0] } : ''
+                      ],
+                      alignment: 'center'
+                    },
+                    { text: safe(l.reg_labels?.vat_reg), margin: [5, 2] }
+                  ]
+                ]
+              },
+              margin: [0, 0, 15, 0]
+            },
+            {
+              width: 'auto',
+              table: {
+                widths: [20, 170],
+                body: [
+                  [
+                    {
+                      stack: [
+                        targetData.formData?.is_tt ? { image: tickImage, width: 12, height: 12, alignment: 'center', margin: [0, 2, 0, 0] } : ''
+                      ],
+                      alignment: 'center'
+                    },
+                    { text: safe(l.reg_labels?.tt_enlist), margin: [5, 2] }
+                  ]
+                ]
+              }
+            }
+          ]
+        },
+        // --- Section-8 ---
+        {
+          columns: [
+            { text: safe(l.sections?.part8), bold: true, width: 'auto', margin: [0, 5, 10, 5] },
+            {
+              width: 'auto',
+              table: {
+                widths: [20, 60],
+                body: [[{ text: '' }, { text: safe(l.withholding?.yes), alignment: 'center' }]]
+              }
+            },
+            {
+              width: 'auto',
+              table: {
+                widths: [20, 60],
+                body: [[{ text: '' }, { text: safe(l.withholding?.no), alignment: 'center' }]]
+              },
+              margin: [10, 0, 0, 0]
+            }
+          ],
+          margin: [0, 10, 0, 5]
+        },
+        {
+          columns: [
+            {
+              width: 'auto',
+              stack: [
+                { table: { widths: [15, 100], body: [[{ text: '' }, { text: safe(l.withholding?.govt), margin: [2, 1] }]] }, margin: [0, 0, 0, 3] },
+                { table: { widths: [15, 100], body: [[{ text: '' }, { text: safe(l.withholding?.edu), margin: [2, 1] }]] }, margin: [0, 0, 0, 3] }
+              ]
+            },
+            {
+              width: 'auto',
+              stack: [
+                { table: { widths: [15, 120], body: [[{ text: '' }, { text: safe(l.withholding?.ngo), margin: [2, 1] }]] }, margin: [3, 0, 0, 3] },
+                { table: { widths: [15, 120], body: [[{ text: '' }, { text: safe(l.withholding?.ltu), margin: [2, 1] }]] }, margin: [3, 0, 0, 3] }
+              ]
+            },
+            {
+              width: 'auto',
+              stack: [
+                { table: { widths: [15, 110], body: [[{ text: '' }, { text: safe(l.withholding?.pub_ltd), margin: [2, 1] }]] }, margin: [3, 0, 0, 3] },
+                { table: { widths: [15, 110], body: [[{ text: '' }, { text: safe(l.withholding?.bank), margin: [2, 1] }]] }, margin: [3, 0, 0, 3] },
+              ]
+            }
+          ]
+        },
+
+        { text: safe(l.sections?.part9), bold: true, margin: [0, 10, 0, 5] },
+        {
+          columns: [
+            // Column 1
+            {
+              width: 'auto',
+              stack: [
+                { table: { widths: [15, 100], body: [[{ text: '' }, { text: safe(l.nature?.natural), margin: [2, 1] }]] }, margin: [0, 0, 0, 3] },
+                { table: { widths: [15, 100], body: [[{ text: '' }, { text: safe(l.nature?.pvt_ltd), margin: [2, 1] }]] }, margin: [0, 0, 0, 3] }
+              ]
+            },
+            // Column 2
+            {
+              width: 'auto',
+              stack: [
+                { table: { widths: [15, 110], body: [[{ text: '' }, { text: safe(l.nature?.proprietor), margin: [2, 1] }]] }, margin: [0, 0, 0, 3] },
+                { table: { widths: [15, 110], body: [[{ text: '' }, { text: safe(l.nature?.pub_ltd), margin: [2, 1] }]] }, margin: [0, 0, 0, 3] }
+              ]
+            },
+            // Column 3
+            {
+              width: 'auto',
+              stack: [
+                { table: { widths: [15, 100], body: [[{ text: '' }, { text: safe(l.nature?.partnership), margin: [2, 1] }]] }, margin: [0, 0, 0, 3] },
+                { table: { widths: [15, 100], body: [[{ text: '' }, { text: safe(l.nature?.foreign), margin: [2, 1] }]] }, margin: [0, 0, 0, 3] }
+              ]
+            },
+            // Column 4
+            {
+              width: 'auto',
+              stack: [
+                { table: { widths: [15, 100], body: [[{ text: '' }, { text: safe(l.nature?.intl_org), margin: [2, 1] }]] }, margin: [0, 0, 0, 3] },
+                { table: { widths: [15, 100], body: [[{ text: '' }, { text: safe(l.nature?.diplomat), margin: [2, 1] }]] }, margin: [0, 0, 0, 3] }
+              ]
+            }
+          ],
+          columnGap: 5
+        },
+        {
+          margin: [0, 3, 0, 0],
+          columns: [
+            {
+              width: 'auto',
+              table: {
+                widths: [15, 100],
+                body: [[{ text: '' }, { text: safe(l.nature?.others), margin: [2, 1] }]]
+              }
+            },
+            {
+              width: '*',
+              table: {
+                widths: ['*'],
+                body: [[{ text: safe(targetData.formData?.nature_others_text), minHeight: 10, margin: [2, 1] }]]
+              },
+              margin: [5, 0, 0, 0]
+            }
+          ]
+        },
+
+        // --- Section-10 --- 
+        { text: safe(l.sections?.part10), bold: true, margin: [0, 10, 0, 5] },
+        {
+          columns: [
+            // Column 1 
+            {
+              width: 'auto',
+              stack: [
+                {
+                  table: {
+                    widths: [15, 110],
+                    body: [[
+                      { stack: [targetData.formData?.is_sd ? { image: tickImage, width: 10, height: 10, alignment: 'center', margin: [0, 2, 0, 0] } : ''], alignment: 'center' },
+                      { text: safe(l.other_taxes?.sd), margin: [2, 1] }
+                    ]]
+                  }
+                }
+              ]
+            },
+            // Column 2 
+            {
+              width: 'auto',
+              stack: [
+                {
+                  table: {
+                    widths: [15, 110],
+                    body: [[
+                      { stack: [targetData.formData?.is_excise ? { image: tickImage, width: 10, height: 10, alignment: 'center', margin: [0, 2, 0, 0] } : ''], alignment: 'center' },
+                      { text: safe(l.other_taxes?.excise), margin: [2, 1] }
+                    ]]
+                  }
+                }
+              ]
+            },
+            // Column 3 
+            {
+              width: 'auto',
+              stack: [
+                {
+                  table: {
+                    widths: [15, 110],
+                    body: [[
+                      { stack: [targetData.formData?.is_surcharge ? { image: tickImage, width: 10, height: 10, alignment: 'center', margin: [0, 2, 0, 0] } : ''], alignment: 'center' },
+                      { text: safe(l.other_taxes?.surcharge), margin: [2, 1] }
+                    ]]
+                  }
+                }
+              ]
+            }
+          ],
+          columnGap: 5
+        },
+        // --- Section-11 --- 
+        { text: safe(l.sections?.part11), bold: true, margin: [0, 10, 0, 2] },
+        { table: { widths: [100], body: [[toBnNum(safe(targetData.formData?.effective_date))]] } },
+
+        // --- Section-12 --- 
+        { text: safe(l.sections?.part12), bold: true, margin: [0, 10, 0, 5] },
+        {
+          columns: [
+            // Column 1 
+            {
+              width: 'auto',
+              stack: [
+                {
+                  table: {
+                    widths: [15, 110],
+                    body: [[
+                      { text: '' },
+                      { text: safe(l.app_nature?.mandatory), margin: [2, 1] }
+                    ]]
+                  }
+                }
+              ]
+            },
+            // Column 2 
+            {
+              width: 'auto',
+              stack: [
+                {
+                  table: {
+                    widths: [15, 110],
+                    body: [[
+                      { text: '' },
+                      { text: safe(l.app_nature?.voluntary), margin: [2, 1] }
+                    ]]
+                  }
+                }
+              ]
+            },
+            // Column 3 
+            {
+              width: 'auto',
+              stack: [
+                {
+                  table: {
+                    widths: [15, 110],
+                    body: [[
+                      { text: '' },
+                      { text: safe(l.app_nature?.suo_moto), margin: [2, 1] }
+                    ]]
+                  }
+                }
+              ]
+            }
+          ],
+          columnGap: 5
+        },
+
+        // --- Section-13 --- 
+        // ১৩। আবেদনের ধরণ (নিম্নের প্রযোজ্যটিতে টিক চিহ্ন দিন):
+        { text: safe(l.sections?.part13), bold: true, margin: [0, 10, 0, 5] },
+        {
+          stack: [
+            // (ক) নতুন নিবন্ধন
+            {
+              columns: [
+                {
+                  width: 'auto',
+                  table: {
+                    widths: [20],
+                    body: [[{ stack: [targetData.formData?.app_type === 'new' ? { image: tickImage, width: 10, height: 10, alignment: 'center', margin: [0, 2, 0, 0] } : ''], minHeight: 15, alignment: 'center' }]]
+                  }
+                },
+                { text: safe(l.app_type?.new), margin: [5, 2] }
+              ],
+              margin: [15, 0, 0, 2]
+            },
+            // (খ) পুনঃনিবন্ধন
+            {
+              columns: [
+                {
+                  width: 'auto',
+                  table: {
+                    widths: [20],
+                    body: [[{ stack: [targetData.formData?.app_type === 're_reg' ? { image: tickImage, width: 10, height: 10, alignment: 'center', margin: [0, 2, 0, 0] } : ''], minHeight: 15, alignment: 'center' }]]
+                  }
+                },
+                { text: safe(l.app_type?.re_reg), margin: [5, 2] }
+              ],
+              margin: [15, 0, 0, 10]
+            }
+          ]
+        },
+
+        // পুনঃনিবন্ধন সাব-হেডার
+        { text: safe(l.sections?.part13_sub), fontSize: 9, bold: true, margin: [0, 5, 0, 5] },
+
+        // ২০টি রো-র ডাবল কলাম টেবিল
+        {
+          columns: [
+            // বাম পাশের টেবিল (১-১০)
+            {
+              width: '49%',
+              table: {
+                widths: [35, '*'],
+                body: [
+                  [{ text: safe(l.sections?.sl), bold: true, alignment: 'center' }, { text: safe(l.sections?.old_bin), bold: true, alignment: 'center' }],
+                  ...Array.from({ length: 10 }, (_, i) => [
+                    { text: (i + 1).toLocaleString(lang === 'BN' ? 'bn-BD' : 'en-US') + '.', alignment: 'center' },
+                    { text: safe(targetData.formData?.old_bin_list?.[i]), minHeight: 15 }
+                  ])
+                ]
+              }
+            },
+            // ডান পাশের টেবিল (১১-২০)
+            {
+              width: '49%',
+              table: {
+                widths: [35, '*'],
+                body: [
+                  [{ text: safe(l.sections?.sl), bold: true, alignment: 'center' }, { text: safe(l.sections?.old_bin), bold: true, alignment: 'center' }],
+                  ...Array.from({ length: 10 }, (_, i) => [
+                    { text: (i + 11).toLocaleString(lang === 'BN' ? 'bn-BD' : 'en-US') + '.', alignment: 'center' },
+                    { text: safe(targetData.formData?.old_bin_list?.[i + 10]), minHeight: 15 }
+                  ])
+                ]
+              },
+              margin: [5, 0, 0, 0]
+            }
+          ]
+        },
+        // অতিরিক্ত কাগজ ব্যবহারের নোট
+        { text: safe(l.sections?.extra_paper), fontSize: 8, alignment: 'right', margin: [0, 3, 0, 0] },
+
+        // --- PAGE 3: Directors Info ---
+        { text: safe(l.sections?.part14), bold: true, margin: [0, 5, 0, 5] },
+        {
+          table: {
+            headerRows: 1, widths: [20, '*', 60, 40, '*'],
+            body: [
+              ['SL', 'Name', 'Designation', 'Share%', 'Identity Info'].map(h => ({ text: h, bold: true, alignment: 'center' })),
+              ...(targetData.directors || []).map((d: any, i: number) => [
+                toBnNum(i + 1), safe(d.name), safe(d.designation), toBnNum(safe(d.share)),
+                {
+                  table: {
+                    widths: [60, '*'],
+                    body: [['Type', safe(d.id_type)], ['Number', toBnNum(safe(d.id_no))], ['Country', 'BD']]
+                  },
+                  layout: 'noBorders'
+                }
+              ])
+            ]
+          }
         },
 
         { text: safe(l.sections?.part15), bold: true, margin: [0, 15, 0, 5] },
@@ -7446,28 +7730,15 @@ exportMushak_2_3(data: any, lang: string) {
 
         { text: safe(l.sections?.part17), bold: true, margin: [0, 15, 0, 5] },
         {
-          table: {
-            headerRows: 1,
-            widths: [30, '*', '*', '*', '*'],
-            body: [
-              [
-                l.bank_headers?.sl,
-                l.bank_headers?.acc_name,
-                l.bank_headers?.acc_no,
-                l.bank_headers?.bank_name,
-                l.bank_headers?.branch,
-              ].map((h) => ({ text: h, bold: true, alignment: 'center' })),
-              ...(targetData.bankData || []).map((b: any, i: number) => [
-                { text: toBnNum(i + 1), alignment: 'center' },
-                safe(b.acc_name),
-                toBnNum(safe(b.acc_no)),
-                safe(b.bank),
-                safe(b.branch),
-              ]),
-            ],
-          },
-        },
-      ],
+          padding: [10, 10, 10, 10],
+          stack: [
+            { columns: [{ text: '[√] (a) Owner', width: 150 }, { text: '(b) Director' }] },
+            { margin: [0, 10, 0, 0], columns: [{ text: `Name: ${safe(targetData.formData?.declarant_name)}`, width: '*' }, { text: `NID: ${toBnNum(safe(targetData.formData?.declarant_nid))}`, width: '*' }] },
+            { text: lang === 'BN' ? 'আমি ঘোষণা করিতেছি যে, এই আবেদনে প্রদত্ত তথ্য সর্বোতভাবে সম্পূর্ণ, সত্য ও নির্ভুল।' : 'I declare that the information provided is complete, true, and correct.', margin: [0, 15, 0, 0] },
+            { margin: [0, 20, 0, 0], columns: [{ text: `Date: ${toBnNum(new Date().toLocaleDateString())}` }, { text: 'Signature: _______________', alignment: 'right' }] }
+          ]
+        }
+      ]
     };
     pdfMake.createPdf(docDef).download(`${l.titles?.form}_${lang}.pdf`);
   }

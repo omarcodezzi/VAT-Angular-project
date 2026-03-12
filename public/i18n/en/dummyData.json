@@ -876,6 +876,33 @@
       "foreign": "Branch of Foreign Company",
       "diplomat": "Diplomat",
       "others": "Others (Specify)"
+    },
+    "withholding": {
+      "yes": "Yes",
+      "no": "No",
+      "govt": "Government Entity",
+      "ngo": "NGO",
+      "pub_ltd": "Public Limited Company",
+      "bank": "Bank, Insurance or Financial Inst.",
+      "edu": "Post-secondary Education Inst.",
+      "ltu": "LTU-VAT Registered Entity"
+    },
+    "other_taxes": {
+      "sd": "Supplementary Duty (SD)",
+      "excise": "Excise Duty",
+      "surcharge": "Surcharge"
+    },
+    "app_nature": {
+      "mandatory": "Mandatory",
+      "voluntary": "Voluntary",
+      "suo_moto": "Suo-moto by Commissioner"
+    },
+    "app_type": {
+      "sl": "SL.",
+      "old_bin": "Old/Existing BIN",
+      "extra_paper": "(Use extra paper if necessary)",
+      "new": "(a) Application for new registration or enlistment",
+      "re_reg": "(b) Application for re-registration or re-enlistment"
     }
   }
 }
