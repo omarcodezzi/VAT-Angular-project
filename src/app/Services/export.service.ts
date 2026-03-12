@@ -34,7 +34,7 @@ if (!vfs) {
   providedIn: 'root',
 })
 export class ExportService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getMergedMushakData(apiEndpoint: string, lang: string): Observable<any> {
     const labels$ = this.http.get(`i18n/${lang}/dummyData.json`);
@@ -54,7 +54,7 @@ export class ExportService {
           taxpayer: values.taxpayer,
           returnSubmission: values.returnSubmission,
           mushak_2_3_data: values.mushak_values?.mushak_2_3_data || values.mushak_2_3_data || {},
-
+          mushak_2_1_data: values.mushak_values?.mushak_2_1_data || values.mushak_2_1_data || {},
           mushak_4_3_data: values.mushak_values?.mushak_4_3_data || values.mushak_4_3_data || {},
           mushak_6_1_data: values.mushak_values?.mushak_6_1_data || values.mushak_6_1_data || {},
           mushak_6_2_data: values.mushak_values?.mushak_6_2_data || values.mushak_6_2_data || {},
@@ -7335,6 +7335,7 @@ exportMushak_2_3(data: any, lang: string) {
   }
 
   exportMushak_2_1(data: any, lang: string) {
+    debugger
     const l = (data.labels?.mushak_2_1 || {}) as any;
     const targetData = data.mushak_2_1_data?.[lang] || {};
     const al = l.address_labels || {};
@@ -7356,11 +7357,10 @@ exportMushak_2_3(data: any, lang: string) {
         bolditalics: window.location.origin + '/assets/fonts/kalpurush.ttf',
       },
     };
-
     const docDef: any = {
       pageSize: 'A4',
       pageMargins: [30, 30, 30, 30],
-      defaultStyle: { font: lang === 'BN' ? 'PlaywriteCU' : 'Nunito', fontSize: 8.5 },
+      defaultStyle: { font: lang === 'BN' ? 'PlaywriteCU' : 'Nunito', fontSize: 8 },
       content: [
         // Right Header Box
         {
@@ -7381,18 +7381,17 @@ exportMushak_2_3(data: any, lang: string) {
         },
         { text: safe(l.titles?.rule), alignment: 'center', fontSize: 7, margin: [0, 0, 0, 15] },
 
-        // Section 1 & 2
+        // Sec 1 & 2 [cite: 9-13]
         { text: safe(l.sections?.part1), bold: true, margin: [0, 5, 0, 2] },
-        { table: { widths: ['*'], body: [[toBnNum(safe(targetData.formData?.tin))]] } },
-
+        { table: { widths: ['*'], body: [[{ text: toBnNum(safe(targetData.formData?.tin)), margin: [5, 2] }]] } },
         { text: safe(l.sections?.part2), bold: true, margin: [0, 5, 0, 2] },
-        { table: { widths: ['*'], body: [[safe(targetData.formData?.person_name)]] } },
+        { table: { widths: ['*'], body: [[{ text: safe(targetData.formData?.person_name), margin: [5, 2] }]] } },
 
-        // Section 3: Address Table [cite: 41]
+        // Sec 3: Address Table
         { text: safe(l.sections?.part3), bold: true, margin: [0, 5, 0, 2] },
         {
           table: {
-            widths: [80, '*', 80, '*'],
+            widths: [87, 100, 100, 100, 100],
             body: [
               [
                 { text: al.holding, bold: true },
@@ -7434,8 +7433,17 @@ exportMushak_2_3(data: any, lang: string) {
           },
         },
 
-        // Section 5: Bank Table [cite: 48]
-        { text: safe(l.sections?.part5), bold: true, margin: [0, 10, 0, 2] },
+        { text: safe(l.sections?.part15), bold: true, margin: [0, 15, 0, 5] },
+        { table: { widths: ['*', '*', '*'], body: [['[ ] Importer', '[ ] Service Provider', '[ ] Exporter'], ['[√] Supplier', '[ ] Minerals', '[ ] Manufacturer']] } },
+        { text: '', pageBreak: 'after' },
+
+        // --- PAGE 4: Eco Activity & Declaration ---
+        { text: safe(l.sections?.part16), bold: true, margin: [0, 5, 0, 5] },
+        { table: { widths: ['*', '*', '*'], body: [['[ ] Retail', '[ ] Wholesale', '[√] Manufacturer'], ['[ ] Construction', '[ ] Seasonal', '[ ] Service']] } },
+        { text: '(b) Detailed Description:', margin: [0, 10, 0, 2] },
+        { table: { widths: ['*'], body: [[{ text: safe(targetData.formData?.eco_desc), minHeight: 40 }]] } },
+
+        { text: safe(l.sections?.part17), bold: true, margin: [0, 15, 0, 5] },
         {
           table: {
             headerRows: 1,
