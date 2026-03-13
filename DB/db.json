@@ -1225,7 +1225,7 @@
             "holding": "29",
             "mohalla": "Sector 10",
             "road": "Road 12",
-            "village": "N/A",
+            "village": "Not Applicable",
             "area": "Uttara",
             "thana": "Uttara West",
             "district": "Dhaka",
@@ -1234,14 +1234,16 @@
             "mouza": "Uttara",
             "mobile": "017XXXXXXXX",
             "email": "info@divineit.net",
-            "web": "www.divineit.net"
+            "web": "www.divineit.net",
+            "phone": "017XXXXXXXX",
+            "fax": "info@divineit.net"
           },
           "turnover": "5000000.00",
           "reg_nature": "VAT",
           "is_vds": true,
           "person_nature": "Private Limited Company",
           "effective_date": "11/03/2026",
-          "eco_activity": "Manufacturer of Software and IT Enabled Services",
+          "eco_activity": "Software and IT Enabled Service Producer",
           "declarant_name": "Riyad Hasan",
           "declarant_nid": "1995261XXXXXXXXXX",
           "is_withholding": "yes",
@@ -1276,7 +1278,18 @@
             "",
             "",
             ""
-          ]
+          ],
+          "is_retail": false,
+          "is_wholesale": false,
+          "is_mfg": true,
+          "is_construction": false,
+          "is_seasonal": false,
+          "is_service": true,
+          "is_mineral": false,
+          "is_agri_fish": false,
+          "is_eco_others": false,
+          "eco_others_instruction": "(b) Describe your economic activity in as much detail as possible. For example: 'Telecommunication service provider', 'MS product manufacturer', 'Stock broker', etc. Avoid general descriptions such as 'shopkeeper', 'manufacturer', 'service provider', 'consultant', etc.",
+          "eco_activity_details": "Conducting export activities through software and IT-enabled services."
         },
         "bankData": [
           {
@@ -1293,8 +1306,53 @@
             "share": "60",
             "id_type": "NID",
             "id_no": "1995261XXXXXXXXXX"
+          },
+          {
+            "name": "Asif Rahman",
+            "designation": "Co-Chairman",
+            "share": "30",
+            "id_type": "NID",
+            "nid": "1234",
+            "passport": "",
+            "issue_country": "Bangladesh"
+          },
+          {
+            "name": "Farhan Ahmed",
+            "designation": "Director",
+            "share": "20",
+            "id_type": "NID",
+            "nid": "5678",
+            "passport": "",
+            "issue_country": "Bangladesh"
+          },
+          {
+            "name": "Nusrat Jahan",
+            "designation": "Managing Director",
+            "share": "25",
+            "id_type": "Passport",
+            "nid": "",
+            "passport": "A1234567",
+            "issue_country": "Bangladesh"
+          },
+          {
+            "name": "Tanvir Hasan",
+            "designation": "Shareholder",
+            "share": "15",
+            "id_type": "NID",
+            "nid": "8910",
+            "passport": "",
+            "issue_country": "Bangladesh"
+          },
+          {
+            "name": "Mehedi Rahman",
+            "designation": "Chairman",
+            "share": "10",
+            "id_type": "Passport",
+            "nid": "",
+            "passport": "B9876543",
+            "issue_country": "Bangladesh"
           }
-        ]
+        ] 
       },
       "BN": {
         "formData": {
@@ -1357,7 +1415,18 @@
             "",
             "",
             ""
-          ]
+          ],
+          "is_retail": false,
+          "is_wholesale": false,
+          "is_mfg": true,
+          "is_construction": false,
+          "is_seasonal": false,
+          "is_service": true,
+          "is_mineral": false,
+          "is_agri_fish": false,
+          "is_eco_others": false,
+          "eco_others_instruction": "(খ) আপনার অর্থনৈতিক কার্যক্রমকে যতটুকু সম্ভব বিস্তারিত বর্ণনা করুন। \nযেমন, বর্ণনা করুন \"টেলিকমনিকেশন সেবা প্রদানকারী\", \"এমএস পণ্য উৎপাদনকারী\", \"স্টক ব্রোকার\" ইত্যাদি। \nসাধারণ বিবরণ যেমন \"দোকানদার\", \"উৎপাদনকারী\", \"সেবা প্রদানকারী\", \"পরামর্শদাতা\" ইত্যাদি পরিহার করুণ।",
+          "eco_activity_details": "সফটওয়্যার এবং আইটি এনাবল্ড সার্ভিসের মাধ্যমে রপ্তানি কার্যক্রম পরিচালনা।"
         },
         "bankData": [
           {
@@ -1374,7 +1443,43 @@
             "share": "৬০",
             "id_type": "এনআইডি",
             "id_no": "১৯৯৫২৬১XXXXXXXXXX"
-          }
+          },
+          {
+            "name": "আসিফ রহমান",
+            "designation": "সহ-চেয়ারম্যান",
+            "share": "৩০",
+            "id_type": "এনআইডি",
+            "nid": "১২৩৪",
+            "passport": "",
+            "issue_country": "বাংলাদেশ"
+          },
+          {
+            "name": "ফারহান আহমেদ",
+            "designation": "পরিচালক",
+            "share": "২০",
+            "id_type": "এনআইডি",
+            "nid": "৫৬৭৮",
+            "passport": "",
+            "issue_country": "বাংলাদেশ"
+          },
+          {
+            "name": "নুসরাত জাহান",
+            "designation": "ব্যবস্থাপনা পরিচালক",
+            "share": "২৫",
+            "id_type": "পাসপোর্ট",
+            "nid": "",
+            "passport": "A1234567",
+            "issue_country": "বাংলাদেশ"
+          },
+          {
+            "name": "তানভীর হাসান",
+            "designation": "শেয়ারহোল্ডার",
+            "share": "১৫",
+            "id_type": "এনআইডি",
+            "nid": "৮৯১০",
+            "passport": "",
+            "issue_country": "বাংলাদেশ"
+          } 
         ],
         "branchData": [
           {

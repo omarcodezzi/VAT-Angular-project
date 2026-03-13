@@ -902,7 +902,66 @@
       "old_bin": "Old/Existing BIN",
       "extra_paper": "(Use extra paper if necessary)",
       "new": "(a) Application for new registration or enlistment",
-      "re_reg": "(b) Application for re-registration or re-enlistment"
+      "re_reg": "(b) Application for re-registration or re-enlistment",
+      "re_reg_bin": "In case of re-registration or re-enlistment, write the old/existing 10 or 11 digit BIN"
+    },
+    "directors": {
+      "sl": "SL.",
+      "name": "Name",
+      "designation": "Designation",
+      "share": "Share (%)",
+      "id_info": "Identification Info",
+      "id_type": "ID Type",
+      "nid_tin": "NID/Passport",
+      "nid": "NID No.",
+      "passport": "Passport No.",
+      "issue_country": "Issuing Country",
+      "extra_paper": "(Use extra paper if necessary)"
+    },
+    "biz_nature": {
+      "importer": "Importer",
+      "service": "Service Provider",
+      "exporter": "Exporter",
+      "supplier_mfg": "Supplier (Manufacturer)",
+      "mineral": "Mineral",
+      "supplier_comm": "Supplier (Commercial)",
+      "agri_fish": "Agriculture/Fisheries",
+      "others": "Others (Specify below)"
+    },
+    "eco_nature": {
+      "part16_ka": "(a) Tick [√] where applicable",
+      "part16_kha": "(b) Describe your economic activity in as much detail as possible.",
+      "part16_kha_sub": "e.g., describe as \"Telecommunication service provider\", \"MS product manufacturer\", \"Stock broker\" etc. Avoid general descriptions like \"Shopkeeper\", \"Manufacturer\", \"Service provider\", \"Consultant\" etc.",
+      "retail": "Retail",
+      "wholesale": "Wholesale",
+      "mfg": "Manufacturer",
+      "construction": "Construction",
+      "seasonal": "Seasonal Business",
+      "service": "Service Provider",
+      "mineral": "Mineral",
+      "agri_fish": "Agriculture/Fisheries",
+      "others": "Others (Specify below)"
+    },
+    "signatory_type": {
+      "signatory_header": "Signatory of this application: (Tick [√] where applicable)",
+      "first_name": "First Name",
+      "last_name": "Last Name",
+      "id_info": "Identification Info:",
+      "passport": "Passport",
+      "or": "OR",
+      "nid": "National ID (NID)",
+      "number": "Number:",
+      "issue_country": "Issuing Country:",
+      "issue_date": "Issue Date:",
+      "expiry_date": "Expiry Date:",
+      "declaration_text": "I declare that the information provided in this application is complete, true and correct in all respects.",
+      "date": "Date:",
+      "signature": "Signature",
+      "owner": "(a) An Owner",
+      "director": "(b) A Director of the Company",
+      "partner": "(c) A Partner",
+      "officer": "(d) An Officer of a non-profit organization",
+      "others": "(e) Others (Specify)"
     }
   }
 }

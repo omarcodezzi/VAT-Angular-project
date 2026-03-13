@@ -7374,12 +7374,7 @@ export class ExportService {
                 widths: [20, 150],
                 body: [
                   [
-                    {
-                      stack: [
-                        targetData.formData?.is_vat ? { image: tickImage, width: 12, height: 12, alignment: 'center', margin: [0, 2, 0, 0] } : ''
-                      ],
-                      alignment: 'center'
-                    },
+                    { text: '' },
                     { text: safe(l.reg_labels?.vat_reg), margin: [5, 2] }
                   ]
                 ]
@@ -7392,12 +7387,7 @@ export class ExportService {
                 widths: [20, 170],
                 body: [
                   [
-                    {
-                      stack: [
-                        targetData.formData?.is_tt ? { image: tickImage, width: 12, height: 12, alignment: 'center', margin: [0, 2, 0, 0] } : ''
-                      ],
-                      alignment: 'center'
-                    },
+                    { text: '' },
                     { text: safe(l.reg_labels?.tt_enlist), margin: [5, 2] }
                   ]
                 ]
@@ -7524,7 +7514,7 @@ export class ExportService {
                   table: {
                     widths: [15, 110],
                     body: [[
-                      { stack: [targetData.formData?.is_sd ? { image: tickImage, width: 10, height: 10, alignment: 'center', margin: [0, 2, 0, 0] } : ''], alignment: 'center' },
+                      { text: '' },
                       { text: safe(l.other_taxes?.sd), margin: [2, 1] }
                     ]]
                   }
@@ -7539,7 +7529,7 @@ export class ExportService {
                   table: {
                     widths: [15, 110],
                     body: [[
-                      { stack: [targetData.formData?.is_excise ? { image: tickImage, width: 10, height: 10, alignment: 'center', margin: [0, 2, 0, 0] } : ''], alignment: 'center' },
+                      { text: '' },
                       { text: safe(l.other_taxes?.excise), margin: [2, 1] }
                     ]]
                   }
@@ -7554,7 +7544,7 @@ export class ExportService {
                   table: {
                     widths: [15, 110],
                     body: [[
-                      { stack: [targetData.formData?.is_surcharge ? { image: tickImage, width: 10, height: 10, alignment: 'center', margin: [0, 2, 0, 0] } : ''], alignment: 'center' },
+                      { text: '' },
                       { text: safe(l.other_taxes?.surcharge), margin: [2, 1] }
                     ]]
                   }
@@ -7622,32 +7612,29 @@ export class ExportService {
         },
 
         // --- Section-13 --- 
-        // ১৩। আবেদনের ধরণ (নিম্নের প্রযোজ্যটিতে টিক চিহ্ন দিন):
         { text: safe(l.sections?.part13), bold: true, margin: [0, 10, 0, 5] },
         {
           stack: [
-            // (ক) নতুন নিবন্ধন
             {
               columns: [
                 {
                   width: 'auto',
                   table: {
                     widths: [20],
-                    body: [[{ stack: [targetData.formData?.app_type === 'new' ? { image: tickImage, width: 10, height: 10, alignment: 'center', margin: [0, 2, 0, 0] } : ''], minHeight: 15, alignment: 'center' }]]
+                    body: [[{ text: '', minHeight: 15 }]]
                   }
                 },
                 { text: safe(l.app_type?.new), margin: [5, 2] }
               ],
               margin: [15, 0, 0, 2]
             },
-            // (খ) পুনঃনিবন্ধন
             {
               columns: [
                 {
                   width: 'auto',
                   table: {
                     widths: [20],
-                    body: [[{ stack: [targetData.formData?.app_type === 're_reg' ? { image: tickImage, width: 10, height: 10, alignment: 'center', margin: [0, 2, 0, 0] } : ''], minHeight: 15, alignment: 'center' }]]
+                    body: [[{ text: '', minHeight: 15 }]]
                   }
                 },
                 { text: safe(l.app_type?.re_reg), margin: [5, 2] }
@@ -7656,20 +7643,17 @@ export class ExportService {
             }
           ]
         },
+        { text: safe(l.app_type?.re_reg_bin), fontSize: 8, alignment: 'left', margin: [0, 0, 0, 0] },
 
-        // পুনঃনিবন্ধন সাব-হেডার
-        { text: safe(l.sections?.part13_sub), fontSize: 9, bold: true, margin: [0, 5, 0, 5] },
-
-        // ২০টি রো-র ডাবল কলাম টেবিল
+        { text: safe(l.app_type?.part13_sub), fontSize: 9, bold: true, margin: [0, 5, 0, 5] },
         {
           columns: [
-            // বাম পাশের টেবিল (১-১০)
             {
               width: '49%',
               table: {
                 widths: [35, '*'],
                 body: [
-                  [{ text: safe(l.sections?.sl), bold: true, alignment: 'center' }, { text: safe(l.sections?.old_bin), bold: true, alignment: 'center' }],
+                  [{ text: safe(l.app_type?.sl), bold: true, alignment: 'center' }, { text: safe(l.app_type?.old_bin), bold: true, alignment: 'center' }],
                   ...Array.from({ length: 10 }, (_, i) => [
                     { text: (i + 1).toLocaleString(lang === 'BN' ? 'bn-BD' : 'en-US') + '.', alignment: 'center' },
                     { text: safe(targetData.formData?.old_bin_list?.[i]), minHeight: 15 }
@@ -7677,13 +7661,12 @@ export class ExportService {
                 ]
               }
             },
-            // ডান পাশের টেবিল (১১-২০)
             {
               width: '49%',
               table: {
                 widths: [35, '*'],
                 body: [
-                  [{ text: safe(l.sections?.sl), bold: true, alignment: 'center' }, { text: safe(l.sections?.old_bin), bold: true, alignment: 'center' }],
+                  [{ text: safe(l.app_type?.sl), bold: true, alignment: 'center' }, { text: safe(l.app_type?.old_bin), bold: true, alignment: 'center' }],
                   ...Array.from({ length: 10 }, (_, i) => [
                     { text: (i + 11).toLocaleString(lang === 'BN' ? 'bn-BD' : 'en-US') + '.', alignment: 'center' },
                     { text: safe(targetData.formData?.old_bin_list?.[i + 10]), minHeight: 15 }
@@ -7694,49 +7677,238 @@ export class ExportService {
             }
           ]
         },
-        // অতিরিক্ত কাগজ ব্যবহারের নোট
-        { text: safe(l.sections?.extra_paper), fontSize: 8, alignment: 'right', margin: [0, 3, 0, 0] },
+        { text: safe(l.app_type?.extra_paper), fontSize: 8, alignment: 'right', margin: [0, 3, 0, 0] },
 
-        // --- PAGE 3: Directors Info ---
-        { text: safe(l.sections?.part14), bold: true, margin: [0, 5, 0, 5] },
+        // --- Section-14 ---
+        { text: safe(l.sections?.part14), bold: true, margin: [0, 55, 0, 5] },
         {
           table: {
-            headerRows: 1, widths: [20, '*', 60, 40, '*'],
+            headerRows: 1,
+            widths: [20, '*', 70, 45, '*'],
             body: [
-              ['SL', 'Name', 'Designation', 'Share%', 'Identity Info'].map(h => ({ text: h, bold: true, alignment: 'center' })),
-              ...(targetData.directors || []).map((d: any, i: number) => [
-                toBnNum(i + 1), safe(d.name), safe(d.designation), toBnNum(safe(d.share)),
+              [
+                { text: safe(l.directors?.sl), bold: true, alignment: 'center' },
+                { text: safe(l.directors?.name), bold: true, alignment: 'center' },
+                { text: safe(l.directors?.designation), bold: true, alignment: 'center' },
+                { text: safe(l.directors?.share), bold: true, alignment: 'center' },
+                { text: safe(l.directors?.id_info), bold: true, alignment: 'center' }
+              ],
+              ...(targetData.directors || Array(6).fill({})).map((d: any, i: number) => [
+                { text: (i + 1).toLocaleString(lang === 'BN' ? 'bn-BD' : 'en-US'), alignment: 'center', margin: [0, 15] },
+                { text: safe(d.name), margin: [2, 15] },
+                { text: safe(d.designation), margin: [2, 15] },
+                { text: (d.share ? d.share.toLocaleString(lang === 'BN' ? 'bn-BD' : 'en-US') : ''), alignment: 'center', margin: [0, 15] },
                 {
                   table: {
-                    widths: [60, '*'],
-                    body: [['Type', safe(d.id_type)], ['Number', toBnNum(safe(d.id_no))], ['Country', 'BD']]
+                    widths: [75, '*'],
+                    body: [
+                      [{ text: safe(l.directors?.id_type), margin: [2, 1] }, { text: safe(l.directors?.nid_tin), margin: [2, 1] }],
+                      [{ text: safe(l.directors?.nid), margin: [2, 1] }, { text: safe(d.nid), margin: [2, 1] }],
+                      [{ text: safe(l.directors?.passport), margin: [2, 1] }, { text: safe(d.passport), margin: [2, 1] }],
+                      [{ text: safe(l.directors?.issue_country), margin: [2, 1] }, { text: safe(d.issue_country), margin: [2, 1] }]
+                    ]
                   },
-                  layout: 'noBorders'
+                  layout: {
+                    hLineWidth: (i: number, node: any): number => (i === 0 || i === node.table.body.length) ? 0 : 0.5,
+                    vLineWidth: (i: number, node: any): number => (i === 1) ? 0.5 : 0,
+                    hLineColor: (): string => '#000000',
+                    vLineColor: (): string => '#000000'
+                  }
                 }
               ])
             ]
           }
         },
+        { text: safe(l.directors?.extra_paper), fontSize: 8, alignment: 'right', margin: [0, 3, 0, 0] },
 
-        { text: safe(l.sections?.part15), bold: true, margin: [0, 15, 0, 5] },
-        { table: { widths: ['*', '*', '*'], body: [['[ ] Importer', '[ ] Service Provider', '[ ] Exporter'], ['[√] Supplier', '[ ] Minerals', '[ ] Manufacturer']] } },
-        { text: '', pageBreak: 'after' },
-
-        // --- PAGE 4: Eco Activity & Declaration ---
-        { text: safe(l.sections?.part16), bold: true, margin: [0, 5, 0, 5] },
-        { table: { widths: ['*', '*', '*'], body: [['[ ] Retail', '[ ] Wholesale', '[√] Manufacturer'], ['[ ] Construction', '[ ] Seasonal', '[ ] Service']] } },
-        { text: '(b) Detailed Description:', margin: [0, 10, 0, 2] },
-        { table: { widths: ['*'], body: [[{ text: safe(targetData.formData?.eco_desc), minHeight: 40 }]] } },
-
-        { text: safe(l.sections?.part17), bold: true, margin: [0, 15, 0, 5] },
+        // --- Section-15 ---
+        { text: safe(l.sections?.part15), bold: true, margin: [0, 10, 0, 5] },
         {
-          padding: [10, 10, 10, 10],
-          stack: [
-            { columns: [{ text: '[√] (a) Owner', width: 150 }, { text: '(b) Director' }] },
-            { margin: [0, 10, 0, 0], columns: [{ text: `Name: ${safe(targetData.formData?.declarant_name)}`, width: '*' }, { text: `NID: ${toBnNum(safe(targetData.formData?.declarant_nid))}`, width: '*' }] },
-            { text: lang === 'BN' ? 'আমি ঘোষণা করিতেছি যে, এই আবেদনে প্রদত্ত তথ্য সর্বোতভাবে সম্পূর্ণ, সত্য ও নির্ভুল।' : 'I declare that the information provided is complete, true, and correct.', margin: [0, 15, 0, 0] },
-            { margin: [0, 20, 0, 0], columns: [{ text: `Date: ${toBnNum(new Date().toLocaleDateString())}` }, { text: 'Signature: _______________', alignment: 'right' }] }
+          columns: [
+            // Column 1
+            {
+              width: 'auto',
+              stack: [
+                { table: { widths: [15, 110], body: [[{ text: '' }, { text: safe(l.biz_nature?.importer), margin: [2, 1] }]] }, margin: [0, 0, 0, 2] },
+                { table: { widths: [15, 110], body: [[{ text: '' }, { text: safe(l.biz_nature?.supplier_mfg), margin: [2, 1] }]] }, margin: [0, 0, 0, 2] },
+                { table: { widths: [15, 110], body: [[{ text: '' }, { text: safe(l.biz_nature?.agri_fish), margin: [2, 1] }]] }, margin: [0, 0, 0, 2] },
+                { table: { widths: [15, 110], body: [[{ text: '' }, { text: safe(l.biz_nature?.others), margin: [2, 1] }]] } }
+              ]
+            },
+            // Column 2
+            {
+              width: 'auto',
+              stack: [
+                { table: { widths: [15, 115], body: [[{ text: '' }, { text: safe(l.biz_nature?.service), margin: [2, 1] }]] }, margin: [0, 0, 0, 2] },
+                { table: { widths: [15, 115], body: [[{ text: '' }, { text: safe(l.biz_nature?.mineral), margin: [2, 1] }]] }, margin: [0, 0, 0, 2] },
+                {
+                  table: {
+                    widths: [140],
+                    body: [[{ text: safe(targetData.formData?.biz_nature_others_text), minHeight: 15 }]]
+                  },
+                }
+              ],
+            },
+            // Column 3
+            {
+              width: 'auto',
+              stack: [
+                { table: { widths: [15, 110], body: [[{ text: '' }, { text: safe(l.biz_nature?.exporter), margin: [2, 1] }]] }, margin: [0, 0, 0, 2] },
+                { table: { widths: [15, 110], body: [[{ text: '' }, { text: safe(l.biz_nature?.supplier_comm), margin: [2, 1] }]] }, margin: [0, 0, 0, 2] }
+              ],
+              margin: [1, 0, 0, 0]
+            }
+          ],
+          columnGap: 5
+        },
+
+        // --- Section-16 ---
+        { text: safe(l.sections?.part16), bold: true, margin: [0, 10, 0, 5] },
+
+        { text: safe(l.eco_nature?.part16_ka), margin: [0, 0, 0, 5] },
+        {
+          columns: [
+            // Column 1
+            {
+              width: 'auto',
+              stack: [
+                { table: { widths: [15, 110], body: [[{ text: targetData.formData?.is_retail ? '√' : '' }, { text: safe(l.eco_nature?.retail), margin: [2, 1] }]] }, margin: [0, 0, 0, 2] },
+                { table: { widths: [15, 110], body: [[{ text: targetData.formData?.is_construction ? '√' : '' }, { text: safe(l.eco_nature?.construction), margin: [2, 1] }]] }, margin: [0, 0, 0, 2] },
+                { table: { widths: [15, 110], body: [[{ text: targetData.formData?.is_mineral ? '√' : '' }, { text: safe(l.eco_nature?.mineral), margin: [2, 1] }]] } }
+              ],
+              margin: [0, 0, 0, 0]
+            },
+            // Column 2
+            {
+              width: 'auto',
+              stack: [
+                { table: { widths: [15, 110], body: [[{ text: targetData.formData?.is_wholesale ? '√' : '' }, { text: safe(l.eco_nature?.wholesale), margin: [2, 1] }]] }, margin: [0, 0, 0, 2] },
+                { table: { widths: [15, 110], body: [[{ text: targetData.formData?.is_seasonal ? '√' : '' }, { text: safe(l.eco_nature?.seasonal), margin: [2, 1] }]] }, margin: [0, 0, 0, 2] },
+                { table: { widths: [15, 110], body: [[{ text: targetData.formData?.is_agri_fish ? '√' : '' }, { text: safe(l.eco_nature?.agri_fish), margin: [2, 1] }]] } }
+              ],
+              margin: [0, 0, 0, 0]
+            },
+            // Column 3
+            {
+              width: 'auto',
+              stack: [
+                { table: { widths: [15, 110], body: [[{ text: targetData.formData?.is_mfg ? '√' : '' }, { text: safe(l.eco_nature?.mfg), margin: [2, 1] }]] }, margin: [0, 0, 0, 2] },
+                { table: { widths: [15, 110], body: [[{ text: targetData.formData?.is_service ? '√' : '' }, { text: safe(l.eco_nature?.service), margin: [2, 1] }]] }, margin: [0, 0, 0, 2] },
+                { table: { widths: [15, 110], body: [[{ text: targetData.formData?.is_eco_others ? '√' : '' }, { text: safe(l.eco_nature?.others), margin: [2, 1] }]] } }
+              ],
+              margin: [0, 0, 0, 0]
+            }
           ]
+        },
+        { table: { widths: [422], body: [[{ text: safe(targetData.formData?.eco_others_text), minHeight: 20 }]] }, margin: [0, 5, 20, 10] },
+
+        {
+          table: {
+            widths: ['*'],
+            body: [
+              [
+                {
+                  stack: [
+                    { text: safe(l.eco_nature?.part16_kha), bold: true, fontSize: 10 },
+                    { text: '', fontSize: 9, margin: [0, 2, 0, 0] }
+                  ],
+                  fillColor: '#f9f9f9'
+                }
+              ]
+            ]
+          },
+          margin: [0, 5, 20, 10]
+        },
+        { table: { widths: ['*'], body: [[{ text: safe(targetData.formData?.eco_others_text), minHeight: 20 }]] }, margin: [0, 5, 20, 10] },
+
+         // --- Section-17 ---
+        { text: safe(l.sections?.part17), bold: true, margin: [0, 10, 0, 5] },
+        {
+          table: {
+            widths: ['*'],
+            body: [[
+              {
+                stack: [
+                  { text: safe(l.signatory_type?.signatory_header), margin: [0, 5, 0, 10] },
+
+                  {
+                    columns: [
+                      {
+                        width: '50%',
+                        stack: [
+                          { columns: [{ table: { widths: [15], body: [[{ text: targetData.formData?.signatory_type === 'owner' ? '√' : '', minHeight: 12 }]] }, width: 'auto' }, { text: safe(l.signatory_type?.owner), margin: [5, 2] }], margin: [0, 2] },
+                          { columns: [{ table: { widths: [15], body: [[{ text: targetData.formData?.signatory_type === 'partner' ? '√' : '', minHeight: 12 }]] }, width: 'auto' }, { text: safe(l.signatory_type?.partner), margin: [5, 2] }], margin: [0, 2] },
+                          { columns: [{ table: { widths: [15], body: [[{ text: targetData.formData?.signatory_type === 'others' ? '√' : '', minHeight: 12 }]] }, width: 'auto' }, { text: safe(l.signatory_type?.others), margin: [5, 2] }], margin: [0, 2] }
+                        ]
+                      },
+                      {
+                        width: '50%',
+                        stack: [
+                          { columns: [{ table: { widths: [15], body: [[{ text: targetData.formData?.signatory_type === 'director' ? '√' : '', minHeight: 12 }]] }, width: 'auto' }, { text: safe(l.signatory_type?.director), margin: [5, 2] }], margin: [0, 2] },
+                          { columns: [{ table: { widths: [15], body: [[{ text: targetData.formData?.signatory_type === 'officer' ? '√' : '', minHeight: 12 }]] }, width: 'auto' }, { text: safe(l.signatory_type?.officer), margin: [5, 2] }], margin: [0, 2] },
+                          { table: { widths: ['*'], body: [[{ text: safe(targetData.formData?.signatory_others_text), minHeight: 15 }]] }, margin: [0, 2] }
+                        ]
+                      }
+                    ]
+                  },
+
+                  {
+                    columns: [
+                      { text: safe(l.signatory_type?.first_name), width: 'auto', margin: [0, 10, 5, 0] },
+                      { table: { widths: ['*'], body: [[{ text: safe(targetData.formData?.sig_first_name), minHeight: 15 }]] }, margin: [0, 8, 10, 0] },
+                      { text: safe(l.signatory_type?.last_name), width: 'auto', margin: [0, 10, 5, 0] },
+                      { table: { widths: ['*'], body: [[{ text: safe(targetData.formData?.sig_last_name), minHeight: 15 }]] }, margin: [0, 8, 0, 0] }
+                    ]
+                  },
+
+                  { text: safe(l.signatory_type?.id_info), margin: [0, 10, 0, 5], bold: true },
+                  {
+                    table: {
+                      widths: ['*', 50, '*'],
+                      body: [
+                        [{ text: safe(l.signatory_type?.passport), bold: true, alignment: 'center' }, 
+                          { text: safe(l.signatory_type?.or), alignment: 'center', border: [false, true, false, true] }, 
+                          { text: safe(l.signatory_type?.nid), bold: true, alignment: 'center' }],
+                        [
+                          {
+                            table: {
+                              widths: [80, '*'],
+                              body: [
+                                [{ text: safe(l.signatory_type?.number) }, { text: safe(targetData.formData?.sig_passport_no) }],
+                                [{ text: safe(l.signatory_type?.issue_country) }, { text: safe(targetData.formData?.sig_passport_country) }],
+                                [{ text: safe(l.signatory_type?.issue_date) }, { text: safe(targetData.formData?.sig_passport_issue) }],
+                                [{ text: safe(l.signatory_type?.expiry_date) }, { text: safe(targetData.formData?.sig_passport_expiry) }]
+                              ]
+                            },
+                            layout: 'noBorders', rowSpan: 4
+                          },
+                          {},
+                          {
+                            table: {
+                              widths: [60, '*'],
+                              body: [[{ text: safe(l.signatory_type?.number) }, { text: safe(targetData.formData?.sig_nid_no) }]]
+                            },
+                            layout: 'noBorders'
+                          }
+                        ],
+                        ['', '', ''], ['', '', ''], ['', '', '']  
+                      ]
+                    }
+                  },
+
+                  { text: safe(l.signatory_type?.declaration_text), margin: [0, 20, 0, 30] },
+
+                  {
+                    columns: [
+                      { text: safe(l.signatory_type?.date) + ' ' + (targetData.formData?.application_date || ''), width: 'auto' },
+                      { text: safe(l.signatory_type?.signature), alignment: 'right' }
+                    ]
+                  }
+                ],
+                margin: [10, 10, 10, 10]
+              }
+            ]]
+          }
         }
       ]
     };
