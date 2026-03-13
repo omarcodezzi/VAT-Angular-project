@@ -2,8 +2,8 @@
   "mushak_values": {
     "taxpayer": {
       "bin": "1234567890123",
-      "name": "Hasanuzzaman IT Solutions",
-      "address": "Mirpur, Dhaka, Bangladesh",
+      "name": "SkyTech Global Ltd.",
+      "address": "Uttara, Dhaka, Bangladesh",
       "businessNature": "Software Development & Services",
       "activity": "Information Technology",
       "designation": "Managing Director",
@@ -211,7 +211,7 @@
     "mushak_4_3_data": {
       "EN": {
         "companyInfo": {
-          "name": "Partex Beverage Ltd.",
+          "name": "SkyTech Global Ltd.",
           "address": "Jangaliapara, Banglabazar, Bhawal Mirzapur, Gazipur.",
           "bin": "000000733",
           "submissionDate": "11/09/2022",
@@ -235,7 +235,7 @@
       },
       "BN": {
         "companyInfo": {
-          "name": "পারটেক্স বেভারেজ লি:",
+          "name": "স্কাইটেক গ্লোবাল লিমিটেড",
           "address": "জাঙ্গালিয়াপাড়া, বাংলাবাজার, ভাওয়াল মির্জাপুর, গাজীপুর।",
           "bin": "000000৭৩৩",
           "submissionDate": "১১/০৯/২০২২",
@@ -261,8 +261,8 @@
     "mushak_6_1_data": {
       "BN": {
         "companyInfo": {
-          "name": "হাসানুজ্জামান আইটি সলিউশনস",
-          "address": "মিরপুর, ঢাকা",
+          "name": "স্কাইটেক গ্লোবাল লিমিটেড",
+          "address": "উত্তরা, ঢাকা",
           "bin": "১২৩৪৫৬৭৮৯০১২৩"
         },
         "items": [
@@ -293,8 +293,8 @@
       },
       "EN": {
         "companyInfo": {
-          "name": "Hasanuzzaman IT Solutions",
-          "address": "Mirpur, Dhaka",
+          "name": "SkyTech Global Ltd.",
+          "address": "Uttara, Dhaka",
           "bin": "1234567890123"
         },
         "items": [
@@ -327,8 +327,8 @@
     "mushak_6_2_data": {
       "BN": {
         "companyInfo": {
-          "name": "হাসানুজ্জামান আইটি সলিউশনস",
-          "address": "মিরপুর, ঢাকা",
+          "name": "স্কাইটেক গ্লোবাল লিমিটেড",
+          "address": "উত্তরা, ঢাকা",
           "bin": "১২৩৪৫৬৭৮৯০১২৩"
         },
         "items": [
@@ -342,7 +342,7 @@
             "total_qty": "১৫০০",
             "total_val": "৭৫০০০",
             "buyer_name": "মেসার্স রহিম ট্রেডার্স",
-            "buyer_address": "মিরপুর, ঢাকা",
+            "buyer_address": "উত্তরা, ঢাকা",
             "buyer_bin": "৯৮৭৬৫৪৩২১",
             "invoice_date": "০২/০১/২০২৬",
             "invoice_no": "INV-S-001",
@@ -365,8 +365,8 @@
       },
       "EN": {
         "companyInfo": {
-          "name": "Hasanuzzaman IT Solutions",
-          "address": "Mirpur, Dhaka",
+          "name": "SkyTech Global Ltd.",
+          "address": "Uttara, Dhaka",
           "bin": "1234567890123"
         },
         "items": [
@@ -380,7 +380,7 @@
             "total_qty": "1500",
             "total_val": "75000",
             "buyer_name": "M/S Rahim Traders",
-            "buyer_address": "Mirpur, Dhaka",
+            "buyer_address": "Uttara, Dhaka",
             "buyer_bin": "987654321",
             "invoice_date": "02/01/2026",
             "invoice_no": "INV-S-001",
@@ -415,7 +415,7 @@
             "tot_qty": "৬০০",
             "tot_val": "৩০০০০.০০",
             "s_name": "এবিসি সাপ্লাইয়ার্স",
-            "s_addr": "মিরপুর, ঢাকা",
+            "s_addr": "উত্তরা, ঢাকা",
             "s_bin": "১২৩৪৫৬৭৮৯০১২৩",
             "p_inv_no": "P-001",
             "p_inv_date": "০২/০১/২০২৬",
@@ -447,7 +447,7 @@
             "tot_qty": "600",
             "tot_val": "30000.00",
             "s_name": "ABC Suppliers",
-            "s_addr": "Mirpur, Dhaka",
+            "s_addr": "Uttara, Dhaka",
             "s_bin": "1234567890123",
             "p_inv_no": "P-001",
             "p_inv_date": "02/01/2026",
@@ -470,9 +470,9 @@
     },
     "mushak_6_3_data": {
       "BN": {
-        "seller_name": "হাসানুজ্জামান আইটি সলিউশনস",
+        "seller_name": "স্কাইটেক গ্লোবাল লিমিটেড",
         "seller_bin": "১২৩৪৫৬৭৮৯০১২৩",
-        "invoice_address": "মিরপুর, ঢাকা",
+        "invoice_address": "উত্তরা, ঢাকা",
         "delivery_dest": "উত্তরা, ঢাকা",
         "invoice_no": "ইনভ-২০২৬-০০১",
         "issue_date": "০২/০৩/২০২৬",
@@ -500,9 +500,9 @@
         "grand_total": "১০৫০০.০০"
       },
       "EN": {
-        "seller_name": "Hasanuzzaman IT Solutions",
+        "seller_name": "SkyTech Global Ltd.",
         "seller_bin": "1234567890123",
-        "invoice_address": "Mirpur, Dhaka",
+        "invoice_address": "Uttara, Dhaka",
         "delivery_dest": "Uttara, Dhaka",
         "invoice_no": "INV-2026-001",
         "issue_date": "02/03/2026",
@@ -533,7 +533,7 @@
     "mushak_6_4_data": {
       "EN": {
         "formData": {
-          "registered_person": "Example Company Ltd.",
+          "registered_person": "SkyTech Global Ltd.",
           "registered_person_bin": "001234567-0001",
           "chalan_address": "Plot #10, Road #5, Sector-3, Uttara, Dhaka-1230",
           "recipient_name": "Client Industries Bangladesh",
@@ -605,9 +605,9 @@
     "mushak_6_5_data": {
       "EN": {
         "formData": {
-          "registered_person": "Hasanuzzaman IT Solutions",
+          "registered_person": "SkyTech Global Ltd.",
           "registered_person_bin": "1234567890123",
-          "sender_info": "Main Warehouse, Mirpur-10, Dhaka",
+          "sender_info": "Main Warehouse, Uttara-10, Dhaka",
           "receiver_info": "Branch Office, Uttara Sector-4, Dhaka",
           "chalan_number": "TR-2026-009",
           "issue_date": "03/03/2026",
@@ -627,9 +627,9 @@
       },
       "BN": {
         "formData": {
-          "registered_person": "হাসানুজ্জামান আইটি সলিউশনস",
+          "registered_person": "স্কাইটেক গ্লোবাল লিমিটেড",
           "registered_person_bin": "১২৩৪৫৬৭৮৯০১২৩",
-          "sender_info": "প্রধান গুদাম, মিরপুর-১০, ঢাকা",
+          "sender_info": "প্রধান গুদাম, উত্তরা-১০, ঢাকা",
           "receiver_info": "শাখা অফিস, উত্তরা সেক্টর-৪, ঢাকা",
           "chalan_number": "টিআর-২০২৬-০০৯",
           "issue_date": "০৩/০৩/২০২৬",
@@ -651,8 +651,8 @@
     "mushak_6_6_data": {
       "EN": {
         "formData": {
-          "withholding_entity": "Divine IT Limited",
-          "withholding_address": "House 29, Road 12, Sector 10, Uttara, Dhaka-1230",
+          "withholding_entity": "SkyTech Global Ltd.",
+          "withholding_address": "House 29, Road 12, Sector 03, Uttara, Dhaka-1230",
           "withholding_bin": "1234567890123",
           "cert_no": "123456789",
           "issue_date": "2019-08-28"
@@ -676,8 +676,8 @@
       },
       "BN": {
         "formData": {
-          "withholding_entity": "ডিভাইন আইটি লিমিটেড",
-          "withholding_address": "হাউজ ২৯, রোড ১২, সেক্টর ১০, উত্তরা, ঢাকা-১২৩০",
+          "withholding_entity": "স্কাইটেক গ্লোবাল লিমিটেড",
+          "withholding_address": "হাউজ ২৯, রোড ১২, সেক্টর ০৩, উত্তরা, ঢাকা-১২৩০",
           "withholding_bin": "১২৩৪৫৬৭৮৯০১২৩",
           "cert_no": "১২৩৪৫৬৭৮৯",
           "issue_date": "২৮/০৮/২০১৯"
@@ -703,7 +703,7 @@
     "mushak_6_7_data": {
       "EN": {
         "formData": {
-          "seller_name": "Divine IT Limited",
+          "seller_name": "SkyTech Global Ltd.",
           "seller_bin": "1234567890123",
           "orig_inv_no": "INV-2026-005",
           "orig_inv_date": "2026-02-15",
@@ -734,7 +734,7 @@
       },
       "BN": {
         "formData": {
-          "seller_name": "ডিভাইন আইটি লিমিটেড",
+          "seller_name": "স্কাইটেক গ্লোবাল লিমিটেড",
           "seller_bin": "১২৩৪৫৬৭৮৯০১২৩",
           "orig_inv_no": "ইনভ-২০২৬-০০৫",
           "orig_inv_date": "১৫/০২/২০২৬",
@@ -767,7 +767,7 @@
     "mushak_6_8_data": {
       "EN": {
         "formData": {
-          "seller_name": "Divine IT Limited",
+          "seller_name": "SkyTech Global Ltd.",
           "seller_bin": "1234567890123",
           "orig_inv_no": "INV-2026-0012",
           "orig_inv_date": "2026-02-10",
@@ -798,7 +798,7 @@
       },
       "BN": {
         "formData": {
-          "seller_name": "ডিভাইন আইটি লিমিটেড",
+          "seller_name": "স্কাইটেক গ্লোবাল লিমিটেড",
           "seller_bin": "১২৩৪৫৬৭৮৯০১২৩",
           "orig_inv_no": "ইনভ-২০২৬-০০১২",
           "orig_inv_date": "১০/০২/২০২৬",
@@ -831,9 +831,9 @@
     "mushak_6_9_data": {
       "EN": {
         "formData": {
-          "listed_person": "Divine IT Limited",
+          "listed_person": "SkyTech Global Ltd.",
           "listed_bin": "1234567890123",
-          "issue_address": "House 29, Road 12, Sector 10, Uttara, Dhaka",
+          "issue_address": "House 29, Road 12, Sector 03, Uttara, Dhaka",
           "buyer_name": "Arif Corp.",
           "buyer_bin": "9876543210987",
           "chalan_number": "TT-2026-005",
@@ -855,7 +855,7 @@
       },
       "BN": {
         "formData": {
-          "listed_person": "ডিভাইন আইটি লিমিটেড",
+          "listed_person": "স্কাইটেক গ্লোবাল লিমিটেড",
           "listed_bin": "১২৩৪৫৬৭৮৯০১২৩",
           "issue_address": "হাউজ ২৯, রোড ১২, সেক্টর ১০, উত্তরা, ঢাকা",
           "buyer_name": "আরিফ কর্পোরেশন",
@@ -881,7 +881,7 @@
     "mushak_6_10_data": {
       "EN": {
         "formData": {
-          "person_name": "Divine IT Limited",
+          "person_name": "SkyTech Global Ltd.",
           "bin": "1234567890123",
           "auth_name": "John Doe",
           "date": "2026-03-06"
@@ -909,7 +909,7 @@
       },
       "BN": {
         "formData": {
-          "person_name": "ডিভাইন আইটি লিমিটেড",
+          "person_name": "স্কাইটেক গ্লোবাল লিমিটেড",
           "bin": "১২৩৪৫৬৭৮৯০১২৩",
           "auth_name": "জন ডো",
           "date": "০৬/০৩/২০২৬"
@@ -1220,10 +1220,10 @@
       "EN": {
         "formData": {
           "tin": "987654321011",
-          "person_name": "Divine IT Limited",
+          "person_name": "SkyTech Global Ltd.",
           "address": {
             "holding": "29",
-            "mohalla": "Sector 10",
+            "mohalla": "Sector 03",
             "road": "Road 12",
             "village": "Not Applicable",
             "area": "Uttara",
@@ -1293,7 +1293,7 @@
         },
         "bankData": [
           {
-            "acc_name": "Divine IT Limited",
+            "acc_name": "SkyTech Global Ltd.",
             "acc_no": "1234567890",
             "bank": "Sonali Bank",
             "branch": "Uttara Branch"
@@ -1301,7 +1301,7 @@
         ],
         "directors": [
           {
-            "name": "Riyad Hasan",
+            "name": "Mushtad Ahmed",
             "designation": "Managing Director",
             "share": "60",
             "id_type": "NID",
@@ -1357,7 +1357,7 @@
       "BN": {
         "formData": {
           "tin": "৯৮৭৬৫৪৩২১০১১",
-          "person_name": "ডিভাইন আইটি লিমিটেড",
+          "person_name": "স্কাইটেক গ্লোবাল লিমিটেড",
           "address": {
             "holding": "২৯",
             "mohalla": "সেক্টর ১০",
@@ -1430,7 +1430,7 @@
         },
         "bankData": [
           {
-            "acc_name": "ডিভাইন আইটি লিমিটেড",
+            "acc_name": "স্কাইটেক গ্লোবাল লিমিটেড",
             "acc_no": "১২৩৪৫৬৭৮৯০",
             "bank": "সোনালী ব্যাংক",
             "branch": "উত্তরা শাখা"
@@ -1438,7 +1438,7 @@
         ],
         "directors": [
           {
-            "name": "রিয়াদ হাসান",
+            "name": "মুশতাদ আহমেদ",
             "designation": "ব্যবস্থাপনা পরিচালক",
             "share": "৬০",
             "id_type": "এনআইডি",
