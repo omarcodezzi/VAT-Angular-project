@@ -1,0 +1,45 @@
+<div class="mushak-container p-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="section-title d-flex align-items-center gap-2">
+      <div class="green-indicator"></div>
+      <h5 class="mb-0 fw-bold">All Mushak Forms <span class="badge rounded-pill bg-light text-muted fw-normal ms-2">9 forms</span></h5>
+    </div>
+    <div class="search-box">
+      <div class="input-group">
+        <span class="input-group-text bg-white border-end-0"><i class="bi bi-search text-muted"></i></span>
+        <input type="text" class="form-control border-start-0" placeholder="Search forms...">
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-4">
+    @for (form of mushakForms; track form.id) {
+      <div class="col-md-4">
+        <div class="mushak-card shadow-sm h-100 p-4 border-0">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <div class="icon-box">
+              <i class="bi bi-file-earmark-text text-success"></i>
+            </div>
+            <span class="type-badge" [ngClass]="form.typeClass">{{ form.type }}</span>
+          </div>
+
+          <h4 class="fw-bold mb-1">{{ form.title }}</h4>
+          <p class="text-muted small mb-4">{{ form.description }}</p>
+
+          <div class="language-section mb-4">
+            <label class="text-muted small text-uppercase fw-bold mb-2 d-block">Language</label>
+            <div class="lang-switcher d-inline-flex p-1 bg-light rounded-3">
+              <button class="btn btn-sm" [class.active]="form.selectedLang === 'EN'" (click)="form.selectedLang = 'EN'">EN</button>
+              <button class="btn btn-sm" [class.active]="form.selectedLang === 'BN'" (click)="form.selectedLang = 'BN'">বাংলা</button>
+            </div>
+          </div>
+
+          <button class="btn download-btn w-100 py-2 d-flex justify-content-between align-items-center" (click)="download(form)">
+            <span><i class="bi bi-download me-2"></i> Download</span>
+            <i class="bi bi-arrow-down small"></i>
+          </button>
+        </div>
+      </div>
+    }
+  </div>
+</div>

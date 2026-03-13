@@ -7,11 +7,12 @@ import * as XLSX from 'xlsx';
 import { HttpClient } from '@angular/common/http';
 import { ExportService } from '../Services/export.service';
 import { MushakService } from '../Services/mushak.service';
+import { RouterOutlet } from "@angular/router";
 
 @Component({
   selector: 'app-excel-import',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterOutlet],
   templateUrl: './excel-import.component.html',
   styleUrl: './excel-import.component.css',
 })

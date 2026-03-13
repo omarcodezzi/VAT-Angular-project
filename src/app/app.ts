@@ -9,5 +9,5 @@ import { ExcelImportComponent } from './excel-import/excel-import.component';
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('UploadExcel');
+  protected readonly title = signal('VAT Portal');
 }

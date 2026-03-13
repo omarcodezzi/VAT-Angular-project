@@ -1,0 +1,61 @@
+.mushak-card {
+  border-radius: 20px;
+  background: #fff;
+  transition: transform 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-5px);
+  }
+}
+
+.green-indicator {
+  width: 4px;
+  height: 20px;
+  background: #00d094;
+  border-radius: 2px;
+}
+
+.icon-box {
+  background: #e8f9f5;
+  padding: 10px;
+  border-radius: 12px;
+}
+
+.type-badge {
+  font-size: 10px;
+  font-weight: bold;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: #f0f7ff;
+  color: #007bff;
+  text-transform: uppercase;
+}
+
+.lang-switcher {
+  .btn {
+    border: none;
+    padding: 5px 15px;
+    font-size: 12px;
+    color: #6c757d;
+    
+    &.active {
+      background: white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      color: #00d094;
+      font-weight: bold;
+    }
+  }
+}
+
+.download-btn {
+  background: #00d094;
+  color: white;
+  border-radius: 12px;
+  font-weight: 500;
+  border: none;
+  
+  &:hover {
+    background: #00b984;
+    color: white;
+  }
+}
