@@ -1,9 +1,25 @@
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #0b1521; padding: 15px 50px;">
+  <a class="navbar-brand d-flex align-items-center" routerLink="/">
+    <div
+      style="background: #00d094; color: white; padding: 5px 10px; border-radius: 6px; margin-right: 10px; font-weight: bold;">
+      SVMS</div>
+    <span style="font-weight: bold; letter-spacing: 1px;">Sky VAT Management System</span>
+  </a>
+  <div class="collapse navbar-collapse justify-content-center">
+    <ul class="navbar-nav gap-3">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/dashboard" routerLinkActive="active-link">Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/mushak-list" routerLinkActive="active-link"> Mushak
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
 <main class="main">
   <div class="content">
-    <!-- Your placeholder content (e.g., Angular logo, tutorials) can be removed -->
-    <!-- <h1>Hello, {{ title() }}</h1>
-    <p>Welcome to the VAT HS Code Excel Import app.</p> -->
-    <!-- Add your excel-import component here -->
-    <app-excel-import></app-excel-import>
+    <router-outlet></router-outlet>
   </div>
 </main>
