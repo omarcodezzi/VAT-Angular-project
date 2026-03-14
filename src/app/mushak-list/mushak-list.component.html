@@ -2,7 +2,7 @@
   <div class="d-flex justify-content-between align-items-center mb-4">
     <div class="section-title d-flex align-items-center gap-2">
       <div class="green-indicator"></div>
-      <h5 class="mb-0 fw-bold">All Mushak Forms <span class="badge rounded-pill bg-light text-muted fw-normal ms-2">9 forms</span></h5>
+      <h5 class="mb-0 fw-bold">All Mushak Forms</h5>
     </div>
     <div class="search-box">
       <div class="input-group">
@@ -12,34 +12,67 @@
     </div>
   </div>
 
-  <!-- <div class="row g-4">
-    @for (form of mushakForms; track form.id) {
-      <div class="col-md-4">
-        <div class="mushak-card shadow-sm h-100 p-4 border-0">
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <div class="icon-box">
-              <i class="bi bi-file-earmark-text text-success"></i>
-            </div>
-            <span class="type-badge" [ngClass]="form.typeClass">{{ form.type }}</span>
-          </div>
+  
+</div>
 
+
+<div class="mushak-container p-4">
+  <div class="row g-4">
+    @for (form of mushakForms(); track form.id) {
+    <div class="col-md-4">
+      <div class="mushak-card shadow-sm">
+        <!-- <div class="d-flex justify-content-between align-items-center mb-3">
+          <div class="icon-box">
+            <i class="bi bi-file-earmark-text"></i>
+          </div>
+        </div> -->
+        <div class="d-flex align-items-center gap-3 mb-3">
+          <div class="card-icon-wrapper">
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="#2ec4a9" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" />
+                <polyline points="14 2 14 8 20 8" stroke="#2ec4a9" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+                <line x1="16" y1="13" x2="8" y2="13" stroke="#2ec4a9" stroke-width="2" stroke-linecap="round" />
+                <line x1="16" y1="17" x2="8" y2="17" stroke="#2ec4a9" stroke-width="2" stroke-linecap="round" />
+                <polyline points="10 9 9 9 8 9" stroke="#2ec4a9" stroke-width="2" stroke-linecap="round" />
+              </svg>
+            </div>
+          </div>
           <h4 class="fw-bold mb-1">{{ form.title }}</h4>
-          <p class="text-muted small mb-4">{{ form.description }}</p>
+        </div>
 
-          <div class="language-section mb-4">
-            <label class="text-muted small text-uppercase fw-bold mb-2 d-block">Language</label>
-            <div class="lang-switcher d-inline-flex p-1 bg-light rounded-3">
-              <button class="btn btn-sm" [class.active]="form.selectedLang === 'EN'" (click)="form.selectedLang = 'EN'">EN</button>
-              <button class="btn btn-sm" [class.active]="form.selectedLang === 'BN'" (click)="form.selectedLang = 'BN'">বাংলা</button>
-            </div>
+        <p class="text-muted small mb-4">{{ form.description }}</p>
+
+        <hr class="divider">
+
+        <div class="language-section mb-4">
+          <label class="lang-label">LANGUAGE</label>
+          <div class="lang-switcher">
+            <button class="lang-btn" [class.active]="form.selectedLang === 'EN'"
+              (click)="selectLanguage(form.id, 'EN')">EN</button>
+            <button class="lang-btn" [class.active]="form.selectedLang === 'BN'"
+              (click)="selectLanguage(form.id, 'BN')">বাংলা</button>
+          </div>
+        </div>
+ 
+        <button class="btn-download" (click)="download(form)">
+          <div class="btn-icon-section">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
           </div>
 
-          <button class="btn download-btn w-100 py-2 d-flex justify-content-between align-items-center" (click)="download(form)">
-            <span><i class="bi bi-download me-2"></i> Download</span>
-            <i class="bi bi-arrow-down small"></i>
-          </button>
-        </div>
+          <div class="btn-text-section">
+            Download
+          </div>
+        </button>
       </div>
+    </div>
     }
-  </div> -->
+  </div>
 </div>

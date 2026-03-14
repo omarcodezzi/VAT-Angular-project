@@ -10,7 +10,7 @@ import { forkJoin, map, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 //QR code generation
-// import QRCode from 'qrcode';
+import QRCode from 'qrcode';
 
 // Make pdfMake and pdfFonts mutable
 const pdfMake: any = pdfMakeImport;
@@ -2585,180 +2585,180 @@ export class ExportService {
 
     // Generate QR code as base64 using qrcode library
     // const QRCode = require('qrcode');
-    // QRCode.toDataURL(safe(d.businessDetails?.bin), { width: 80 }, (err: any, qrDataUrl: string) => {
-    //   const docDef: any = {
-    //     pageSize: 'A4',
-    //     pageMargins: [50, 40, 50, 40],
-    //     defaultStyle: { font: 'PlaywriteCU', fontSize: 10 },
-    //     content: [
-    //       // Top right: Mushak-2.3 box
-    //       {
-    //         columns: [
-    //           { text: '', width: '*' },
-    //           {
-    //             table: {
-    //               body: [
-    //                 [
-    //                   {
-    //                     text: safe(l.titles?.m_name),
-    //                     bold: true,
-    //                     fontSize: 9,
-    //                     margin: [4, 2, 4, 2],
-    //                   },
-    //                 ],
-    //               ],
-    //             },
-    //             layout: 'noBorders',
-    //             width: 'auto',
-    //           },
-    //         ],
-    //         margin: [0, 0, 0, 5],
-    //       },
+    QRCode.toDataURL(safe(d.businessDetails?.bin), { width: 80 }, (err: any, qrDataUrl: string) => {
+      const docDef: any = {
+        pageSize: 'A4',
+        pageMargins: [50, 40, 50, 40],
+        defaultStyle: { font: 'PlaywriteCU', fontSize: 10 },
+        content: [
+          // Top right: Mushak-2.3 box
+          {
+            columns: [
+              { text: '', width: '*' },
+              {
+                table: {
+                  body: [
+                    [
+                      {
+                        text: safe(l.titles?.m_name),
+                        bold: true,
+                        fontSize: 9,
+                        margin: [4, 2, 4, 2],
+                      },
+                    ],
+                  ],
+                },
+                layout: 'noBorders',
+                width: 'auto',
+              },
+            ],
+            margin: [0, 0, 0, 5],
+          },
 
-    //       // Government Header
-    //       {
-    //         stack: [
-    //           { text: safe(l.titles?.gov), alignment: 'center', bold: true, fontSize: 12 },
-    //           {
-    //             text: safe(l.titles?.nbr),
-    //             alignment: 'center',
-    //             bold: true,
-    //             fontSize: 11,
-    //             margin: [0, 2, 0, 8],
-    //           },
-    //           { text: safe(l.titles?.commissionerate), alignment: 'center', fontSize: 9 },
-    //           {
-    //             text: safe(l.titles?.division),
-    //             alignment: 'center',
-    //             fontSize: 9,
-    //             margin: [0, 0, 0, 10],
-    //           },
-    //         ],
-    //       },
+          // Government Header
+          {
+            stack: [
+              { text: safe(l.titles?.gov), alignment: 'center', bold: true, fontSize: 12 },
+              {
+                text: safe(l.titles?.nbr),
+                alignment: 'center',
+                bold: true,
+                fontSize: 11,
+                margin: [0, 2, 0, 8],
+              },
+              { text: safe(l.titles?.commissionerate), alignment: 'center', fontSize: 9 },
+              {
+                text: safe(l.titles?.division),
+                alignment: 'center',
+                fontSize: 9,
+                margin: [0, 0, 0, 10],
+              },
+            ],
+          },
 
-    //       // Certificate Title
-    //       {
-    //         text: safe(l.titles?.form),
-    //         alignment: 'center',
-    //         bold: true,
-    //         fontSize: 13,
-    //         margin: [0, 0, 0, 8],
-    //       },
+          // Certificate Title
+          {
+            text: safe(l.titles?.form),
+            alignment: 'center',
+            bold: true,
+            fontSize: 13,
+            margin: [0, 0, 0, 8],
+          },
 
-    //       // Sub text
-    //       {
-    //         text: safe(l.titles?.rule),
-    //         alignment: 'center',
-    //         fontSize: 9,
-    //         margin: [40, 0, 40, 12],
-    //       },
+          // Sub text
+          {
+            text: safe(l.titles?.rule),
+            alignment: 'center',
+            fontSize: 9,
+            margin: [40, 0, 40, 12],
+          },
 
-    //       // BIN - bold, large, underline
-    //       {
-    //         text: `BIN : ${safe(d.businessDetails?.bin)}`,
-    //         alignment: 'center',
-    //         bold: true,
-    //         fontSize: 15,
-    //         decoration: 'underline',
-    //         margin: [0, 0, 0, 15],
-    //       },
+          // BIN - bold, large, underline
+          {
+            text: `BIN : ${safe(d.businessDetails?.bin)}`,
+            alignment: 'center',
+            bold: true,
+            fontSize: 15,
+            decoration: 'underline',
+            margin: [0, 0, 0, 15],
+          },
 
-    //       // Details - label : value format (no table border, just rows)
-    //       {
-    //         table: {
-    //           widths: [160, 10, '*'],
-    //           body: [
-    //             [
-    //               { text: safe(l.info?.name_of_entity), border: [false, false, false, false] },
-    //               { text: ':', border: [false, false, false, false] },
-    //               {
-    //                 text: safe(d.businessDetails?.nameOfEntity),
-    //                 border: [false, false, false, false],
-    //               },
-    //             ],
-    //             [
-    //               { text: safe(l.info?.trading_brand_name), border: [false, false, false, false] },
-    //               { text: ':', border: [false, false, false, false] },
-    //               {
-    //                 text: safe(d.businessDetails?.tradingBrandName),
-    //                 border: [false, false, false, false],
-    //               },
-    //             ],
-    //             [
-    //               { text: safe(l.info?.old_bin), border: [false, false, false, false] },
-    //               { text: ':', border: [false, false, false, false] },
-    //               { text: safe(d.businessDetails?.oldBIN), border: [false, false, false, false] },
-    //             ],
-    //             [
-    //               { text: safe(l.info?.etin), border: [false, false, false, false] },
-    //               { text: ':', border: [false, false, false, false] },
-    //               { text: safe(d.businessDetails?.eTIN), border: [false, false, false, false] },
-    //             ],
-    //             [
-    //               { text: safe(l.info?.address), border: [false, false, false, false] },
-    //               { text: ':', border: [false, false, false, false] },
-    //               {
-    //                 text: safe(d.businessDetails?.address?.fullAddress),
-    //                 border: [false, false, false, false],
-    //               },
-    //             ],
-    //             [
-    //               { text: safe(l.info?.issue_date), border: [false, false, false, false] },
-    //               { text: ':', border: [false, false, false, false] },
-    //               {
-    //                 text: safe(d.registrationInfo?.issueDate),
-    //                 border: [false, false, false, false],
-    //               },
-    //             ],
-    //             [
-    //               { text: safe(l.info?.effective_date), border: [false, false, false, false] },
-    //               { text: ':', border: [false, false, false, false] },
-    //               {
-    //                 text: safe(d.registrationInfo?.effectiveDate),
-    //                 border: [false, false, false, false],
-    //               },
-    //             ],
-    //             [
-    //               { text: safe(l.info?.type_of_ownership), border: [false, false, false, false] },
-    //               { text: ':', border: [false, false, false, false] },
-    //               {
-    //                 text: safe(d.registrationInfo?.typeOfOwnership),
-    //                 border: [false, false, false, false],
-    //               },
-    //             ],
-    //             [
-    //               { text: safe(l.info?.major_area), border: [false, false, false, false] },
-    //               { text: ':', border: [false, false, false, false] },
-    //               {
-    //                 text: safe(d.registrationInfo?.majorAreaOfEconomicActivity),
-    //                 border: [false, false, false, false],
-    //               },
-    //             ],
-    //           ],
-    //         },
-    //         margin: [0, 0, 0, 30],
-    //       },
+          // Details - label : value format (no table border, just rows)
+          {
+            table: {
+              widths: [160, 10, '*'],
+              body: [
+                [
+                  { text: safe(l.info?.name_of_entity), border: [false, false, false, false] },
+                  { text: ':', border: [false, false, false, false] },
+                  {
+                    text: safe(d.businessDetails?.nameOfEntity),
+                    border: [false, false, false, false],
+                  },
+                ],
+                [
+                  { text: safe(l.info?.trading_brand_name), border: [false, false, false, false] },
+                  { text: ':', border: [false, false, false, false] },
+                  {
+                    text: safe(d.businessDetails?.tradingBrandName),
+                    border: [false, false, false, false],
+                  },
+                ],
+                [
+                  { text: safe(l.info?.old_bin), border: [false, false, false, false] },
+                  { text: ':', border: [false, false, false, false] },
+                  { text: safe(d.businessDetails?.oldBIN), border: [false, false, false, false] },
+                ],
+                [
+                  { text: safe(l.info?.etin), border: [false, false, false, false] },
+                  { text: ':', border: [false, false, false, false] },
+                  { text: safe(d.businessDetails?.eTIN), border: [false, false, false, false] },
+                ],
+                [
+                  { text: safe(l.info?.address), border: [false, false, false, false] },
+                  { text: ':', border: [false, false, false, false] },
+                  {
+                    text: safe(d.businessDetails?.address?.fullAddress),
+                    border: [false, false, false, false],
+                  },
+                ],
+                [
+                  { text: safe(l.info?.issue_date), border: [false, false, false, false] },
+                  { text: ':', border: [false, false, false, false] },
+                  {
+                    text: safe(d.registrationInfo?.issueDate),
+                    border: [false, false, false, false],
+                  },
+                ],
+                [
+                  { text: safe(l.info?.effective_date), border: [false, false, false, false] },
+                  { text: ':', border: [false, false, false, false] },
+                  {
+                    text: safe(d.registrationInfo?.effectiveDate),
+                    border: [false, false, false, false],
+                  },
+                ],
+                [
+                  { text: safe(l.info?.type_of_ownership), border: [false, false, false, false] },
+                  { text: ':', border: [false, false, false, false] },
+                  {
+                    text: safe(d.registrationInfo?.typeOfOwnership),
+                    border: [false, false, false, false],
+                  },
+                ],
+                [
+                  { text: safe(l.info?.major_area), border: [false, false, false, false] },
+                  { text: ':', border: [false, false, false, false] },
+                  {
+                    text: safe(d.registrationInfo?.majorAreaOfEconomicActivity),
+                    border: [false, false, false, false],
+                  },
+                ],
+              ],
+            },
+            margin: [0, 0, 0, 30],
+          },
 
-    //       // QR Code center
-    //       {
-    //         image: qrDataUrl,
-    //         width: 80,
-    //         alignment: 'center',
-    //         margin: [0, 0, 0, 20],
-    //       },
+          // QR Code center
+          {
+            image: qrDataUrl,
+            width: 80,
+            alignment: 'center',
+            margin: [0, 0, 0, 20],
+          },
 
-    //       // Footer note
-    //       {
-    //         text: safe(l.footer?.note),
-    //         alignment: 'center',
-    //         fontSize: 8,
-    //         italics: true,
-    //       },
-    //     ],
-    //   };
+          // Footer note
+          {
+            text: safe(l.footer?.note),
+            alignment: 'center',
+            fontSize: 8,
+            italics: true,
+          },
+        ],
+      };
 
-    //   pdfMake.createPdf(docDef).download(`Mushak_2.3_${lang}.pdf`);
-    // });
+      pdfMake.createPdf(docDef).download(`Mushak_2.3_${lang}.pdf`);
+    });
   }
 
   exportmushak_6_1_English(data: any, lang: string) {
