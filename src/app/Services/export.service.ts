@@ -172,6 +172,22 @@ export class ExportService {
     const docDef: any = {
       pageSize: 'A4',
       pageMargins: [20, 30, 20, 30],
+      footer: (currentPage: number, pageCount: number) => {
+        return {
+          columns: [
+            { text: '', width: '*' }, // Pushes the next column to the right
+            {
+              text: [
+                { text: 'developed by: ', color: '#777' },
+                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+              ],
+              fontSize: 8,
+              alignment: 'right',
+              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+            }
+          ]
+        };
+      },
       content: [
         { text: 'VAT HS Code', style: 'title' },
         {
@@ -219,10 +235,26 @@ export class ExportService {
 
     const docDef: any = {
       pageSize: 'A4',
-      pageMargins: [30, 30, 30, 30],
+      pageMargins: [30, 30, 30, 40],
       defaultStyle: {
         font: 'PlaywriteCU',
         fontSize: 7,
+      },
+      footer: (currentPage: number, pageCount: number) => {
+        return {
+          columns: [
+            { text: '', width: '*' }, // Pushes the next column to the right
+            {
+              text: [
+                { text: 'developed by: ', color: '#777' },
+                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+              ],
+              fontSize: 8,
+              alignment: 'right',
+              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+            }
+          ]
+        };
       },
       content: [
         {
@@ -1354,10 +1386,26 @@ export class ExportService {
 
     const docDef: any = {
       pageSize: 'A4',
-      pageMargins: [30, 30, 30, 30],
+      pageMargins: [30, 30, 30, 40],
       defaultStyle: {
         font: 'PlaywriteCU',
         fontSize: 7,
+      },
+      footer: (currentPage: number, pageCount: number) => {
+        return {
+          columns: [
+            { text: '', width: '*' }, // Pushes the next column to the right
+            {
+              text: [
+                { text: 'developed by: ', color: '#777' },
+                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+              ],
+              fontSize: 8,
+              alignment: 'right',
+              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+            }
+          ]
+        };
       },
       content: [
         {
@@ -2286,6 +2334,22 @@ export class ExportService {
       pageSize: 'A4',
       pageOrientation: 'landscape',
       defaultStyle: { font: 'Nunito', fontSize: 8 },
+      footer: (currentPage: number, pageCount: number) => {
+        return {
+          columns: [
+            { text: '', width: '*' }, // Pushes the next column to the right
+            {
+              text: [
+                { text: 'developed by: ', color: '#777' },
+                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+              ],
+              fontSize: 8,
+              alignment: 'right',
+              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+            }
+          ]
+        };
+      },
       content: [
         // Header Section
         {
@@ -2442,6 +2506,22 @@ export class ExportService {
       pageSize: 'A4',
       pageOrientation: 'landscape',
       defaultStyle: { font: 'kalpurush', fontSize: 8 },
+      footer: (currentPage: number, pageCount: number) => {
+        return {
+          columns: [
+            { text: '', width: '*' }, // Pushes the next column to the right
+            {
+              text: [
+                { text: 'developed by: ', color: '#777' },
+                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+              ],
+              fontSize: 8,
+              alignment: 'right',
+              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+            }
+          ]
+        };
+      },
       content: [
         {
           columns: [
@@ -2590,6 +2670,22 @@ export class ExportService {
         pageSize: 'A4',
         pageMargins: [50, 40, 50, 40],
         defaultStyle: { font: 'PlaywriteCU', fontSize: 10 },
+        footer: (currentPage: number, pageCount: number) => {
+          return {
+            columns: [
+              { text: '', width: '*' }, // Pushes the next column to the right
+              {
+                text: [
+                  { text: 'developed by: ', color: '#777' },
+                  { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+                ],
+                fontSize: 8,
+                alignment: 'right',
+                margin: [0, 20, 40, 0] // [left, top, right, bottom]
+              }
+            ]
+          };
+        },
         content: [
           // Top right: Mushak-2.3 box
           {
@@ -2783,6 +2879,22 @@ export class ExportService {
       pageSize: 'A4',
       pageOrientation: 'landscape',
       defaultStyle: { font: 'Nunito', fontSize: 6 },
+      footer: (currentPage: number, pageCount: number) => {
+        return {
+          columns: [
+            { text: '', width: '*' }, // Pushes the next column to the right
+            {
+              text: [
+                { text: 'developed by: ', color: '#777' },
+                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+              ],
+              fontSize: 8,
+              alignment: 'right',
+              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+            }
+          ]
+        };
+      },
       content: [
         { text: safe(l.titles?.m_name), alignment: 'right', bold: true },
         { text: safe(l.titles?.gov), alignment: 'center', bold: true },
@@ -2995,6 +3107,22 @@ export class ExportService {
       pageSize: 'A4',
       pageOrientation: 'landscape',
       defaultStyle: { font: 'PlaywriteCU', fontSize: 6 },
+      footer: (currentPage: number, pageCount: number) => {
+        return {
+          columns: [
+            { text: '', width: '*' }, // Pushes the next column to the right
+            {
+              text: [
+                { text: 'developed by: ', color: '#777' },
+                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+              ],
+              fontSize: 8,
+              alignment: 'right',
+              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+            }
+          ]
+        };
+      },
       content: [
         { text: safe(l.titles?.m_name), alignment: 'right', bold: true },
         { text: safe(l.titles?.gov), alignment: 'center', bold: true },
@@ -3238,6 +3366,22 @@ export class ExportService {
       pageSize: 'A4',
       pageOrientation: 'landscape',
       defaultStyle: { font: 'Nunito', fontSize: 5.5 },
+      footer: (currentPage: number, pageCount: number) => {
+        return {
+          columns: [
+            { text: '', width: '*' }, // Pushes the next column to the right
+            {
+              text: [
+                { text: 'developed by: ', color: '#777' },
+                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+              ],
+              fontSize: 8,
+              alignment: 'right',
+              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+            }
+          ]
+        };
+      },
       content: [
         { text: safe(labels.titles?.m_name), alignment: 'right', bold: true },
         { text: safe(labels.titles?.gov), alignment: 'center', bold: true },
@@ -3409,6 +3553,22 @@ export class ExportService {
       pageSize: 'A4',
       pageOrientation: 'landscape',
       defaultStyle: { font: 'PlaywriteCU', fontSize: 5.5 },
+      footer: (currentPage: number, pageCount: number) => {
+        return {
+          columns: [
+            { text: '', width: '*' }, // Pushes the next column to the right
+            {
+              text: [
+                { text: 'developed by: ', color: '#777' },
+                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+              ],
+              fontSize: 8,
+              alignment: 'right',
+              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+            }
+          ]
+        };
+      },
       content: [
         { text: safe(labels.titles?.m_name), alignment: 'right', bold: true },
         { text: safe(labels.titles?.gov), alignment: 'center', bold: true },
@@ -3604,6 +3764,22 @@ export class ExportService {
       pageOrientation: 'landscape',
       pageMargins: [18, 30, 18, 30],
       defaultStyle: { font: 'Nunito', fontSize: 5 },
+      footer: (currentPage: number, pageCount: number) => {
+        return {
+          columns: [
+            { text: '', width: '*' }, // Pushes the next column to the right
+            {
+              text: [
+                { text: 'developed by: ', color: '#777' },
+                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+              ],
+              fontSize: 8,
+              alignment: 'right',
+              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+            }
+          ]
+        };
+      },
       content: [
         { text: safe(l.titles?.m_name), alignment: 'right', bold: true },
         { text: safe(l.titles?.gov), alignment: 'center', bold: true },
@@ -3811,6 +3987,22 @@ export class ExportService {
       pageOrientation: 'landscape',
       pageMargins: [20, 30, 20, 30],
       defaultStyle: { font: 'PlaywriteCU', fontSize: 5 },
+      footer: (currentPage: number, pageCount: number) => {
+        return {
+          columns: [
+            { text: '', width: '*' }, // Pushes the next column to the right
+            {
+              text: [
+                { text: 'developed by: ', color: '#777' },
+                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+              ],
+              fontSize: 8,
+              alignment: 'right',
+              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+            }
+          ]
+        };
+      },
       content: [
         { text: safe(l.titles?.m_name), alignment: 'right', bold: true },
         { text: safe(l.titles?.gov), alignment: 'center', bold: true },
@@ -4014,8 +4206,24 @@ export class ExportService {
 
     const docDef: any = {
       pageSize: 'A4',
-      pageMargins: [30, 30, 30, 30],
+      pageMargins: [30, 30, 30, 40],
       defaultStyle: { font: lang === 'BN' ? 'PlaywriteCU' : 'Nunito', fontSize: 8 },
+      footer: (currentPage: number, pageCount: number) => {
+        return {
+          columns: [
+            { text: '', width: '*' }, // Pushes the next column to the right
+            {
+              text: [
+                { text: 'developed by: ', color: '#777' },
+                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+              ],
+              fontSize: 8,
+              alignment: 'right',
+              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+            }
+          ]
+        };
+      },
       content: [
         { text: safe(l.titles?.m_name), alignment: 'right', bold: true },
         { text: safe(l.titles?.gov), alignment: 'center', bold: true },
@@ -4147,8 +4355,24 @@ export class ExportService {
     };
     const docDef: any = {
       pageSize: 'A4',
-      pageMargins: [30, 30, 30, 30],
+      pageMargins: [30, 30, 30, 40],
       defaultStyle: { font: lang === 'BN' ? 'PlaywriteCU' : 'Nunito', fontSize: 8 },
+      footer: (currentPage: number, pageCount: number) => {
+        return {
+          columns: [
+            { text: '', width: '*' }, // Pushes the next column to the right
+            {
+              text: [
+                { text: 'developed by: ', color: '#777' },
+                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+              ],
+              fontSize: 8,
+              alignment: 'right',
+              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+            }
+          ]
+        };
+      },
       content: [
         { text: safe(l.titles?.m_name), alignment: 'right', bold: true },
         { text: safe(l.titles?.gov), alignment: 'center', bold: true },
@@ -4286,8 +4510,24 @@ export class ExportService {
 
     const docDef: any = {
       pageSize: 'A4',
-      pageMargins: [30, 30, 30, 30],
+      pageMargins: [30, 30, 30, 40],
       defaultStyle: { font: 'Nunito', fontSize: 9 },
+      footer: (currentPage: number, pageCount: number) => {
+        return {
+          columns: [
+            { text: '', width: '*' }, // Pushes the next column to the right
+            {
+              text: [
+                { text: 'developed by: ', color: '#777' },
+                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+              ],
+              fontSize: 8,
+              alignment: 'right',
+              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+            }
+          ]
+        };
+      },
       content: [
         { text: safe(l.titles?.m_name), alignment: 'right', bold: true },
         { text: safe(l.titles?.gov), alignment: 'center', bold: true },
@@ -4423,8 +4663,24 @@ export class ExportService {
 
     const docDef: any = {
       pageSize: 'A4',
-      pageMargins: [30, 30, 30, 30],
+      pageMargins: [30, 30, 30, 40],
       defaultStyle: { font: 'PlaywriteCU', fontSize: 9 },
+      footer: (currentPage: number, pageCount: number) => {
+        return {
+          columns: [
+            { text: '', width: '*' }, // Pushes the next column to the right
+            {
+              text: [
+                { text: 'developed by: ', color: '#777' },
+                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+              ],
+              fontSize: 8,
+              alignment: 'right',
+              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+            }
+          ]
+        };
+      },
       content: [
         { text: safe(l.titles?.m_name), alignment: 'right', bold: true },
         { text: safe(l.titles?.gov), alignment: 'center', bold: true },
@@ -4555,8 +4811,24 @@ export class ExportService {
 
     const docDef: any = {
       pageSize: 'A4',
-      pageMargins: [30, 30, 30, 30],
+      pageMargins: [30, 30, 30, 40],
       defaultStyle: { font: 'Nunito', fontSize: 8.5 },
+      footer: (currentPage: number, pageCount: number) => {
+        return {
+          columns: [
+            { text: '', width: '*' }, // Pushes the next column to the right
+            {
+              text: [
+                { text: 'developed by: ', color: '#777' },
+                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+              ],
+              fontSize: 8,
+              alignment: 'right',
+              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+            }
+          ]
+        };
+      },
       content: [
         { text: safe(l.titles?.m_name), alignment: 'right', bold: true },
         { text: safe(l.titles?.gov), alignment: 'center', bold: true },
@@ -4679,8 +4951,24 @@ export class ExportService {
 
     const docDef: any = {
       pageSize: 'A4',
-      pageMargins: [30, 30, 30, 30],
+      pageMargins: [30, 30, 30, 40],
       defaultStyle: { font: 'PlaywriteCU', fontSize: 9 },
+      footer: (currentPage: number, pageCount: number) => {
+        return {
+          columns: [
+            { text: '', width: '*' }, // Pushes the next column to the right
+            {
+              text: [
+                { text: 'developed by: ', color: '#777' },
+                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+              ],
+              fontSize: 8,
+              alignment: 'right',
+              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+            }
+          ]
+        };
+      },
       content: [
         { text: safe(l.titles?.m_name), alignment: 'right', bold: true },
         { text: safe(l.titles?.gov), alignment: 'center', bold: true },
@@ -4803,8 +5091,24 @@ export class ExportService {
 
     const docDef: any = {
       pageSize: 'A4',
-      pageMargins: [30, 30, 30, 30],
+      pageMargins: [30, 30, 30, 40],
       defaultStyle: { font: 'PlaywriteCU', fontSize: 9 },
+      footer: (currentPage: number, pageCount: number) => {
+        return {
+          columns: [
+            { text: '', width: '*' }, // Pushes the next column to the right
+            {
+              text: [
+                { text: 'developed by: ', color: '#777' },
+                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+              ],
+              fontSize: 8,
+              alignment: 'right',
+              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+            }
+          ]
+        };
+      },
       content: [
         { text: safe(l.titles?.m_name), alignment: 'right', bold: true },
         { text: safe(l.titles?.gov), alignment: 'center', bold: true },
@@ -4965,8 +5269,24 @@ export class ExportService {
 
     const docDef: any = {
       pageSize: 'A4',
-      pageMargins: [30, 30, 30, 30],
+      pageMargins: [30, 30, 30, 40],
       defaultStyle: { font: 'Nunito', fontSize: 8.5 },
+      footer: (currentPage: number, pageCount: number) => {
+        return {
+          columns: [
+            { text: '', width: '*' }, // Pushes the next column to the right
+            {
+              text: [
+                { text: 'developed by: ', color: '#777' },
+                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+              ],
+              fontSize: 8,
+              alignment: 'right',
+              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+            }
+          ]
+        };
+      },
       content: [
         { text: safe(l.titles?.m_name), alignment: 'right', bold: true },
         { text: safe(l.titles?.gov), alignment: 'center', bold: true },
@@ -5130,8 +5450,24 @@ export class ExportService {
 
     const docDef: any = {
       pageSize: 'A4',
-      pageMargins: [30, 30, 30, 30],
+      pageMargins: [30, 30, 30, 40],
       defaultStyle: { font: 'Nunito', fontSize: 8.5 },
+      footer: (currentPage: number, pageCount: number) => {
+        return {
+          columns: [
+            { text: '', width: '*' }, // Pushes the next column to the right
+            {
+              text: [
+                { text: 'developed by: ', color: '#777' },
+                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+              ],
+              fontSize: 8,
+              alignment: 'right',
+              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+            }
+          ]
+        };
+      },
       content: [
         { text: safe(l.titles?.m_name), alignment: 'right', bold: true },
         { text: safe(l.titles?.gov), alignment: 'center', bold: true },
@@ -5307,8 +5643,24 @@ export class ExportService {
 
     const docDef: any = {
       pageSize: 'A4',
-      pageMargins: [30, 30, 30, 30],
+      pageMargins: [30, 30, 30, 40],
       defaultStyle: { font: 'PlaywriteCU', fontSize: 8.5 },
+      footer: (currentPage: number, pageCount: number) => {
+        return {
+          columns: [
+            { text: '', width: '*' }, // Pushes the next column to the right
+            {
+              text: [
+                { text: 'developed by: ', color: '#777' },
+                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+              ],
+              fontSize: 8,
+              alignment: 'right',
+              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+            }
+          ]
+        };
+      },
       content: [
         { text: safe(l.titles?.m_name), alignment: 'right', bold: true },
         { text: safe(l.titles?.gov), alignment: 'center', bold: true },
@@ -5484,8 +5836,24 @@ export class ExportService {
 
     const docDef: any = {
       pageSize: 'A4',
-      pageMargins: [30, 30, 30, 30],
+      pageMargins: [30, 30, 30, 40],
       defaultStyle: { font: 'Nunito', fontSize: 8.5 },
+      footer: (currentPage: number, pageCount: number) => {
+        return {
+          columns: [
+            { text: '', width: '*' }, // Pushes the next column to the right
+            {
+              text: [
+                { text: 'developed by: ', color: '#777' },
+                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+              ],
+              fontSize: 8,
+              alignment: 'right',
+              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+            }
+          ]
+        };
+      },
       content: [
         { text: safe(l.titles?.m_name), alignment: 'right', bold: true },
         { text: safe(l.titles?.gov), alignment: 'center', bold: true },
@@ -5661,8 +6029,24 @@ export class ExportService {
 
     const docDef: any = {
       pageSize: 'A4',
-      pageMargins: [30, 30, 30, 30],
+      pageMargins: [30, 30, 30, 40],
       defaultStyle: { font: 'PlaywriteCU', fontSize: 8.5 },
+      footer: (currentPage: number, pageCount: number) => {
+        return {
+          columns: [
+            { text: '', width: '*' }, // Pushes the next column to the right
+            {
+              text: [
+                { text: 'developed by: ', color: '#777' },
+                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+              ],
+              fontSize: 8,
+              alignment: 'right',
+              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+            }
+          ]
+        };
+      },
       content: [
         { text: safe(l.titles?.m_name), alignment: 'right', bold: true },
         { text: safe(l.titles?.gov), alignment: 'center', bold: true },
@@ -5838,8 +6222,24 @@ export class ExportService {
 
     const docDef: any = {
       pageSize: 'A4',
-      pageMargins: [30, 30, 30, 30],
+      pageMargins: [30, 30, 30, 40],
       defaultStyle: { font: 'Nunito', fontSize: 9 },
+      footer: (currentPage: number, pageCount: number) => {
+        return {
+          columns: [
+            { text: '', width: '*' }, // Pushes the next column to the right
+            {
+              text: [
+                { text: 'developed by: ', color: '#777' },
+                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+              ],
+              fontSize: 8,
+              alignment: 'right',
+              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+            }
+          ]
+        };
+      },
       content: [
         { text: safe(l.titles?.m_name), alignment: 'right', bold: true },
         { text: safe(l.titles?.gov), alignment: 'center', bold: true },
@@ -5956,8 +6356,24 @@ export class ExportService {
 
     const docDef: any = {
       pageSize: 'A4',
-      pageMargins: [30, 30, 30, 30],
+      pageMargins: [30, 30, 30, 40],
       defaultStyle: { font: 'PlaywriteCU', fontSize: 9 },
+      footer: (currentPage: number, pageCount: number) => {
+        return {
+          columns: [
+            { text: '', width: '*' }, // Pushes the next column to the right
+            {
+              text: [
+                { text: 'developed by: ', color: '#777' },
+                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+              ],
+              fontSize: 8,
+              alignment: 'right',
+              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+            }
+          ]
+        };
+      },
       content: [
         { text: safe(l.titles?.m_name), alignment: 'right', bold: true },
         { text: safe(l.titles?.gov), alignment: 'center', bold: true },
@@ -6076,8 +6492,24 @@ export class ExportService {
 
     const docDef: any = {
       pageSize: 'A4',
-      pageMargins: [30, 30, 30, 30],
+      pageMargins: [30, 30, 30, 40],
       defaultStyle: { font: 'PlaywriteCU', fontSize: 8 },
+      footer: (currentPage: number, pageCount: number) => {
+        return {
+          columns: [
+            { text: '', width: '*' }, // Pushes the next column to the right
+            {
+              text: [
+                { text: 'developed by: ', color: '#777' },
+                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+              ],
+              fontSize: 8,
+              alignment: 'right',
+              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+            }
+          ]
+        };
+      },
       content: [
         { text: safe(l.titles?.gov), alignment: 'center' },
         { text: safe(l.titles?.nbr), alignment: 'center' },
@@ -6191,8 +6623,24 @@ export class ExportService {
 
     const docDef: any = {
       pageSize: 'A4',
-      pageMargins: [30, 30, 30, 30],
+      pageMargins: [30, 30, 30, 40],
       defaultStyle: { font: 'Nunito', fontSize: 8.5 },
+      footer: (currentPage: number, pageCount: number) => {
+        return {
+          columns: [
+            { text: '', width: '*' }, // Pushes the next column to the right
+            {
+              text: [
+                { text: 'developed by: ', color: '#777' },
+                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+              ],
+              fontSize: 8,
+              alignment: 'right',
+              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+            }
+          ]
+        };
+      },
       content: [
         { text: safe(l.titles?.gov), alignment: 'center' },
         { text: safe(l.titles?.nbr), alignment: 'center' },
@@ -6327,8 +6775,24 @@ export class ExportService {
 
     const docDef: any = {
       pageSize: 'A4',
-      pageMargins: [30, 30, 30, 30],
+      pageMargins: [30, 30, 30, 40],
       defaultStyle: { font: lang === 'BN' ? 'PlaywriteCU' : 'Nunito', fontSize: 8.5 },
+      footer: (currentPage: number, pageCount: number) => {
+        return {
+          columns: [
+            { text: '', width: '*' }, // Pushes the next column to the right
+            {
+              text: [
+                { text: 'developed by: ', color: '#777' },
+                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+              ],
+              fontSize: 8,
+              alignment: 'right',
+              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+            }
+          ]
+        };
+      },
       content: [
         {
           columns: [
@@ -6587,8 +7051,24 @@ export class ExportService {
 
     const docDef: any = {
       pageSize: 'A4',
-      pageMargins: [30, 30, 30, 30],
+      pageMargins: [30, 30, 30, 40],
       defaultStyle: { font: lang === 'BN' ? 'PlaywriteCU' : 'Nunito', fontSize: 8.5 },
+      footer: (currentPage: number, pageCount: number) => {
+        return {
+          columns: [
+            { text: '', width: '*' }, // Pushes the next column to the right
+            {
+              text: [
+                { text: 'developed by: ', color: '#777' },
+                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+              ],
+              fontSize: 8,
+              alignment: 'right',
+              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+            }
+          ]
+        };
+      },
       content: [
         {
           columns: [
@@ -6800,6 +7280,22 @@ export class ExportService {
       pageSize: 'A4',
       pageMargins: [50, 40, 50, 40],
       defaultStyle: { font: lang === 'BN' ? 'PlaywriteCU' : 'Nunito', fontSize: 9 },
+      footer: (currentPage: number, pageCount: number) => {
+        return {
+          columns: [
+            { text: '', width: '*' }, // Pushes the next column to the right
+            {
+              text: [
+                { text: 'developed by: ', color: '#777' },
+                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+              ],
+              fontSize: 8,
+              alignment: 'right',
+              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+            }
+          ]
+        };
+      },
       content: [
         // Top: applicant info center, form number box right
         {
@@ -7018,6 +7514,22 @@ export class ExportService {
       pageSize: 'A4',
       pageMargins: [50, 40, 50, 40],
       defaultStyle: { font: lang === 'BN' ? 'PlaywriteCU' : 'Nunito', fontSize: 9 },
+      footer: (currentPage: number, pageCount: number) => {
+        return {
+          columns: [
+            { text: '', width: '*' }, // Pushes the next column to the right
+            {
+              text: [
+                { text: 'developed by: ', color: '#777' },
+                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+              ],
+              fontSize: 8,
+              alignment: 'right',
+              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+            }
+          ]
+        };
+      },
       content: [
         // Top: applicant info left, form number box right
         // Top: applicant info left, form number box right
@@ -7215,8 +7727,24 @@ export class ExportService {
     const tickImage = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH5AYWDA8p7zZ7WAAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLm3CYAAAAnZJREFUeNrt17FpAmEUBuDfS8YRLBygkYidpLOInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ2kkYidpJGInaSRiJ+8B9k6YwVwN+f6AAAAAElFTkSuQmCC';
     const docDef: any = {
       pageSize: 'A4',
-      pageMargins: [30, 30, 30, 30],
+      pageMargins: [30, 30, 30, 40],
       defaultStyle: { font: lang === 'BN' ? 'PlaywriteCU' : 'Nunito', fontSize: 8 },
+      footer: (currentPage: number, pageCount: number) => {
+        return {
+          columns: [
+            { text: '', width: '*' }, // Pushes the next column to the right
+            {
+              text: [
+                { text: 'developed by: ', color: '#777' },
+                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+              ],
+              fontSize: 8,
+              alignment: 'right',
+              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+            }
+          ]
+        };
+      },
       content: [
         // --- PAGE 1: Identity & Address ---
         { columns: [{ width: '*', text: '' }, { width: 'auto', table: { body: [[{ text: safe(l.titles?.form), bold: true }]] } }], margin: [0, 0, 0, 10] },
@@ -7821,7 +8349,7 @@ export class ExportService {
         },
         { table: { widths: ['*'], body: [[{ text: safe(targetData.formData?.eco_others_text), minHeight: 20 }]] }, margin: [0, 5, 20, 10] },
 
-         // --- Section-17 ---
+        // --- Section-17 ---
         { text: safe(l.sections?.part17), bold: true, margin: [0, 10, 0, 5] },
         {
           table: {
@@ -7866,9 +8394,9 @@ export class ExportService {
                     table: {
                       widths: ['*', 50, '*'],
                       body: [
-                        [{ text: safe(l.signatory_type?.passport), bold: true, alignment: 'center' }, 
-                          { text: safe(l.signatory_type?.or), alignment: 'center', border: [false, true, false, true] }, 
-                          { text: safe(l.signatory_type?.nid), bold: true, alignment: 'center' }],
+                        [{ text: safe(l.signatory_type?.passport), bold: true, alignment: 'center' },
+                        { text: safe(l.signatory_type?.or), alignment: 'center', border: [false, true, false, true] },
+                        { text: safe(l.signatory_type?.nid), bold: true, alignment: 'center' }],
                         [
                           {
                             table: {
@@ -7891,7 +8419,7 @@ export class ExportService {
                             layout: 'noBorders'
                           }
                         ],
-                        ['', '', ''], ['', '', ''], ['', '', '']  
+                        ['', '', ''], ['', '', ''], ['', '', '']
                       ]
                     }
                   },
