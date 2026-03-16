@@ -2647,7 +2647,7 @@ export class ExportService {
   }
 
   // Mushak 2.3 Export Function
-exportMushak_2_3(data: any, lang: string) {
+  exportMushak_2_3(data: any, lang: string) {
     const l = (data.labels?.mushak_2_3 || {}) as any;
     const targetData = data.mushak_2_3_data?.[lang] || {};
     const d = targetData;
@@ -2661,7 +2661,7 @@ exportMushak_2_3(data: any, lang: string) {
         italics: window.location.origin + '/assets/fonts/kalpurush.ttf',
         bolditalics: window.location.origin + '/assets/fonts/kalpurush.ttf',
       },
-    };
+    }
 
     const qrData = [
       `Name: ${safe(d.businessDetails?.nameOfEntity)}`,
@@ -2703,7 +2703,24 @@ exportMushak_2_3(data: any, lang: string) {
             },
 
             pageMargins: [50, 40, 50, 40],
-            defaultStyle: { font: 'PlaywriteCU', fontSize: 10 },
+            defaultStyle: { font: 'PlaywriteCU', fontSize: 10 }
+            ,
+            footer: (currentPage: number, pageCount: number) => {
+              return {
+                columns: [
+                  { text: '', width: '*' }, // Pushes the next column to the right
+                  {
+                    text: [
+                      { text: 'developed by: ', color: '#777' },
+                      { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+                    ],
+                    fontSize: 8,
+                    alignment: 'right',
+                    margin: [0, 20, 40, 0] // [left, top, right, bottom]
+                  }
+                ]
+              };
+            },
 
             content: [
 
@@ -2984,7 +3001,7 @@ exportMushak_2_3(data: any, lang: string) {
       .catch((err) => {
         console.error('Logo load failed:', err);
       });
-  } 
+  }
 
   exportmushak_6_1_English(data: any, lang: string) {
     const l = (data.labels?.mushak_6_1 || {}) as any;
