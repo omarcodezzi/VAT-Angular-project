@@ -175,7 +175,7 @@ export class ExportService {
       footer: (currentPage: number, pageCount: number) => {
         return {
           columns: [
-            { text: '', width: '*' }, // Pushes the next column to the right
+            { text: '', width: '*' }, 
             {
               text: [
                 { text: 'developed by: ', color: '#777' },
@@ -183,7 +183,7 @@ export class ExportService {
               ],
               fontSize: 8,
               alignment: 'right',
-              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+              margin: [0, 20, 40, 0] 
             }
           ]
         };
@@ -245,7 +245,7 @@ export class ExportService {
       footer: (currentPage: number, pageCount: number) => {
         return {
           columns: [
-            { text: '', width: '*' }, // Pushes the next column to the right
+            { text: '', width: '*' }, 
             {
               text: [
                  { text: safe(l.developer?.prefix), color: '#777' },
@@ -253,7 +253,7 @@ export class ExportService {
               ],
               fontSize: 8,
               alignment: 'right',
-              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+              margin: [0, 20, 40, 0] 
             }
           ]
         };
@@ -1399,7 +1399,7 @@ export class ExportService {
       footer: (currentPage: number, pageCount: number) => {
         return {
           columns: [
-            { text: '', width: '*' }, // Pushes the next column to the right
+            { text: '', width: '*' }, 
             {
               text: [
                   { text: safe(l.developer?.prefix), color: '#777' },
@@ -1407,7 +1407,7 @@ export class ExportService {
               ],
               fontSize: 8,
               alignment: 'right',
-              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+              margin: [0, 20, 40, 0] 
             }
           ]
         };
@@ -2342,7 +2342,7 @@ export class ExportService {
       footer: (currentPage: number, pageCount: number) => {
         return {
           columns: [
-            { text: '', width: '*' }, // Pushes the next column to the right
+            { text: '', width: '*' }, 
             {
               text: [
                  { text: safe(l.developer?.prefix), color: '#777' },
@@ -2350,7 +2350,7 @@ export class ExportService {
               ],
               fontSize: 8,
               alignment: 'right',
-              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+              margin: [0, 20, 40, 0] 
             }
           ]
         };
@@ -2515,7 +2515,7 @@ export class ExportService {
       footer: (currentPage: number, pageCount: number) => {
         return {
           columns: [
-            { text: '', width: '*' }, // Pushes the next column to the right
+            { text: '', width: '*' }, 
             {
               text: [
                  { text: safeText(l.developer?.prefix), color: '#777' },
@@ -2523,7 +2523,7 @@ export class ExportService {
               ],
               fontSize: 8,
               alignment: 'right',
-              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+              margin: [0, 20, 40, 0] 
             }
           ]
         };
@@ -2714,7 +2714,7 @@ export class ExportService {
             footer: (currentPage: number, pageCount: number) => {
               return {
                 columns: [
-                  { text: '', width: '*' }, // Pushes the next column to the right
+                  { text: '', width: '*' }, 
                   {
                     text: [
                       { text: safe(l.developer?.prefix), color: '#777' },
@@ -2722,7 +2722,7 @@ export class ExportService {
                     ],
                     fontSize: 8,
                     alignment: 'right',
-                    margin: [0, 20, 40, 0] // [left, top, right, bottom]
+                    margin: [0, 20, 40, 0] 
                   }
                 ]
               };
@@ -3034,7 +3034,7 @@ export class ExportService {
       footer: (currentPage: number, pageCount: number) => {
         return {
           columns: [
-            { text: '', width: '*' }, // Pushes the next column to the right
+            { text: '', width: '*' }, 
             {
               text: [
                 { text: safe(l.developer?.prefix), color: '#777' },
@@ -3042,7 +3042,7 @@ export class ExportService {
               ],
               fontSize: 8,
               alignment: 'right',
-              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+              margin: [0, 20, 40, 0] 
             }
           ]
         };
@@ -3262,7 +3262,7 @@ export class ExportService {
       footer: (currentPage: number, pageCount: number) => {
         return {
           columns: [
-            { text: '', width: '*' }, // Pushes the next column to the right
+            { text: '', width: '*' }, 
             {
               text: [
                { text: safe(l.developer?.prefix), color: '#777' },
@@ -3270,7 +3270,7 @@ export class ExportService {
               ],
               fontSize: 8,
               alignment: 'right',
-              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+              margin: [0, 20, 40, 0] 
             }
           ]
         };
@@ -3521,7 +3521,7 @@ export class ExportService {
       footer: (currentPage: number, pageCount: number) => {
         return {
           columns: [
-            { text: '', width: '*' }, // Pushes the next column to the right
+            { text: '', width: '*' }, 
             {
               text: [
                 { text: safe(labels.developer?.prefix), color: '#777' },
@@ -3529,7 +3529,7 @@ export class ExportService {
               ],
               fontSize: 8,
               alignment: 'right',
-              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+              margin: [0, 20, 40, 0] 
             }
           ]
         };
@@ -3708,7 +3708,7 @@ export class ExportService {
       footer: (currentPage: number, pageCount: number) => {
         return {
           columns: [
-            { text: '', width: '*' }, // Pushes the next column to the right
+            { text: '', width: '*' }, 
             {
               text: [
                 { text: safe(labels.developer?.prefix), color: '#777' },
@@ -3716,7 +3716,7 @@ export class ExportService {
               ],
               fontSize: 8,
               alignment: 'right',
-              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+              margin: [0, 20, 40, 0] 
             }
           ]
         };
@@ -3914,12 +3914,12 @@ export class ExportService {
     const docDef: any = {
       pageSize: 'A4',
       pageOrientation: 'landscape',
-      pageMargins: [18, 30, 18, 30],
+      pageMargins: [18, 30, 18, 40],
       defaultStyle: { font: 'Nunito', fontSize: 5 },
       footer: (currentPage: number, pageCount: number) => {
         return {
           columns: [
-            { text: '', width: '*' }, // Pushes the next column to the right
+            { text: '', width: '*' }, 
             {
               text: [
                 { text: safe(l.developer?.prefix), color: '#777' },
@@ -3927,7 +3927,7 @@ export class ExportService {
               ],
               fontSize: 8,
               alignment: 'right',
-              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+              margin: [0, 20, 40, 0] 
             }
           ]
         };
@@ -4142,7 +4142,7 @@ export class ExportService {
       footer: (currentPage: number, pageCount: number) => {
         return {
           columns: [
-            { text: '', width: '*' }, // Pushes the next column to the right
+            { text: '', width: '*' }, 
             {
               text: [
                         { text: safe(l.developer?.prefix), color: '#777' },
@@ -4150,7 +4150,7 @@ export class ExportService {
               ],
               fontSize: 8,
               alignment: 'right',
-              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+              margin: [0, 20, 40, 0] 
             }
           ]
         };
@@ -4363,7 +4363,7 @@ export class ExportService {
       footer: (currentPage: number, pageCount: number) => {
         return {
           columns: [
-            { text: '', width: '*' }, // Pushes the next column to the right
+            { text: '', width: '*' }, 
             {
               text: [
                { text: safe(l.developer?.prefix), color: '#777' },
@@ -4371,7 +4371,7 @@ export class ExportService {
               ],
               fontSize: 8,
               alignment: 'right',
-              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+              margin: [0, 20, 40, 0] 
             }
           ]
         };
@@ -4512,7 +4512,7 @@ export class ExportService {
       footer: (currentPage: number, pageCount: number) => {
         return {
           columns: [
-            { text: '', width: '*' }, // Pushes the next column to the right
+            { text: '', width: '*' }, 
             {
               text: [
                    { text: safe(l.developer?.prefix), color: '#777' },
@@ -4520,7 +4520,7 @@ export class ExportService {
                   ],
               fontSize: 8,
               alignment: 'right',
-              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+              margin: [0, 20, 40, 0] 
             }
           ]
         };
@@ -4667,7 +4667,7 @@ export class ExportService {
       footer: (currentPage: number, pageCount: number) => {
         return {
           columns: [
-            { text: '', width: '*' }, // Pushes the next column to the right
+            { text: '', width: '*' }, 
             {
               text: [
                 { text: safe(l.developer?.prefix), color: '#777' },
@@ -4675,7 +4675,7 @@ export class ExportService {
               ],
               fontSize: 8,
               alignment: 'right',
-              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+              margin: [0, 20, 40, 0] 
             }
           ]
         };
@@ -4820,7 +4820,7 @@ export class ExportService {
       footer: (currentPage: number, pageCount: number) => {
         return {
           columns: [
-            { text: '', width: '*' }, // Pushes the next column to the right
+            { text: '', width: '*' }, 
             {
               text: [
                 { text: safe(l.developer?.prefix), color: '#777' },
@@ -4828,7 +4828,7 @@ export class ExportService {
               ],
               fontSize: 8,
               alignment: 'right',
-              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+              margin: [0, 20, 40, 0] 
             }
           ]
         };
@@ -4968,7 +4968,7 @@ export class ExportService {
       footer: (currentPage: number, pageCount: number) => {
         return {
           columns: [
-            { text: '', width: '*' }, // Pushes the next column to the right
+            { text: '', width: '*' }, 
             {
               text: [
                 { text: safe(l.developer?.prefix), color: '#777' },
@@ -4976,7 +4976,7 @@ export class ExportService {
               ],
               fontSize: 8,
               alignment: 'right',
-              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+              margin: [0, 20, 40, 0] 
             }
           ]
         };
@@ -5108,7 +5108,7 @@ export class ExportService {
       footer: (currentPage: number, pageCount: number) => {
         return {
           columns: [
-            { text: '', width: '*' }, // Pushes the next column to the right
+            { text: '', width: '*' }, 
             {
               text: [
                 { text: safe(l.developer?.prefix), color: '#777' },
@@ -5116,7 +5116,7 @@ export class ExportService {
               ],
               fontSize: 8,
               alignment: 'right',
-              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+              margin: [0, 20, 40, 0] 
             }
           ]
         };
@@ -5248,7 +5248,7 @@ export class ExportService {
       footer: (currentPage: number, pageCount: number) => {
         return {
           columns: [
-            { text: '', width: '*' }, // Pushes the next column to the right
+            { text: '', width: '*' }, 
             {
               text: [
                { text: safe(l.developer?.prefix), color: '#777' },
@@ -5256,7 +5256,7 @@ export class ExportService {
               ],
               fontSize: 8,
               alignment: 'right',
-              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+              margin: [0, 20, 40, 0] 
             }
           ]
         };
@@ -5426,7 +5426,7 @@ export class ExportService {
       footer: (currentPage: number, pageCount: number) => {
         return {
           columns: [
-            { text: '', width: '*' }, // Pushes the next column to the right
+            { text: '', width: '*' }, 
             {
               text: [
                 { text: safe(l.developer?.prefix), color: '#777' },
@@ -5434,7 +5434,7 @@ export class ExportService {
               ],
               fontSize: 8,
               alignment: 'right',
-              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+              margin: [0, 20, 40, 0] 
             }
           ]
         };
@@ -5607,7 +5607,7 @@ export class ExportService {
       footer: (currentPage: number, pageCount: number) => {
         return {
           columns: [
-            { text: '', width: '*' }, // Pushes the next column to the right
+            { text: '', width: '*' }, 
             {
               text: [
                 { text: safe(l.developer?.prefix), color: '#777' },
@@ -5615,7 +5615,7 @@ export class ExportService {
               ],
               fontSize: 8,
               alignment: 'right',
-              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+              margin: [0, 20, 40, 0] 
             }
           ]
         };
@@ -5800,7 +5800,7 @@ export class ExportService {
       footer: (currentPage: number, pageCount: number) => {
         return {
           columns: [
-            { text: '', width: '*' }, // Pushes the next column to the right
+            { text: '', width: '*' }, 
             {
               text: [
                { text: safe(l.developer?.prefix), color: '#777' },
@@ -5808,7 +5808,7 @@ export class ExportService {
               ],
               fontSize: 8,
               alignment: 'right',
-              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+              margin: [0, 20, 40, 0] 
             }
           ]
         };
@@ -5993,7 +5993,7 @@ export class ExportService {
       footer: (currentPage: number, pageCount: number) => {
         return {
           columns: [
-            { text: '', width: '*' }, // Pushes the next column to the right
+            { text: '', width: '*' }, 
             {
               text: [
                 { text: safe(l.developer?.prefix), color: '#777' },
@@ -6001,7 +6001,7 @@ export class ExportService {
               ],
               fontSize: 8,
               alignment: 'right',
-              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+              margin: [0, 20, 40, 0] 
             }
           ]
         };
@@ -6186,7 +6186,7 @@ export class ExportService {
       footer: (currentPage: number, pageCount: number) => {
         return {
           columns: [
-            { text: '', width: '*' }, // Pushes the next column to the right
+            { text: '', width: '*' }, 
             {
               text: [
                { text: safe(l.developer?.prefix), color: '#777' },
@@ -6194,7 +6194,7 @@ export class ExportService {
               ],
               fontSize: 8,
               alignment: 'right',
-              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+              margin: [0, 20, 40, 0] 
             }
           ]
         };
@@ -6379,7 +6379,7 @@ export class ExportService {
       footer: (currentPage: number, pageCount: number) => {
         return {
           columns: [
-            { text: '', width: '*' }, // Pushes the next column to the right
+            { text: '', width: '*' }, 
             {
               text: [
                 { text: safe(l.developer?.prefix), color: '#777' },
@@ -6387,7 +6387,7 @@ export class ExportService {
               ],
               fontSize: 8,
               alignment: 'right',
-              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+              margin: [0, 20, 40, 0] 
             }
           ]
         };
@@ -6513,7 +6513,7 @@ export class ExportService {
       footer: (currentPage: number, pageCount: number) => {
         return {
           columns: [
-            { text: '', width: '*' }, // Pushes the next column to the right
+            { text: '', width: '*' }, 
             {
               text: [
                 { text: safe(l.developer?.prefix), color: '#777' },
@@ -6521,7 +6521,7 @@ export class ExportService {
               ],
               fontSize: 8,
               alignment: 'right',
-              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+              margin: [0, 20, 40, 0] 
             }
           ]
         };
@@ -6649,7 +6649,7 @@ export class ExportService {
       footer: (currentPage: number, pageCount: number) => {
         return {
           columns: [
-            { text: '', width: '*' }, // Pushes the next column to the right
+            { text: '', width: '*' }, 
             {
               text: [
                { text: safe(l.developer?.prefix), color: '#777' },
@@ -6657,7 +6657,7 @@ export class ExportService {
               ],
               fontSize: 8,
               alignment: 'right',
-              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+              margin: [0, 20, 40, 0] 
             }
           ]
         };
@@ -6780,7 +6780,7 @@ export class ExportService {
       footer: (currentPage: number, pageCount: number) => {
         return {
           columns: [
-            { text: '', width: '*' }, // Pushes the next column to the right
+            { text: '', width: '*' }, 
             {
               text: [
              { text: safe(l.developer?.prefix), color: '#777' },
@@ -6788,7 +6788,7 @@ export class ExportService {
               ],
               fontSize: 8,
               alignment: 'right',
-              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+              margin: [0, 20, 40, 0] 
             }
           ]
         };
@@ -6932,7 +6932,7 @@ export class ExportService {
       footer: (currentPage: number, pageCount: number) => {
         return {
           columns: [
-            { text: '', width: '*' }, // Pushes the next column to the right
+            { text: '', width: '*' }, 
             {
               text: [
                 { text: safe(l.developer?.prefix), color: '#777' },
@@ -6940,7 +6940,7 @@ export class ExportService {
               ],
               fontSize: 8,
               alignment: 'right',
-              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+              margin: [0, 20, 40, 0] 
             }
           ]
         };
@@ -7208,7 +7208,7 @@ export class ExportService {
       footer: (currentPage: number, pageCount: number) => {
         return {
           columns: [
-            { text: '', width: '*' }, // Pushes the next column to the right
+            { text: '', width: '*' }, 
             {
               text: [
               { text: safe(l.developer?.prefix), color: '#777' },
@@ -7216,7 +7216,7 @@ export class ExportService {
               ],
               fontSize: 8,
               alignment: 'right',
-              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+              margin: [0, 20, 40, 0] 
             }
           ]
         };
@@ -7435,7 +7435,7 @@ export class ExportService {
       footer: (currentPage: number, pageCount: number) => {
         return {
           columns: [
-            { text: '', width: '*' }, // Pushes the next column to the right
+            { text: '', width: '*' }, 
             {
               text: [
               { text: safe(l.developer?.prefix), color: '#777' },
@@ -7443,7 +7443,7 @@ export class ExportService {
               ],
               fontSize: 8,
               alignment: 'right',
-              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+              margin: [0, 20, 40, 0] 
             }
           ]
         };
@@ -7669,7 +7669,7 @@ export class ExportService {
       footer: (currentPage: number, pageCount: number) => {
         return {
           columns: [
-            { text: '', width: '*' }, // Pushes the next column to the right
+            { text: '', width: '*' }, 
             {
               text: [
               { text: safe(l.developer?.prefix), color: '#777' },
@@ -7677,7 +7677,7 @@ export class ExportService {
               ],
               fontSize: 8,
               alignment: 'right',
-              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+              margin: [0, 20, 40, 0] 
             }
           ]
         };
@@ -7884,7 +7884,7 @@ export class ExportService {
       footer: (currentPage: number, pageCount: number) => {
         return {
           columns: [
-            { text: '', width: '*' }, // Pushes the next column to the right
+            { text: '', width: '*' }, 
             {
               text: [
              { text: safe(l.developer?.prefix), color: '#777' },
@@ -7892,7 +7892,7 @@ export class ExportService {
               ],
               fontSize: 8,
               alignment: 'right',
-              margin: [0, 20, 40, 0] // [left, top, right, bottom]
+              margin: [0, 20, 40, 0] 
             }
           ]
         };
