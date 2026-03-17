@@ -94,7 +94,7 @@ export class MushakListComponent {
             this.exportService.exportMushak_6_10_English(data, lang);
           }
           else if (mushak === 'Mushak-9.1') {
-            this.exportService.exportFullMushakPdfBangla(data, lang);
+            this.exportService.exportFullMushakPdf(data, lang);
           }
           else if (mushak === 'Mushak-10.1') {
             this.exportService.exportMushak_10_1(data, lang);
@@ -153,7 +153,7 @@ export class MushakListComponent {
             this.exportService.exportMushak_6_10_Bangla(data, lang);
           }
           else if (mushak === 'Mushak-9.1') {
-            this.exportService.exportFullMushakPdf(data, lang);
+            this.exportService.exportFullMushakPdfBangla(data, lang);
           }
           else if (mushak === 'Mushak-10.1') {
             this.exportService.exportMushak_10_1(data, lang);

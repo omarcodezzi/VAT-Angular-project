@@ -237,7 +237,7 @@ export class ExportService {
 
     const docDef: any = {
       pageSize: 'A4',
-      pageMargins: [30, 30, 30, 40],
+      pageMargins: [30, 25, 30, 25],
       defaultStyle: {
         font: 'PlaywriteCU',
         fontSize: 7,
@@ -253,7 +253,7 @@ export class ExportService {
               ],
               fontSize: 8,
               alignment: 'right',
-              margin: [0, 20, 40, 0] 
+              margin: [0, 10, 40, 0] 
             }
           ]
         };
@@ -676,7 +676,7 @@ export class ExportService {
           },
         },
 
-        { text: '', pageBreak: 'before' },
+        // { text: '', pageBreak: 'before' },
         this.createFullWidthHeader(l.sections.s5),
         {
           style: 'dataTable',
@@ -1391,7 +1391,7 @@ export class ExportService {
 
     const docDef: any = {
       pageSize: 'A4',
-      pageMargins: [30, 30, 30, 40],
+      pageMargins: [30, 25, 30, 25],
       defaultStyle: {
         font: 'PlaywriteCU',
         fontSize: 7,
@@ -1407,7 +1407,7 @@ export class ExportService {
               ],
               fontSize: 8,
               alignment: 'right',
-              margin: [0, 20, 40, 0] 
+              margin: [0, 10, 40, 0] 
             }
           ]
         };
