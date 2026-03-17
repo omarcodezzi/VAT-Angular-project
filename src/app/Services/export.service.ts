@@ -219,6 +219,8 @@ export class ExportService {
     const t = data?.taxpayer || {};
     const s = data?.returnSubmission || {};
 
+    const safe = (val: any) => (val !== undefined && val !== null ? val.toString() : ' ');
+
     (pdfMake as any).fonts = {
       PlaywriteCU: {
         normal: window.location.origin + '/assets/fonts/Nunito-Regular.ttf',
@@ -246,8 +248,8 @@ export class ExportService {
             { text: '', width: '*' }, // Pushes the next column to the right
             {
               text: [
-                { text: 'developed by: ', color: '#777' },
-                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+                 { text: safe(l.developer?.prefix), color: '#777' },
+                      {  text: safe(l.developer?.name), color: '#333', bold: true }
               ],
               fontSize: 8,
               alignment: 'right',
@@ -1159,6 +1161,8 @@ export class ExportService {
     const workbook = new ExcelJS.Workbook();
     const sheet = workbook.addWorksheet('Mushak-9.1');
 
+     const safe = (val: any) => (val !== undefined && val !== null ? val.toString() : '');
+
     // --- GOVERNMENT BRANDING HEADER ---
     const brandRow1 = sheet.addRow(["GOVERNMENT OF THE PEOPLE'S REPUBLIC OF BANGLADESH", '', '']);
     sheet.mergeCells(`B${brandRow1.number}:E${brandRow1.number}`);
@@ -1369,6 +1373,7 @@ export class ExportService {
     const n = data?.notes || {};
     const t = data?.taxpayer || {};
     const s = data?.returnSubmission || {};
+     const safe = (val: any) => (val !== undefined && val !== null ? val.toString() : '');
 
     (pdfMake as any).fonts = {
       PlaywriteCU: {
@@ -1397,8 +1402,8 @@ export class ExportService {
             { text: '', width: '*' }, // Pushes the next column to the right
             {
               text: [
-                { text: 'developed by: ', color: '#777' },
-                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+                  { text: safe(l.developer?.prefix), color: '#777' },
+                      {  text: safe(l.developer?.name), color: '#333', bold: true }
               ],
               fontSize: 8,
               alignment: 'right',
@@ -2340,8 +2345,8 @@ export class ExportService {
             { text: '', width: '*' }, // Pushes the next column to the right
             {
               text: [
-                { text: 'developed by: ', color: '#777' },
-                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+                 { text: safe(l.developer?.prefix), color: '#777' },
+                      {  text: safe(l.developer?.name), color: '#333', bold: true }
               ],
               fontSize: 8,
               alignment: 'right',
@@ -2506,14 +2511,15 @@ export class ExportService {
       pageSize: 'A4',
       pageOrientation: 'landscape',
       defaultStyle: { font: 'kalpurush', fontSize: 8 },
+      
       footer: (currentPage: number, pageCount: number) => {
         return {
           columns: [
             { text: '', width: '*' }, // Pushes the next column to the right
             {
               text: [
-                { text: 'developed by: ', color: '#777' },
-                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+                 { text: safeText(l.developer?.prefix), color: '#777' },
+                      {  text: safeText(l.developer?.name), color: '#333', bold: true }
               ],
               fontSize: 8,
               alignment: 'right',
@@ -2711,8 +2717,8 @@ export class ExportService {
                   { text: '', width: '*' }, // Pushes the next column to the right
                   {
                     text: [
-                      { text: 'developed by: ', color: '#777' },
-                      { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+                      { text: safe(l.developer?.prefix), color: '#777' },
+                      {  text: safe(l.developer?.name), color: '#333', bold: true }
                     ],
                     fontSize: 8,
                     alignment: 'right',
@@ -3031,8 +3037,8 @@ export class ExportService {
             { text: '', width: '*' }, // Pushes the next column to the right
             {
               text: [
-                { text: 'developed by: ', color: '#777' },
-                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+                { text: safe(l.developer?.prefix), color: '#777' },
+                      {  text: safe(l.developer?.name), color: '#333', bold: true }
               ],
               fontSize: 8,
               alignment: 'right',
@@ -3259,8 +3265,8 @@ export class ExportService {
             { text: '', width: '*' }, // Pushes the next column to the right
             {
               text: [
-                { text: 'developed by: ', color: '#777' },
-                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+               { text: safe(l.developer?.prefix), color: '#777' },
+                      {  text: safe(l.developer?.name), color: '#333', bold: true }
               ],
               fontSize: 8,
               alignment: 'right',
@@ -3518,8 +3524,8 @@ export class ExportService {
             { text: '', width: '*' }, // Pushes the next column to the right
             {
               text: [
-                { text: 'developed by: ', color: '#777' },
-                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+                { text: safe(labels.developer?.prefix), color: '#777' },
+                { text: safe(labels.developer?.name), color: '#333', bold: true }
               ],
               fontSize: 8,
               alignment: 'right',
@@ -3705,8 +3711,8 @@ export class ExportService {
             { text: '', width: '*' }, // Pushes the next column to the right
             {
               text: [
-                { text: 'developed by: ', color: '#777' },
-                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+                { text: safe(labels.developer?.prefix), color: '#777' },
+                      {  text: safe(labels.developer?.name), color: '#333', bold: true }
               ],
               fontSize: 8,
               alignment: 'right',
@@ -3916,8 +3922,8 @@ export class ExportService {
             { text: '', width: '*' }, // Pushes the next column to the right
             {
               text: [
-                { text: 'developed by: ', color: '#777' },
-                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+                { text: safe(l.developer?.prefix), color: '#777' },
+                      {  text: safe(l.developer?.name), color: '#333', bold: true }
               ],
               fontSize: 8,
               alignment: 'right',
@@ -4131,7 +4137,7 @@ export class ExportService {
     const docDef: any = {
       pageSize: 'A4',
       pageOrientation: 'landscape',
-      pageMargins: [20, 30, 20, 30],
+      pageMargins: [20, 30, 20, 40],
       defaultStyle: { font: 'PlaywriteCU', fontSize: 5 },
       footer: (currentPage: number, pageCount: number) => {
         return {
@@ -4139,8 +4145,8 @@ export class ExportService {
             { text: '', width: '*' }, // Pushes the next column to the right
             {
               text: [
-                { text: 'developed by: ', color: '#777' },
-                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+                        { text: safe(l.developer?.prefix), color: '#777' },
+                        { text: safe(l.developer?.name), color: '#333', bold: true }
               ],
               fontSize: 8,
               alignment: 'right',
@@ -4360,8 +4366,8 @@ export class ExportService {
             { text: '', width: '*' }, // Pushes the next column to the right
             {
               text: [
-                { text: 'developed by: ', color: '#777' },
-                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+               { text: safe(l.developer?.prefix), color: '#777' },
+                      {  text: safe(l.developer?.name), color: '#333', bold: true }
               ],
               fontSize: 8,
               alignment: 'right',
@@ -4509,9 +4515,9 @@ export class ExportService {
             { text: '', width: '*' }, // Pushes the next column to the right
             {
               text: [
-                { text: 'developed by: ', color: '#777' },
-                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
-              ],
+                   { text: safe(l.developer?.prefix), color: '#777' },
+                      {  text: safe(l.developer?.name), color: '#333', bold: true }
+                  ],
               fontSize: 8,
               alignment: 'right',
               margin: [0, 20, 40, 0] // [left, top, right, bottom]
@@ -4664,8 +4670,8 @@ export class ExportService {
             { text: '', width: '*' }, // Pushes the next column to the right
             {
               text: [
-                { text: 'developed by: ', color: '#777' },
-                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+                { text: safe(l.developer?.prefix), color: '#777' },
+                      {  text: safe(l.developer?.name), color: '#333', bold: true }
               ],
               fontSize: 8,
               alignment: 'right',
@@ -4817,8 +4823,8 @@ export class ExportService {
             { text: '', width: '*' }, // Pushes the next column to the right
             {
               text: [
-                { text: 'developed by: ', color: '#777' },
-                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+                { text: safe(l.developer?.prefix), color: '#777' },
+                      {  text: safe(l.developer?.name), color: '#333', bold: true }
               ],
               fontSize: 8,
               alignment: 'right',
@@ -4965,8 +4971,8 @@ export class ExportService {
             { text: '', width: '*' }, // Pushes the next column to the right
             {
               text: [
-                { text: 'developed by: ', color: '#777' },
-                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+                { text: safe(l.developer?.prefix), color: '#777' },
+                      {  text: safe(l.developer?.name), color: '#333', bold: true }
               ],
               fontSize: 8,
               alignment: 'right',
@@ -5105,8 +5111,8 @@ export class ExportService {
             { text: '', width: '*' }, // Pushes the next column to the right
             {
               text: [
-                { text: 'developed by: ', color: '#777' },
-                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+                { text: safe(l.developer?.prefix), color: '#777' },
+                { text: safe(l.developer?.name), color: '#333', bold: true }
               ],
               fontSize: 8,
               alignment: 'right',
@@ -5245,8 +5251,8 @@ export class ExportService {
             { text: '', width: '*' }, // Pushes the next column to the right
             {
               text: [
-                { text: 'developed by: ', color: '#777' },
-                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+               { text: safe(l.developer?.prefix), color: '#777' },
+                      {  text: safe(l.developer?.name), color: '#333', bold: true }
               ],
               fontSize: 8,
               alignment: 'right',
@@ -5423,8 +5429,8 @@ export class ExportService {
             { text: '', width: '*' }, // Pushes the next column to the right
             {
               text: [
-                { text: 'developed by: ', color: '#777' },
-                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+                { text: safe(l.developer?.prefix), color: '#777' },
+                      {  text: safe(l.developer?.name), color: '#333', bold: true }
               ],
               fontSize: 8,
               alignment: 'right',
@@ -5604,8 +5610,8 @@ export class ExportService {
             { text: '', width: '*' }, // Pushes the next column to the right
             {
               text: [
-                { text: 'developed by: ', color: '#777' },
-                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+                { text: safe(l.developer?.prefix), color: '#777' },
+                      {  text: safe(l.developer?.name), color: '#333', bold: true }
               ],
               fontSize: 8,
               alignment: 'right',
@@ -5797,8 +5803,8 @@ export class ExportService {
             { text: '', width: '*' }, // Pushes the next column to the right
             {
               text: [
-                { text: 'developed by: ', color: '#777' },
-                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+               { text: safe(l.developer?.prefix), color: '#777' },
+                      {  text: safe(l.developer?.name), color: '#333', bold: true }
               ],
               fontSize: 8,
               alignment: 'right',
@@ -5990,8 +5996,8 @@ export class ExportService {
             { text: '', width: '*' }, // Pushes the next column to the right
             {
               text: [
-                { text: 'developed by: ', color: '#777' },
-                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+                { text: safe(l.developer?.prefix), color: '#777' },
+                      {  text: safe(l.developer?.name), color: '#333', bold: true }
               ],
               fontSize: 8,
               alignment: 'right',
@@ -6183,8 +6189,8 @@ export class ExportService {
             { text: '', width: '*' }, // Pushes the next column to the right
             {
               text: [
-                { text: 'developed by: ', color: '#777' },
-                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+               { text: safe(l.developer?.prefix), color: '#777' },
+                      {  text: safe(l.developer?.name), color: '#333', bold: true }
               ],
               fontSize: 8,
               alignment: 'right',
@@ -6376,8 +6382,8 @@ export class ExportService {
             { text: '', width: '*' }, // Pushes the next column to the right
             {
               text: [
-                { text: 'developed by: ', color: '#777' },
-                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+                { text: safe(l.developer?.prefix), color: '#777' },
+                      {  text: safe(l.developer?.name), color: '#333', bold: true }
               ],
               fontSize: 8,
               alignment: 'right',
@@ -6510,8 +6516,8 @@ export class ExportService {
             { text: '', width: '*' }, // Pushes the next column to the right
             {
               text: [
-                { text: 'developed by: ', color: '#777' },
-                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+                { text: safe(l.developer?.prefix), color: '#777' },
+                      {  text: safe(l.developer?.name), color: '#333', bold: true }
               ],
               fontSize: 8,
               alignment: 'right',
@@ -6646,8 +6652,8 @@ export class ExportService {
             { text: '', width: '*' }, // Pushes the next column to the right
             {
               text: [
-                { text: 'developed by: ', color: '#777' },
-                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+               { text: safe(l.developer?.prefix), color: '#777' },
+                      {  text: safe(l.developer?.name), color: '#333', bold: true }
               ],
               fontSize: 8,
               alignment: 'right',
@@ -6777,8 +6783,8 @@ export class ExportService {
             { text: '', width: '*' }, // Pushes the next column to the right
             {
               text: [
-                { text: 'developed by: ', color: '#777' },
-                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+             { text: safe(l.developer?.prefix), color: '#777' },
+                      {  text: safe(l.developer?.name), color: '#333', bold: true }
               ],
               fontSize: 8,
               alignment: 'right',
@@ -6929,8 +6935,8 @@ export class ExportService {
             { text: '', width: '*' }, // Pushes the next column to the right
             {
               text: [
-                { text: 'developed by: ', color: '#777' },
-                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+                { text: safe(l.developer?.prefix), color: '#777' },
+                      {  text: safe(l.developer?.name), color: '#333', bold: true }
               ],
               fontSize: 8,
               alignment: 'right',
@@ -7205,8 +7211,8 @@ export class ExportService {
             { text: '', width: '*' }, // Pushes the next column to the right
             {
               text: [
-                { text: 'developed by: ', color: '#777' },
-                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+              { text: safe(l.developer?.prefix), color: '#777' },
+                      {  text: safe(l.developer?.name), color: '#333', bold: true }
               ],
               fontSize: 8,
               alignment: 'right',
@@ -7432,8 +7438,8 @@ export class ExportService {
             { text: '', width: '*' }, // Pushes the next column to the right
             {
               text: [
-                { text: 'developed by: ', color: '#777' },
-                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+              { text: safe(l.developer?.prefix), color: '#777' },
+                      {  text: safe(l.developer?.name), color: '#333', bold: true }
               ],
               fontSize: 8,
               alignment: 'right',
@@ -7666,8 +7672,8 @@ export class ExportService {
             { text: '', width: '*' }, // Pushes the next column to the right
             {
               text: [
-                { text: 'developed by: ', color: '#777' },
-                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+              { text: safe(l.developer?.prefix), color: '#777' },
+                      {  text: safe(l.developer?.name), color: '#333', bold: true }
               ],
               fontSize: 8,
               alignment: 'right',
@@ -7881,8 +7887,8 @@ export class ExportService {
             { text: '', width: '*' }, // Pushes the next column to the right
             {
               text: [
-                { text: 'developed by: ', color: '#777' },
-                { text: 'SkyTech Global Ltd.', color: '#333', bold: true }
+             { text: safe(l.developer?.prefix), color: '#777' },
+                      {  text: safe(l.developer?.name), color: '#333', bold: true }
               ],
               fontSize: 8,
               alignment: 'right',

@@ -164,7 +164,11 @@
     },
     "footer": {
       "note": "This is a system generated certificate and doesn't require any signature."
-    }
+    },
+     "developer": {
+    "prefix": "developed by: ",
+    "name": "SkyTech Global Ltd."
+  }
   },
   "mushak_4_3": {
     "titles": {
@@ -206,7 +210,11 @@
         "New declaration is required if the price of goods or raw materials changes by more than 7.5%.",
         "Bill of Entry or Challan must be attached as proof of raw material purchase."
       ]
-    }
+    },
+      "developer": {
+    "prefix": "developed by: ",
+    "name": "SkyTech Global Ltd."
+  }
   },
   "mushak_6_1": {
     "titles": {
@@ -255,7 +263,11 @@
         "In cases where goods are purchased from an unregistered person, the full name, address, and National ID number of said person must be compulsorily mentioned in the relevant columns [(7), (8), and (9)].",
         "Copies of the Bill of Entry or Invoice must be preserved as supporting documents for the purchase of raw materials."
       ]
-    }
+    },
+      "developer": {
+    "prefix": "developed by: ",
+    "name": "SkyTech Global Ltd."
+  }
   },
   "mushak_6_2": {
     "titles": {
@@ -296,7 +308,11 @@
       "notes": [
         "In cases where goods are sold to an unregistered person, the full name, address, and National ID number of said person must be compulsorily mentioned in the relevant columns [(9), (10), and (11)]."
       ]
-    }
+    },
+      "developer": {
+    "prefix": "developed by: ",
+    "name": "SkyTech Global Ltd."
+  }
   },
   "mushak_6_2_1": {
     "titles": {
@@ -339,7 +355,11 @@
       "notes": [
         "In cases where goods are purchased from or sold to an unregistered person, the full name, address, and National ID number of said person must be compulsorily mentioned in the relevant columns [(9), (10), (11), (19), (20), and (21)]."
       ]
-    }
+    },
+      "developer": {
+    "prefix": "developed by: ",
+    "name": "SkyTech Global Ltd."
+  }
   },
   "mushak_6_3": {
     "titles": {
@@ -376,7 +396,11 @@
       "designation_label": "Designation",
       "signature_label": "Signature",
       "seal_label": "Seal"
-    }
+    },
+      "developer": {
+    "prefix": "developed by: ",
+    "name": "SkyTech Global Ltd."
+  }
   },
   "mushak_6_4": {
     "titles": {
@@ -411,7 +435,11 @@
       "designation_label": "Designation",
       "signature_label": "Signature",
       "seal_label": "Seal"
-    }
+    },
+      "developer": {
+    "prefix": "developed by: ",
+    "name": "SkyTech Global Ltd."
+  }
   },
   "mushak_6_5": {
     "titles": {
@@ -443,7 +471,11 @@
       "designation_label": "Designation",
       "signature_label": "Signature",
       "seal_label": "Seal"
-    }
+    },
+      "developer": {
+    "prefix": "developed by: ",
+    "name": "SkyTech Global Ltd."
+  }
   },
   "mushak_6_6": {
     "titles": {
@@ -477,7 +509,11 @@
       "auth_label": "Signature of Authorized Officer",
       "name_label": "Name",
       "signature_label": "Signature"
-    }
+    },
+      "developer": {
+    "prefix": "developed by: ",
+    "name": "SkyTech Global Ltd."
+  }
   },
   "mushak_6_7": {
     "titles": {
@@ -524,7 +560,11 @@
       "unitPrice": "1. Unit Price of production/Service inclusive of VAT/ Supplementary Duty tax.",
       "deduction": "2. Amount of deduction, if any for refund.",
       "totalTax": "3. Summation of VAT and supplementary Duty."
-    }
+    },
+      "developer": {
+    "prefix": "developed by: ",
+    "name": "SkyTech Global Ltd."
+  }
   },
   "mushak_6_8": {
     "titles": {
@@ -571,7 +611,11 @@
       "note1": "1. Unit Price of prduction/Service inclusive of VAT/ Supplementary Duty tax.",
       "note2": "2. Amount of deduction, if any for refund.",
       "note3": "3. Summation of VAT and supplementary Duty."
-    }
+    },
+      "developer": {
+    "prefix": "developed by: ",
+    "name": "SkyTech Global Ltd."
+  }
   },
   "mushak_6_9": {
     "titles": {
@@ -603,7 +647,11 @@
     "notes": {
       "note1": "1. 3% Turnover Tax is included in unit and total price.",
       "note2": "2. Amount obtained by multiplying total value by 3/103."
-    }
+    },
+      "developer": {
+    "prefix": "developed by: ",
+    "name": "SkyTech Global Ltd."
+  }
   },
   "mushak_6_10": {
     "titles": {
@@ -635,7 +683,11 @@
     },
     "notes": {
       "special_note": "* In cases where goods/services are purchased from an unregistered person or sold to an unregistered person, the full name, address, and National ID number of said person must be compulsorily mentioned in the relevant columns [(7), (8), and (9)]."
-    }
+    },
+      "developer": {
+    "prefix": "developed by: ",
+    "name": "SkyTech Global Ltd."
+  }
   },
   "mushak_10_1": {
     "titles": {
@@ -684,7 +736,11 @@
       "mobile": "Mobile No.",
       "email": "Email",
       "signature": "Signature"
-    }
+    },
+      "developer": {
+    "prefix": "developed by: ",
+    "name": "SkyTech Global Ltd."
+  }
   },
   "mushak_18_1": {
     "titles": {
@@ -729,7 +785,11 @@
       "text": "I declare that the information provided in this application is complete, true, and correct in all respects.",
       "name": "Name",
       "designation": "Designation"
-    }
+    },
+      "developer": {
+    "prefix": "developed by: ",
+    "name": "SkyTech Global Ltd."
+  }
   },
   "mushak_18_2": {
     "header": {
@@ -760,7 +820,11 @@
       "signature": "Signature",
       "name": "Name",
       "address": "Address"
-    }
+    },
+      "developer": {
+    "prefix": "developed by: ",
+    "name": "SkyTech Global Ltd."
+  }
   },
   "mushak_18_3": {
     "header": {
@@ -790,7 +854,11 @@
       "nameValue": "John Doe Trading Co.",
       "addressValue": "123 Commerce Street, Dhaka-1000",
       "binValue": "000123456-0101"
-    }
+    },
+      "developer": {
+    "prefix": "developed by: ",
+    "name": "SkyTech Global Ltd."
+  }
   },
   "mushak_2_1": {
     "titles": {
@@ -962,6 +1030,10 @@
       "partner": "(c) A Partner",
       "officer": "(d) An Officer of a non-profit organization",
       "others": "(e) Others (Specify)"
-    }
+    },
+      "developer": {
+    "prefix": "developed by: ",
+    "name": "SkyTech Global Ltd."
+  }
   }
 }
