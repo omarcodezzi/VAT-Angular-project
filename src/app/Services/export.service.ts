@@ -1367,7 +1367,7 @@ export class ExportService {
     const buffer = await workbook.xlsx.writeBuffer();
     saveAs(new Blob([buffer]), 'Mushak_9.1_Full_Report.xlsx');
   }
-
+ 
   exportFullMushakPdfBangla(data: any, lang: string) {
     const l = data.labels || {};
     const n = data?.notes || {};
